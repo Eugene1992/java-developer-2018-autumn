@@ -10,13 +10,14 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>test</module>
-        <module>ihornullgr</module>
         <module>IvanKozlov</module>
         <module>Mashulia</module>
         <module>EugenKarpenko</module>
         <module>Ingwar</module>
         <module>Vladimir</module>
         <module>BlackRoses19</module>
+        <module>Yaroslav</module>
+        <module>ihornullgr</module>
     </modules>
 
 
