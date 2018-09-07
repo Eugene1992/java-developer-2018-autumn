@@ -1,5 +1,9 @@
+package java_starter.variables;
+
 public class Test {
     public static void main(String[] args) {
-        System.out.println("Hello World");
+        int a = 52; // 1 ... 127
+
+
     }
 }
