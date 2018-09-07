@@ -16,5 +16,6 @@ public class DataTypeCasts {
 //        ---------------------------------------
 //                                      1010 1010
 
+        System.out.println(Math.pow(2, 3));
     }
 }
