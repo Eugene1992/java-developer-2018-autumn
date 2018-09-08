@@ -1,3 +1,5 @@
+package homework;
+
 public class HW00 {
     public static void main(String[] args) {
         byte a;
