@@ -24,7 +24,23 @@ public class HomeWork00 {
         int sb = (s/ded)*(sum/d);
 
         //Task 9
-        int a =
+        int g = 16;
+        int t = 34;
+        int tmp;
+
+        tmp = g;
+        g = t;
+        t = tmp;
+
+        //Task 10
+        int w = 3;
+        int p = 5;
+
+        w = w + p;
+        p = p - w;
+        p = -p;
+        w = w - p;
+
 
         System.out.println("Task 2: " + sum);
         System.out.println("Task 3: " + ded);
@@ -33,6 +49,10 @@ public class HomeWork00 {
         System.out.println("Task 6: " + FV);
         System.out.println("Task 7: " + s7);
         System.out.println("Task 8: " + sb);
+        System.out.println("Task 9: g = " + g);
+        System.out.println("Task 9: t = " + t);
+        System.out.println("Task 10: p = " + p);
+        System.out.println("Task 10: w = " + w);
 
     }
 }
@@ -45,7 +65,7 @@ public class HomeWork00 {
         6. Передать перменной типа byte результат суммы двух переменных типа byte
         7. Передать переменной типа byte результат суммы двух переменных типа short,
             деленных на третью переменную типа byte
-        //8. Переменной типа int передать результат деления двух short,
+        8. Переменной типа int передать результат деления двух short,
             умноженных на результат деления двух byte
         9. Поменять значения двух целочисленных переменных используя третью
         10. Поменять значения двух переменных без использования третей
