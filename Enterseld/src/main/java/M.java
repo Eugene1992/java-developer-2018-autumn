@@ -1,2 +1,2 @@
-public class M {
+public class  {
 }
