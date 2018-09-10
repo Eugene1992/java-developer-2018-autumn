@@ -18,7 +18,7 @@ public class HomeWork070918 {
 		int intVar2 = 1144000000/5;
 		
 		//5
-		long longVar2 = 2144000000*7;
+		long longVar2 = 2144000000L*7;
 		
 		//6
 		byte byteVar3;
