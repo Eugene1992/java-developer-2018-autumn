@@ -6,25 +6,22 @@ public class HomeWork00 {
         long l = 362377139L;
 
         //Task 2
-        byte sum = (byte) (d+a);
+        byte sum = (byte) (d + a);
         //Task 3
-        short ded = (short) (s-d);
+        short ded = (short) (s - d);
         //Task 4
-        int div = d/a;
+        int div = d / a;
         //Task 5
-        long mul = l*a;
+        long mul = l * a;
 
         //Task 6
-        byte FV = (byte) (sum+d);
+        byte FV = (byte) (sum + d);
 
         //Task 7
-        byte s7 = (byte)((s+ded)/FV);
+        byte s7 = (byte) ((s + ded) / FV);
 
         //Task 8
-        int sb = (s/ded)*(sum/d);
-
-        //Task 9
-        int a =
+        int sb = (s / ded) * (sum / d);
 
         System.out.println("Task 2: " + sum);
         System.out.println("Task 3: " + ded);
