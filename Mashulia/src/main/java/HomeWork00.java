@@ -1,5 +1,7 @@
 public class HomeWork00 {
     public static void main(String[] args) {
+
+        //Task 1
         int a = 14;
         byte d = 53;
         short s = 1426;
