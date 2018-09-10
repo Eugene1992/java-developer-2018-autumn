@@ -1,7 +1,7 @@
 public class ClassTest {
     public static void main (String [] args){
-        int a = 52;
-        System.out.println(Integer.toBinaryString(a));
+        int a = 128;
+        System.out.println("Must be: " + Integer.toBinaryString(a));
         int b1 = a % 2;
         a = a/2;
 
@@ -26,14 +26,6 @@ public class ClassTest {
         int b8 = a%2;
         a = a/2;
 
-        System.out.print(b8);
-        System.out.print(b7);
-        System.out.print(b6);
-        System.out.print(b5);
-        System.out.print(b4);
-        System.out.print(b3);
-        System.out.print(b2);
-        System.out.println(b1);
-
+        System.out.println("My version: " + b8 + b7 +b6 +b5 + b4 + b3 + b2 + b1);
     }
 }
