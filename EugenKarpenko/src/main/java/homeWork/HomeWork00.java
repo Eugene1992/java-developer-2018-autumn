@@ -3,7 +3,7 @@ package homeWork;
 public class HomeWork00 {
     public static void main(String[] args) {
 
-       // 1. Создать четыре целочисленные переменные типов byte, short, int, long.
+        // 1. Создать четыре целочисленные переменные типов byte, short, int, long.
         byte a;
         short b;
         int c;
@@ -16,14 +16,14 @@ public class HomeWork00 {
         b = 100 - 50;
 
         // 4. Инициализировать переменную типа int результатом деления двух любых чисел
-        c = 100 / 2 ;
+        c = 100 / 2;
 
         //  5. Инициализировать переменную типа long результатом умножения двух любых чисел
         d = 10 * 10;
 
         // 6. Передать перменной типа byte результат суммы двух переменной типа byte
         byte one = 10;
-        byte  two = 10;
+        byte two = 10;
         byte three = (byte) (one + two);
 
         // 7. Передать переменной типа byte результат суммы двух переменных типа short, деленных на третью переменную типа byte
@@ -47,18 +47,15 @@ public class HomeWork00 {
         change = A3;
         A3 = A4;
         A4 = change;
-        
+
         // 10. Поменять значения двух переменных без использования третей
         int first = 10;
         int second = 20;
         first = second * second;
         second = first;
 
-        System.out.println (first);
-        System.out.println (second);
-
-
-
+        System.out.println(first);
+        System.out.println(second);
 
 
     }

@@ -1,7 +1,7 @@
 public class DecToBinTask {
     public static void main(String[] args) {
 
-        int a = 99;
+        int a = 15;
 
         int bin0 = a % 2;
         int dec0 = a / 2;
