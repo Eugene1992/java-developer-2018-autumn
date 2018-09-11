@@ -26,13 +26,27 @@ public class HomeWork001 {
         введенных с консоли.
         Например, среди чисел 8,5 и 11,45 ближайшее к десяти 11,45.*/
 
-        Scanner scan3 = new Scanner(System.in);
-        System.out.println("Введите цифру или число 3");
-        int nextInt2 = scan3.nextInt();
+        int a = 10;
+        float f1 = 9.24f;
+        float f2 = 15.45f;
 
+        float f3 = f1 - a;
+        float f4 = f2 - a;
+
+        if (f3 < f4) {
+            System.out.println(f1 + "ближе к 10");
+        }else
+            System.out.println(f2 + "ближе к 10");
+
+
+        /*Задание 4
+        Задано три переменных, найти и вывести на экран переменную с максимальным значением
+        (значения всех переменных разные).*/
+
+
+
+        }
 
     }
-
-}
 
 
