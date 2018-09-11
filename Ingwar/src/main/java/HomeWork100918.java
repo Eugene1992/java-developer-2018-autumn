@@ -93,6 +93,28 @@ public class HomeWork100918 {
         }
         System.out.println("Second great is "+secondGreat);
 
-        //
+        //Задание 6
+        //В три переменные a, b и c записаны три вещественных(дробных) числа. Создать программу, которая
+        //будет находить и выводить на экран вещественные корни квадратного уравнения ax²+bx+c=0,
+        //либо сообщать, что корней нет.
+        double doubleVarA = 34.5;
+        double doubleVarB = 23.14;
+        double doubleVarC = 2;
+
+        double discriminant = doubleVarB*doubleVarB - 4*doubleVarA*doubleVarC;
+        if (discriminant<0){
+            System.out.println("No roots");
+        } else {
+            double root1 = (-doubleVarB+Math.sqrt(discriminant))/(2*doubleVarA);
+            if (discriminant == 0) {
+            System.out.println("One root");
+            System.out.println("Root: "+root1);
+        } else {
+            System.out.println("Two roots");
+            System.out.println("First root: "+root1);
+            double root2 = (-doubleVarB-Math.sqrt(discriminant))/(2*doubleVarA);
+            System.out.println("Second root: "+root2);
+        }
+        }
     }
 }
