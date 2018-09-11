@@ -35,14 +35,13 @@ public class HomeWork001 {
 
         if (f3 < f4) {
             System.out.println(f1 + "ближе к 10");
-        }else
+        } else
             System.out.println(f2 + "ближе к 10");
 
 
         /*Задание 4
         Задано три переменных, найти и вывести на экран переменную с максимальным значением
         (значения всех переменных разные).*/
-
         int max0 = 555;
         int max1 = 666;
         int max2 = 777;
@@ -55,8 +54,45 @@ public class HomeWork001 {
             System.out.println(max2 + " переменная больше всех");
         }
 
+        /*Задание 5
+        Задано четыре переменных, найти и вывести на экран вторую по величине.*/
+        int h0 = 44;
+        int h1 = 22;
+        int h2 = 11;
+        int h3 = 6;
+
+        int firstVariable = h0;
+        int secondVAriable = h0;
+
+        if (h0 > h1) {
+            secondVAriable = h1;
+        } else {
+            firstVariable = h1;
         }
+        if (h2 > firstVariable) {
+            secondVAriable = firstVariable;
+            firstVariable = h2;
+        } else {
+            if (h2 > secondVAriable) {
+                secondVAriable = h2;
+            }
+            if (h3 > firstVariable) {
+                secondVAriable = firstVariable;
+                firstVariable = h3;
+            } else {
+                if (h3 > secondVAriable){
+                    secondVAriable = h3;
+                }
+                System.out.println(secondVAriable + " вторая по величине");
+            }
+        }
+        /*Задание 6
+        В три переменные a, b и c записаны три вещественных(дробных) числа. Создать программу, которая
+        будет находить и выводить на экран вещественные корни квадратного уравнения ax²+bx+c=0,
+                либо сообщать, что корней нет.*/
 
     }
+
+}
 
 
