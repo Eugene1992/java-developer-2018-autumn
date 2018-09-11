@@ -1,6 +1,6 @@
 package homeWork;
 
-public class HomeWork001 {
+public class HomeWork000 {
     public static void main(String[] args) {
         byte b;
         short s;
