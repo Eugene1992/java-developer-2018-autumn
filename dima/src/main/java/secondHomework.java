@@ -47,7 +47,7 @@ public class secondHomework {
         System.out.println("Второе по величине число = " + x);}
 
         if ((c * c) - (x * x) - (z * z) < (v * v)) {
-        System.out.println("Второе по величине число = " + c);}
+        System.out.println("Второе по величине число = " + 1);}
 
 
     }
