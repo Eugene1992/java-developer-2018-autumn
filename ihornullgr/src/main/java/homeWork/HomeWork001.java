@@ -43,7 +43,17 @@ public class HomeWork001 {
         Задано три переменных, найти и вывести на экран переменную с максимальным значением
         (значения всех переменных разные).*/
 
+        int max0 = 555;
+        int max1 = 666;
+        int max2 = 777;
 
+        if (max0 > max1) {
+            System.out.println(max0 + " переменная больше всех");
+        } else if (max1 > max2) {
+            System.out.println(max1 + " переменная больше всех");
+        } else if (max2 > max0) {
+            System.out.println(max2 + " переменная больше всех");
+        }
 
         }
 
