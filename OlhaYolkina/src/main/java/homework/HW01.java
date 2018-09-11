@@ -43,12 +43,40 @@ public class HW01 {
         float e = scan.nextFloat();
         float f = scan.nextFloat();
 
-        if ((d == e) & (e == f)) System.out.println("d = " + d + ", " + "e = " + e + ", " + "f = " + f + " are equally");
+        if ((d == e) & (e == f))
+            System.out.println("d = " + d + ", " + "e = " + e + ", " + "f = " + f + " are equally");
         else if ((d == e) & (e > f)) System.out.println("d = " + d + " and " + "e = " + e + " are maximum");
         else if ((d == f) & (e < f)) System.out.println("d = " + d + " and " + "f = " + f + " are maximum");
         else if ((e == f) & (d < e)) System.out.println("e = " + e + " and " + "f = " + f + " are maximum");
         else if ((d > e) & (d > f)) System.out.println("d = " + d + " is maximum");
         else if ((e > d) & (e > f)) System.out.println("e = " + e + " is maximum");
         else System.out.println("f = " + f + " is maximum");
+
+
+        /**
+         * Задание 5
+         * Задано четыре переменных, найти и вывести на экран вторую по величине.
+         */
+        System.out.println("Please write four numbers");
+        float g = scan.nextFloat();
+        float h = scan.nextFloat();
+        float i = scan.nextFloat();
+        float j = scan.nextFloat();
+
+        float a1, a2 = 0;
+
+        a1 = ((g >= h ? g : h) >= (i >= j ? i : j)) ? (g >= h ? g : h) : (i >= j ? i : j);
+
+        if (g == a1) {
+            a2 = (h >= i) ? (h >= j ? h : j) : (i >= j ? i : j);
+        } else if (h == a1) {
+            a2 = (g >= i) ? (g >= j ? g : j) : (i >= j ? i : j);
+        } else if (i == a1) {
+            a2 = (g >= h) ? (g >= j ? g : j) : (h >= j ? h : j);
+        } else if (j == a1) {
+            a2 = (g >= h) ? (g >= i ? g : i) : (h >= i ? h : i);
+        }
+
+        System.out.println(a2 + " - second value by size");
     }
 }
