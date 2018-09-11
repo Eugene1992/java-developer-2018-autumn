@@ -52,6 +52,7 @@ public class Test {
             w=q-w;
             System.out.println(q);
             System.out.println(w);
+
         }
     }
 
