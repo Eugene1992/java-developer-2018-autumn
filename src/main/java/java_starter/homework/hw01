@@ -2,7 +2,7 @@
 
 Для получения информации с консоли нужно создать обьект типа Scanner:
 
-cczzzz
+Scanner scan = new Scanner(System.in);
 
 Затем строку получаем следующим образом:
 String s = scan.next();
