@@ -3,6 +3,7 @@ package homework;
 import java.util.Scanner;
 
 import static java.lang.StrictMath.abs;
+import static java.lang.StrictMath.sqrt;
 
 public class HW01 {
     public static void main(String[] args) {
@@ -78,5 +79,25 @@ public class HW01 {
         }
 
         System.out.println(a2 + " - second value by size");
+
+
+        /**
+         *Задание 6
+         * В три переменные a, b и c записаны три вещественных(дробных) числа. Создать программу, которая
+         * будет находить и выводить на экран вещественные корни квадратного уравнения ax²+bx+c=0,
+         * либо сообщать, что корней нет.
+         */
+        System.out.println("Please write k, l, m numbers for kx²+lx+m=0");
+        double k = scan.nextDouble();
+        double l = scan.nextDouble();
+        double m = scan.nextDouble();
+
+        double x1, x2;
+        if (k == 0) System.out.println("x = " + (-m / l));
+        else if ((l * l - 4 * k * m) >= 0) {
+            x1 = (-l + sqrt(l * l - 4 * k * m)) / (2 * k);
+            x2 = (-l - sqrt(l * l - 4 * k * m)) / (2 * k);
+            System.out.println("x1 = " + x1 + "; x2 = " + x2);
+        } else System.out.println("This quadratic equation has no real roots");
     }
 }
