@@ -73,7 +73,7 @@ public class DecToBinAndHex {
                         hexNumber = "F" + hexNumber;
                         break;
                 }
-            } else hexNumber = remainder16 + hexNumber;
+            } else if (dec16 != 0) hexNumber = remainder16 + hexNumber;
         }
         while (dec16 != 0);
 
