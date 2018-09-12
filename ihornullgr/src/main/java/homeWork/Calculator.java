@@ -5,19 +5,19 @@ import java.util.Scanner;
 public class Calculator {
     public static void main(String[] args) {
         Scanner scan0 = new Scanner(System.in);
-        System.out.println("Input first value");
+        System.out.println("Введите первое значение");
         int nextInt0 = scan0.nextInt();
 
         Scanner scan1 = new Scanner(System.in);
-        System.out.println("Input operation");
+        System.out.println("Введите операцию");
         String operation = scan1.next();
 
         Scanner scan2 = new Scanner(System.in);
-        System.out.println("Input second value");
+        System.out.println("Введите второе значение");
         int nextInt2 = scan2.nextInt();
 
         int result = 0;
-        char notResult = 'n';
+        char notResult = 'y';
 
         switch (operation) {
             case "+":
@@ -36,12 +36,13 @@ public class Calculator {
                 break;
 
             case "/":
-                result = nextInt0 / nextInt2;
-                System.out.println(result);
-                break;
-
+                if (notResult == 0){
+                    notResult = 'y';
+                }
+                if (notResult == 'y'){
+                    System.out.println("На ноль делить нельзя!");
+                }
         }
-
     }
 }
 /*Задание 7
