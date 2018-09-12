@@ -9,9 +9,9 @@ public class ToBinary {
         int n = sc.nextInt();
         String str = "";
 
-        while(n != 1){
+        while(n != 0){
             if(n % 2 == 0){
-               str = 1 + str;
+               str = 0 + str;
             }
             else{
                 str = 1 + str;
