@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 import static java.lang.StrictMath.abs;
 
-public class Homework2 {
+public class HomeWork2 {
     public static void main(String[] args) {
         /* № 2
         Создать программу, проверяющую и сообщающую на экран, является ли введенное с
