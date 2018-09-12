@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 import static java.lang.StrictMath.sqrt;
 
-public class secondHomework {
+public class SecondHomework {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         // Задание №2 //
