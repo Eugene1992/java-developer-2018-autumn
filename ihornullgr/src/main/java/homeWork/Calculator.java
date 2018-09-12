@@ -22,17 +22,14 @@ public class Calculator {
         switch (operation) {
             case "+":
                 result = nextInt0 + nextInt2;
-                System.out.println(result);
                 break;
 
             case "-":
                 result = nextInt0 - nextInt2;
-                System.out.println(result);
                 break;
 
             case "*":
                 result = nextInt0 * nextInt2;
-                System.out.println(result);
                 break;
 
             case "/":
