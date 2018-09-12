@@ -18,7 +18,7 @@ public class AllLoopsCompare {
 
         System.out.println();
 
-        for(int forCount = 0; forCount < 10; forCount++) {
+        for (int forCount = 0; forCount < 10; forCount++) {
             System.out.print(forCount + " ");
         }
     }
