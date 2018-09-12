@@ -65,14 +65,14 @@ public class Homework2 {
 
         double x1, x2;
         double D1;
-        if (k == 0) System.out.println (-c / b);
+        if (k == 0) System.out.println(-c / b);
 
-        else if (((b * b) - (4 * a * c)) >= 0){
-        D1 = (b * b) - (4 * a * c);
-        x1 = (-b + sqrt(D1)) / (2 * a);
-        x2 = (-b - sqrt(D1)) / (2 * a);
-        System.out.println(x1 + "and" + x2);}
-        else System.out.println("No roots");
+        else if (((b * b) - (4 * a * c)) >= 0) {
+            D1 = (b * b) - (4 * a * c);
+            x1 = (-b + sqrt(D1)) / (2 * a);
+            x2 = (-b - sqrt(D1)) / (2 * a);
+            System.out.println(x1 + "and" + x2);
+        } else System.out.println("No roots");
     }
     }
 
