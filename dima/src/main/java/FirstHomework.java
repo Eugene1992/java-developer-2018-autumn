@@ -1,4 +1,4 @@
-public class Test {
+public class FirstHomework {
         public static void main(String[] args) {
             byte firstNumber = 10;
             short secondNumber = 100;
