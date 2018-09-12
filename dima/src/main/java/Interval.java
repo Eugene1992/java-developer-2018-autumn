@@ -2,7 +2,7 @@
 
 import java.util.Scanner;
 
-public class Ex8 {
+public class Interval {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Please write a number");
