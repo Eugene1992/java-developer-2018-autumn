@@ -76,5 +76,7 @@ public class secondHomework {
             System.out.println("x1 = " + m1 + "; x2 = " + m2);
         } else System.out.println("Уравнение не имеет действительных корней");
 
+
+
     }
 }
