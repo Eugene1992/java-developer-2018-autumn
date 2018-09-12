@@ -36,12 +36,18 @@ public class Calculator {
                 break;
 
             case "/":
-                if (notResult == 0){
-                    notResult = 'y';
+                if (nextInt2 == 0){
+                    notResult = 'k';
+                } else {
+                    result = nextInt0 / nextInt2;
                 }
-                if (notResult == 'y'){
-                    System.out.println("На ноль делить нельзя!");
-                }
+                break;
+        }
+        if (notResult == 'y') {
+            System.out.println(">>> " + result);
+        }
+        if (notResult == 'k') {
+            System.out.println("На ноль делить нельзя!");
         }
     }
 }
