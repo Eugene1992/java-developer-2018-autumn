@@ -1,6 +1,8 @@
+package homework;
+
 import java.util.Scanner;
 
-public class DecToBinAndHex {
+public class HW02_DecTo {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         System.out.println("Please write number");
@@ -19,7 +21,7 @@ public class DecToBinAndHex {
         }
         while (dec != 0);
 
-        System.out.println(number + " in Bin = " + binNumber);
+        System.out.println(number + " in Bin = " + binNumber.replaceAll("(.{4})", "$1 "));
 
         int dec16, remainder16;
         String hexNumber = "";
