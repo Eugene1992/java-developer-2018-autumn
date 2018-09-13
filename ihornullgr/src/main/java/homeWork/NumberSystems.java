@@ -17,7 +17,7 @@ public class NumberSystems {
         System.out.println("Input value");
         int inpu0 = scan0.nextInt();
         int b, c;
-        while (inpu0 > 0) {
+        while (inpu0 != 0) {
             b = inpu0 / 2;
             c = inpu0 % 2;
             System.out.print(c);
@@ -29,13 +29,12 @@ public class NumberSystems {
         System.out.println("8 value");
         int num1 = scan3.nextInt();
         String st1 = "";
-        while (num1 > 0) {
+        while (num1 != 0) {
             int d1 = num1 % 8;
-            if (d1 < 8) {
-                st1 = d1 + st1;
-            } num1 = num1 / 8;
-            System.out.println(st1);
-        }
+            st1 = d1 + st1;
+            num1 = num1 / 8;
+
+        }System.out.println(st1);
 
 
         Scanner scan2 = new Scanner(System.in);
