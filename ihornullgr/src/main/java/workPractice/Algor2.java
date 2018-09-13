@@ -16,6 +16,5 @@ public class Algor2 {
             System.out.print(c);
             input = input / 2;
         }
-
     }
 }
