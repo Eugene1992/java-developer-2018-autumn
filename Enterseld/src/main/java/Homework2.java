@@ -1,9 +1,8 @@
 import java.util.Scanner;
 
 import static java.lang.StrictMath.abs;
-import static java.lang.StrictMath.sqrt;
 
-public class Homework2 {
+public class HomeWork2 {
     public static void main(String[] args) {
         /* № 2
         Создать программу, проверяющую и сообщающую на экран, является ли введенное с
@@ -14,7 +13,8 @@ public class Homework2 {
 
         if (L1 % 2 == 0) {
             System.out.println(L1 + " - even");
-        } else {
+        }
+        else {
             System.out.println(L1 + " - odd");
         }
         /*№ 3
@@ -47,13 +47,14 @@ public class Homework2 {
         if (((p < d) & (p > t) & (p > v))) System.out.println(p);
         else if (((p > d) & (p < t) & (p > v))) System.out.println(p);
         else if (((p > d) & (p > t) & (p < v))) System.out.println(p);
-        else if (((d < p) & (d > t) & (d > v))) System.out.println(d);
-        else if (((d > p) & (d < t) & (d > v))) System.out.println(d);
-        else if (((d > p) & (d > t) & (d < v))) System.out.println(d);
-        else if (((t < p) & (t > d) & (t > v))) System.out.println(d);
-        else if (((t > p) & (t < d) & (t > v))) System.out.println(d);
-        else if (((t > p) & (t > d) & (t < v))) System.out.println(d);
+        else if (((d < p ) & (d > t) & (d > v))) System.out.println(d);
+        else if (((d > p ) & (d < t) & (d > v))) System.out.println(d);
+        else if (((d > p ) & (d > t) & (d < v))) System.out.println(d);
+        else if (((t < p ) & (t > d) & (t > v))) System.out.println(d);
+        else if (((t > p ) & (t < d) & (t > v))) System.out.println(d);
+        else if (((t > p ) & (t > d) & (t < v))) System.out.println(d);
         else System.out.println(v);
+<<<<<<<HEAD
         /*Задание 6
         В три переменные a, b и c записаны три вещественных(дробных) числа. Создать программу, которая
         будет находить и выводить на экран вещественные корни квадратного уравнения ax²+bx+c=0,
@@ -65,7 +66,7 @@ public class Homework2 {
 
         double x1, x2;
         double D1;
-        if (k == 0) System.out.println (-c / b);
+        if (k == 0) System.out.println(-c / b);
 
         else if (((b * b) - (4 * a * c)) >= 0) {
             D1 = (b * b) - (4 * a * c);
@@ -73,7 +74,8 @@ public class Homework2 {
             x2 = (-b - sqrt(D1)) / (2 * a);
             System.out.println(x1 + "and" + x2);
         } else System.out.println("No roots");
-    }
+=======
+>>>>>>>origin / master
     }
 
-
+}
