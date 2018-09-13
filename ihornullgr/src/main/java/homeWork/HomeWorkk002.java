@@ -2,7 +2,7 @@ package homeWork;
 
 import java.util.Scanner;
 
-public class HomeWork002 {
+public class HomeWorkk002 {
     public static void main(String[] args) {
 //1. Создайте программу, выводящую на экран все четырёхзначные числа
 // последовательности 1000 1003 1006 1009 1012 1015 ….
