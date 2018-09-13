@@ -1,5 +1,7 @@
 package homeWork;
 
+import java.util.Scanner;
+
 public class HomeWork002 {
     public static void main(String[] args) {
 //1. Создайте программу, выводящую на экран все четырёхзначные числа
@@ -33,5 +35,31 @@ public class HomeWork002 {
             System.out.println(c);
         }
 
+//7. Создайте программу, вычисляющую факториал натурального числа n, введенного пользователем.
+        int y = 1;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Input value");
+        int input = scan.nextInt();
+        for (int i = 1; i <= input; i++) {
+            y = y * i;
+        }
+        System.out.print(input + "!= ");
+        System.out.println(y);
+
+//8. Выведите на экран все положительные делители натурального числа, введенного пользователем.
+
+        int n;
+        int count = 0;
+        System.out.print("Input nature value - ");
+        Scanner sr = new Scanner(System.in);
+        n = sr.nextInt();
+        System.out.print("Value " + n + " divided by - " );
+        for(int i = 1; i <= n; i++){
+            if ((n % i) == 0){
+                count++;
+                System.out.print(i + " ");
+            }
+        }
+        System.out.println("Number of dividers - " + count);
     }
 }
