@@ -32,6 +32,7 @@ public class DecToBinHex {
                         }
                     }
                 }
+                finalNumber = "0x"+finalNumber;
                 break;
             case "2":
                 int count = 1;
