@@ -11,14 +11,15 @@ public class RandomGuess {
         while (userTry!=random) {
             System.out.println("Input your number between " + lowLimit + " and " + highLimit);
             System.out.println("or 0 for exit");
-            countTry++;
             userTry = scan.nextInt();
             if (userTry == 0) {
                 userTry = random;
                 System.out.println("The game is lost, weakling!");
             } else {if (userTry != random) {
+            	countTry++;
                 System.out.println("Wrong number, try another.");
             } else {if (userTry == random) {
+            	countTry++;
                 System.out.println("You win! The number is " + random);
             }
             }
