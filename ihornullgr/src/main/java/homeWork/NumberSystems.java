@@ -14,19 +14,19 @@ public class NumberSystems {
 //  на экран результат.
 
         Scanner scan0 = new Scanner(System.in);
-        System.out.println("Input value");
+        System.out.println("Input value for Bin");
         int inpu0 = scan0.nextInt();
-        int b, c;
+        String str2 = "";
         while (inpu0 != 0) {
-            b = inpu0 / 2;
-            c = inpu0 % 2;
-            System.out.print(c);
+            int d = inpu0 % 2;
+            str2 = d + str2;
             inpu0 = inpu0 / 2;
         }
+        System.out.println("Bin " + str2);
 
 
         Scanner scan3 = new Scanner(System.in);
-        System.out.println("8 value");
+        System.out.println("Input value for Oct");
         int num1 = scan3.nextInt();
         String st1 = "";
         while (num1 != 0) {
@@ -34,11 +34,12 @@ public class NumberSystems {
             st1 = d1 + st1;
             num1 = num1 / 8;
 
-        }System.out.println(st1);
+        }
+        System.out.println("Oct " + st1);
 
 
         Scanner scan2 = new Scanner(System.in);
-        System.out.println("Input value 2");
+        System.out.println("Input value for Hex");
         int num = scan2.nextInt();
         String st = "";
 
