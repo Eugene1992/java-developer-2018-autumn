@@ -13,17 +13,66 @@ public class NumberSystems {
 //  6.3 Пользователь выбирает один из предложенных вариантов, программа выполняет соответствующий перевод числа и выводит
 //  на экран результат.
 
-        Scanner scan = new Scanner(System.in);
+        Scanner scan0 = new Scanner(System.in);
         System.out.println("Input value");
-        int input = scan.nextInt();
+        int inpu0 = scan0.nextInt();
         int b, c;
-
-        while (input > 0) {
-            b = input / 2;
-            c = input % 2;
+        while (inpu0 > 0) {
+            b = inpu0 / 2;
+            c = inpu0 % 2;
             System.out.print(c);
-            input = input / 2;
+            inpu0 = inpu0 / 2;
         }
+
+
+        Scanner scan3 = new Scanner(System.in);
+        System.out.println("8 value");
+        int num1 = scan3.nextInt();
+        String st1 = "";
+        while (num1 > 0) {
+            int d1 = num1 % 8;
+            if (d1 < 8) {
+                st1 = d1 + st1;
+            } num1 = num1 / 8;
+            System.out.println(st1);
+        }
+
+
+        Scanner scan2 = new Scanner(System.in);
+        System.out.println("Input value 2");
+        int num = scan2.nextInt();
+        String st = "";
+
+        while (num != 0) {
+            int d = num % 16;
+            if (d < 10) {
+                st = d + st;
+            } else {
+                switch (d) {
+                    case 10:
+                        st = "A" + st;
+                        break;
+                    case 11:
+                        st = "B" + st;
+                        break;
+                    case 12:
+                        st = "C" + st;
+                        break;
+                    case 13:
+                        st = "D" + st;
+                        break;
+                    case 14:
+                        st = "E" + st;
+                        break;
+                    case 15:
+                        st = "F" + st;
+                        break;
+
+                }
+            }
+            num = num / 16;
+        }
+        System.out.println("Hex " + st);
 
     }
 }
