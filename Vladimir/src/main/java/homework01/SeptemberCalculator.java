@@ -1,3 +1,5 @@
+package homework01;
+
 import java.util.Scanner;
 
 public class SeptemberCalculator {
@@ -22,7 +24,6 @@ public class SeptemberCalculator {
         switch (action) {
             case "+":
                 result = first + second;
-                System.out.print(result);
                 break;
             case "-":
                 result = first - second;
@@ -41,7 +42,7 @@ public class SeptemberCalculator {
             default:
                 System.out.println("Error: wrong operation");
         }
-        if (noRes == true) {
+        if (noRes) {
             System.out.println(result);
         } else {
             System.out.println("Error: divide by zero");
