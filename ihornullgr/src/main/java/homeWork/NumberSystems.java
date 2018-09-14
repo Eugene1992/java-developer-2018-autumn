@@ -13,66 +13,60 @@ public class NumberSystems {
 //  6.3 Пользователь выбирает один из предложенных вариантов, программа выполняет соответствующий перевод числа и выводит
 //  на экран результат.
 
-        Scanner scan0 = new Scanner(System.in);
-        System.out.println("Input value for Bin");
-        int inpu0 = scan0.nextInt();
-        String str2 = "";
-        while (inpu0 != 0) {
-            int d = inpu0 % 2;
-            str2 = d + str2;
-            inpu0 = inpu0 / 2;
-        }
-        System.out.println("Bin " + str2);
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Введите число!");
+        int number = scan.nextInt();
+        System.out.println("Введите систему счисления 2, 8, 16");
+        String system = scan.next();
+        String str = "";
 
-
-        Scanner scan3 = new Scanner(System.in);
-        System.out.println("Input value for Oct");
-        int num1 = scan3.nextInt();
-        String st1 = "";
-        while (num1 != 0) {
-            int d1 = num1 % 8;
-            st1 = d1 + st1;
-            num1 = num1 / 8;
-
-        }
-        System.out.println("Oct " + st1);
-
-
-        Scanner scan2 = new Scanner(System.in);
-        System.out.println("Input value for Hex");
-        int num = scan2.nextInt();
-        String st = "";
-
-        while (num != 0) {
-            int d = num % 16;
-            if (d < 10) {
-                st = d + st;
-            } else {
-                switch (d) {
-                    case 10:
-                        st = "A" + st;
-                        break;
-                    case 11:
-                        st = "B" + st;
-                        break;
-                    case 12:
-                        st = "C" + st;
-                        break;
-                    case 13:
-                        st = "D" + st;
-                        break;
-                    case 14:
-                        st = "E" + st;
-                        break;
-                    case 15:
-                        st = "F" + st;
-                        break;
-
-                }
+        if (system.equals("2")) {
+            while (number != 0) {
+                int d = number % 2;
+                str = d + str;
+                number = number / 2;
             }
-            num = num / 16;
+            System.out.println("Bin " + str);
         }
-        System.out.println("Hex " + st);
+        if (system.equals("8")) {
+            while (number != 0) {
+                int d = number % 8;
+                str = d + str;
+                number = number / 8;
+            }
+            System.out.println("Oct " + str);
+        }
+        if (system.equals("16")) {
+            while (number != 0) {
+                int d = number % 16;
+                if (d < 10) {
+                    str = d + str;
+                } else {
+                    switch (d) {
+                        case 10:
+                            str = "A" + str;
+                            break;
+                        case 11:
+                            str = "B" + str;
+                            break;
+                        case 12:
+                            str = "C" + str;
+                            break;
+                        case 13:
+                            str = "D" + str;
+                            break;
+                        case 14:
+                            str = "E" + str;
+                            break;
+                        case 15:
+                            str = "F" + str;
+                            break;
 
+                    }
+                }
+                number = number / 16;
+            }
+            System.out.println("Hex " + str);
+        }
     }
 }
