@@ -16,25 +16,15 @@ public class HomeWork01_Interval {
         int a = scan.nextInt();
         if (a < 0 || a > 100) {
             System.out.println("Error : Ваше число не находиться в числовом диапозоне[0 - 100]");
-        } else {
-            if (a < 15) {
-                System.out.println("Число находиться в диапазоне [0 - 14]");
-            } else {
-                if (a < 36) {
-                    System.out.println("Число находиться в диапазоне [15 - 35]");
-                } else {
-                    if (a < 51) {
-                        System.out.println("Число находиться в диапазоне [36 - 50]");
-                    } else {
-                        if (a <= 100) {
-                            System.out.println("Число находиться в диапазоне [51 - 100]");
-                        }
-                    }
-                }
-            }
-
+        } else if (a < 15) {
+            System.out.println("Число находиться в диапазоне [0 - 14]");
+        } else if (a < 36) {
+            System.out.println("Число находиться в диапазоне [15 - 35]");
+        } else if (a < 51) {
+            System.out.println("Число находиться в диапазоне [36 - 50]");
+        } else if (a <= 100) {
+            System.out.println("Число находиться в диапазоне [51 - 100]");
         }
     }
 }
-
 

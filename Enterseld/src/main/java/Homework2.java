@@ -1,8 +1,9 @@
 import java.util.Scanner;
 
+import static java.lang.Math.sqrt;
 import static java.lang.StrictMath.abs;
 
-public class HomeWork2 {
+public class Homework2 {
     public static void main(String[] args) {
         /* № 2
         Создать программу, проверяющую и сообщающую на экран, является ли введенное с
@@ -54,7 +55,7 @@ public class HomeWork2 {
         else if (((t > p ) & (t < d) & (t > v))) System.out.println(d);
         else if (((t > p ) & (t > d) & (t < v))) System.out.println(d);
         else System.out.println(v);
-<<<<<<<HEAD
+
         /*Задание 6
         В три переменные a, b и c записаны три вещественных(дробных) числа. Создать программу, которая
         будет находить и выводить на экран вещественные корни квадратного уравнения ax²+bx+c=0,
@@ -74,8 +75,7 @@ public class HomeWork2 {
             x2 = (-b - sqrt(D1)) / (2 * a);
             System.out.println(x1 + "and" + x2);
         } else System.out.println("No roots");
-=======
->>>>>>>origin / master
+
     }
 
 }

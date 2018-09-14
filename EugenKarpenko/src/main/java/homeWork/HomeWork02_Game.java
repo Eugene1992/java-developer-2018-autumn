@@ -21,7 +21,7 @@ public class HomeWork02_Game {
             } else if (userNumber != random) {
                 countTry++;
                 System.out.println("Вы не угадали, попробуйте еще раз!");
-            } else if (userNumber == random) {
+            } else {
                 System.out.println("Вы угадали! Количество попыток " + countTry);
             }
         }
