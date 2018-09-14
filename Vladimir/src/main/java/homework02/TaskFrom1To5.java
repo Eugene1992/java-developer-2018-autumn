@@ -24,8 +24,8 @@ public class TaskFrom1To5 {
         int positiveNumber = 90;
         do {
             System.out.println(positiveNumber);
-            positiveNumber -=5;
-        } while(positiveNumber > 0);
+            positiveNumber -= 5;
+        } while (positiveNumber > 0);
 
 //        4. Создайте программу, выводящую на экран первые 20 элементов последовательности 2 4 8 16 32 64 128 ….
         int operationNumber2 = 1;
@@ -52,5 +52,5 @@ public class TaskFrom1To5 {
             forFibon += 1;
         }
         System.out.print(stringFibonnachi);
-}
+    }
 }

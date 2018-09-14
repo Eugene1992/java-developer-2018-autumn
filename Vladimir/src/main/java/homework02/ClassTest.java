@@ -7,6 +7,7 @@ public class ClassTest {
         Scanner sc = new Scanner(System.in);
         boolean congratilation = false;
         int num = 1;
+        System.out.println("Hello my dear friend. This is new interesting game. You must to guess some number!!! Let's START!!!");
         while (congratilation == false) {
             int x = (int) (Math.random() * 10);
             System.out.println("It's your " + num + " attempt");
@@ -22,7 +23,7 @@ public class ClassTest {
                 String choice = sc.next();
                 switch (choice) {
                     case "n":
-                        System.out.println("You are LOOSER");
+                        System.out.println("You are LOOSER. GAME OVER!");
                         congratilation = true;
                         break;
                     case "y":
