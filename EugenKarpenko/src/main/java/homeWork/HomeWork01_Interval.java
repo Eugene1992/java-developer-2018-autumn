@@ -2,7 +2,7 @@ package homeWork;
 
 import java.util.Scanner;
 
-public class IntervalHomeWork01 {
+public class HomeWork01_Interval {
 
     public static void main(String[] args) {
         /**Задание 8

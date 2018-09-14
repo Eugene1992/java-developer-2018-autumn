@@ -1,3 +1,5 @@
+package firstlesson;
+
 public class ClassTest {
     public static void main(String[] args) {
         int a = 128;

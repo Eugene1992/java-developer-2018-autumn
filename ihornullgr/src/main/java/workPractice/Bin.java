@@ -2,7 +2,7 @@ package workPractice;
 
 import java.util.Scanner;
 
-public class Algor2 {
+public class Bin {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
@@ -16,6 +16,5 @@ public class Algor2 {
             System.out.print(c);
             input = input / 2;
         }
-
     }
 }
