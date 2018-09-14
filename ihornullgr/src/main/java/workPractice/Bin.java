@@ -8,10 +8,9 @@ public class Bin {
         Scanner scan = new Scanner(System.in);
         System.out.println("Input value");
         int input = scan.nextInt();
-        int b, c;
+        int c;
 
         while (input > 0) {
-            b = input / 2;
             c = input % 2;
             System.out.print(c);
             input = input / 2;
