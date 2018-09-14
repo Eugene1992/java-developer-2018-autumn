@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class DecToBinHex {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        System.out.println("Input desired calculation system: 16 or 2");
+        System.out.println("Input desired calculation system: 16, 8 or 2");
         String system1Calc = scan.next();
         String finalNumber = " ";
         System.out.println("Input decimal number");
@@ -31,6 +31,15 @@ public class DecToBinHex {
                             finalNumber = "F" + finalNumber;
                         }
                     }
+                }
+                finalNumber = "0x"+finalNumber;
+                break;
+            case "8":
+                while (initNumber > 0) {
+                    long symbol = initNumber % 8;
+                    initNumber = initNumber - symbol;
+                    initNumber = initNumber / 8;
+                    finalNumber = symbol + finalNumber;
                 }
                 break;
             case "2":
