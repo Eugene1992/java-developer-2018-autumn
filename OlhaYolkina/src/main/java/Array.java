@@ -13,12 +13,16 @@ public class Array {
             arr[i] = scan.nextInt();
         }
 
-        int sum = 0;
+        int sum = 0, max = arr[0];
 
         for (int i = 0; i < arr.length; i++) {
             sum += arr[i];
+
+            if (arr[i] > max) {
+                max = arr[i];
+            }
         }
 
-        System.out.println("Sum = " + sum);
+        System.out.println("Sum = " + sum + "; Max = " + max);
     }
 }
