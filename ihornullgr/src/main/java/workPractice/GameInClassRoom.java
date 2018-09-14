@@ -7,8 +7,8 @@ public class GameInClassRoom {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         Random rand = new Random();
-        int compNum = rand.nextInt(10);
-        System.out.println(compNum);
+        int compNum = rand.nextInt(10); //указываем переменной на 10
+        System.out.println(compNum); //показать число компьютера
         int counter = 0;
         while (true) {
             System.out.println("Введите число от 1 до 10 (для выхода нажмите 0)");
