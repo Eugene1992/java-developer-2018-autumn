@@ -15,8 +15,8 @@ public class SeaBattle {
         for (int i = 0; i < userMatrix.length; i++) {
             String coordinate;
             coordinate = scan.next();
-
-            userMatrix[coordinate.toCharArray()[1]][coordinate.toCharArray()[4]] = true;
+            int a = coordinate.toCharArray()[1] - '0';
+            userMatrix[coordinate.toCharArray()[1]][coordinate.toCharArray()[3]] = true;
         }
 
         for (int i = 0; i < userMatrix.length; i++) {
