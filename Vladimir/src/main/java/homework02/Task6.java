@@ -23,11 +23,10 @@ public class Task6 {
             switch (numeralSystem) {
                 case 1:
 //        System.out.println("Must be: " + Integer.toBinaryString(first2));
-                    int a;
-
+                    int bin;
                     while (number != 0) {
-                        a = number % 2;
-                        str = a + str;
+                        bin = number % 2;
+                        str = bin + str;
                         number = number / 2;
                     }
                     System.out.println(str);
@@ -35,11 +34,10 @@ public class Task6 {
                     break;
                 case 2:
 //        System.out.println("Must be: " + Integer.toOctalString(first8));
-                    int c;
-
+                    int oct;
                     while (number != 0) {
-                        c = number % 8;
-                        str = c + str;
+                        oct = number % 8;
+                        str = oct + str;
                         number = number / 8;
                     }
                     System.out.println(str);
@@ -47,11 +45,10 @@ public class Task6 {
                     break;
                 case 3:
 //        System.out.println("Must be: " + Integer.toHexString(first16));
-                    int b;
-
+                    int hex;
                     while (number != 0) {
-                        b = number % 16;
-                        switch (b) {
+                        hex = number % 16;
+                        switch (hex) {
                             case 10:
                                 str = "A" + str;
                                 break;
@@ -71,7 +68,7 @@ public class Task6 {
                                 str = "F" + str;
                                 break;
                             default:
-                                str = b + str;
+                                str = hex + str;
                                 break;
                         }
                         number = number / 16;
