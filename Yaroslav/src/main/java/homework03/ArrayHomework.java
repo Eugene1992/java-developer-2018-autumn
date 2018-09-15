@@ -2,18 +2,21 @@ package homework03;
 
 public class ArrayHomework {
 
+    //Метод для вывода массива
     private static void outputArray(int[] arr){
         for(int i = 0; i < arr.length; i++) {
             System.out.print(arr[i] + ", ");
         }
     }
 
+    //Метод для того чтоб поменять местами два элемента масива по индексам
     private static void swapElementsInArray(int[] arr, int index1, int index2){
         int temp = arr[index1];
         arr[index1] = arr[index2];
         arr[index2] = temp;
     }
 
+    //Метод, который возвращает максимальный элемент масива
     private static int maxElementInArray(int[] arr){
         int max = arr[0];
         for(int i = 0; i < arr.length; i++){
@@ -24,6 +27,7 @@ public class ArrayHomework {
         return max;
     }
 
+    //Метод, который возвращает ындекс максимального элемент масива
     private static int indexOfMaxElementInArray(int[] arr){
         int max_index = 0;
         int max = arr[0];
@@ -36,6 +40,7 @@ public class ArrayHomework {
         return  max_index;
     }
 
+    //Метод, который возвращает индекс минимального элемента масива
     private static int indexOfMinElementInArray(int[] arr){
         int min_index = 0;
         int min = arr[0];
@@ -48,6 +53,7 @@ public class ArrayHomework {
         return  min_index;
     }
 
+    //Метод, который возвращает индекс второго по размеру элемента масива
     private static int indexOfSecondMaxElementInArray(int[] arr){
         int first_max = maxElementInArray(arr);
         int second_max = arr[0];
@@ -63,6 +69,7 @@ public class ArrayHomework {
         return second_index;
     }
 
+    //Метод, который возвращает минимальный элемент масива
     private static int minElementInArray(int[] arr){
         int min = arr[0];
         for(int i = 0; i < arr.length; i++){
@@ -78,7 +85,7 @@ public class ArrayHomework {
         int[] arr = {-5,-4,-3,-2,-1,1,2,3,2,4,5,6,7,8,8,9,10,11,12,13,14};
 
         /** 1. Вывести в консоль все парные числа одномерного массива.*/
-        System.out.println("ArrayHomework 1(Вывести все парные элементы масива)");
+        System.out.println("Exercise 1(Вывести все парные элементы масива)");
         for(int i = 0; i < arr.length; i++){
             if(arr[i] % 2 == 0)
             {
@@ -87,14 +94,14 @@ public class ArrayHomework {
         }
 
         /** 2. Вывести все числа одномерного массива в обратном порядке.*/
-        System.out.println("\n\nArrayHomework 2()(Вывести в обратном порядке масив)");
+        System.out.println("\n\nExercise 2(Вывести в обратном порядке масив)");
         for(int i = arr.length - 1; i >= 0; i--){
             System.out.print(arr[i] + ", ");
         }
 
 
         /** 3. Вывести первую и вторую половину одномерного массива.*/
-        System.out.println("\n\nArrayHomework 3(Вывести обе половины масива)");
+        System.out.println("\n\nExercise 3(Вывести обе половины масива)");
         System.out.print("Первая половина - ");
         for(int i = 0; i < (arr.length / 2); i++){
             System.out.print(arr[i] + ", ");
@@ -105,9 +112,9 @@ public class ArrayHomework {
         }
 
         /** 4. Вывести первую и вторую половину одномерного массива в обратном порядке.*/
-        System.out.println("\n\nArrayHomework 4(Вывести в обратном порядке обе половины масива)");
+        System.out.println("\n\nExercise 4(Вывести в обратном порядке обе половины масива)");
         System.out.print("Первая половина - ");
-        for(int i = arr.length / 2; i >= 0; i--){
+        for(int i = (arr.length / 2) - 1; i >= 0; i--){
             System.out.print(arr[i] + ", ");
         }
         System.out.print("\nВторая половина - ");
@@ -116,7 +123,7 @@ public class ArrayHomework {
         }
 
         /** 5. Найти сумму всех элементов в массиве.*/
-        System.out.println("\n\nArrayHomework 5(Найти суму елементов)");
+        System.out.println("\n\nExercise 5(Найти суму елементов)");
         int sum = 0;
         for(int i = 0; i < arr.length; i++){
             sum += arr[i];
@@ -124,19 +131,19 @@ public class ArrayHomework {
         System.out.print("Сума: " + sum);
 
         /** 6. Найти среднеарифметическое всех чисел массива.*/
-        System.out.println("\n\nArrayHomework 6(Найти среднее арифметическое)");
-        double average = sum / arr.length;
+        System.out.println("\n\nExercise 6(Найти среднее арифметическое)");
+        double average = (double)sum / arr.length;
         System.out.print("Среднее арифметическое: " + average);
 
         /** 7. Найти минимальное и максимальное число в массиве.*/
-        System.out.println("\n\nArrayHomework 7(Найти max и min)");
+        System.out.println("\n\nExercise 7(Найти max и min)");
         int max = maxElementInArray(arr);
         int min = minElementInArray(arr);
         System.out.println("Max: " + max);
         System.out.println("Min: " + min);
 
         /** 8. Заменить все отрицательные числа в массиве на 0. */
-        System.out.println("\nArrayHomework 8(Заменить все отрицательные елементы на 0)");
+        System.out.println("\nExercise 8(Заменить все отрицательные елементы на 0)");
         for(int i = 0; i < arr.length; i++){
             if(arr[i] < 0){
                 arr[i] = 0;
@@ -145,7 +152,7 @@ public class ArrayHomework {
         }
 
         /** 9. Подсчитать одинаковые числа в одномерном массиве. */
-        System.out.println("\n\nArrayHomework 9(Подсчитать одинаковые елементы в масиве)");
+        System.out.println("\n\nExercise 9(Подсчитать одинаковые елементы в масиве)");
         int[][] elem_count = new int[arr.length][2];
         for(int i = 0; i < arr.length; i++){
             elem_count[i][0] = -1000;
@@ -177,7 +184,7 @@ public class ArrayHomework {
         }
 
         /** 10. Поменять минимальное и максимальное числа в массиве местами.*/
-        System.out.println("\n\nArrayHomework 10(Поменять max и min местами)");
+        System.out.println("\n\nExercise 10(Поменять max и min местами)");
         arr[2] = -10;
         int min_index = indexOfMinElementInArray(arr);
         int max_index = indexOfMaxElementInArray(arr);
@@ -188,14 +195,14 @@ public class ArrayHomework {
         outputArray(arr);
 
         /** 11. Инвертировать массив.*/
-        System.out.println("\n\nArrayHomework 11(Инвертировать массив)");
+        System.out.println("\n\nexercise 11(Инвертировать массив)");
         for(int i = 0; i < (arr.length / 2); i++){
             swapElementsInArray(arr, i, arr.length - 1 - i);
         }
         outputArray(arr);
 
         /** 12. Вывести в консоль половину массива, среднеарифметическое которых является большим.*/
-        System.out.println("\n\nArrayHomework 12()");
+        System.out.println("\n\nexercise 12(ввести половину среднее арифметическое, которой больше)");
         int sum1 = 0;
         int sum2 = 0;
         for(int i = 0; i < (arr.length / 2); i++) {
@@ -218,7 +225,7 @@ public class ArrayHomework {
         }
 
         /** 13. Найти сумму отрицательных чисел в одномерном массиве.*/
-        System.out.println("\n\nArrayHomework 13(Найти суму всех отрицательных чисел)");
+        System.out.println("\n\nExercise 13(Найти суму всех отрицательных чисел)");
         arr[4] = -10;
         arr[9] = -7;
         arr[10] = - 2;
@@ -231,7 +238,7 @@ public class ArrayHomework {
         System.out.print("Сума: " + sum);
 
         /** 14. Дан массив чисел, среди которых имеется один ноль. Вывести на печать все числа до нуля включительно.*/
-        System.out.println("\n\nArrayHomework 14(Все єлементы масива до 0)");
+        System.out.println("\n\nExercise 14(Все єлементы масива до 0)");
         arr[0] = 10;
         for(int i = 0; i < arr.length; i++){
             System.out.print(arr[i] + ", ");
@@ -241,7 +248,7 @@ public class ArrayHomework {
         }
 
         /** 15. Написать программу, меняющую местами два наибольших элемента одномерного массива с первым и последним.*/
-        System.out.println("\n\nArrayHomework 15(Поменять два больших числа с первым и последним)");
+        System.out.println("\n\nExercise 15(Поменять два больших числа с первым и последним)");
         int first_index = indexOfMaxElementInArray(arr);
         int second_index = indexOfSecondMaxElementInArray(arr);
         System.out.print("До изменения - ");
@@ -252,7 +259,7 @@ public class ArrayHomework {
         outputArray(arr);
 
         /** 16. Написать программу, которая выводит на экран элементы одномерного массива, которые расположены до минимального элемента всего массива.*/
-        System.out.println("\n\nArrayHomework 16(Вывести все элементы до минимального)");
+        System.out.println("\n\nExercise 16(Вывести все элементы до минимального)");
         min_index = indexOfMinElementInArray(arr);
         for(int i = 0; i < arr.length; i++){
             if(i == min_index){
@@ -262,7 +269,7 @@ public class ArrayHomework {
         }
 
         /** 17. Найти сумму всех чисел находящихся между минимальным и максимальным числом в массиве.*/
-        System.out.println("\n\nArrayHomework 17(Вывести все элементы между min и max)");
+        System.out.println("\n\nExercise 17(Вывести все элементы между min и max)");
         min_index = indexOfMinElementInArray(arr);
         max_index = indexOfMaxElementInArray(arr);
         for(int i = 0; i < arr.length; i++){
@@ -281,7 +288,7 @@ public class ArrayHomework {
         }
 
         /** 18. Вывести в консоль половину массива в которой находиться наименьшее число массива.*/
-        System.out.println("\n\nArrayHomework 18(Вывести половину масива, в которой есть min)");
+        System.out.println("\n\nExercise 18(Вывести половину масива, в которой есть min)");
         min_index = indexOfMinElementInArray(arr);
         if(min_index < (arr.length / 2)){
             for(int i = 0; i < (arr.length / 2); i++){
@@ -295,9 +302,10 @@ public class ArrayHomework {
         }
 
         /** 19. Написать программу, которая перемещает в конец массива все элементы, значения которых находитсяв отрезке [a,b].*/
-        System.out.println("\n\nArrayHomework 19(Переместить в конец все єлементы из диапазона[a,b])");
+        System.out.println("\n\nExercise 19(Переместить в конец все єлементы из диапазона[a,b])");
         int a = 2;
         int b = 6;
+        System.out.println("Диапазон - [" + a + "," + b + "]");
         System.out.print("До изменения - ");
         outputArray(arr);
         for(int i = 0; i <= b - a; i++){
@@ -308,6 +316,5 @@ public class ArrayHomework {
 
         System.out.print("\nПосле изменения - ");
         outputArray(arr);
-
     }
 }
