@@ -16,19 +16,84 @@ public class SeaBattle {
 
 
         for (int i = 0; i < tableHeight; i++) {
-                String coordinate;
-                coordinate = scan.next();
-                int x = coordinate.toCharArray()[1] - '0';
-                int y = coordinate.toCharArray()[3] - '0';
+            String coordinate;
+            coordinate = scan.next();
+            int x = coordinate.toCharArray()[1] - '0';
+            int y = coordinate.toCharArray()[3] - '0';
 
-                userMatrix[x][y] = 1;
+            userMatrix[x][y] = 1;
         }
 
-        for (int i = 0; i < tableHeight; i++) {
+
+        int count = 0;
+        while (count < 4) {
+            int x = random.nextInt(4);
+            int y = random.nextInt(4);
+
+            if (compMatrix[x][y] == 0) {
+                compMatrix[x][y] = 1;
+                count++;
+            }
+        }
+
+/*        for (int i = 0; i < tableHeight; i++) {
             for (int j = 0; j < tableWidth; j++) {
-                System.out.print(userMatrix[i][j] + " ");
+                System.out.print(compMatrix[i][j] + " ");
             }
             System.out.println();
+        } */
+
+        System.out.println("Your shoot. In format [x,y]. Possible values 0 - 3");
+        String coordinate;
+        coordinate = scan.next();
+        int userX = coordinate.toCharArray()[1] - '0';
+        int userY = coordinate.toCharArray()[3] - '0';
+
+        switch (compMatrix[userX][userY]) {
+            case 0: {
+                System.out.println("No, sorry :(");
+                compMatrix[userX][userY] = -1;
+                break;
+            }
+            case 1: {
+                System.out.println("Yes!");
+                compMatrix[userX][userY] = 10;
+                break;
+            }
+            case 10: {
+                System.out.println("Oops, this cell have already shooted");
+                break;
+            }
+            case -1: {
+                System.out.println("Oops, this cell have already shooted");
+                break;
+            }
+        }
+
+        int compX = random.nextInt(4);
+        int compY = random.nextInt(4);
+
+        System.out.println("Comp shoot - " + "[" + compX + "," + compY + "] = " + userMatrix[compX][compY]);
+
+        switch (userMatrix[compX][compY]) {
+            case 0: {
+                System.out.println("No, sorry :(");
+                compMatrix[compX][compY] = -1;
+                break;
+            }
+            case 1: {
+                System.out.println("Yes!");
+                compMatrix[compX][compY] = 10;
+                break;
+            }
+            case 10: {
+                System.out.println("Oops, this cell have already shooted");
+                break;
+            }
+            case -1: {
+                System.out.println("Oops, this cell have already shooted");
+                break;
+            }
         }
     }
 }
