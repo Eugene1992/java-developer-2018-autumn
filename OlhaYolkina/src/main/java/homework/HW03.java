@@ -141,5 +141,96 @@ public class HW03 {
 
         System.out.println();
         System.out.println();
+
+        /**
+         * 8. Заменить все отрицательные числа в массиве на 0.
+         */
+        int[] arr8 = new int[10];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr8.length; i++) {
+            arr8[i] = random.nextInt();
+            System.out.print(arr8[i] + " ");
+        }
+
+        System.out.println();
+        System.out.println("After changing negative to zero:");
+
+        for (int i = 0; i < arr8.length; i++) {
+            if (arr8[i] < 0) {
+                arr8[i] = 0;
+            }
+            System.out.print(arr8[i] + " ");
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 9. Подсчитать одинаковые числа в одномерном массиве.
+         */
+        int[] arr9 = new int[10];
+        int[][] identical = new int[10][3];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr9.length; i++) {
+            arr9[i] = random.nextInt(10);
+            System.out.print(arr9[i] + " ");
+        }
+
+        for (int k = 0; k < arr9.length; k++) {
+            identical[k][0] = -1;
+        }
+
+        int pointer = 0;
+        int flag = 0;
+
+        for (int i = 0; i < arr9.length; i++) {
+            for (int j = i + 1; j < arr9.length; j++) {
+                if (arr9[i] == arr9[j]) {
+                    for (int k = 0; k < arr9.length; k++) {
+                        if ((arr9[i] == identical[k][0]) && (identical[k][2] == 0)) {
+                            identical[k][1]++;
+                            flag = 1;
+                        }
+                    }
+                    if (flag == 0) {
+                        int noBefore = 0;
+                        for (int m = 0; m < arr9.length; m++) {
+                            if (arr9[i] == identical[m][0]) {
+                                noBefore++;
+                            }
+                        }
+                        if (noBefore == 0) {
+                            identical[pointer][0] = arr9[i];
+                            identical[pointer][1] = 2;
+                            pointer++;
+                        }
+                    }
+                    flag = 0;
+                }
+            }
+            for (int k = 0; k < arr9.length; k++) {
+                if ((arr9[i] == identical[k][0]) && (identical[k][1] > 2)) {
+                    identical[k][2] = 1;
+                }
+            }
+        }
+
+        System.out.println();
+        System.out.println("Number of identical numbers: ");
+        System.out.print("Number   : ");
+        for (int i = 0; i < arr9.length; i++) {
+            if (identical[i][0] != -1) {
+                System.out.print(identical[i][0] + " ");
+            }
+        }
+        System.out.println();
+        System.out.print("Quantity : ");
+        for (int i = 0; i < arr9.length; i++) {
+            if (identical[i][0] != -1) {
+                System.out.print(identical[i][1] + " ");
+            }
+        }
     }
 }
