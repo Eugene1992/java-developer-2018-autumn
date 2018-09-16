@@ -63,7 +63,7 @@ public class HW03 {
         System.out.println("First part:");
 
         for (int i = 0; i < arr3.length / 2; i++) {
-                System.out.print(arr3[i] + " ");
+            System.out.print(arr3[i] + " ");
         }
 
         System.out.println();
@@ -76,5 +76,70 @@ public class HW03 {
         System.out.println();
         System.out.println();
 
+        /**
+         * 4. Вывести первую и вторую половину одномерного массива в обратном порядке.
+         */
+        int[] arr4 = new int[50];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr4.length; i++) {
+            arr4[i] = random.nextInt(501);
+            System.out.print(arr4[i] + " ");
+        }
+
+        System.out.println();
+        System.out.println("First part:");
+
+        for (int i = arr4.length - 1; i >= arr4.length / 2; i--) {
+            System.out.print(arr4[i] + " ");
+        }
+
+        System.out.println();
+        System.out.println("Second part:");
+
+        for (int i = arr4.length / 2 - 1; i >= 0; i--) {
+            System.out.print(arr4[i] + " ");
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 5. Найти сумму всех элементов в массиве.
+         * 6. Найти среднеарифметическое всех чисел массива.
+         * 7. Найти минимальное и максимальное число в массиве.
+         */
+        int[] arr5 = new int[20];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr5.length; i++) {
+            arr5[i] = random.nextInt(501);
+            System.out.print(arr5[i] + " ");
+        }
+
+        int sum = arr5[0];
+        int max = arr5[0];
+        int min = arr5[0];
+
+        System.out.println();
+
+        for (int i = 1; i < arr5.length; i++) {
+            sum += arr5[i];
+            if (arr5[i] > max) {
+                max = arr5[i];
+            }
+            if (arr5[i] < min) {
+                min = arr5[i];
+            }
+        }
+        int average = sum / arr5.length;
+
+        System.out.println("Sum = " + sum);
+        System.out.println("Average = " + average);
+        System.out.println("Max = " + max);
+        System.out.println("Min = " + min);
+
+        System.out.println();
+        System.out.println();
     }
 }
