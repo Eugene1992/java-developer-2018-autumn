@@ -24,7 +24,9 @@ public class SeaBattle {
             int x = coordinate.toCharArray()[1] - '0';
             int y = coordinate.toCharArray()[3] - '0';
 
-            if ((x >= 0) && (x <= 3) && (y >= 0) && (y <= 3)) {
+            if (userMatrix[x][y] == 1) {
+                System.out.println("This cell is already choosen. Please, choose another one");
+            } else if ((x >= 0) && (x <= 3) && (y >= 0) && (y <= 3)) {
                 userMatrix[x][y] = 1;
                 userCount++;
             } else {
