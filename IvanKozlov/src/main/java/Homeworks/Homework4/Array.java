@@ -121,7 +121,7 @@ public class Array {
         System.out.println("");
         System.out.println("Task 9");
 
-        int amountOfUniqueElementsInArray = 0;
+        int[] arrayWithUniqueElements = new int[arrayForOpertionsLength0];
 
         for (int i = 0; i < arrayForOpertionsLength0; i++) {
 
@@ -236,16 +236,27 @@ public class Array {
         }
 
 // 15. Написать программу, меняющую местами два наибольших элемента одномерного массива с первым и последним.
-//        todo need some fixes for logic - max number is doubled in the end
 
         System.out.println("");
         System.out.println("Task 15");
+
+        for (int arrayElement : arrayForOpertions0) {
+            System.out.print((arrayElement + arrayElementsSeparator));
+        }
+
+        System.out.println("");
 
         int secondMaxArrayElement = 0;
         int indexOfSecondMaxArrayElement = 0;
 
         int firstArrayElement = arrayForOpertions0[0];
         int lastArrayElement = arrayForOpertions0[arrayForOpertionsLength0 - 1];
+
+        for (int i = 0; i < arrayForOpertionsLength0; i++) {
+            if (arrayForOpertions0[i] == maxArrayElement) {
+                indexOfMaxElement = i;
+            }
+        }
 
         for (int i = 0; i < arrayForOpertionsLength0; i++) {
             if (arrayForOpertions0[i] > secondMaxArrayElement && arrayForOpertions0[i] < maxArrayElement) {
@@ -255,8 +266,8 @@ public class Array {
         }
 
         arrayForOpertions0[0] = secondMaxArrayElement;
-        arrayForOpertions0[arrayForOpertionsLength0 - 1] = maxArrayElement;
         arrayForOpertions0[indexOfMaxElement] = lastArrayElement;
+        arrayForOpertions0[arrayForOpertionsLength0 - 1] = maxArrayElement;
         arrayForOpertions0[indexOfSecondMaxArrayElement] = firstArrayElement;
 
         for (int arrayElement : arrayForOpertions0) {
@@ -312,7 +323,37 @@ public class Array {
             System.out.println("Min element is located in the middle af the array");
         }
 
-//TODO  19. Написать программу, которая перемещает в конец массива все элементы, значения которых находится в отрезке [a,b].
+// 19. Написать программу, которая перемещает в конец массива все элементы, значения которых находится в отрезке [a,b].
+
+        System.out.println("");
+        System.out.println("Task 19");
+
+        int firstPointInRange = 4;
+        int secondPointInRange = 8;
+
+        int[] editedArray = new int[arrayForOpertionsLength0];
+
+        for (int arrayElement : arrayForOpertions0) {
+            System.out.print((arrayElement + arrayElementsSeparator));
+        }
+
+        for (int i = 0; i < firstPointInRange; i++) {
+            editedArray[i] = arrayForOpertions0[i];
+        }
+
+        for (int i = secondPointInRange + 1, j = firstPointInRange; i < arrayForOpertionsLength0; i++, j++) {
+            editedArray[j] = arrayForOpertions0[i];
+        }
+
+        for (int i = secondPointInRange, j = arrayForOpertionsLength0 - 1; i >= firstPointInRange; i--, j--) {
+            editedArray[j] = arrayForOpertions0[i];
+        }
+
+        System.out.println("");
+
+        for (int arrayElement : editedArray) {
+            System.out.print((arrayElement + arrayElementsSeparator));
+        }
 
     }
 }
