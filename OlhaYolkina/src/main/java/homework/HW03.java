@@ -353,5 +353,65 @@ public class HW03 {
 
         System.out.println();
         System.out.println();
+
+        /**
+         * 13. Найти сумму отрицательных чисел в одномерном массиве.
+         */
+        int[] arr13 = new int[10];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr13.length; i++) {
+            arr13[i] = -random.nextInt(50);
+            if (random.nextInt(2) == 1) {
+                arr13[i] *= -random.nextInt(10);
+            }
+            System.out.print(arr13[i] + " ");
+        }
+
+        int sum13 = 0;
+
+        for (int i = 0; i < arr13.length; i++) {
+            if (arr13[i] < 0) {
+                sum13 += arr13[i];
+            }
+        }
+
+        System.out.println();
+
+        if (sum13 == 0) {
+            System.out.println("No negative numbers in array");
+        } else {
+            System.out.println("Sum negative numbers = " + sum13);
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 14. Дан массив чисел, среди которых имеется один ноль. Вывести на печать все числа до нуля включительно.
+         */
+        int[] arr14 = new int[10];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr14.length; i++) {
+            arr14[i] = random.nextInt(50);
+        }
+
+        arr14[random.nextInt(10)] = 0;
+
+        for (int i = 0; i < arr14.length; i++) {
+            System.out.print(arr14[i] + " ");
+        }
+        System.out.println();
+        System.out.println("Before 0:");
+
+        int i = 0;
+        if (arr14[0] == 0) {
+            System.out.println("0 is first element in array");
+        }
+        while (arr14[i] != 0) {
+            System.out.print(arr14[i] + " ");
+            i++;
+        }
     }
 }
