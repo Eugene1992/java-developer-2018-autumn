@@ -21,7 +21,6 @@ public class SeaBattle {
                 fieldPc[randomStr][randomBox] = 1;
             } else count--;
         }
-        //System.out.println(Arrays.deepToString(fieldPc));
         System.out.println("Input your coordinates");
         System.out.println("From 1 to 4 on both lines");
         int line;
