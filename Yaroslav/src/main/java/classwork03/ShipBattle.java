@@ -59,11 +59,11 @@ public class ShipBattle {
         boolean isNotEndOfPositioning = true;
         System.out.println("Расстановка вашего флота.");
         while (isNotEndOfPositioning) {
-            System.out.println("Введите номер строки");
-            int shipCoordinateY = sc.nextInt();
-            System.out.println("Введи номер столбца");
-            int shipCoordinateX = sc.nextInt();
-            yourField[shipCoordinateY - 1][shipCoordinateX - 1] = 1;
+            System.out.print("Введите номер строки: ");
+            int shipCoordinateY = sc.nextInt() - 1;
+            System.out.print("Введи номер столбца: ");
+            int shipCoordinateX = sc.nextInt() - 1;
+            yourField[shipCoordinateY][shipCoordinateX] = 1;
             outputField(yourField);
             counter--;
             if (counter == 0) {
@@ -99,29 +99,33 @@ public class ShipBattle {
         int x;
         int y;
         while(true) {
-            System.out.println("\nВведите номер строки");
-            y = sc.nextInt();
-            System.out.println("Введите номер столбца");
-            x = sc.nextInt();
-            boolean isChecked = checkIfShootNotRepeat(enemyField, x - 1, y - 1);
-            if (isChecked) {
+            System.out.print("\nВведите номер строки: ");
+            y = sc.nextInt() - 1;
+            System.out.print("Введите номер столбца: ");
+            x = sc.nextInt() - 1;
+            boolean isChecked = checkIfShootNotRepeat(enemyField, x , y);
+            if (isChecked == false) {
                 System.out.println("Сюда уже стреляли.Выберите другую ячейку");
             }
             else{
                 break;
             }
         }
-        boolean isHit = checkIfShootHit(enemyField, x - 1, y - 1);
+        boolean isHit = checkIfShootHit(enemyField, x, y);
         if(isHit) {
             enemy_num--;
-            enemyFieldForYou[y - 1][x - 1] = 1;
-            System.out.println("Вражеский корабль уничтожен!!");
+            enemyFieldForYou[y][x] = 1;
+            System.out.print("Вражеский корабль уничтожен!! ");
+        }
+        else if(checkIfShootNear(enemyField, x, y)) {
+            enemyFieldForYou[y][x] = 2;
+            System.out.print("Вы промахнулись но были близк о.");
         }
         else{
-            enemyFieldForYou[y - 1][x - 1] = 2;
-            System.out.println("Вы промахнулись.");
+            enemyFieldForYou[y][x] = 2;
+            System.out.print("Вы промахнулись. ");
         }
-        enemyField[y - 1][x - 1] = 2;
+        enemyField[y][x] = 2;
         return enemy_num;
     }
 
@@ -144,13 +148,39 @@ public class ShipBattle {
         boolean isHit = checkIfShootHit(yourField, x, y);
         if(isHit){
             your_num--;
-            System.out.println("Враг уничтожил ваш корабль!!");
+            System.out.print("Враг уничтожил ваш корабль!!");
         }
         else{
-            System.out.println("Враг промахнулся.");
+            System.out.print("Враг промахнулся.");
         }
         yourField[y][x] = 2;
         return your_num;
+    }
+
+
+
+    private static boolean checkIfShootNear(int[][] enemyField, int x, int y){
+        if(x > 0) {
+            if(enemyField[y][x - 1] == 1){
+                return true;
+            }
+        }
+        if(x < enemyField.length - 1) {
+            if(enemyField[y][x + 1] == 1){
+                return true;
+            }
+        }
+        if(y > 0) {
+            if(enemyField[y - 1][x] == 1){
+                return true;
+            }
+        }
+        if(y < enemyField[0].length - 1) {
+            if(enemyField[y + 1][x] == 1){
+                return true;
+            }
+        }
+        return false;
     }
 
 
@@ -165,14 +195,14 @@ public class ShipBattle {
 
         placeYourShips(yourField, num);
         placeEnemyShips(enemyField, num);
-        //outputField(enemyField);
+        outputField(enemyField);
 
         int enemy_num = num;
         int your_num = num;
         while(true) {
-            System.out.println("\n\nПоле врага для вас");
+            System.out.print("\n\nПоле врага для вас");
             outputField(enemyFieldForYou);
-            System.out.println("\nВаше поле ");
+            System.out.print("\nВаше поле ");
             outputField(yourField);
             System.out.println("У вас осталось" + your_num + " корабля");
             System.out.println("У врага осталось" + enemy_num + " корабля");
@@ -182,8 +212,8 @@ public class ShipBattle {
                 System.out.println("Вы уничтожили флот врага.Вы победили!!!");
                 break;
             }
-            System.out.println("У вас осталось" + your_num + " корабля");
-            System.out.println("У врага осталось" + enemy_num + " корабля");
+            //System.out.println("У вас осталось" + your_num + " корабля");
+            //System.out.println("У врага осталось" + enemy_num + " корабля");
 
             your_num = enemyShoot(yourField, your_num);
             if(your_num == 0){
