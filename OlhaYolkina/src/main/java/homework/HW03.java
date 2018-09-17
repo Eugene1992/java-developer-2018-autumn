@@ -405,13 +405,94 @@ public class HW03 {
         System.out.println();
         System.out.println("Before 0:");
 
-        int i = 0;
+        int i14 = 0;
         if (arr14[0] == 0) {
             System.out.println("0 is first element in array");
         }
-        while (arr14[i] != 0) {
-            System.out.print(arr14[i] + " ");
-            i++;
+        while (arr14[i14] != 0) {
+            System.out.print(arr14[i14] + " ");
+            i14++;
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 15. Написать программу, меняющую местами два наибольших элемента одномерного массива с первым и последним.
+         */
+        int[] arr15 = new int[20];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr15.length; i++) {
+            arr15[i] = random.nextInt(501);
+            System.out.print(arr15[i] + " ");
+        }
+
+        int max15_1 = arr15[0];
+        int max15_2 = arr15[0];
+        int pos15Max1 = 0, pos15Max2 = 0;
+
+        System.out.println();
+
+        for (int i = 1; i < arr15.length; i++) {
+            if (arr15[i] > max15_1) {
+                max15_1 = arr15[i];
+                pos15Max1 = i;
+            }
+        }
+
+        for (int i = 1; i < arr15.length; i++) {
+            if ((arr15[i] > max15_2) && (i != pos15Max1)) {
+                max15_2 = arr15[i];
+                pos15Max2 = i;
+            }
+        }
+
+        arr15[pos15Max1] += arr15[0];
+        arr15[0] = arr15[pos15Max1] - arr15[0];
+        arr15[pos15Max1] = arr15[pos15Max1] - arr15[0];
+
+        arr15[pos15Max2] += arr15[arr15.length - 1];
+        arr15[arr15.length - 1] = arr15[pos15Max2] - arr15[arr15.length - 1];
+        arr15[pos15Max2] = arr15[pos15Max2] - arr15[arr15.length - 1];
+
+        System.out.println("After changing max with first and last:");
+        for (int i = 0; i < arr15.length; i++) {
+            System.out.print(arr15[i] + " ");
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 16. Написать программу, которая выводит на экран элементы одномерного массива, которые расположены до минимального элемента всего массива.
+         */
+        int[] arr16 = new int[20];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr16.length; i++) {
+            arr16[i] = random.nextInt(501);
+            System.out.print(arr16[i] + " ");
+        }
+
+        int min16 = arr16[0];
+        int posMin16 = 0;
+
+        System.out.println();
+
+        for (int i = 1; i < arr16.length; i++) {
+            if (arr16[i] < min16) {
+                min16 = arr16[i];
+                posMin16 = i;
+            }
+        }
+
+        System.out.println("Before min: ");
+        if (posMin16 == 0) {
+            System.out.println("Min is first element");
+        }
+        for (int i = 0; i < posMin16; i++) {
+            System.out.print(arr16[i] + " ");
         }
     }
 }
