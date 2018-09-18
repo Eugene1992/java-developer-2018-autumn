@@ -608,17 +608,13 @@ public class HW03 {
         int counter19 = 0;
 
         for (int i = 0; i < arr19.length; i++) {
-            if ((arr19[i] >= a) && (arr19[i] <= b)) {
-                if (arr19.length - counter19 - 1 > i) {
-                    while ((arr19[arr19.length - counter19 - 1] >= a) && (arr19[arr19.length - counter19 - 1] <= b)) {
-                        counter19 = max(counter19 + 1, arr19.length - 1);
-                    }
-                    if (i < arr19.length - counter19 - 1) {
-                        arr19[i] += arr19[arr19.length - counter19 - 1];
-                        arr19[arr19.length - counter19 - 1] = arr19[i] - arr19[arr19.length - counter19 - 1];
-                        arr19[i] = arr19[i] - arr19[arr19.length - counter19 - 1];
-                    }
-                }
+            while ((arr19[arr19.length - counter19 - 1] >= a) && (arr19[arr19.length - counter19 - 1] <= b)) {
+                counter19 = min(counter19 + 1, arr19.length - 1);
+            }
+            if ((arr19[i] >= a) && (arr19[i] <= b) && (arr19.length - counter19 - 1 > i)) {
+                arr19[i] += arr19[arr19.length - counter19 - 1];
+                arr19[arr19.length - counter19 - 1] = arr19[i] - arr19[arr19.length - counter19 - 1];
+                arr19[i] = arr19[i] - arr19[arr19.length - counter19 - 1];
             }
         }
 
