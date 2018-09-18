@@ -36,6 +36,27 @@ public class FourthHomework {
         for (int a3 = arrayHalf; a3 < array3.length; a3++) {
             System.out.print(array3[a3] + " ");
         }
+        int[] array4 = {5, 8, 2, 7, 3, 9};
+        int half1 = array4.length / 2;
+        System.out.println("");
+        System.out.println("Масив");
+        System.out.println("Первая часть");
+        for (int a4 = half1 - 1; a4 >= 0; a4--) {
+            System.out.println(array4[a4] + " ");
+        }
+        System.out.println("Вторая часть");
+        for (int a4 = array4.length - 1; a4 >= half1; a4--) {
+            System.out.println(array4[a4] + " ");
+        }
+        int array5[] = {3, 7, 1, 83, 49, 14, 50,};
+        int sum = 0;
+        System.out.println("");
+        System.out.println("Масив");
+        System.out.println("Сума елементов");
+        for (int a5 = 0; a5 < array5.length; a5++) {
+            sum = sum + array5[a5];
+        }
+        System.out.println("" + sum);
     }
 }
 
