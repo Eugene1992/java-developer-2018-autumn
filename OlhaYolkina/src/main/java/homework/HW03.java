@@ -2,6 +2,9 @@ package homework;
 
 import java.util.Random;
 
+import static java.lang.Math.min;
+import static java.lang.Math.max;
+
 public class HW03 {
     public static void main(String[] args) {
         /**
@@ -493,6 +496,137 @@ public class HW03 {
         }
         for (int i = 0; i < posMin16; i++) {
             System.out.print(arr16[i] + " ");
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 17. Найти сумму всех чисел находящихся между минимальным и максимальным числом в массиве.
+         */
+        int[] arr17 = new int[20];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr17.length; i++) {
+            arr17[i] = random.nextInt(51);
+            System.out.print(arr17[i] + " ");
+        }
+
+        int max17 = arr17[0];
+        int min17 = arr17[0];
+        int posMin17 = 0, posMax17 = 0;
+
+        System.out.println();
+
+        for (int i = 1; i < arr17.length; i++) {
+            if (arr17[i] > max17) {
+                max17 = arr17[i];
+                posMax17 = i;
+            }
+            if (arr17[i] < min17) {
+                min17 = arr17[i];
+                posMin17 = i;
+            }
+        }
+
+        int count17 = posMin17 + 1;
+        int sum17 = arr17[min(count17, arr17.length - 1)];
+        System.out.println("Sum between min and max:");
+        if (posMax17 > posMin17) {
+            while (count17 != posMax17 - 1) {
+                sum17 += arr17[count17 + 1];
+                count17++;
+            }
+            System.out.println("Sum = " + sum17);
+        } else if (posMax17 < posMin17) {
+            System.out.println("Sorry. Max before Min");
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 18. Вывести в консоль половину массива в которой находиться наименьшее число массива.
+         */
+        int[] arr18 = new int[20];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr18.length; i++) {
+            arr18[i] = random.nextInt(501);
+            System.out.print(arr18[i] + " ");
+        }
+
+        int min18 = arr18[0];
+        int posMin18 = 0;
+
+        System.out.println();
+
+        for (int i = 1; i < arr18.length; i++) {
+            if (arr18[i] < min18) {
+                min18 = arr18[i];
+                posMin18 = i;
+            }
+        }
+
+        System.out.println("Min = " + min18);
+
+        if (posMin18 < arr18.length / 2) {
+            System.out.println("First part:");
+            for (int i = 0; i < arr18.length / 2; i++) {
+                System.out.print(arr18[i] + " ");
+            }
+        } else {
+            System.out.println("Second part:");
+            for (int i = arr18.length / 2; i < arr18.length; i++) {
+                System.out.print(arr18[i] + " ");
+            }
+        }
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 19. Написать программу, которая перемещает в конец массива все элементы, значения которых находится в отрезке [a,b].
+         */
+        int[] arr19 = new int[20];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr19.length; i++) {
+            arr19[i] = random.nextInt(501);
+            System.out.print(arr19[i] + " ");
+        }
+
+        int posA = random.nextInt(arr19.length);
+        int posB = random.nextInt(arr19.length);
+
+        while (arr19[posA] > arr19[posB]) {
+            posB = random.nextInt(arr19.length);
+        }
+
+        int a = arr19[posA];
+        int b = arr19[posB];
+
+        int counter19 = 0;
+
+        for (int i = 0; i < arr19.length; i++) {
+            if ((arr19[i] >= a) && (arr19[i] <= b)) {
+                if (arr19.length - counter19 - 1 > i) {
+                    while ((arr19[arr19.length - counter19 - 1] >= a) && (arr19[arr19.length - counter19 - 1] <= b)) {
+                        counter19 = max(counter19 + 1, arr19.length - 1);
+                    }
+                    if (i < arr19.length - counter19 - 1) {
+                        arr19[i] += arr19[arr19.length - counter19 - 1];
+                        arr19[arr19.length - counter19 - 1] = arr19[i] - arr19[arr19.length - counter19 - 1];
+                        arr19[i] = arr19[i] - arr19[arr19.length - counter19 - 1];
+                    }
+                }
+            }
+        }
+
+        System.out.println();
+
+        System.out.println("After changing [" + a + "," + b + "]:");
+        for (int i = 0; i < arr19.length; i++) {
+            System.out.print(arr19[i] + " ");
         }
     }
 }
