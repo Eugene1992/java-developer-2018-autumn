@@ -215,6 +215,7 @@ public class HomeWork003 {
         for (int i = 0; i < arr17.length; i++) {
             if (arr17[i] < minNum) {
                 minNum = arr17[i];
+                index = i;
                 System.out.println("Minnnnummm " + minNum);
             }
         }
