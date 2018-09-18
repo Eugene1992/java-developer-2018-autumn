@@ -232,5 +232,267 @@ public class HW03 {
                 System.out.print(identical[i][1] + " ");
             }
         }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 10. Поменять минимальное и максимальное числа в массиве местами.
+         */
+        int[] arr10 = new int[20];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr10.length; i++) {
+            arr10[i] = random.nextInt(501);
+            System.out.print(arr10[i] + " ");
+        }
+
+        int max10 = arr10[0];
+        int min10 = arr10[0];
+        int posMin = 0, posMax = 0;
+
+        System.out.println();
+
+        for (int i = 1; i < arr10.length; i++) {
+            if (arr10[i] > max10) {
+                max10 = arr10[i];
+                posMax = i;
+            }
+            if (arr10[i] < min10) {
+                min10 = arr10[i];
+                posMin = i;
+            }
+        }
+
+        arr10[posMax] += arr10[posMin];
+        arr10[posMin] = arr10[posMax] - arr10[posMin];
+        arr10[posMax] = arr10[posMax] - arr10[posMin];
+
+        System.out.println("After changing max and min:");
+        for (int i = 0; i < arr10.length; i++) {
+            System.out.print(arr10[i] + " ");
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 11. Инвертировать массив.
+         */
+        int[] arr11 = new int[21];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr11.length; i++) {
+            arr11[i] = random.nextInt(501);
+            System.out.print(arr11[i] + " ");
+        }
+
+        for (int i = 0; i < arr11.length / 2; i++) {
+            arr11[i] += arr11[arr11.length - i - 1];
+            arr11[arr11.length - i - 1] = arr11[i] - arr11[arr11.length - i - 1];
+            arr11[i] = arr11[i] - arr11[arr11.length - i - 1];
+        }
+
+        System.out.println();
+        System.out.println("Invert:");
+        for (int i = 0; i < arr11.length; i++) {
+            System.out.print(arr11[i] + " ");
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 12. Вывести в консоль половину массива, среднеарифметическое которых является большим.
+         */
+        int[] arr12 = new int[20];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr12.length; i++) {
+            arr12[i] = random.nextInt(501);
+            System.out.print(arr12[i] + " ");
+        }
+
+        int sum12_1 = arr12[0];
+        int sum12_2 = arr12[arr12.length / 2];
+
+        System.out.println();
+
+        for (int i = 1; i < arr12.length / 2; i++) {
+            sum12_1 += arr12[i];
+        }
+
+        for (int i = arr12.length / 2 + 1; i < arr12.length; i++) {
+            sum12_2 += arr12[i];
+        }
+
+        int average12_1 = sum12_1 / (arr12.length / 2);
+        int average12_2 = sum12_2 / (arr12.length / 2);
+
+        System.out.println();
+        System.out.println("Average 1 = " + average12_1);
+        System.out.println("Average 2 = " + average12_2);
+        System.out.println();
+
+        if (average12_1 > average12_2) {
+            System.out.println("First part is bigger than Second part");
+            for (int i = 0; i < arr12.length / 2; i++) {
+                System.out.print(arr12[i] + " ");
+            }
+        } else if (average12_1 < average12_2) {
+            System.out.println("First part is bigger than Second part");
+            for (int i = arr12.length / 2; i < arr12.length; i++) {
+                System.out.print(arr12[i] + " ");
+            }
+        } else {
+            System.out.println("Equal");
+            for (int i = 0; i < arr12.length / 2; i++) {
+                System.out.print(arr12[i] + " ");
+            }
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 13. Найти сумму отрицательных чисел в одномерном массиве.
+         */
+        int[] arr13 = new int[10];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr13.length; i++) {
+            arr13[i] = -random.nextInt(50);
+            if (random.nextInt(2) == 1) {
+                arr13[i] *= -random.nextInt(10);
+            }
+            System.out.print(arr13[i] + " ");
+        }
+
+        int sum13 = 0;
+
+        for (int i = 0; i < arr13.length; i++) {
+            if (arr13[i] < 0) {
+                sum13 += arr13[i];
+            }
+        }
+
+        System.out.println();
+
+        if (sum13 == 0) {
+            System.out.println("No negative numbers in array");
+        } else {
+            System.out.println("Sum negative numbers = " + sum13);
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 14. Дан массив чисел, среди которых имеется один ноль. Вывести на печать все числа до нуля включительно.
+         */
+        int[] arr14 = new int[10];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr14.length; i++) {
+            arr14[i] = random.nextInt(50);
+        }
+
+        arr14[random.nextInt(10)] = 0;
+
+        for (int i = 0; i < arr14.length; i++) {
+            System.out.print(arr14[i] + " ");
+        }
+        System.out.println();
+        System.out.println("Before 0:");
+
+        int i14 = 0;
+        if (arr14[0] == 0) {
+            System.out.println("0 is first element in array");
+        }
+        while (arr14[i14] != 0) {
+            System.out.print(arr14[i14] + " ");
+            i14++;
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 15. Написать программу, меняющую местами два наибольших элемента одномерного массива с первым и последним.
+         */
+        int[] arr15 = new int[20];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr15.length; i++) {
+            arr15[i] = random.nextInt(501);
+            System.out.print(arr15[i] + " ");
+        }
+
+        int max15_1 = arr15[0];
+        int max15_2 = arr15[0];
+        int pos15Max1 = 0, pos15Max2 = 0;
+
+        System.out.println();
+
+        for (int i = 1; i < arr15.length; i++) {
+            if (arr15[i] > max15_1) {
+                max15_1 = arr15[i];
+                pos15Max1 = i;
+            }
+        }
+
+        for (int i = 1; i < arr15.length; i++) {
+            if ((arr15[i] > max15_2) && (i != pos15Max1)) {
+                max15_2 = arr15[i];
+                pos15Max2 = i;
+            }
+        }
+
+        arr15[pos15Max1] += arr15[0];
+        arr15[0] = arr15[pos15Max1] - arr15[0];
+        arr15[pos15Max1] = arr15[pos15Max1] - arr15[0];
+
+        arr15[pos15Max2] += arr15[arr15.length - 1];
+        arr15[arr15.length - 1] = arr15[pos15Max2] - arr15[arr15.length - 1];
+        arr15[pos15Max2] = arr15[pos15Max2] - arr15[arr15.length - 1];
+
+        System.out.println("After changing max with first and last:");
+        for (int i = 0; i < arr15.length; i++) {
+            System.out.print(arr15[i] + " ");
+        }
+
+        System.out.println();
+        System.out.println();
+
+        /**
+         * 16. Написать программу, которая выводит на экран элементы одномерного массива, которые расположены до минимального элемента всего массива.
+         */
+        int[] arr16 = new int[20];
+
+        System.out.println("All:");
+        for (int i = 0; i < arr16.length; i++) {
+            arr16[i] = random.nextInt(501);
+            System.out.print(arr16[i] + " ");
+        }
+
+        int min16 = arr16[0];
+        int posMin16 = 0;
+
+        System.out.println();
+
+        for (int i = 1; i < arr16.length; i++) {
+            if (arr16[i] < min16) {
+                min16 = arr16[i];
+                posMin16 = i;
+            }
+        }
+
+        System.out.println("Before min: ");
+        if (posMin16 == 0) {
+            System.out.println("Min is first element");
+        }
+        for (int i = 0; i < posMin16; i++) {
+            System.out.print(arr16[i] + " ");
+        }
     }
 }
