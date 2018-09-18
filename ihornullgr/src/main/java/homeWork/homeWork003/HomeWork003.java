@@ -191,7 +191,7 @@ public class HomeWork003 {
 
         //16. Написать программу, которая выводит на экран элементы одномерного массива,
         // которые расположены до минимального элемента всего массива.
-      /*  min = arr15[0];
+        min = arr15[0];
         int minIndex = 0;
         for (int i = 0; i < arr15.length; i++) {
             if (arr15[i] < min) {
@@ -202,14 +202,14 @@ public class HomeWork003 {
         System.out.println("Массив до минимума");
         for (int i = 0; i < minIndex; i++) {
             System.out.print(arr15[i] + " ");
-        }*/
+        }
 
         //17. Найти сумму всех чисел находящихся между минимальным и максимальным числом в массиве.
         // TODO: 18.09.2018 обьяснить
 
         //18. Вывести в консоль половину массива в которой находиться наименьшее число массива.
         // TODO: 18.09.2018 попросить обьяснить
-        int[] arr17 = {30, 55, 40, 100, 25};
+        int[] arr17 = {30, 55, 40, 100, 22};
         int minNum = arr17[0];
         int index = 0;
         for (int i = 0; i < arr17.length; i++) {
@@ -236,6 +236,26 @@ public class HomeWork003 {
 
         //19. Написать программу, которая перемещает в конец массива все элементы,
         // значения которых находится в отрезке [a,b].
-
+        // TODO: 18.09.2018 exception 
+        System.out.println("\n");
+        int a = 2;
+        int b = 6;
+        int[] arr19 = {15, 16, 18, 20, 22};
+        for (int i = 0; i < arr19.length; i++) {
+            System.out.print("Как было" + arr19[i] + " ");
+        }
+        int[] edditedArray = new int[arr19.length];
+        for (int i = 0; i < a; i++) {
+            edditedArray[i] = arr19[i];
+        }
+        for (int i = b + 1, j = a; i < arr19.length; i++, j++) {
+            edditedArray[j] = arr19[i];
+            ;
+        }
+        for (int i = b, j = arr19.length - 1; i >= a; i--, j--) {
+            edditedArray[j] = arr19[i];
+        }
+        for (int arrayElement : edditedArray)
+            System.out.println("Как стало " + arrayElement);
     }
 }
