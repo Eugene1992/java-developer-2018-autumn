@@ -187,9 +187,80 @@ public class HomWork03 {
         System.out.println(Arrays.toString(intArrayTarget));
 
         //12.Вывести в консоль половину массива, среднеарифметическое которых является большим.
+
+        System.out.println();
+        System.out.println("Задание 12 - Вывести в консоль половину массива, среднеарифметическое которых является большим.");
+        System.out.println("Есть массив array12:");
+        int[] array12 = {10, 10, 10, 10, 10, 10};
+        System.out.println(Arrays.toString(array12));
+        int sumFirstPart = 0;
+        int sumNextPart = 0;
+        for (int i = 0; i < array12.length / 2; i++) {
+            sumFirstPart = sumFirstPart + array12[i];
+        }
+        for (int i = array12.length / 2; i < array12.length; i++) {
+            sumNextPart = sumNextPart + array12[i];
+        }
+        double firsPartAverage = sumFirstPart / array12.length;
+        double nextPartAverage = sumNextPart / array12.length;
+        if (firsPartAverage < nextPartAverage) {
+            System.out.println("Среднеарифметическое второй части массива больше !");
+            for (int i = array12.length / 2; i < array12.length; i++)
+                System.out.print(array12[i] + ", ");
+        }
+        if (firsPartAverage > nextPartAverage) {
+            System.out.println("Среднеарифметическое первой части массива больше:");
+            for (int i = 0; i < array12.length / 2; i++)
+                System.out.print(array12[i] + ", ");
+        } else System.out.println("Среднеарифметическое частей одинаковые !");
+
+        //13. Найти сумму отрицательных чисел в одномерном массиве.
+        System.out.println();
+        System.out.println("Задание 13 - Найти сумму отрицательных чисел в одномерном массиве");
+        System.out.println("Есть массив array13:");
+        int[] array13 = {10, -10, 10, -10, 10, 10};
+        System.out.println(Arrays.toString(array13));
+        int sumNegativNumber = 0;
+        for (int i = 0; i < array13.length; i++) {
+            if (array13[i] < 0) sumNegativNumber = sumNegativNumber + array13[i];
+        }
+        if (sumNegativNumber < 0) System.out.println("Сумма отрицательных чисел масива: " + sumNegativNumber);
+        else System.out.println("В массиве нету отрицательных чисел!");
+
+        //14. Дан массив чисел, среди которых имеется один ноль. Вывести на печать все числа до нуля включительно.
+
+        System.out.println();
+        System.out.println("Задание 14 - Дан массив чисел, среди которых имеется один ноль. Вывести на печать все числа до нуля включительно");
+        System.out.println("Есть массив array14:");
+        int[] array14 = {10, -10, 10, -10, 0, 10};
+        System.out.println(Arrays.toString(array14));
+        for (int i = 0; i < array14.length; i++) {
+            if (array14[i] == 0) {
+                break;
+            } else System.out.print(array14[i] + ", ");
+        }
+
+        //15. Написать программу, меняющую местами два наибольших элемента одномерного массива с первым и последним.
+        // TODO: 19.09.2018
+        /*16. Написать программу, которая выводит на экран элементы одномерного массива, которые расположены
+        до минимального элемента всего массива.*/
+        /*System.out.println();
+        System.out.println("Задание 16: ");
+        System.out.println("Есть массив array16:");
+        int[] array16 = {10, -10, 40, 30, 1, 10};
+        System.out.println(Arrays.toString(array16));
+        int minArray16 = array16[0];
+        int minIndexArray16 = 0;
+        for (int i = 0; i < array16.length; i++){
+            if (array16[i] < minArray16){
+                minArray16 = array16[i];
+                minIndexArray16 = i;
+            }
+            System.out.println("Элементы массива до минимального элемента в массиве: ");
+            for (int i = 0; i < minIndexArray16; i++)
+        }*/
     }
 }
-
 
 
 
