@@ -11,29 +11,30 @@ public class SeaBattle_Refactored {
 
         int tableHeight = 4;
         int tableWidth = 4;
+        int quantitySheep = 4;
 
-        int[][] userMatrix = new int[4][4];
-        int[][] compMatrix = new int[4][4];
+        int[][] userMatrix = new int[tableHeight][tableWidth];
+        int[][] compMatrix = new int[tableHeight][tableWidth];
 
-        System.out.println("Please choose 4 cells for game in format [x,y]. Possible values 0 - 3");
+        System.out.println("Please choose " + quantitySheep +" cells for game in format [x,y]. Possible values 0 - " + (tableHeight - 1));
 
-        userMatrix = setMatrixByScreen(userMatrix, tableHeight, scan);
-        compMatrix = setMatrixByRandom(compMatrix, tableHeight, random);
+        userMatrix = setMatrixByScreen(userMatrix, quantitySheep, scan);
+        compMatrix = setMatrixByRandom(compMatrix, quantitySheep, random);
 
-        matrixOutput(compMatrix, tableHeight, tableWidth);
+        outputMatrix(compMatrix, tableHeight, tableWidth);
 
         int resultUser = 0;
         int resultComp = 0;
 
-        while (!(resultUser == 4) && !(resultComp == 4)) {
+        while (!(resultUser == quantitySheep) && !(resultComp == quantitySheep)) {
             int[] coordinate = setCoordinateToShoot(tableHeight, tableWidth, scan);
             int userX = coordinate[0];
             int userY = coordinate[1];
 
             resultUser = shoot(compMatrix, userX, userY, resultUser, tableHeight, tableWidth);
 
-            int compX = random.nextInt(4);
-            int compY = random.nextInt(4);
+            int compX = random.nextInt(quantitySheep);
+            int compY = random.nextInt(quantitySheep);
 
             System.out.println("Comp shoot - " + "[" + compX + "," + compY + "] = " + userMatrix[compX][compY]);
 
@@ -42,10 +43,9 @@ public class SeaBattle_Refactored {
 
         System.out.println();
         System.out.println();
-        System.out.println();
-        if (resultUser == 4) {
+        if (resultUser == quantitySheep) {
             System.out.println("You win!!!");
-        } else if (resultComp == 4) {
+        } else if (resultComp == quantitySheep) {
             System.out.println("Computer win");
         }
     }
@@ -64,7 +64,7 @@ public class SeaBattle_Refactored {
                 matrix[x][y] = 1;
                 userCount++;
             } else {
-                System.out.println("Incorrect coordinate. Try again. Possible values 0 - 3");
+                System.out.println("Incorrect coordinate. Try again. Possible values 0 - " + (quantity - 1));
             }
         }
         return matrix;
@@ -72,9 +72,9 @@ public class SeaBattle_Refactored {
 
     static int[][] setMatrixByRandom(int[][] matrix, int quantity, Random random) {
         int count = 0;
-        while (count < 4) {
-            int x = random.nextInt(4);
-            int y = random.nextInt(4);
+        while (count < quantity) {
+            int x = random.nextInt(quantity);
+            int y = random.nextInt(quantity);
 
             if (matrix[x][y] == 0) {
                 matrix[x][y] = 1;
@@ -84,7 +84,7 @@ public class SeaBattle_Refactored {
         return matrix;
     }
 
-    static void matrixOutput(int[][] matrix, int tableHeight, int tableWidth) {
+    static void outputMatrix(int[][] matrix, int tableHeight, int tableWidth) {
         for (int i = 0; i < tableHeight; i++) {
             for (int j = 0; j < tableWidth; j++) {
                 System.out.print(matrix[i][j] + " ");
@@ -93,20 +93,20 @@ public class SeaBattle_Refactored {
         }
     }
 
-    static int[] setCoordinateToShoot(int tableHeight, int tableWidth, Scanner scan){
-        int[] coordinateMatrix = new int[1];
+    static int[] setCoordinateToShoot(int tableHeight, int tableWidth, Scanner scan) {
+        int[] coordinateMatrix = new int[2];
 
         int flag;
         do {
             flag = 0;
-            System.out.println("Your shoot. In format [x,y]. Possible values 0 - " + tableHeight);
+            System.out.println("Your shoot. In format [x,y]. Possible values 0 - " + (tableHeight - 1));
             String coordinate;
             coordinate = scan.next();
             coordinateMatrix[0] = coordinate.toCharArray()[1] - '0';
             coordinateMatrix[1] = coordinate.toCharArray()[3] - '0';
 
             if (!((coordinateMatrix[0] >= 0) && (coordinateMatrix[0] <= tableHeight) && (coordinateMatrix[1] >= 0) && (coordinateMatrix[1] <= tableWidth))) {
-                System.out.println("Incorrect coordinate. Try again. Possible values 0 - " + tableHeight);
+                System.out.println("Incorrect coordinate. Try again. Possible values 0 - " + (tableHeight - 1));
                 flag = 1;
             }
         } while (flag == 1);
