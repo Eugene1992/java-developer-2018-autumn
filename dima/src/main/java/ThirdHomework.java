@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class ThirdHomework {
     public static void main(String[] args) {
         // Задание №1//
@@ -29,6 +31,41 @@ public class ThirdHomework {
         while (fourthNumber < (2 * (Math.pow(b, stepenOne)))) {
             System.out.println(+fourthNumber);
             fourthNumber *= 2;
+        }
+        // Задание №5//
+        int fifthNumber = 0;
+        int sixNumber;
+        int sevensNumber = 1;
+        System.out.println(fifthNumber);
+        System.out.println(sevensNumber);
+        for (int count = 1; count < 19; count++) {
+            sixNumber = sevensNumber;
+            sevensNumber = fifthNumber + sixNumber;
+            fifthNumber = sixNumber;
+            System.out.println(sevensNumber);
+        }
+
+        // Задание №7//
+        int eigthNumber = 15;
+        int ninthNumber = 1;
+        System.out.println(" Число " + eigthNumber);
+        for (int count = 1; count <= eigthNumber; count++) {
+            ninthNumber = ninthNumber * count;
+        }
+        System.out.println(eigthNumber + "! = " + ninthNumber);
+
+        // Задание №8//
+        int tenthNumber = 57;
+        System.out.println(" Число " + tenthNumber);
+        if (tenthNumber <= 0) {
+            System.out.println("Необходимо число > 0");
+        } else {
+            System.out.println(" Делители числа 57 : ");
+            for (int count = 1; count <= tenthNumber; count++) {
+                if (tenthNumber % count == 0) {
+                    System.out.println(count);
+                }
+            }
         }
 
 

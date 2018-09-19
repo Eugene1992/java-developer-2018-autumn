@@ -31,6 +31,7 @@ public class FourthHomework {
         for (int a3 = 0; a3 < arrayHalf; a3++) {
             System.out.print(array3[a3] + " ");
         }
+        //4//
         System.out.println("");
         System.out.println("Вторая часть масива");
         for (int a3 = arrayHalf; a3 < array3.length; a3++) {
@@ -48,6 +49,7 @@ public class FourthHomework {
         for (int a4 = array4.length - 1; a4 >= half1; a4--) {
             System.out.println(array4[a4] + " ");
         }
+        //5//
         int array5[] = {3, 7, 1, 83, 49, 14, 50,};
         int sum = 0;
         System.out.println("");
