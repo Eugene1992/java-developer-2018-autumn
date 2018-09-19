@@ -13,7 +13,7 @@ public class FourthHomework {
                 System.out.print(array1[a1] + " ");
             }
         }
-        //2//
+        //2///
         int[] array2 = {5, 8, 9, 2, -6, 0};
         System.out.println("");
         System.out.println("Масив");
