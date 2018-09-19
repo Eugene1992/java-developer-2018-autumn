@@ -53,7 +53,7 @@ public class Homework120918 {
         System.out.println(intNumber + "! = " + startNumber);
 
         //8. Выведите на экран все положительные делители натурального числа, введенного пользователем.
-        System.out.println(" );
+        System.out.println("Input integer number");
         int intNumberDivide = scan.nextInt();
         if (intNumberDivide <= 0) {
             System.out.println("Number below zero!");
