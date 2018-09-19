@@ -9,8 +9,8 @@ public class SeaBattle {
         Random random = new Random();
         Scanner scan = new Scanner(System.in);
 
-//        int tableHeight = 4;
-//        int tableWidth = 4;
+        int tableHeight = 4;
+        int tableWidth = 4;
 
         int[][] userMatrix = new int[4][4];
         int[][] compMatrix = new int[4][4];
@@ -46,12 +46,12 @@ public class SeaBattle {
             }
         }
 
-/*        for (int i = 0; i < tableHeight; i++) {
+        for (int i = 0; i < tableHeight; i++) {
             for (int j = 0; j < tableWidth; j++) {
                 System.out.print(compMatrix[i][j] + " ");
             }
             System.out.println();
-        } */
+        }
 
         int resultUser = 0;
         int resultComp = 0;
