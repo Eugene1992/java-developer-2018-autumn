@@ -44,7 +44,6 @@ public class TaskFrom1To5 {
         int fibonacci;
         String stringFibonnachi = "0 1";
         while (forFibon < 19) {
-
             fibonacci = first + second;
             first = second;
             second = fibonacci;
