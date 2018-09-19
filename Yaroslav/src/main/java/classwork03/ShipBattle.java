@@ -119,7 +119,7 @@ public class ShipBattle {
         }
         else if(checkIfShootNear(enemyField, x, y)) {
             enemyFieldForYou[y][x] = 2;
-            System.out.print("Вы промахнулись но были близк о.");
+            System.out.print("Вы промахнулись но были близко.");
         }
         else{
             enemyFieldForYou[y][x] = 2;
@@ -195,7 +195,7 @@ public class ShipBattle {
 
         placeYourShips(yourField, num);
         placeEnemyShips(enemyField, num);
-        outputField(enemyField);
+        //outputField(enemyField);
 
         int enemy_num = num;
         int your_num = num;
