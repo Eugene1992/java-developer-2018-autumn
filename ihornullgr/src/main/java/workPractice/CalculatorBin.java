@@ -1,4 +1,6 @@
-public class Algor {
+package workPractice;
+
+public class CalculatorBin {
     public static void main(String[] args) {
         int a = 77;
 

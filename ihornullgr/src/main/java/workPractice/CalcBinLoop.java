@@ -2,7 +2,7 @@ package workPractice;
 
 import java.util.Scanner;
 
-public class Bin {
+public class CalcBinLoop {
     public static void main(String[] args) {
 
         Scanner scan = new Scanner(System.in);
