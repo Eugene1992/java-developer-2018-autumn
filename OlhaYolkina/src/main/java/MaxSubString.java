@@ -24,8 +24,8 @@ public class MaxSubString {
 
         int[] maxPositions = getMaxSubstringPositions(charsLong, charsShort);
         int indexFrom = maxPositions[0];
-        int indexTo = maxPositions[0] + maxPositions[1];
-        return strLong.substring(indexFrom, indexTo);
+        int indexEnd = maxPositions[0] + maxPositions[1];
+        return strLong.substring(indexFrom, indexEnd);
     }
 
     static int[] getMaxSubstringPositions(char[] charsLong, char[] charsShort) {
@@ -50,7 +50,6 @@ public class MaxSubString {
         if (posFirstStr == chars1.length || posSecondStr == chars2.length
                 || chars1[posFirstStr] != chars2[posSecondStr])
             return max;
-        else
-            return getQuantityOfEqualChars(chars1, chars2, posFirstStr + 1, posSecondStr + 1, max + 1);
+        return getQuantityOfEqualChars(chars1, chars2, posFirstStr + 1, posSecondStr + 1, max + 1);
     }
 }
