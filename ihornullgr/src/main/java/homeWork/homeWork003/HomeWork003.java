@@ -161,7 +161,6 @@ public class HomeWork003 {
         }
         //15. Написать программу, меняющую местами два наибольших элемента одномерного массива
         // с первым и последним.System.out.println("Seccccc " + secondEl);
-        // TODO: 17.09.2018 попросить обьяснить!
         int[] arr15 = {55, 33, 14, 77, 88, 4};
         int firstGreat = arr15[0];
         int firstIndex = 0;
@@ -205,28 +204,51 @@ public class HomeWork003 {
         }
 
         //17. Найти сумму всех чисел находящихся между минимальным и максимальным числом в массиве.
-        // TODO: 18.09.2018 обьяснить
+        int[] array = {5, 66, 88, 44, 345, 2};
+        int minSum = array[0];
+        int maxSum = array[0];
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] < minSum) {
+                minSum = array[i];
+            }
+        }
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > maxSum) {
+                maxSum = array[i];
+            }
+        }
+        System.out.println("MinEl " + minSum + " " + "MaxEl " + maxSum);
+
+        int calBetweenMinMax = 0;
+        int totalSum = 0;
+        for (int i = 0; i < array.length; i++) {
+            calBetweenMinMax = calBetweenMinMax + array[i];
+            totalSum = (calBetweenMinMax - minSum) - maxSum;
+
+        }
+        System.out.println(" ");
+        System.out.println("Between " + totalSum);
 
         //18. Вывести в консоль половину массива в которой находиться наименьшее число массива.
-        // TODO: 18.09.2018 попросить обьяснить
-        int[] arr17 = {30, 55, 40, 100, 22};
+        System.out.println("");
+        int[] arr17 = {30, 55, 40, 100, 15};
         int minNum = arr17[0];
         int index = 0;
         for (int i = 0; i < arr17.length; i++) {
             if (arr17[i] < minNum) {
                 minNum = arr17[i];
                 index = i;
-                System.out.println("Minnnnummm " + minNum);
             }
         }
         if (index != arr17.length / 2) {
             if (index <= arr17.length / 2) {
                 for (int i = 0; i < arr17.length / 2; i++) {
-                    System.out.println();
+                    System.out.println("");
                 }
             } else {
                 for (int i = arr17.length / 2; i < arr17.length; i++) {
-                    System.out.println(arr17[i]);
+                    System.out.print("Половина массива");
+                    System.out.println(" " + arr17[i]);
                 }
 
             }
@@ -236,26 +258,16 @@ public class HomeWork003 {
 
         //19. Написать программу, которая перемещает в конец массива все элементы,
         // значения которых находится в отрезке [a,b].
-        // TODO: 18.09.2018 exception 
-        System.out.println("\n");
-        int a = 2;
-        int b = 6;
-        int[] arr19 = {15, 16, 18, 20, 22};
-        for (int i = 0; i < arr19.length; i++) {
-            System.out.print("Как было" + arr19[i] + " ");
+        int[] array19 = {5, 66, 88, 44, 345, 22};
+        int a = 6;
+        int b = 2;
+        int sumEndEl = 0;
+        int totalsm = 0;
+        for (int i = array19.length - 1; i >= array19.length - 1; i--) {
+            sumEndEl = array19[i];
+            totalsm = (sumEndEl + a) + b;
+            System.out.println("");
+            System.out.println("Перемещение в конец массива " + totalsm);
         }
-        int[] edditedArray = new int[arr19.length];
-        for (int i = 0; i < a; i++) {
-            edditedArray[i] = arr19[i];
-        }
-        for (int i = b + 1, j = a; i < arr19.length; i++, j++) {
-            edditedArray[j] = arr19[i];
-            ;
-        }
-        for (int i = b, j = arr19.length - 1; i >= a; i--, j--) {
-            edditedArray[j] = arr19[i];
-        }
-        for (int arrayElement : edditedArray)
-            System.out.println("Как стало " + arrayElement);
     }
 }

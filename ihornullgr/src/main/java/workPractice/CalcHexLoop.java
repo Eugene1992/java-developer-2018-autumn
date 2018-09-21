@@ -2,7 +2,7 @@ package workPractice;
 
 import java.util.Scanner;
 
-public class Hex {
+public class CalcHexLoop {
     public static void main(String[] args) {
         Scanner scan2 = new Scanner(System.in);
         System.out.println("Input value");

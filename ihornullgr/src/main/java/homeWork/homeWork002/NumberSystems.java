@@ -1,4 +1,4 @@
-package homeWork;
+package homeWork.homeWork002;
 
 import java.util.Scanner;
 
@@ -26,7 +26,7 @@ public class NumberSystems {
                 str = d + str;
                 number = number / 2;
             }
-            System.out.println("Bin " + str);
+            System.out.println("CalcBinLoop " + str);
         }
         if (system.equals("8")) {
             while (number != 0) {
@@ -66,7 +66,7 @@ public class NumberSystems {
                 }
                 number = number / 16;
             }
-            System.out.println("Hex " + str);
+            System.out.println("CalcHexLoop " + str);
         }
     }
 }
