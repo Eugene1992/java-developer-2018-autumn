@@ -1,5 +1,3 @@
-import static java.lang.Math.min;
-
 public class MaxSubString {
     public static void main(String[] args) {
         String str1 = "hello world";
