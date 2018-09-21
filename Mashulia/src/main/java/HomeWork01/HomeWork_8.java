@@ -1,8 +1,24 @@
 package HomeWork01;
 
+import java.util.Scanner;
+
 public class HomeWork_8 {
     public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Enter number from 0 to 100:");
+        int a = scan.nextInt();
 
+        if (a < 0 || a > 100){
+            System.out.println("Eror");
+        } else if (a < 15){
+            System.out.println("The number is in the range [0 - 14]");
+        } else if ( a < 36){
+            System.out.println("The number is in the range [15 - 35]");
+        } else if (a < 51){
+            System.out.println("The number is in the range [36 - 50]");
+        } else if (a <= 100){
+            System.out.println("The number is in the range [51- 100]");
+        }
     }
 }
 
