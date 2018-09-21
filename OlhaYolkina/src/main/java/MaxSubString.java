@@ -22,19 +22,17 @@ public class MaxSubString {
         char[] charsLong = strLong.toCharArray();
         char[] charsShort = strShort.toCharArray();
 
-        int count = 0;
         int indexFrom = 0;
         int max = 0;
 
         for (int i = 0; i < charsLong.length; i++) {
             for (int j = 0; j < charsShort.length; j++) {
                 if (charsLong[i] == charsShort[j]) {
-                    count = quantityEqualsChars(charsLong, charsShort, i, j, count);
+                    int count = quantityEqualsChars(charsLong, charsShort, i, j, 0);
                     if (count > max) {
                         max = count;
                         indexFrom = i;
                     }
-                    count = 0;
                 }
             }
         }
