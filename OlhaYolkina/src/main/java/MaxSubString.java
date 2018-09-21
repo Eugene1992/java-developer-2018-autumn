@@ -37,8 +37,8 @@ public class MaxSubString {
                 if (charsLong[i] == charsShort[j]) {
                     int count = getQuantityOfEqualChars(charsLong, charsShort, i, j, 0);
                     if (count > max) {
-                        max = count;
                         indexFrom = i;
+                        max = count;
                     }
                 }
             }
@@ -50,6 +50,7 @@ public class MaxSubString {
         if (posFirstStr == chars1.length || posSecondStr == chars2.length
                 || chars1[posFirstStr] != chars2[posSecondStr])
             return max;
+
         return getQuantityOfEqualChars(chars1, chars2, posFirstStr + 1, posSecondStr + 1, max + 1);
     }
 }
