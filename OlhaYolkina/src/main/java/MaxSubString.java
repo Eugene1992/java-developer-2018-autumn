@@ -16,7 +16,6 @@ public class MaxSubString {
     }
 
     static String maxSubString(String str1, String str2) {
-        String newStr;
         String strLong = str1.length() > str2.length() ? str1 : str2;
         String strShort = str1.length() <= str2.length() ? str1 : str2;
 
@@ -39,9 +38,7 @@ public class MaxSubString {
                 }
             }
         }
-        newStr = strLong.substring(indexFrom, indexFrom + max);
-
-        return newStr;
+        return strLong.substring(indexFrom, indexFrom + max);
     }
 
     static int quantityEqualsChars(char[] chars1, char[] chars2, int posFirstStr, int posSecondStr, int max) {
