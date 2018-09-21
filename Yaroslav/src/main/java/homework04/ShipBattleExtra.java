@@ -88,7 +88,7 @@ public class ShipBattleExtra {
     private static int decrementCounterIfPlaceNotRepeat(int field[][], int x, int y, int shipCounter, boolean outputMessage) {
         if ((y > (shipNum - 1)) || (x > (shipNum - 1))) {
             System.out.println("Ви вышли за пределы поля.Повторите ввод заново.");
-        } else if (field[y][x] != 1) {
+        } else if (field[y][x] != 1 && field[y][x] != 3) {
             field[y][x] = 1;
             return shipCounter - 1;
         } else if (outputMessage) {
@@ -129,7 +129,7 @@ public class ShipBattleExtra {
         if ((y > (shipNum - 1)) || (x > (shipNum - 1))) {
             System.out.println("Ви вышли за пределы поля.Повторите ввод заново.");
             return false;
-        } else if (field[y][x] == 2 && outputMessage) {
+        } else if ((field[y][x] == 2 || field[y][x] == 3) && outputMessage) {
             System.out.println("Сюда уже стреляли.Выберите другую ячейку");
             return false;
         } else {
