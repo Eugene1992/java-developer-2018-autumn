@@ -51,11 +51,10 @@ public class MaxSubString {
     }
 
     static int quantityEqualsChars(char[] chars1, char[] chars2, int posFirstStr, int posSecondStr, int max) {
-        if (chars1[posFirstStr] != chars2[posSecondStr]) {
+        if ((posFirstStr == chars1.length) || (posSecondStr == chars2.length) || (chars1[posFirstStr] != chars2[posSecondStr])) {
             return max;
         } else {
-            posSecondStr = min(posSecondStr + 1, chars2.length - 1);
-            return quantityEqualsChars(chars1, chars2, posFirstStr + 1, posSecondStr, max + 1);
+            return quantityEqualsChars(chars1, chars2, posFirstStr + 1, posSecondStr + 1, max + 1);
         }
     }
 }
