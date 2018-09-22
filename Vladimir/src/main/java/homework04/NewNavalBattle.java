@@ -8,24 +8,25 @@ public class NewNavalBattle {
         System.out.println("Hello my dear friend! It's new very interesting game - Simple Naval Battle in Idea");
         int[][] comp = new int[4][4];
         int[][] my = new int[4][4];
-        int compShip = 4;
-        int myShip = 4;
+
         compPlaceShip(comp);
         myPlaceShip(my);
-        game(comp, my, compShip, myShip);
+        game(comp, my);
+    }
+
+//    Метод для запуску гри
+    private static void game(int[][] comp, int[][] my) {
+        int compShip = 4;
+        int myShip = 4;
+        while (compShip > 0 && myShip > 0) {
+            compShip = myShot(compShip, comp);
+            myShip = compShot(myShip, my);
+        }
         if (compShip == 0) {
             System.out.println("Congratulations!! You win!!!");
         }
         if (myShip == 0) {
             System.out.print("Unfortunately you lost");
-        }
-    }
-
-//    Метод для запуску гри
-    private static void game(int[][] comp, int[][] my, int compShip, int myShip) {
-        while (compShip > 0 && myShip > 0) {
-            myShot(compShip, comp);
-            compShot(myShip, my);
         }
     }
 
@@ -118,7 +119,7 @@ public class NewNavalBattle {
                 badMemory = true;
             }
         }
-        System.out.println(compShip);
+        System.out.println("Comp have " + compShip + " ship");
         return compShip;
     }
 
@@ -143,7 +144,7 @@ public class NewNavalBattle {
                 compBadMemory = true;
             }
         }
-        System.out.println(myShip);
+        System.out.println("You have " + myShip + " ship");
         return myShip;
     }
 }
