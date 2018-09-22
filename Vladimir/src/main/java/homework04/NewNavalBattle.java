@@ -21,6 +21,7 @@ public class NewNavalBattle {
         }
     }
 
+//    Метод для запуску гри
     private static void game(int[][] comp, int[][] my, int compShip, int myShip) {
         while (compShip > 0 && myShip > 0) {
             myShot(compShip, comp);
