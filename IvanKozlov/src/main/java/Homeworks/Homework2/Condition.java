@@ -17,11 +17,7 @@ public class Condition {
         System.out.println(enterAnyNumberMessage);
         int inputNumber = scan.nextInt();
 
-        if (inputNumber % 2 != 0) {
-            System.out.println(numberIsMessage + "odd");
-        } else {
-            System.out.println(numberIsMessage + "even");
-        }
+        System.out.println(numberIsMessage + checkNumber(inputNumber));
 
 //        Задание 3
 //        Создать программу, выводящую на экран ближайшее к 10 из двух чисел, введенных с консоли.
@@ -203,4 +199,13 @@ public class Condition {
             System.out.println("Your number is out of ranges between 0 and 100.");
         }
     }
+
+    static String checkNumber(int number) {
+        if (number % 2 == 0) {
+            return "odd";
+        }
+        return "even";
+    }
+
+
 }
