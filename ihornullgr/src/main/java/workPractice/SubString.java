@@ -3,7 +3,7 @@ package workPractice;
 public class SubString {
     public static void main(String[] args) {
         System.out.println("От и до");
-        String str1 = "   Hello       world!  ";
+        String str1 = "Hello world!  ";
         System.out.println(substring(str1, 3, 7));
         System.out.println("");
 
@@ -16,12 +16,13 @@ public class SubString {
         System.out.println(trim(str1));
         System.out.println("");
 
-
-
         System.out.println("toString");
         int[] array = new int[]{1, 3, 4, 5};
         System.out.println(toString(array));
         System.out.println("");
+
+        System.out.println("Последний индекс");
+        System.out.println(lastIndexOf(str1, 'l'));
 
 
     }
@@ -83,6 +84,18 @@ public class SubString {
         }
         str = "[" + substring(str, str.length() - 2)  + "]";
         return str;
+    }
+    //lastIndexOf
+    static int lastIndexOf (String str, char findIndex){
+        char[] chars = str.toCharArray();
+        int findIntIndex = 0;
+
+        for (int i = 0; i < chars.length; i++) {
+            if (chars[i] == findIndex){
+                findIntIndex = i;
+            }
+        }
+        return findIntIndex;
     }
 }
 
