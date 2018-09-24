@@ -141,10 +141,11 @@ public class StringHomework {
         }
         int j = 0;
         for (int i = indexOfStart; i < charsMain.length; i++) {
-            if (j == charsSub.length) {
+            if (j == charsSub.length - 1) {
                 return true;
             } else if (charsMain[i] != charsSub[j]) {
-                return false;
+                j = 0;
+                //indexOf(newStrMain, charsSub[0], i);
             } else {
                 j++;
             }
@@ -166,8 +167,11 @@ public class StringHomework {
     }
 
 
+    /**
+     * replaceFirst - метод для замены первого вхождения слова на новое
+     */
     private static String replaceFirst(String str, String oldWord, String newWord) {
-        if (contains(str, oldWord, 0) == false) {
+        if (contains(str, oldWord) == false) {
             System.out.println("Ошибка. Такого слова нет в строке");
             return str;
         }
@@ -195,43 +199,33 @@ public class StringHomework {
         return result;
     }
 
+    /**
+     * replaceAll - метод для замены всех вхождений слова на новое
+     */
     private static String replaceAll(String str, String oldWord, String newWord) {
-        while (contains(str, oldWord, 0)) {
+        while (contains(str, oldWord)) {
             str = replaceFirst(str, oldWord, newWord);
         }
         return str;
     }
 
+
+    /**
+     * maxSimpleSubstring - метод, который находит наибольшую подстроку из двух строк
+     */
     private static String maxSimpleSubstring(String str1, String str2) {
-        char[] chars1 = str1.toCharArray();
-        char[] chars2 = str2.toCharArray();
-        String[] result = new String[100];
-        int wordCounter = 0;
-        for (int i = 0; i < chars1.length; i++) {
-            for (int j = 0; j < chars2.length; j++) {
-                if (chars1[i] == chars2[j]) {
-                    result[wordCounter] = "" + chars1[i];
-                    for (int k = 1; k < chars1.length - i; k++) {
-                        if (chars1[i + k] == chars2[j + k]) {
-                            result[wordCounter] += chars1[i + k];
-                        } else {
-                            wordCounter++;
-                            break;
-                        }
-                    }
+        String result = "";
+        int maxLength = 0;
+        for (int i = 0; i < str1.length(); i++) {
+            for (int j = str1.length() - 1; j > i; j--) {
+                String temp = subString(str1, i, j);
+                if (contains(str2, temp) && maxLength < temp.length() && !(contains(temp, " "))) {
+                    result = temp;
+                    maxLength = temp.length();
                 }
             }
         }
-        for (int i = 0; i < wordCounter; i++) {
-            System.out.println(i + ")" + result[i]);
-        }
-        String maxResult = "";
-        for (int i = 0; i < wordCounter; i++) {
-            if (maxResult.length() < result[i].length()) {
-                maxResult = result[i];
-            }
-        }
-        return maxResult;
+        return result;
     }
 
 
@@ -285,9 +279,17 @@ public class StringHomework {
         System.out.println("Масив: " + toString(arr) + "\n");
 
         String str3 = "Oh, Bye, world! Bye, sun, Bye!!!";
-        System.out.println(str3);
+        System.out.println("До замены: " + str3);
         str3 = replaceAll(str3, "Bye", "Hello");
-        System.out.println(str3);
+        System.out.println("После замены: " + str3);
+        System.out.println("\n");
+
+        String str100 = "hello world";
+        String str101 = "worship hell";
+        System.out.println("Первая строка: " + str100);
+        System.out.println("Вторая строка: " + str101);
+        System.out.println("Максимальное общее слово: " + maxSimpleSubstring(str100, str101));
+
     }
 
 
