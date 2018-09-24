@@ -35,6 +35,9 @@ public class StringMethods {
                 }
             }
         }
+        for (int i = 0; i < wordCounter; i++) {
+            System.out.println(i + ")" + result[i]);
+        }
         String maxResult = "";
         for (int i = 0; i < wordCounter; i++) {
             if (maxResult.length() < result[i].length()) {
@@ -48,7 +51,7 @@ public class StringMethods {
     public static void main(String[] args) {
         String str1 = "Hello,__WWWWorld!";
         //System.out.println(subString(str1, 1, 6));
-        String str2 = "__WWWWorld,Hello,People!";
+        String str2 = ",Hello,People__WWWWorld!";
 
         System.out.println(maxSimpleSubstring(str1, str2));
     }
