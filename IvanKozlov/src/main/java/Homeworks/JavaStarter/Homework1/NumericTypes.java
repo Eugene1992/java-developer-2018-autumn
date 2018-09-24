@@ -1,4 +1,4 @@
-package Homeworks.Homework1;
+package Homeworks.JavaStarter.Homework1;
 
 /*
 1. Создать четыре целочисленные переменные типов byte, short, int, long.

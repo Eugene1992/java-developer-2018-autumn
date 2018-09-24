@@ -1,4 +1,4 @@
-package Homeworks.Homework5;
+package Homeworks.JavaStarter.Homework5;
 
 public class Recursion {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package Homeworks.Homework6;
+package Homeworks.JavaStarter.Homework6;
 
 //Реализовать методы класса String:
 
