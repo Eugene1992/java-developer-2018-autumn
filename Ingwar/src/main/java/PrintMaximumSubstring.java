@@ -20,10 +20,9 @@ public class PrintMaximumSubstring {
 	static String findMaxSubstring(String stringChecked, String stringProcessed) {
 		String resultSubstring = "";
 		for(int index = 0;index < stringProcessed.length();index++) {
-			resultSubstring = processString(index,stringProcessed.length(),stringChecked,stringProcessed,resultSubstring);
-		}
-		for(int index = stringProcessed.length()-1;index >= 0;index--) {
-			resultSubstring = processString(0,index,stringChecked,stringProcessed,resultSubstring);
+			for(int count = stringProcessed.length()-1;count >= index;count--) {
+				resultSubstring = processString(index,count,stringChecked,stringProcessed,resultSubstring);
+			}
 		}
 		return resultSubstring;
 	}
