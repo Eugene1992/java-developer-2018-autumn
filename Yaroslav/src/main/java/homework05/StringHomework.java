@@ -17,7 +17,7 @@ public class StringHomework {
         }
         char[] chars = str.toCharArray();
         String result = "";
-        for (int i = from; i <= to; i++) {
+        for (int i = from; i < to; i++) {
             result += chars[i];
         }
         return result;
@@ -27,7 +27,7 @@ public class StringHomework {
      * subString (от) - метод для вывода подстроки от елемента from до конца строки str
      */
     private static String subString(int from, String str) {
-        return subString(str, from, str.length() - 1);
+        return subString(str, from, str.length());
     }
 
     /**
@@ -141,7 +141,7 @@ public class StringHomework {
         }
         int j = 0;
         for (int i = indexOfStart; i < charsMain.length; i++) {
-            if (j == charsSub.length - 1) {
+            if (j == charsSub.length) {
                 return true;
             } else if (charsMain[i] != charsSub[j]) {
                 return false;
@@ -164,6 +164,79 @@ public class StringHomework {
         result += arr[arr.length - 1] + "]";
         return result;
     }
+
+
+    private static String replaceFirst(String str, String oldWord, String newWord) {
+        if (contains(str, oldWord, 0) == false) {
+            System.out.println("Ошибка. Такого слова нет в строке");
+            return str;
+        }
+        char[] chars = str.toCharArray();
+        char[] charsOfOldWord = oldWord.toCharArray();
+        int startOfOldWordIndex = indexOf(str, charsOfOldWord[0]);
+        String str_temp = str;
+        int j = 0;
+        for (int i = 0; i < chars.length; i++) {
+            if (j == charsOfOldWord.length - 1) {
+                //startOfOldWordIndex = i - charsOfOldWord.length + 1;
+                break;
+            }
+            if (indexOf(str_temp, charsOfOldWord[j]) == i) {
+                j++;
+            } else {
+                j = 0;
+            }
+        }
+        String result = "";
+        if (startOfOldWordIndex > 0) {
+            result = subString(str, 0, startOfOldWordIndex);
+        }
+        result += newWord + subString(str, startOfOldWordIndex + oldWord.length(), str.length());
+        return result;
+    }
+
+    private static String replaceAll(String str, String oldWord, String newWord) {
+        while (contains(str, oldWord, 0)) {
+            str = replaceFirst(str, oldWord, newWord);
+        }
+        return str;
+    }
+
+    private static String maxSimpleSubstring(String str1, String str2) {
+        char[] chars1 = str1.toCharArray();
+        char[] chars2 = str2.toCharArray();
+        String[] result = new String[100];
+        int wordCounter = 0;
+        for (int i = 0; i < chars1.length; i++) {
+            for (int j = 0; j < chars2.length; j++) {
+                if (chars1[i] == chars2[j]) {
+                    result[wordCounter] = "" + chars1[i];
+                    for (int k = 1; k < chars1.length - i; k++) {
+                        if (chars1[i + k] == chars2[j + k]) {
+                            result[wordCounter] += chars1[i + k];
+                        } else {
+                            wordCounter++;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < wordCounter; i++) {
+            System.out.println(i + ")" + result[i]);
+        }
+        String maxResult = "";
+        for (int i = 0; i < wordCounter; i++) {
+            if (maxResult.length() < result[i].length()) {
+                maxResult = result[i];
+            }
+        }
+        return maxResult;
+    }
+
+
+
+
 
     public static void main(String[] args) {
         String str = "Hello, beautiful world!!";
@@ -209,6 +282,13 @@ public class StringHomework {
         System.out.println("\n");
 
         int[] arr = {1, 4, 5, 9, 0, -3, 3};
-        System.out.println("Масив: " + toString(arr));
+        System.out.println("Масив: " + toString(arr) + "\n");
+
+        String str3 = "Oh, Bye, world! Bye, sun, Bye!!!";
+        System.out.println(str3);
+        str3 = replaceAll(str3, "Bye", "Hello");
+        System.out.println(str3);
     }
+
+
 }
