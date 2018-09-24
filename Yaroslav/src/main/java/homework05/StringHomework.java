@@ -252,13 +252,13 @@ public class StringHomework {
 
         String str2 = "Hello, beautiful world and people!!";
         from = 6;
-        System.out.println("Index of element('l') = " + indexOf(str, 'l'));
-        System.out.println("Index of element{'a') = " + indexOf(str, 'a'));
-        System.out.println("Index of element('z') = " + indexOf(str, 'z'));
-        System.out.println("Index of element('l' from index " + from + ") = " + indexOf(str, 'l', 6));
-        System.out.println("Index of element('a') from index " + from + ") = " + indexOf(str, 'a', 6));
-        System.out.println("Last index of element('l') = " + lastIndexOf(str, 'l'));
-        System.out.println("Last index of element('a') = " + lastIndexOf(str, 'a'));
+        System.out.println("Index of element('l') = " + indexOf(str2, 'l'));
+        System.out.println("Index of element{'a') = " + indexOf(str2, 'a'));
+        System.out.println("Index of element('z') = " + indexOf(str2, 'z'));
+        System.out.println("Index of element('l' from index " + from + ") = " + indexOf(str2, 'l', 6));
+        System.out.println("Index of element('a') from index " + from + ") = " + indexOf(str2, 'a', 6));
+        System.out.println("Last index of element('l') = " + lastIndexOf(str2, 'l'));
+        System.out.println("Last index of element('a') = " + lastIndexOf(str2, 'a'));
         System.out.println("\n");
 
         String strMain = "1234567890";
