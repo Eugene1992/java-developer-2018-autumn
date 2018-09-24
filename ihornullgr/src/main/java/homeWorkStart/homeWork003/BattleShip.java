@@ -1,7 +1,4 @@
-package homeWork.homeWork003;
-
-import java.util.Random;
-import java.util.Scanner;
+package homeWorkStart.homeWork003;
 
 public class BattleShip {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package workPractice;
+package workPracticeStart;
 
 public class HelloWorld {
     public static void main(String[] args) {

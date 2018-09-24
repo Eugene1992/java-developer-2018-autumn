@@ -1,4 +1,4 @@
-package workPractice;
+package homeWorkStart.homeWork005;
 
 public class SubString {
     public static void main(String[] args) {

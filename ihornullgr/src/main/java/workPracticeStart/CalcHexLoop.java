@@ -1,4 +1,4 @@
-package workPractice;
+package workPracticeStart;
 
 import java.util.Scanner;
 

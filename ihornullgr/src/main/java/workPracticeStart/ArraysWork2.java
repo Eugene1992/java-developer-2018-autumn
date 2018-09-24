@@ -1,4 +1,4 @@
-package workPractice;
+package workPracticeStart;
 
 public class ArraysWork2 {
     public static void main(String[] args) {

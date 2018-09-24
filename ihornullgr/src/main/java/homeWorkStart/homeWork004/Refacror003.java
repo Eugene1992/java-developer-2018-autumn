@@ -1,4 +1,4 @@
-package homeWork.homeWork004;
+package homeWorkStart.homeWork004;
 
 public class Refacror003 {
     public static void main(String[] args) {
