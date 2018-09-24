@@ -14,7 +14,7 @@ public class continuationEmployee {
         secondEmployee.id = 2;
         secondEmployee.firstName = "Ihor";
         secondEmployee.lastName = "Rop";
-        secondEmployee.age = 23;
+        secondEmployee.age = 23; //eeeee
         secondEmployee.salary = 14000;
         secondEmployee.isMarried = true;
 
