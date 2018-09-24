@@ -1,3 +1,5 @@
+package javaStarter;
+
 public class MaxSubString {
     public static void main(String[] args) {
         String str1 = "hello world";
