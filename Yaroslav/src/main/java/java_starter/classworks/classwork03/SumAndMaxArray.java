@@ -1,4 +1,4 @@
-package classwork03;
+package java_starter.classworks.classwork03;
 
 public class SumAndMaxArray {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package classwork03;
+package java_starter.classworks.classwork03;
 
 import java.util.Scanner;
 import java.util.Random;

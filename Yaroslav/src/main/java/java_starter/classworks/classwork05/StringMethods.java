@@ -1,4 +1,4 @@
-package classwork05;
+package java_starter.classworks.classwork05;
 
 public class StringMethods {
 
