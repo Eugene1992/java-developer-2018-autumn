@@ -1,7 +1,5 @@
 package java_essential;
 
-//import java.util.Arrays;
-
 import java.util.Scanner;
 
 public class reportEmployees {
@@ -115,5 +113,4 @@ public class reportEmployees {
 		}
 		return newList;
 	}
-
 }
