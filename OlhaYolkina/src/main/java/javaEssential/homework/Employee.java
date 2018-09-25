@@ -14,16 +14,12 @@ public class Employee {
         System.out.println("Please input information about new Employee");
         System.out.print("Name : ");
         this.firstName = scan.next();
-        System.out.println();
         System.out.print("Surname : ");
         this.lastName = scan.next();
-        System.out.println();
         System.out.print("Age : ");
         this.age = scan.nextInt();
-        System.out.println();
         System.out.print("Salary : ");
         this.salary = scan.nextInt();
-        System.out.println();
         String answer;
         do {
             System.out.print("Married? (Yes / No) : ");
