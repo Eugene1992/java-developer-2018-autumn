@@ -94,7 +94,11 @@ public class continuationEmployee {
         System.out.println("");
 
         System.out.println("подсчитывает зарплату всех сотрудников");
+        System.out.println(sumSalaryEmployee(employees));
+        System.out.println("");
 
+        System.out.println("находят всех сотрудников с заданным интервалом зарплаты");
+        printAllEmployee(intervalSalaryEmployee(employees, 5000, 8000));
 
     }
 
@@ -127,9 +131,7 @@ public class continuationEmployee {
         }
     }
 
-
     //- находят всех сотрудников по заданному имени
-
     static Employee[] searchEmploye(Employee[] employeesInput, String name) {
         Employee[] nameSearch = new Employee[employeesInput.length];
         int counter = 0;
@@ -140,5 +142,27 @@ public class continuationEmployee {
             }
         }
         return nameSearch;
+    }
+
+    //подсчитывает зарплату всех сотрудников
+    static int sumSalaryEmployee(Employee[] employees) {
+        int sumSalary = 0;
+        for (Employee employee : employees) {
+            sumSalary += employee.salary;
+        }
+        return sumSalary;
+    }
+
+    //находят всех сотрудников с заданным интервалом зарплаты
+    static Employee[] intervalSalaryEmployee(Employee[] employees, int from, int to) {
+        Employee[] intervalSearch = new Employee[employees.length];
+        int counter = 0;
+        for (Employee employee : employees) {
+            if (employee.salary > from && employee.salary < to) {
+                intervalSearch[counter] = employee;
+                counter += 1;
+            }
+        }
+        return intervalSearch;
     }
 }
