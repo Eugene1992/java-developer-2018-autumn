@@ -29,7 +29,7 @@ public class reportEmployees {
 				"Kelly","Rob","Barry"};
 		String[] lastNames = new String[]{"Cooper","Brand","Gese","Bernick","Gese","Tulwar","Camper",
 				"Swann","Kochinsky","Longfort"};
-		int[] ages = new int[] {22,24,32,35,42,36,28,30,25,24};
+		int[] ages = new int[] {22,24,32,35,42,36,28,33,25,24};
 		int[] salaries = new int[] {2000,3000,4000,5000,10000,4500,3800,7000,4300,5900};
 		boolean[] married = new boolean[] {false,false,true,true,true,false,false,true,false,true};
 		for(int index = 0;index < listOfEmployees.length;index++) {
