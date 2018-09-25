@@ -1,7 +1,5 @@
-package homeWork;
+package java_starter_package;
 
-import javax.sound.midi.Soundbank;
-import javax.xml.transform.Source;
 import java.util.Arrays;
 
 public class HomWork03Refactoring {
