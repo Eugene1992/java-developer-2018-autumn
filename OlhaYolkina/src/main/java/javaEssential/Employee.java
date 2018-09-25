@@ -1,3 +1,5 @@
+package javaEssential;
+
 public class Employee {
     public static void main(String[] args) {
         String[][] employee = new String[][]{{"Henry", "25", "1500"}, {"Julia", "34", "1000"}, {"Maks", "27", "2000"}};

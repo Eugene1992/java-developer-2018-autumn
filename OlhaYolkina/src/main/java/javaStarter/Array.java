@@ -1,3 +1,5 @@
+package javaStarter;
+
 import java.util.Scanner;
 
 public class Array {
