@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class HW00 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        Employee[] arrEmployees = new Employee[4];
+        Employee[] arrEmployees = new Employee[10];
         for (int i = 0; i < arrEmployees.length; i++) {
             arrEmployees[i] = new Employee();
             arrEmployees[i].setEmployee(scan);
@@ -21,10 +21,10 @@ public class HW00 {
         Employee[] arrEmployeesSalary = getEmployeesInSalaryInterval(arrEmployees, 1000, 2000);
 
         System.out.println("Employees with salary in interval [1000; 2000]");
-        for (Employee aEmployee : arrEmployeesSalary) {
-            if (aEmployee == null) {
-                System.out.println("Sorry, in this interval no employees");
-            } else {
+        if (arrEmployeesSalary.length == 0) {
+            System.out.println("Sorry, in this interval no employees");
+        } else {
+            for (Employee aEmployee : arrEmployeesSalary) {
                 aEmployee.print();
             }
         }
@@ -34,11 +34,10 @@ public class HW00 {
         System.out.println("Employees with name Jack");
 
         Employee[] arrEmployeesName = getEmployeesByName(arrEmployees, "Jack");
-
-        for (Employee aEmployee : arrEmployeesName) {
-            if (aEmployee == null) {
-                System.out.println("Sorry, no Jack's");
-            } else {
+        if (arrEmployeesName.length == 0) {
+            System.out.println("Sorry, no Jack's");
+        } else {
+            for (Employee aEmployee : arrEmployeesName) {
                 aEmployee.print();
             }
         }
