@@ -1,6 +1,6 @@
 package homeWorkEssential;
 
-public class continuationEmployee {
+public class ContinuationEmployee {
     public static void main(String[] args) {
         Employee firstEmployee = new Employee();
         firstEmployee.id = 1;
