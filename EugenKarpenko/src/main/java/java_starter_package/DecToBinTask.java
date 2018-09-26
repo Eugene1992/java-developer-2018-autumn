@@ -1,3 +1,5 @@
+package java_starter_package;
+
 public class DecToBinTask {
     public static void main(String[] args) {
 
@@ -28,8 +30,8 @@ public class DecToBinTask {
         int dec7 = dec6 / 2;
 
 
-        System.out.println("a DEC = " + a );
-        System.out.println("a BIN = " + bin7 + bin6 + bin5 + bin4 + " " + bin3 + bin2 + bin1 + bin0 );
+        System.out.println("a DEC = " + a);
+        System.out.println("a BIN = " + bin7 + bin6 + bin5 + bin4 + " " + bin3 + bin2 + bin1 + bin0);
 
     }
 }

@@ -1,4 +1,4 @@
-package homeWork;
+package java_starter_package;
 
 public class HomeWork05_SubString {
     public static void main(String[] args) {

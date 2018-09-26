@@ -56,7 +56,7 @@ public class continuationEmployee {
         sevenEmployee.lastName = "Swarcof";
         sevenEmployee.age = 25;
         sevenEmployee.salary = 12000;
-        sevenEmployee.isMarried = true;
+        sevenEmployee.isMarried = false;
 
         Employee eightEmployee = new Employee();
         eightEmployee.id = 8;
@@ -84,19 +84,85 @@ public class continuationEmployee {
 
         Employee[] employees = new Employee[]{firstEmployee, secondEmployee, thirdEmployee, fourEmployee,
                 fiveEmployee, sixEmployee, sevenEmployee, eightEmployee, nineEmployee, tenEmployee};
-        Employee richestEmployee = getMoneyEmployee(employees);
 
-        System.out.println(richestEmployee.firstName);
+        System.out.println("Максимальная зарплата");
+        printEmployee(getMoneyEmployee(employees));
+        System.out.println("");
+
+        System.out.println("находит всех сотрудников по заданому имени");
+        printAllEmployee(searchEmploye(employees, "Inna"));
+        System.out.println("");
+
+        System.out.println("подсчитывает зарплату всех сотрудников");
+        System.out.println(sumSalaryEmployee(employees));
+        System.out.println("");
+
+        System.out.println("находят всех сотрудников с заданным интервалом зарплаты");
+        printAllEmployee(intervalSalaryEmployee(employees, 5000, 8000));
+
     }
 
+    //- находят сотрудника с максимальной зарплатой
     static Employee getMoneyEmployee(Employee[] employees) {
         Employee result = employees[0];
         for (Employee employee : employees) {
             if (employee.salary > result.salary) {
                 result = employee;
+
             }
         }
         return result;
     }
+    //- печатает красиво информацию о сотруднике(ах),
+    // например Employee[name="Yevhenii", age=22, salary=20000000]
 
+    static Employee printEmployee(Employee employees) {
+        System.out.println("[ " + "id = " + employees.id + ", " + "first name = " + employees.firstName + ", " + "last name = " + employees.lastName + ", " +
+                "age = " + employees.age + ", " + "salary = " + employees.salary + ", " + "married = " + employees.isMarried + " ]");
+        return employees;
+    }
+
+    //Exception in thread "main" java.lang.NullPointerException
+    static void printAllEmployee(Employee[] employees) {
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i] != null) {
+                printEmployee(employees[i]);
+            }
+        }
+    }
+
+    //- находят всех сотрудников по заданному имени
+    static Employee[] searchEmploye(Employee[] employeesInput, String name) {
+        Employee[] nameSearch = new Employee[employeesInput.length];
+        int counter = 0;
+        for (Employee employee : employeesInput) {
+            if (employee.firstName == name) {
+                nameSearch[counter] = employee;
+                counter++;
+            }
+        }
+        return nameSearch;
+    }
+
+    //подсчитывает зарплату всех сотрудников
+    static int sumSalaryEmployee(Employee[] employees) {
+        int sumSalary = 0;
+        for (Employee employee : employees) {
+            sumSalary += employee.salary;
+        }
+        return sumSalary;
+    }
+
+    //находят всех сотрудников с заданным интервалом зарплаты
+    static Employee[] intervalSalaryEmployee(Employee[] employees, int from, int to) {
+        Employee[] intervalSearch = new Employee[employees.length];
+        int counter = 0;
+        for (Employee employee : employees) {
+            if (employee.salary > from && employee.salary < to) {
+                intervalSearch[counter] = employee;
+                counter += 1;
+            }
+        }
+        return intervalSearch;
+    }
 }

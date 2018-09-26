@@ -1,4 +1,4 @@
-package homework04;
+package java_starter.homework04;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -14,7 +14,7 @@ public class NewNavalBattle {
         game(comp, my);
     }
 
-//    Метод для запуску гри
+    //    Метод для запуску гри
     private static void game(int[][] comp, int[][] my) {
         int compShip = 4;
         int myShip = 4;
@@ -22,6 +22,17 @@ public class NewNavalBattle {
             compShip = myShot(compShip, comp);
             myShip = compShot(myShip, my);
         }
+        congratulationsMethod(compShip, myShip);
+    }
+
+    //    Метод для пошуку рандомного числа
+    private static int randomNumber(int n) {
+        return (int) (Math.random() * n);
+
+    }
+
+    //    Метод для поздоровлення
+    static void congratulationsMethod(int compShip, int myShip) {
         if (compShip == 0) {
             System.out.println("Congratulations!! You win!!!");
         }
@@ -35,8 +46,8 @@ public class NewNavalBattle {
         for (int i = 0; i < 4; i++) {
             boolean compfourShip = false;
             while (compfourShip == false) {
-                int compX = (int) (Math.random() * 4);
-                int compY = (int) (Math.random() * 4);
+                int compX = randomNumber(4);
+                int compY = randomNumber(4);
                 if (comp[compX][compY] == 1) {
                     compfourShip = false;
                 } else {
