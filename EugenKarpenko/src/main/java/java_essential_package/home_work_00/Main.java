@@ -60,7 +60,7 @@ public class Main {
         return salaryEmployees;
     }
 
-    ////Метод подсчитывает зарплату всех сотрудников
+    //Метод подсчитывает зарплату всех сотрудников
 
     static int calcEmployeesSalarySum(Employee[] employeesArray) {
         int sum = 0;
@@ -70,7 +70,7 @@ public class Main {
         return sum;
     }
 
-    //- находят всех сотрудников по заданному имени
+    //Метод находит всех сотрудников по заданному имени
 
     static Employee[] getEmployeesByFirstName(Employee[] employeesArray, String firstName) {
         Employee[] employeesName = new Employee[employeesArray.length];
@@ -100,18 +100,21 @@ public class Main {
         }
     }
 
+    // Метод печатает рздел. линию
+
     static void printSeparatorLine() {
         System.out.println();
         System.out.println("__________________________________________________________________________________");
         System.out.println();
     }
+    // Метод создает экземпляры объекта Employee
 
     static Employee[] createListOfEmployees(int count) {
         Employee[] listOfEmployees = new Employee[count];
-        String[] firstNames = new String[]{"Patric", "Jane", "Alex", "Oleg", "Anna", "Jane", "Irina",
+        String[] firstNames = new String[]{"Petr", "Jane", "Alex", "Oleg", "Anna", "Jane", "Irina",
                 "Ken", "Vlodimir", "Oleg"};
-        String[] lastNames = new String[]{"Cooper", "Brand", "Gese", "Bernick", "Gese", "Tulwar", "Camper",
-                "Swann", "Kochinsky", "Longfort"};
+        String[] lastNames = new String[]{"Cooper", "Hunter", "Pot", "Overchuk", "Gese", "Fromm", "Misit",
+                "Polor", "Perar", "Light"};
         int[] ages = new int[]{35, 24, 19, 35, 42, 18, 28, 44, 25, 30};
         int[] salaries = new int[]{10000, 30000, 4500, 50000, 16000, 35000, 8000, 11000, 4300, 1000};
         boolean[] married = new boolean[]{false, true, false, true, true, false, false, true, true, true};
