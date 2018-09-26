@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class HW00 {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        Employee[] arrEmployees = new Employee[10];
+        Employee[] arrEmployees = new Employee[4];
         for (int i = 0; i < arrEmployees.length; i++) {
             arrEmployees[i] = new Employee();
             arrEmployees[i].setEmployee(scan);
@@ -15,20 +15,32 @@ public class HW00 {
             arrEmployees[i].print();
         }
 
+        System.out.println();
         System.out.println("Richest Employee : ");
         getRichestEmployee(arrEmployees).print();
         Employee[] arrEmployeesSalary = getEmployeesInSalaryInterval(arrEmployees, 1000, 2000);
 
+        System.out.println("Employees with salary in interval [1000; 2000]");
         for (Employee aEmployee : arrEmployeesSalary) {
-            aEmployee.print();
+            if (aEmployee == null) {
+                System.out.println("Sorry, in this interval no employees");
+            } else {
+                aEmployee.print();
+            }
         }
 
         System.out.println("All salary : " + getSalaryAll(arrEmployees));
+        System.out.println();
+        System.out.println("Employees with name Jack");
 
         Employee[] arrEmployeesName = getEmployeesByName(arrEmployees, "Jack");
 
         for (Employee aEmployee : arrEmployeesName) {
-            aEmployee.print();
+            if (aEmployee == null) {
+                System.out.println("Sorry, no Jack's");
+            } else {
+                aEmployee.print();
+            }
         }
     }
 
@@ -50,7 +62,14 @@ public class HW00 {
      * - находят всех сотрудников с заданным интервалом зарплаты
      */
     static Employee[] getEmployeesInSalaryInterval(Employee[] employees, int salaryFrom, int salaryTo) {
-        Employee[] salaryEmployees = new Employee[employees.length];
+        int size = 0;
+        for (Employee aEmployee : employees) {
+            if ((aEmployee.salary >= salaryFrom) && (aEmployee.salary <= salaryTo)) {
+                size++;
+            }
+        }
+
+        Employee[] salaryEmployees = new Employee[size];
         int k = 0;
 
         for (Employee aEmployee : employees) {
@@ -80,7 +99,15 @@ public class HW00 {
      */
 
     static Employee[] getEmployeesByName(Employee[] employees, String name) {
-        Employee[] nameEmployees = new Employee[employees.length];
+        int size = 0;
+
+        for (Employee aEmployee : employees) {
+            if (aEmployee.firstName.equals(name)) {
+                size++;
+            }
+        }
+
+        Employee[] nameEmployees = new Employee[size];
         int k = 0;
 
         for (Employee aEmployee : employees) {
