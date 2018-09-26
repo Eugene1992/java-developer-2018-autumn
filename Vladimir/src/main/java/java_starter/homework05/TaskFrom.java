@@ -1,13 +1,15 @@
-package homework05;
+package java_starter.homework05;
 
-import java.sql.SQLOutput;
 import java.util.Arrays;
 
 public class TaskFrom {
     public static void main(String[] args) {
         String str = "Method for subString    r   ";
         int[] arr = new int[]{1, 3, 4, 5};
-        System.out.println(replaceAll(str, "for", "tow"));
+        String str1 = "hello world";
+        String str2 = "worship hell";
+        System.out.println(maxString(str1, str2));
+//        System.out.println(replaceAll(str, "for", "tow"));
 //        System.out.print(str.length());
 //        System.out.println("Chek");
     }
@@ -24,22 +26,22 @@ public class TaskFrom {
 
     //Method subStringFrom (от(вклчительно))
     static String subStringFrom(String str, int from) {
-        char[] forMethod = str.toCharArray();
-        String forReturnMethod = "";
-        for (int i = from, j = 0; i < forMethod.length; i++, j++) {
-            forReturnMethod += forMethod[i];
-        }
-        return forReturnMethod;
+//        char[] forMethod = str.toCharArray();
+//        String forReturnMethod = "";
+//        for (int i = from, j = 0; i < forMethod.length; i++, j++) {
+//            forReturnMethod += forMethod[i];
+//        }
+        return subStringFromTo(str, from, str.length());
     }
 
     //Method - subString (до(вклчительно))
     static String subStringTo(String str, int to) {
-        char[] forMethod = str.toCharArray();
-        String forReturnMethod = "";
-        for (int i = 0, j = 0; i <= to; i++, j++) {
-            forReturnMethod += forMethod[i];
-        }
-        return forReturnMethod;
+//        char[] forMethod = str.toCharArray();
+//        String forReturnMethod = "";
+//        for (int i = 0, j = 0; i <= to; i++, j++) {
+//            forReturnMethod += forMethod[i];
+//        }
+        return subStringFromTo(str, 0, to);
     }
 
     //Method - trim
@@ -131,22 +133,27 @@ public class TaskFrom {
 
     //Method - contains
     static boolean contains(String str, String ch) {
-        char[] contains = str.toCharArray();
-        char[] contains2 = ch.toCharArray();
-        boolean getAnswer = false;
-        for (int i = 0; i < contains.length; i++) {
-            if (contains2[0] == contains[i]) {
-                for (int j = 1; j < contains2.length; j++) {
-                    if (contains2[j] == contains[i + 1]) {
-                        getAnswer = true;
-                        i++;
-                    } else {
-                        getAnswer = false;
-                    }
-                }
-            }
-        }
-        return getAnswer;
+//        if (ch.length() <= str.length()) {
+//            char[] contains = str.toCharArray();
+//            char[] contains2 = ch.toCharArray();
+//        }else{
+//            char[] contains2 = str.toCharArray();
+//            char[] contains = ch.toCharArray();
+//        }
+//        boolean getAnswer = false;
+//        for (int i = 0; i < contains.length; i++) {
+//            if (contains2[0] == contains[i]) {
+//                for (int j = 1; j < contains2.length; j++) {
+//                    if (contains2[j] == contains[i + 1]) {
+//                        getAnswer = true;
+//                        i++;
+//                    } else {
+//                        getAnswer = false;
+//                    }
+//                }
+//            }
+//        }
+        return containsFrom(str, ch, 0);
     }
 
     //Method - contains (от)
@@ -204,20 +211,40 @@ public class TaskFrom {
             }
         }
         replaceIndexBegin = indexOf(str, contains2[0]);
-        replaceIndexEnd = indexOfFrom(str, replaceIndexBegin, contains2[(contains.length - 1)]);
-//        if(getAnswer) {
-//            for (int i = 0; i < replaceIndexBegin; i++) {
-//                forReturnMethod += contains[i];
-//            }
-//            for (int i = 0; i < contains3.length; i++) {
-//                forReturnMethod += contains3[i];
-//            }
-//            for (int i = replaceIndexEnd; i < contains.length; i++) {
-//                forReturnMethod += contains[i];
-//            }
-//        }
+        replaceIndexEnd = replaceIndexBegin + contains2.length;
+        if (getAnswer) {
+            for (int i = 0; i < replaceIndexBegin; i++) {
+                forReturnMethod += contains[i];
+            }
+            System.out.println(forReturnMethod);
+            for (int i = 0; i < contains3.length; i++) {
+                forReturnMethod += contains3[i];
+            }
+            for (int i = replaceIndexEnd; i < contains.length; i++) {
+                forReturnMethod += contains[i];
+            }
+        }
         return forReturnMethod;
     }
+
+    //    Metod - maxString
+    static String maxString(String str1, String str2) {
+        String outputString = "";
+        int subStringLength = 0;
+        for (int i = 0; i < str1.length(); i++) {
+            for (int j = i; j <= str1.length(); j++) {
+                String maxString = subStringFromTo(str1, i, j);
+                subStringLength = maxString.length();
+                if (contains(str2, maxString) && subStringLength <= str2.length()) {
+                    outputString = maxString;
+                } else {
+                    continue;
+                }
+            }
+        }
+        return outputString;
+    }
+
 }
 
 
