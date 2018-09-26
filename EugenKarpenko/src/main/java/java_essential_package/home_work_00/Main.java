@@ -2,121 +2,37 @@ package java_essential_package.home_work_00;
 
 public class Main {
     public static void main(String[] args) {
-        Employee firstEmployee = new Employee();
-
-        //Создать 10 объектов класса Employee
-
-        firstEmployee.id = 1;
-        firstEmployee.firstName = "Evgeniy";
-        firstEmployee.lastName = "Karpenko";
-        firstEmployee.age = 28;
-        firstEmployee.salary = 10000;
-        firstEmployee.isMarried = false;
-
-        Employee secondEmployee = new Employee();
-        secondEmployee.id = 2;
-        secondEmployee.firstName = "Oleg";
-        secondEmployee.lastName = "Shnurov";
-        secondEmployee.age = 23;
-        secondEmployee.salary = 9000;
-        secondEmployee.isMarried = true;
-
-        Employee thirdEmployee = new Employee();
-        thirdEmployee.id = 3;
-        thirdEmployee.firstName = "Olga";
-        thirdEmployee.lastName = "Makarova";
-        thirdEmployee.age = 27;
-        thirdEmployee.salary = 4300;
-        thirdEmployee.isMarried = false;
-
-        Employee fourthEmployee = new Employee();
-        fourthEmployee.id = 4;
-        fourthEmployee.firstName = "Alex";
-        fourthEmployee.lastName = "Parker";
-        fourthEmployee.age = 33;
-        fourthEmployee.salary = 15000;
-        fourthEmployee.isMarried = true;
-
-        Employee fifthEmployee = new Employee();
-        fifthEmployee.id = 5;
-        fifthEmployee.firstName = "Jon";
-        fifthEmployee.lastName = "Kapustin";
-        fifthEmployee.age = 21;
-        fifthEmployee.salary = 1000;
-        fifthEmployee.isMarried = false;
-
-        Employee sixthEmployee = new Employee();
-        sixthEmployee.id = 6;
-        sixthEmployee.firstName = "Olga";
-        sixthEmployee.lastName = "Fromm";
-        sixthEmployee.age = 41;
-        sixthEmployee.salary = 25000;
-        sixthEmployee.isMarried = true;
-
-        Employee seventhEmployee = new Employee();
-        seventhEmployee.id = 7;
-        seventhEmployee.firstName = "Richard";
-        seventhEmployee.lastName = "Stricker";
-        seventhEmployee.age = 27;
-        seventhEmployee.salary = 32000;
-        seventhEmployee.isMarried = true;
-
-        Employee eighthEmployee = new Employee();
-        eighthEmployee.id = 8;
-        eighthEmployee.firstName = "Jesica";
-        eighthEmployee.lastName = "Fortuna";
-        eighthEmployee.age = 31;
-        eighthEmployee.salary = 9800;
-        eighthEmployee.isMarried = false;
-
-        Employee ninthEmployee = new Employee();
-        ninthEmployee.id = 9;
-        ninthEmployee.firstName = "Artur";
-        ninthEmployee.lastName = "Buhov";
-        ninthEmployee.age = 23;
-        ninthEmployee.salary = 32000;
-        ninthEmployee.isMarried = true;
-
-        Employee tenthEmployee = new Employee();
-        tenthEmployee.id = 10;
-        tenthEmployee.firstName = "Sonya";
-        tenthEmployee.lastName = "Overchuk";
-        tenthEmployee.age = 33;
-        tenthEmployee.salary = 18000;
-        tenthEmployee.isMarried = true;
-
-        // Создаем массив getMaxSalary
-
-        Employee[] employeesArray = new Employee[]{firstEmployee, secondEmployee, thirdEmployee, fourthEmployee,
-                fifthEmployee, sixthEmployee, seventhEmployee, eighthEmployee, ninthEmployee, tenthEmployee};
+        printSeparatorLine();
+        Employee[] listOfEmployees = createListOfEmployees(10);
+        System.out.println("Current list of employees: ");
+        printEmployeesData(listOfEmployees);
 
         // Применение метода getMaxSalary
 
         printSeparatorLine();
         System.out.println("Richest employee: ");
-        printEmployeesData(getMaxSalary(employeesArray));
+        printEmployeesData(getMaxSalary(listOfEmployees));
         printSeparatorLine();
 
         // Применение метода getSalaryInterval
 
         System.out.println("Salary employee Interval: ");
-        printAllEmployeesData(getSalaryInterval(employeesArray, 20000, 50000));
+        printEmployeesData(getSalaryInterval(listOfEmployees, 20000, 50000));
         printSeparatorLine();
 
         // Применение метода calcEmployeesSalarySum
 
         System.out.println("Calculate employees salary sum : ");
-        System.out.println(calcEmployeesSalarySum(employeesArray));
+        System.out.println(calcEmployeesSalarySum(listOfEmployees));
         printSeparatorLine();
 
         // Применение метода getEmployeesByFirstName
 
         System.out.println("Get employees with the specified name: ");
-        printAllEmployeesData(getEmployeesByFirstName(employeesArray, "Olga"));
+        printEmployeesData(getEmployeesByFirstName(listOfEmployees, "Oleg"));
         printSeparatorLine();
 
     }
-
     //Метод находит сотрудника с максимальной зарплатой
 
     static Employee getMaxSalary(Employee[] employeesArray) {
@@ -156,11 +72,11 @@ public class Main {
 
     //- находят всех сотрудников по заданному имени
 
-    static Employee[] getEmployeesByFirstName(Employee[] employeesArray, String firsName) {
+    static Employee[] getEmployeesByFirstName(Employee[] employeesArray, String firstName) {
         Employee[] employeesName = new Employee[employeesArray.length];
         int i = 0;
         for (Employee elem : employeesArray) {
-            if (elem.firstName == firsName) {
+            if (elem.firstName == firstName) {
                 employeesName[i] = elem;
                 i++;
             }
@@ -176,7 +92,7 @@ public class Main {
                 + employeesArray.isMarried + ", id = " + employeesArray.id + "]");
     }
 
-    static void printAllEmployeesData(Employee[] employeesArray) {
+    static void printEmployeesData(Employee[] employeesArray) {
         for (int i = 0; i < employeesArray.length; i++) {
             if (employeesArray[i] != null) {
                 printEmployeesData(employeesArray[i]);
@@ -189,11 +105,25 @@ public class Main {
         System.out.println("__________________________________________________________________________________");
         System.out.println();
     }
+
+    static Employee[] createListOfEmployees(int count) {
+        Employee[] listOfEmployees = new Employee[count];
+        String[] firstNames = new String[]{"Patric", "Jane", "Alex", "Oleg", "Anna", "Jane", "Irina",
+                "Ken", "Vlodimir", "Oleg"};
+        String[] lastNames = new String[]{"Cooper", "Brand", "Gese", "Bernick", "Gese", "Tulwar", "Camper",
+                "Swann", "Kochinsky", "Longfort"};
+        int[] ages = new int[]{35, 24, 19, 35, 42, 18, 28, 44, 25, 30};
+        int[] salaries = new int[]{10000, 30000, 4500, 50000, 16000, 35000, 8000, 11000, 4300, 1000};
+        boolean[] married = new boolean[]{false, true, false, true, true, false, false, true, true, true};
+        for (int index = 0; index < listOfEmployees.length; index++) {
+            listOfEmployees[index] = new Employee();
+            listOfEmployees[index].id = index + 1;
+            listOfEmployees[index].firstName = firstNames[index];
+            listOfEmployees[index].lastName = lastNames[index];
+            listOfEmployees[index].age = ages[index];
+            listOfEmployees[index].salary = salaries[index];
+            listOfEmployees[index].isMarried = married[index];
+        }
+        return listOfEmployees;
+    }
 }
-
-
-
-
-
-
-
