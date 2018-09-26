@@ -6,6 +6,7 @@ public class reportEmployees {
 
 	public static void main(String[] args) {
 		Employee[] listOfEmployees = createListOfEmployees(10);
+        System.out.println("Current list of employees");
 		showEmployees(listOfEmployees);
         System.out.println();
 		System.out.println("Richest in the list:");
@@ -51,9 +52,9 @@ public class reportEmployees {
 	
 	static void showEmployees(Employee[] list) {
         if(list.length > 0) {
-            for(int index = 0; index < list.length; index++) {
-                System.out.println("Employee: ID "+list[index].id+" "+list[index].firstName+" "+
-                        list[index].lastName+", salary: "+list[index].salary);
+            for (Employee employee : list) {
+                System.out.println("Employee: ID " + employee.id + " " + employee.firstName + " " +
+                        employee.lastName + ", salary: " + employee.salary);
             }
         } else {
             System.out.println("No data!");
@@ -79,45 +80,45 @@ public class reportEmployees {
 	
 	static Employee[] getEmployeesWithin(Employee[] listOfEmployees, int lowLimit, int highLimit) {
 		int newArrayLenght = 0;
-		for(int index = 0; index < listOfEmployees.length; index++) {
-			if(listOfEmployees[index].salary >= lowLimit && listOfEmployees[index].salary <= highLimit) {
-				newArrayLenght++;
-			}
-		}
+        for (Employee employee : listOfEmployees) {
+            if (employee.salary >= lowLimit && employee.salary <= highLimit) {
+                newArrayLenght++;
+            }
+        }
 		Employee[] newList = new Employee[newArrayLenght];
 		int newIndex = 0;
-		for(int index = 0; index < listOfEmployees.length; index++) {
-			if(listOfEmployees[index].salary >= lowLimit && listOfEmployees[index].salary <= highLimit) {
-				newList[newIndex] = listOfEmployees[index];
-				newIndex++;
-			}
-		}
+        for (Employee employee : listOfEmployees) {
+            if (employee.salary >= lowLimit && employee.salary <= highLimit) {
+                newList[newIndex] = employee;
+                newIndex++;
+            }
+        }
 		return newList;
 	}
 	
 	static int getsalarySum(Employee[] listOfEmployees) {
 		int salarySum = 0;
-		for(int index = 0; index < listOfEmployees.length; index++) {
-			salarySum += listOfEmployees[index].salary;
-		}
+        for (Employee employee : listOfEmployees) {
+            salarySum += employee.salary;
+        }
 		return salarySum;
 	}
 	
 	static Employee[] getEmployeesWithin(Employee[] listOfEmployees, String name) {
 		int newArrayLenght = 0;
-		for(int index = 0; index < listOfEmployees.length; index++) {
-			if(listOfEmployees[index].firstName.matches(name)) {
-				newArrayLenght++;
-			}
-		}
+        for (Employee employee : listOfEmployees) {
+            if (employee.firstName.matches(name)) {
+                newArrayLenght++;
+            }
+        }
 		Employee[] newList = new Employee[newArrayLenght];
 		int newIndex = 0;
-		for(int index = 0; index < listOfEmployees.length; index++) {
-			if(listOfEmployees[index].firstName.matches(name)) {
-				newList[newIndex] = listOfEmployees[index];
-				newIndex++;
-			}
-		}
+        for (Employee employee : listOfEmployees) {
+            if (employee.firstName.matches(name)) {
+                newList[newIndex] = employee;
+                newIndex++;
+            }
+        }
 		return newList;
 	}
 }
