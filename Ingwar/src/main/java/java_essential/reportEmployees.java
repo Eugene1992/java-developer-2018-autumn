@@ -7,15 +7,20 @@ public class reportEmployees {
 	public static void main(String[] args) {
 		Employee[] listOfEmployees = createListOfEmployees(10);
 		showEmployees(listOfEmployees);
+        System.out.println();
 		System.out.println("Richest in the list:");
 		showEmployees(getMaxPayed(listOfEmployees));
+        System.out.println();
 		Scanner scan = new Scanner(System.in);
         System.out.println("Input salary low limit");
         int lowLimit = scan.nextInt();
         System.out.println("Input salary high limit");
         int highLimit = scan.nextInt();
         showEmployees(getEmployeesWithin(listOfEmployees,lowLimit,highLimit));
+        System.out.println();
+        System.out.print("General salary sum: ");
         System.out.println(getsalarySum(listOfEmployees));
+        System.out.println();
         System.out.println("Input name for a search:");
         scan.nextLine();
         String name = scan.nextLine();
@@ -45,12 +50,14 @@ public class reportEmployees {
 	}
 	
 	static void showEmployees(Employee[] list) {
-		if(list.length > 0) {
-			for(int index = 0; index < list.length; index++) {
-			System.out.println("Employee: ID "+list[index].id+" "+list[index].firstName+" "+
-					list[index].lastName+", salary: "+list[index].salary);
-			}
-		}
+        if(list.length > 0) {
+            for(int index = 0; index < list.length; index++) {
+                System.out.println("Employee: ID "+list[index].id+" "+list[index].firstName+" "+
+                        list[index].lastName+", salary: "+list[index].salary);
+            }
+        } else {
+            System.out.println("No data!");
+        }
 	}
 	
 	static void showEmployees(Employee maxPayed) {
