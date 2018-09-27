@@ -9,6 +9,9 @@ import java.util.Scanner;
 
 public class Methods {
 
+    /**
+     * Метод, который проверяет победил ли ктото из двух игроков
+     */
     public static boolean checkIfPlayerWon(Player person, Player computer) {
         boolean isGameEnd = false;
         if (Methods.countShips(computer.getBoard()) == 0) {
@@ -22,6 +25,7 @@ public class Methods {
         return isGameEnd;
     }
 
+    /** Метод, который правильно выводит количество кораблей*/
     public static String outputShipBalance(Player player) {
         String result = "У ";
         int shipNumber = Methods.countShips(player.getBoard());
@@ -41,6 +45,7 @@ public class Methods {
         return result;
     }
 
+    /** Метод, который проверяет пустая ли ячейка игрового поля(BoardBox)*/
     public static boolean checkIfBoardBoxIsEmpty(Board board, int x, int y) {
         for (BoardBox boardBox : board.getBoardBoxes()) {
             if (boardBox.getX() == x && boardBox.getY() == y
@@ -51,6 +56,8 @@ public class Methods {
         return true;
     }
 
+    /** Метод, который проверяет не производиться ли выстрел в место куда
+     *  уже стреляли*/
     public static boolean checkIfShootNotRepeatInSamePlace(Board board, int x, int y) {
         for (BoardBox boardBox : board.getBoardBoxes()) {
             boolean isEnemyDestroyedShip = boardBox.getStatus().equals("Destroyed Enemy Ship");
@@ -66,6 +73,7 @@ public class Methods {
         return true;
     }
 
+    /** Метод, который проверяет попал ли выстрел в корабль*/
     public static boolean checkIfShootWasLuck(Board board, int x, int y) {
         for (Ship ship : board.getShips()) {
             if (ship.getX() == x && ship.getY() == y) {
@@ -75,6 +83,8 @@ public class Methods {
         return false;
     }
 
+    /** Метод, который проверяет не задали ли координаты, которые выходят за
+     *  границы игрового поля*/
     public static boolean checkIfNotOnBoard(Board board, int x, int y) {
         if (x < 1 || x > board.getWidth()) {
             return true;
@@ -85,6 +95,7 @@ public class Methods {
         return false;
     }
 
+    /** Метод, который проверяет не попал ли выстрел рядом с кораблем*/
     public static boolean checkIfShootIsNearShip(Board board, int x, int y) {
         for (Ship ship : board.getShips()) {
             if ((ship.getX() == (x + 1) && ship.getY() == y)
@@ -97,6 +108,7 @@ public class Methods {
         return false;
     }
 
+    /** Метод, который меняет статус ячейки игрового поля*/
     public static void changeBoardBoxStatus(Board board, int x, int y, String newStatus) {
         for (BoardBox boardBox : board.getBoardBoxes()) {
             if (boardBox.getX() == x && boardBox.getY() == y) {
@@ -105,6 +117,7 @@ public class Methods {
         }
     }
 
+    /** Метод, который меняет статус корабля(помечает корабль как убитый)*/
     public static void changeShipStatus(Board board, int x, int y) {
         for (Ship ship : board.getShips()) {
             if (ship.getX() == x && ship.getY() == y) {
@@ -113,6 +126,8 @@ public class Methods {
         }
     }
 
+    /** Метод, который проверяет победил ли ктото из двух игроков и если
+     *  победил то возвращает true*/
     public static int inputCoordinate(boolean isComputer, char c) {
         Scanner sc = new Scanner(System.in);
         int x;
@@ -126,6 +141,7 @@ public class Methods {
         return x;
     }
 
+    /** Метод, который подсчитывает количество живых кораблей*/
     public static int countShips(Board board) {
         int count = 0;
         for (Ship ship : board.getShips()) {
@@ -136,6 +152,7 @@ public class Methods {
         return count;
     }
 
+    /** Метод, который размещает корабль на игровом поле*/
     public static Ship placeShip(Board board, boolean isComputer) {
         int x;
         int y;
@@ -160,12 +177,15 @@ public class Methods {
         return ship;
     }
 
+    /** Метод, который размещает все корабли на игровом поле*/
     public static void placePlayerShips(Board board, boolean isComputer) {
         for (int i = 0; i < board.getShips().length; i++) {
             board.getShips()[i] = placeShip(board, isComputer);
         }
     }
 
+    /** Метод, который меняет после выстрела статус ячейки игрового поля
+     * и если надо меняет статус корабля(isAlive)*/
     public static void changeStatusOfBoardBoxAndShip(Board board, int x, int y, boolean isComputer) {
         if (checkIfShootWasLuck(board, x, y) && isComputer) {
             changeBoardBoxStatus(board, x, y, "Destroyed Person Ship");
@@ -187,6 +207,7 @@ public class Methods {
         }
     }
 
+    /** Метод, который производит выстрел игроком по полю противника*/
     public static void shot(Board board, boolean isComputer) {
         int x;
         int y;
@@ -210,6 +231,7 @@ public class Methods {
         outputBoard(board);
     }
 
+    /** Метод, который выводит игровое поле*/
     public static void outputBoard(Board board) {
         for (BoardBox boardBox : board.getBoardBoxes()) {
             if (boardBox.getY() == 1 && boardBox.getX() != 1) {
