@@ -172,13 +172,16 @@ public class Methods {
             changeBoardBoxStatus(board, x, y, "Enemy Ship");
         } else {
             changeBoardBoxStatus(board, x, y, "Person Ship");
+            outputBoard(board);
         }
-        outputBoard(board);
         return ship;
     }
 
     /** Метод, который размещает все корабли на игровом поле*/
     public static void placePlayerShips(Board board, boolean isComputer) {
+        if (!isComputer) {
+            System.out.println("\n\nНачало Расстановки Кораблей");
+        }
         for (int i = 0; i < board.getShips().length; i++) {
             board.getShips()[i] = placeShip(board, isComputer);
         }
@@ -241,7 +244,7 @@ public class Methods {
                 System.out.print("- ");
             }
             if (boardBox.getStatus().equals("Enemy Ship")) {
-                System.out.print("0 ");
+                System.out.print("- ");
             }
             if (boardBox.getStatus().equals("Person Ship")) {
                 System.out.print("X ");
@@ -257,6 +260,16 @@ public class Methods {
             }
         }
         System.out.print("\n\n");
+    }
+
+    /**
+     * Метод, который возвращает введенный с клавиатуры параметр
+     */
+    public static int inputStartParameter(String message) {
+        Scanner sc = new Scanner(System.in);
+        System.out.print(message);
+        int parameter = sc.nextInt();
+        return parameter;
     }
 
 }

@@ -27,105 +27,24 @@ public class Board {
         this.shipNumber = shipNumber;
     }
 
-/*
-    public boolean boardBoxIsEmpty(int x, int y){
-        for (BoardBox boardBox : this.boardBoxes) {
-            if(boardBox.getX() == x && boardBox.getY() == y
-                    && !(boardBox.getStatus().equals("Empty"))){
-                return false;
-            }
-        }
-        return true;
-    }
-
-    public void changeBoardBoxStatus(int x, int y, String newStatus){
-        for (BoardBox boardBox : this.boardBoxes) {
-            if(boardBox.getX() == x && boardBox.getY() == y){
-                boardBox.setStatus(newStatus);
-            }
-        }
-    }
-
-
-
-    public Ship placeShip(boolean isComputer){
-        Scanner sc = new Scanner(System.in);
-        int x = 0;
-        int y = 0;
-        String newStatus;
-        while(true) {
-            if (isComputer) {
-                Random rand = new Random();
-                x = rand.nextInt(4);
-                y = rand.nextInt(4);
-                newStatus = "Enemy Ship";
-            }
-            else {
-                System.out.print("Введите координату по x: ");
-                x = sc.nextInt();
-                System.out.print("Введите координату по y: ");
-                y = sc.nextInt();
-                newStatus = "Player Ship";
-            }
-            if(boardBoxIsEmpty(x, y)){
-                break;
-            }
-            else if(!isComputer){
-                System.out.println("В этом месте уже есть корабль. Выберите другую ячейку.");
-            }
-        }
-        Ship ship = new Ship(x, y);
-        changeBoardBoxStatus(x, y, newStatus);
-        return ship;
-    }
-
-
-    public void placePlayerShips(boolean isComputer){
-        Scanner sc = new Scanner(System.in);
-        for (int i = 0; i < ships.length; i++) {
-            ships[i] = placeShip(isComputer);
-        }
-        sc.close();
-    }
-*/
-
     public Ship[] getShips() {
         return ships;
-    }
-
-    public void setShips(Ship[] ships) {
-        this.ships = ships;
     }
 
     public int getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
     public int getWidth() {
         return width;
-    }
-
-    public void setWidth(int width) {
-        this.width = width;
     }
 
     public BoardBox[] getBoardBoxes() {
         return boardBoxes;
     }
 
-    public void setBoardBoxes(BoardBox[] boardBoxes) {
-        this.boardBoxes = boardBoxes;
-    }
-
     public int getShipNumber() {
         return shipNumber;
     }
 
-    public void setShipNumber(int shipNumber) {
-        this.shipNumber = shipNumber;
-    }
 }

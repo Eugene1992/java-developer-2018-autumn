@@ -20,8 +20,8 @@ public class Player {
 
     public Board initializeBoard(Board board) {
         int counter = 0;
-        for (int i = 1; i <= board.getHeight(); i++) {
-            for (int j = 1; j <= board.getWidth(); j++) {
+        for (int i = 1; i <= board.getWidth(); i++) {
+            for (int j = 1; j <= board.getHeight(); j++) {
                 board.getBoardBoxes()[counter] = new BoardBox(i, j);
                 counter++;
             }
@@ -32,7 +32,6 @@ public class Player {
     public Board getBoard() {
         return board;
     }
-
 
     public boolean isComputer() {
         return isComputer;
