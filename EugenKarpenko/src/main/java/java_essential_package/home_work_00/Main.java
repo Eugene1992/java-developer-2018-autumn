@@ -2,7 +2,6 @@ package java_essential_package.home_work_00;
 
 public class Main {
     public static void main(String[] args) {
-
         printSeparatorLine();
         Employee[] listOfEmployees = createListOfEmployees(10);
         System.out.println("Current list of employees: ");
@@ -61,7 +60,7 @@ public class Main {
         return salaryEmployees;
     }
 
-    //Метод подсчитывает зарплату всех сотрудников
+    ////Метод подсчитывает зарплату всех сотрудников
 
     static int calcEmployeesSalarySum(Employee[] employeesArray) {
         int sum = 0;
@@ -71,7 +70,7 @@ public class Main {
         return sum;
     }
 
-    //Метод находит всех сотрудников по заданному имени
+    //- находят всех сотрудников по заданному имени
 
     static Employee[] getEmployeesByFirstName(Employee[] employeesArray, String firstName) {
         Employee[] employeesName = new Employee[employeesArray.length];
@@ -85,14 +84,13 @@ public class Main {
         return employeesName;
     }
 
-    // Метод печатает красиво информацию о сотруднике , например Employee[name="Yevhenii", age=22, salary=20000000]
+    // Метод печатает красиво информацию о сотруднике(ах), например Employee[name="Yevhenii", age=22, salary=20000000]
 
     static void printEmployeesData(Employee employeesArray) {
         System.out.println("[name = " + employeesArray.firstName + " " + employeesArray.lastName + ", age = "
                 + employeesArray.age + ", salary = " + employeesArray.salary + ", Married = "
                 + employeesArray.isMarried + ", id = " + employeesArray.id + "]");
     }
-    // Метод printEmployeesData c перегрузкой, печатает красиво информацию сотрудниках
 
     static void printEmployeesData(Employee[] employeesArray) {
         for (int i = 0; i < employeesArray.length; i++) {
@@ -101,14 +99,12 @@ public class Main {
             }
         }
     }
-    // Метод вывода разделительной линии
 
     static void printSeparatorLine() {
         System.out.println();
         System.out.println("__________________________________________________________________________________");
         System.out.println();
     }
-    // Метод создания списка сотрудников
 
     static Employee[] createListOfEmployees(int count) {
         Employee[] listOfEmployees = new Employee[count];
