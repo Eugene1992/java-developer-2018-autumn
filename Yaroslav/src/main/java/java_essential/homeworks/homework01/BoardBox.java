@@ -17,7 +17,7 @@ package java_essential.homeworks.homework01;
 public class BoardBox {
     private int x;
     private int y;
-    String status;
+    private String status;
 
     BoardBox(int x, int y) {
         this.x = x;
