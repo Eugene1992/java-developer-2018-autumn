@@ -5,11 +5,11 @@ public class Ship {
     private int xAxis;
     private boolean isAlive;
 
-    public Ship() {
+    public Ship(Player player, int fleet) {
         this.isAlive = true;
     }
 
-    public Ship(int yAxis, int xAxis) {
+	public Ship(int yAxis, int xAxis) {
         this.yAxis = yAxis;
         this.xAxis = xAxis;
         this.isAlive = true;
@@ -37,5 +37,5 @@ public class Ship {
 
     public void setAlive(boolean alive) {
         isAlive = alive;
-    }
+    }    
 }
