@@ -11,14 +11,14 @@ public class GamePlayer {
     }
 
     void run(){
-        user.setBoard();
-        comp.setBoard();
+        user.userMatrix = user.setBoard();
+        comp.compMatrix = comp.setBoard();
         comp.compMatrix.outputMatrix();
         while (!(user.userResult == quantitySheep) && !(comp.compResult == quantitySheep)) {
-            user.setCoordinateToShoot();
-            user.shoot(comp.compMatrix);
-            comp.setCoordinateToShoot();
-            comp.shoot(user.userMatrix);
+            user = user.setCoordinateToShoot();
+            user = user.shoot(comp.compMatrix);
+            comp = comp.setCoordinateToShoot();
+            comp = comp.shoot(user.userMatrix);
             outputCompShoot();
         }
         outputWinner();
