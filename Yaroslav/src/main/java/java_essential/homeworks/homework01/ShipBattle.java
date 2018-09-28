@@ -11,7 +11,7 @@ import java.util.Scanner;
 
 public class ShipBattle {
 
-    public static void run() {
+    static void run() {
         int height = Methods.inputStartParameter("Введите ширину игрового поля: ");
         int width = Methods.inputStartParameter("Введите высоту игрового поля: ");
         int shipNumber = Methods.inputStartParameter("Введите количество кораблей: ");

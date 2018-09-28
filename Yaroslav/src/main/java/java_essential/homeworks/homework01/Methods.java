@@ -126,8 +126,10 @@ public class Methods {
         }
     }
 
-    /** Метод, который проверяет победил ли ктото из двух игроков и если
-     *  победил то возвращает true*/
+    /**
+     * Метод, который нужен для ввода координаты(рандомит значение
+     * если компьютер и сканирует введенное с клавиатуры если игрок-человек)
+     */
     public static int inputCoordinate(boolean isComputer, char c) {
         Scanner sc = new Scanner(System.in);
         int x;
