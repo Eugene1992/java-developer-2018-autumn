@@ -4,9 +4,21 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class Comp extends Board{
-    int compX = random.nextInt(quantitySheep);
-    int compY = random.nextInt(quantitySheep);
+    int compX;
+    int compY;
+
+    Board compMatrix = new Board();
     int compResult = 0;
+
+    Comp setCoordinateToShoot(){
+        int compX = random.nextInt(quantitySheep);
+        int compY = random.nextInt(quantitySheep);
+        return this;
+    }
+
+    Board setBoard() {
+        return this.compMatrix.setMatrixByRandom(quantitySheep);
+    }
 
     Comp shoot(Board matrix) {
         switch (matrix.gameMatrix[this.compX][this.compY]) {

@@ -4,33 +4,35 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class User extends Board {
-    int[] coordinate = setCoordinateToShoot();
-    int userX = coordinate[0];
-    int userY = coordinate[1];
+    int userX;
+    int userY;
+
+    Board userMatrix = new Board();
 
     int userResult = 0;
 
-    Board
+    Board setBoard() {
+        System.out.println("Please choose " + quantitySheep +" cells for game in format [x,y]. Possible values 0 - " + (tableHeight - 1));
+        return this.userMatrix.setMatrixByScreen(quantitySheep);
+    }
 
-    private int[] setCoordinateToShoot() {
-        int[] coordinateMatrix = new int[2];
-
+    User setCoordinateToShoot() {
         int flag;
         do {
             flag = 0;
             System.out.println("Your shoot. In format [x,y]. Possible values 0 - " + (tableHeight - 1));
             String coordinate;
             coordinate = scan.next();
-            coordinateMatrix[0] = coordinate.toCharArray()[1] - '0';
-            coordinateMatrix[1] = coordinate.toCharArray()[3] - '0';
+            userX = coordinate.toCharArray()[1] - '0';
+            userY = coordinate.toCharArray()[3] - '0';
 
-            if (!((coordinateMatrix[0] >= 0) && (coordinateMatrix[0] <= tableHeight) && (coordinateMatrix[1] >= 0) && (coordinateMatrix[1] <= tableWidth))) {
+            if (!((userX >= 0) && (userX <= tableHeight) && (userY >= 0) && (userY <= tableWidth))) {
                 System.out.println("Incorrect coordinate. Try again. Possible values 0 - " + (tableHeight - 1));
                 flag = 1;
             }
         } while (flag == 1);
 
-        return coordinateMatrix;
+        return this;
     }
 
     User shoot(Board matrix) {
