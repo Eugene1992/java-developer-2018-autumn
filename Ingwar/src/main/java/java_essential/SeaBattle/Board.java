@@ -33,6 +33,33 @@ public class Board {
 		return boxes;
 	}
 
+    public void drawBoard(boolean isPC) {
+        String box = "";
+        for (int yIndex = 0; yIndex < this.boardHeight; yIndex++) {
+            String stringOut = "";
+            for (int xIndex = 0; xIndex < this.boardWidth; xIndex++) {
+                switch (this.boxes[yIndex][xIndex].getStatus()) {
+                    case "ship":
+                        if (isPC) {
+                            box = "~";
+                        } else {
+                            box = "S";
+                        }
+                        break;
+                    case "wreck":
+                        box = "W";
+                        break;
+                    case "miss":
+                        box = "*";
+                        break;
+                    default:
+                        box = "~";
+                }
+                stringOut = stringOut + box + " ";
+            }
+            System.out.println(stringOut);
+        }
+    }
 }
 
 
