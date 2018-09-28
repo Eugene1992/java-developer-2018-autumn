@@ -11,8 +11,8 @@ public class Comp extends Board{
     int compResult = 0;
 
     Comp setCoordinateToShoot(){
-        int compX = random.nextInt(quantitySheep);
-        int compY = random.nextInt(quantitySheep);
+        compX = random.nextInt(quantitySheep);
+        compY = random.nextInt(quantitySheep);
         return this;
     }
 
