@@ -27,14 +27,14 @@ public class SeaBattle {
         int resultComp = 0;
 
         while (!(resultUser == quantitySheep) && !(resultComp == quantitySheep)) {
-            int[] coordinate = setCoordinateToShoot(tableHeight, tableWidth, scan);
+/*            int[] coordinate = setCoordinateToShoot(tableHeight, tableWidth, scan);
             int userX = coordinate[0];
-            int userY = coordinate[1];
+            int userY = coordinate[1]; */
 
             resultUser = shoot(compMatrix, userX, userY, resultUser, tableHeight, tableWidth);
 
-            int compX = random.nextInt(quantitySheep);
-            int compY = random.nextInt(quantitySheep);
+/*            int compX = random.nextInt(quantitySheep);
+            int compY = random.nextInt(quantitySheep); */
 
             System.out.println("Comp shoot - " + "[" + compX + "," + compY + "] = " + userMatrix[compX][compY]);
 
@@ -50,7 +50,7 @@ public class SeaBattle {
         }
     }
 
-    static int[][] setMatrixByScreen(int[][] matrix, int quantity, Scanner scan) {
+/*    static int[][] setMatrixByScreen(int[][] matrix, int quantity, Scanner scan) {
         int userCount = 0;
         while (userCount < quantity) {
             String coordinate;
@@ -82,18 +82,18 @@ public class SeaBattle {
             }
         }
         return matrix;
-    }
+    } */
 
-    static void outputMatrix(int[][] matrix, int tableHeight, int tableWidth) {
+ /*   static void outputMatrix(int[][] matrix, int tableHeight, int tableWidth) {
         for (int i = 0; i < tableHeight; i++) {
             for (int j = 0; j < tableWidth; j++) {
                 System.out.print(matrix[i][j] + " ");
             }
             System.out.println();
         }
-    }
+    } */
 
-    static int[] setCoordinateToShoot(int tableHeight, int tableWidth, Scanner scan) {
+/*    static int[] setCoordinateToShoot(int tableHeight, int tableWidth, Scanner scan) {
         int[] coordinateMatrix = new int[2];
 
         int flag;
@@ -112,9 +112,9 @@ public class SeaBattle {
         } while (flag == 1);
 
         return coordinateMatrix;
-    }
+    } */
 
-    static int shoot(int[][] matrix, int x, int y, int result, int height, int width) {
+/*    static int shoot(int[][] matrix, int x, int y, int result, int height, int width) {
         switch (matrix[x][y]) {
             case 0: {
                 System.out.println("No, sorry :(");
@@ -156,5 +156,5 @@ public class SeaBattle {
             }
         }
         return result;
-    }
+    } */
 }

@@ -1,13 +1,10 @@
 package javaEssential.homework.gameSeaBattle;
 
-import java.util.Random;
-import java.util.Scanner;
-
 public class GamePlayer {
+    static int quantitySheep = 4;
+
     User user = new User();
     Comp comp = new Comp();
-    Board board = new Board();
-
-    static Random random = new Random();
-    static Scanner scan = new Scanner(System.in);
+    Board userMatrix = new Board();
+    Board compMatrix = new Board();
 }
