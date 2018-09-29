@@ -1,3 +1,5 @@
+package java_starter;
+
 public class Fibonacci {
     public static void main(String[] args) {
         int n = 10;
