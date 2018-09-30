@@ -1,6 +1,7 @@
 package java_essential.SeaBattle;
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class SeaBattle {
     public static void main(String[] args) {
@@ -16,11 +17,45 @@ public class SeaBattle {
             return winner;
         }
         createPlayerBoards(players, scan);
+        placeFleets(players, scan);
 
         return winner;
     }
 
-    public static Player[] createPlayers(Scanner scan) {
+    private static void placeFleets(Player[] players, Scanner scan) {
+    	System.out.println("Input fleet size");
+    	int fleetSize = scan.nextInt();
+		for (Player player : players) {
+			if (player.getisPc()) {
+				formatFleet(player, fleetSize);
+			} else {
+				formatFleet(player, fleetSize, scan);
+			}
+		}
+		
+	}
+
+	private static void formatFleet(Player player, int fleetSize, Scanner scan) {
+		System.out.println("");
+		
+	}
+	
+	private static void formatFleet(Player player, int fleetSize) {
+		System.out.println("Initialising my field");
+		for (int ships = 0; ships < fleetSize; ships++) {
+			boolean boxSetted = false;
+			while (!boxSetted) {
+				int yAxis = new Random().nextInt(fleetSize-1);
+				int xAxis = new Random().nextInt(fleetSize-1);
+				if(player.getBoard().getBoxes()[yAxis][xAxis].getStatus() == "water") {
+					player.getBoard().getBoxes()[yAxis][xAxis].setStatus("ship");
+					boxSetted = true;
+				}
+			}
+		}
+	}
+
+	public static Player[] createPlayers(Scanner scan) {
         System.out.println("Input quantity of user players, 1 for a game with PC");
         int quantityOfPlayers = scan.nextInt();
         System.out.println("Input size of player's fleet");
