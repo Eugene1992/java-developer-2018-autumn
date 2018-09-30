@@ -74,9 +74,11 @@ public class Code {
 
     static Employee[] createListOfEmployees(int count) {
         Employee[] listOfEmployees = new Employee[count];
-        String[] employeeFirstName = new String[]{"Катя", "Дима", "Лиза", "Паша", "Маша", "Анна", "Лера", "Сергей", "Виталий", "Настя"};
+        String[] employeeFirstName = new String[]{"Катя", "Дима", "Лиза", "Паша",
+                "Маша", "Анна", "Лера", "Сергей", "Виталий", "Настя"};
 
-        String[] employeerLastName = new String[]{"Калиник", "Чумец", "Русанка", "Пишковский", "Машковская", "Вольга", "Собко", "Серый", "Витальков", "Сластенская"};
+        String[] employeerLastName = new String[]{"Калиник", "Чумец", "Русанка",
+                "Пишковский", "Машковская", "Вольга", "Собко", "Серый", "Витальков", "Сластенская"};
         int[] employeerAge = new int[]{20, 19, 24, 18, 27, 19, 25, 28, 21, 20};
         int[] employeerSalary = new int[]{27518, 16001, 28740, 34720, 22190, 34316, 19274, 23598, 17134, 32678};
         boolean[] employeerStatus = new boolean[]{false, false, true, true, false, true, true, false, false, false};
