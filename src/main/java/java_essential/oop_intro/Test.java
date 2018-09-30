@@ -5,17 +5,17 @@ public class Test {
         Employee firstEmployee = new Employee();
         firstEmployee.name = "Yevhenii";
         firstEmployee.age = 25;
-        firstEmployee.salary = 3_000_000;
+        firstEmployee.salary = 3000000;
 
         Employee secondEmployee = new Employee();
         secondEmployee.name = "Jack";
         secondEmployee.age = 22;
-        secondEmployee.salary = 2_000_000;
+        secondEmployee.salary = 2000000;
 
         Employee thirdEmployee = new Employee();
         thirdEmployee.name = "Anna";
         thirdEmployee.age = 43;
-        thirdEmployee.salary = 12_000_000;
+        thirdEmployee.salary = 12000000;
 
         Employee[] employees = new Employee[]{firstEmployee, secondEmployee, thirdEmployee};
         int[] ints = new int[]{2, 43, 12};
@@ -30,7 +30,7 @@ public class Test {
 
         Employee fifthEmployee;
         fifthEmployee = firstEmployee;
-        fifthEmployee.salary = 10_000_000;
+        fifthEmployee.salary = 10000000;
 
         System.out.println(firstEmployee.salary);
 

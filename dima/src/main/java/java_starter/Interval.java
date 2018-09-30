@@ -1,4 +1,4 @@
-//Задание №8//
+package java_starter;//Задание №8//
 
 import java.util.Scanner;
 
