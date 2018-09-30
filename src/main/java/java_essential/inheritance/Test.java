@@ -1,10 +1,17 @@
 package java_essential.inheritance;
 
-import java_essential.incapsulation.Employee;
-
 public class Test {
     public static void main(String[] args) {
-        Employee employee = new Employee();
-//        employee.salary = 100;
+        Cat cat = new Cat("Murka", true);
+        Animal dog = new Dog("Rex");
+        Animal barsik = new HomeCat("Barsik", false);
+
+        sayHello(cat);
+        sayHello(dog);
+        sayHello(barsik);
+    }
+
+    static void sayHello(Animal animal) {
+        animal.sayHello();
     }
 }
