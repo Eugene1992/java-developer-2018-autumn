@@ -16,6 +16,7 @@ public class Human extends Hero {
         Random rand = new Random();
         int k = rand.nextInt(100) + 1;
         if (k > 0 && k < healingChance * 100) {
+            System.out.println(name + " исцеляет " + (300 * healthPercent) + "здоровья");
             health += 300 * healthPercent;
         }
         if (health > 300) {
@@ -29,6 +30,13 @@ public class Human extends Hero {
         healAfterAttack();
         return super.getAttackPower();
     }
+
+
+    public String toStringNameAndRace() {
+        String result = "Человек " + name;
+        return result;
+    }
+
 
     @Override
     public String toString() {

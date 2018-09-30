@@ -17,9 +17,15 @@ public class Elf extends Hero {
         Random rand = new Random();
         int k = rand.nextInt(100) + 1;
         if (k > 0 && k < criticalAttackChance * 100) {
+            System.out.println(name + " наносит критический удар");
             attack *= criticalAttackMultiplier;
         }
         return attack;
+    }
+
+    public String toStringNameAndRace() {
+        String result = "Эльф " + name;
+        return result;
     }
 
     @Override

@@ -23,6 +23,9 @@ public class Hero {
     }
 
     public int getHealth() {
+        if (health < 0) {
+            health = 0;
+        }
         return health;
     }
 
@@ -48,6 +51,10 @@ public class Hero {
 
     public int getAttackPower() {
         return attack;
+    }
+
+    public String toStringNameAndRace() {
+        return "";
     }
 
     public String toString() {
