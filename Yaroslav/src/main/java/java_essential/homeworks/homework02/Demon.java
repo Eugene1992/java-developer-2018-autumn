@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class Demon extends Hero {
     private double armorDestroyChance = 0.2;
-    private double percentOfArmorDestroy = 0.5;
+    private double percentOfArmorDestroy = 0.4;
 
     public Demon(String name) {
         super(name, 320, 80, 20);

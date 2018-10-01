@@ -20,6 +20,9 @@ public class Human extends Hero {
     }
 
 
+    /**
+     * Метод получения здоровья человека после исцеления
+     */
     public int healAfterAttack() {
         Random rand = new Random();
         int k = rand.nextInt(100) + 1;
@@ -33,6 +36,10 @@ public class Human extends Hero {
         return health;
     }
 
+
+    /**
+     * Переопределенный для человека метод получения атаки(сразу происходит и лечение)
+     */
     @Override
     public int getAttack() {
         healAfterAttack();
@@ -40,6 +47,9 @@ public class Human extends Hero {
     }
 
 
+    /**
+     * Переопределенный для человека метод получения имени и расы персонажа
+     */
     @Override
     public String toStringNameAndRace() {
         String result = "Человек " + name;
@@ -47,6 +57,9 @@ public class Human extends Hero {
     }
 
 
+    /**
+     * Переопределенный для человека метод получения информации про персонажа
+     */
     @Override
     public String toString() {
         String res = "Человек " + name + super.toString();

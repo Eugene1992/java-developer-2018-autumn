@@ -80,9 +80,22 @@ public class Hero {
         return false;
     }
 
+    /**
+     * Метод для получения атаки врага после частичной блокировки этой атаки(будет пеореопределен)
+     */
+    public int getAttackAfterBlock(int attack) {
+        return attack;
+    }
+
     /** Метод для вывода рассы и имени(будет пеореопределен) */
     public String toStringNameAndRace() {
         return "";
+    }
+
+    /**
+     * Метод для возрождения персонажа(будет пеореопределен)
+     */
+    public void resurrect() {
     }
 
     /** Метод для вывода информации про персонажа(будет пеореопределен) */

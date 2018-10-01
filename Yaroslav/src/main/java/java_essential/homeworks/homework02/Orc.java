@@ -1,5 +1,4 @@
 package java_essential.homeworks.homework02;
-
 import java.util.Random;
 
 

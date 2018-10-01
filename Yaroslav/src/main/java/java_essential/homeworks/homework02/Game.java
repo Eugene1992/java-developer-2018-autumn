@@ -1,9 +1,19 @@
 package java_essential.homeworks.homework02;
 
+import java.util.Scanner;
+
+
+/**
+ * Клас Game это клас в котором непосредствено и происходят все этапы игры(создание
+ * персоажей компьютером и человком и сама битва между отрядами). Вся игра
+ * происходит в методе run()
+ */
 
 public class Game {
     public static void run() {
-        int squadSize = 3;
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Введите размер отряда: ");
+        int squadSize = sc.nextInt();
         Player person = new Player(squadSize, false);
         person.addHeroes();
         person.outputSquadInformation();

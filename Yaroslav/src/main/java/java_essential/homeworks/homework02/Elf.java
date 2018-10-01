@@ -16,7 +16,7 @@ public class Elf extends Hero {
     private double criticalAttackMultiplier = 2;
 
     public Elf(String name) {
-        super(name, 250, 90, 20);
+        super(name, 230, 90, 20);
     }
 
 
@@ -35,7 +35,7 @@ public class Elf extends Hero {
     }
 
     /**
-     * Переопределенный для эльфа метод получения имени и расы эльфа
+     * Переопределенный для эльфа метод получения имени и расы персонажа
      */
     @Override
     public String toStringNameAndRace() {
