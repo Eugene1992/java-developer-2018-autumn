@@ -1,3 +1,5 @@
+package java_starter;
+
 public class FirstHomework {
         public static void main(String[] args) {
             byte firstNumber = 10;
