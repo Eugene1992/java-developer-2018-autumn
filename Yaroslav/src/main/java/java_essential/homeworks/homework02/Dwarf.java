@@ -11,12 +11,12 @@ import java.util.Random;
 
 
 public class Dwarf extends Hero {
-    private double blockChance = 0.30;
-    private double blockPercent = 0.35;
+    private double blockChance = 0.2;
+    private double blockPercent = 0.3;
 
 
     public Dwarf(String name) {
-        super(name, 300, 65, 40);
+        super(name, 260, 65, 40);
     }
 
 

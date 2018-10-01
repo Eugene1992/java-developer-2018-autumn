@@ -27,7 +27,7 @@ public class Human extends Hero {
         Random rand = new Random();
         int k = rand.nextInt(100) + 1;
         if (k > 0 && k < healingChance * 100) {
-            System.out.println(name + " исцеляет " + (300 * healthPercent) + "здоровья");
+            System.out.println(name + " исцеляет " + (300 * healthPercent) + " здоровья.");
             health += 300 * healthPercent;
         }
         if (health > 300) {

@@ -17,7 +17,7 @@ public class Demon extends Hero {
     private double percentOfArmorDestroy = 0.4;
 
     public Demon(String name) {
-        super(name, 320, 80, 20);
+        super(name, 320, 80, 15);
     }
 
 

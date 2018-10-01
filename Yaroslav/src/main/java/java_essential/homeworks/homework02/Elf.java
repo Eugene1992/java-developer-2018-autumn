@@ -16,7 +16,7 @@ public class Elf extends Hero {
     private double criticalAttackMultiplier = 2;
 
     public Elf(String name) {
-        super(name, 230, 90, 20);
+        super(name, 230, 75, 20);
     }
 
 

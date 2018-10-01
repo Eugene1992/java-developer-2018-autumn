@@ -7,6 +7,7 @@ import java.util.Random;
  * Уникальная особенность рыцаря смерти это способность один раз возродиться с
  * вероятностью, которую определяет resurrectChance.
  * Возрожденный Рыцарь смерти будет слабее первоначального.
+ * Также у рыцаря смерти нельзя вызвать кровотичение
  */
 
 public class UndeadKnight extends Hero {
@@ -18,8 +19,9 @@ public class UndeadKnight extends Hero {
     }
 
 
+
     /**
-     * Переопределенный для рыцаря нежити метод для возрождения персонажа
+     * Переопределенный для рыцаря смерти метод для возрождения персонажа
      */
     public void resurrect() {
         if (health <= 0) {
@@ -37,20 +39,20 @@ public class UndeadKnight extends Hero {
 
 
     /**
-     * Переопределенный для рыцаря нежити метод получения имени и расы персонажа
+     * Переопределенный для рыцаря смерти метод получения имени и расы персонажа
      */
     @Override
     public String toStringNameAndRace() {
-        String result = "Рыцарь нежити " + name;
+        String result = "Рыцарь Смерти " + name;
         return result;
     }
 
     /**
-     * Переопределенный для рыцаря нежити метод получения всей информации про персонажа
+     * Переопределенный для рыцаря смерти метод получения всей информации про персонажа
      */
     @Override
     public String toString() {
-        String res = "Рыцарь Нежити " + name + super.toString();
+        String res = "Рыцарь Смерти " + name + super.toString();
         return res;
     }
 }
