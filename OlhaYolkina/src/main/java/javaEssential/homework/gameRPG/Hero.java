@@ -10,23 +10,23 @@ public class Hero {
 
     protected Random random;
 
-    public Hero(String name){
+    public Hero(String name) {
         this.name = name;
     }
 
-    public int getHealth(){
+    public int getHealth() {
         return this.health;
     }
 
-    public void setHealth(int health){
+    public void setHealth(int health) {
         this.health = health;
     }
 
-    public double getArmor(){
+    public double getArmor() {
         return this.armor;
     }
 
-    public int getAttack(){
+    public int getAttack() {
         return this.attack;
     }
 }
