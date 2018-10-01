@@ -76,10 +76,10 @@ public class Player {
         Hero hero = null;
         while (true) {
             System.out.println("Выберите расу воина: ");
-            for (int i = 0; i < Constants.races.length; i++) {
-                System.out.print((i + 1) + " - " + Constants.races[i] + ", ");
+            for (int i = 0; i < Constants.RACES.length; i++) {
+                System.out.print((i + 1) + " - " + Constants.RACES[i] + ", ");
             }
-            int raceNumber = Methods.inputParameter(0, Constants.races.length);
+            int raceNumber = Methods.inputParameter(0, Constants.RACES.length);
             System.out.println("Дайте воину имя: ");
             String name = sc.next();
             switch (raceNumber) {
@@ -122,31 +122,31 @@ public class Player {
             int raceNumber = rand.nextInt(6) + 1;
             switch (raceNumber) {
                 case 1:
-                    String name = Methods.getRandomHeroNameFromArray(Constants.humanNames);
+                    String name = Methods.getRandomHeroNameFromArray(Constants.HUMAN_NAMES);
                     hero = new Human(name);
                     break;
                 case 2:
-                    name = Methods.getRandomHeroNameFromArray(Constants.elfNames);
+                    name = Methods.getRandomHeroNameFromArray(Constants.ELF_NAMES);
                     hero = new Elf(name);
                     break;
                 case 3:
-                    name = Methods.getRandomHeroNameFromArray(Constants.dwarfNames);
+                    name = Methods.getRandomHeroNameFromArray(Constants.DWARF_NAMES);
                     hero = new Dwarf(name);
                     break;
                 case 4:
-                    name = Methods.getRandomHeroNameFromArray(Constants.orcNames);
+                    name = Methods.getRandomHeroNameFromArray(Constants.ORC_NAMES);
                     hero = new Orc(name);
                     break;
                 case 5:
-                    name = Methods.getRandomHeroNameFromArray(Constants.demonNames);
+                    name = Methods.getRandomHeroNameFromArray(Constants.DEMON_NAMES);
                     hero = new Demon(name);
                     break;
                 case 6:
-                    name = Methods.getRandomHeroNameFromArray(Constants.undeadNames);
+                    name = Methods.getRandomHeroNameFromArray(Constants.UNDEAD_NAMES);
                     hero = new UndeadKnight(name);
                     break;
                 case 7:
-                    name = Methods.getRandomHeroNameFromArray(Constants.werebeastNames);
+                    name = Methods.getRandomHeroNameFromArray(Constants.WEREBEAST_NAMES);
                     hero = new Werebeast(name);
                     break;
             }
@@ -234,12 +234,12 @@ public class Player {
             dieIfNoHealth(attacker);
         } else {
             int attackPower = getEnemyAttackAfterBlock(attacker, defender);
-            System.out.print(attacker.toStringNameAndRace() + " наносит урон " + attackPower + ".");
+            System.out.print(attacker.toStringNameAndRace() + " наносит урон " + attackPower + ". ");
             if (!dodgeFromAttack(defender)) {
                 System.out.print("Здоровье " + defender.toStringNameAndRace() + " падает с " + defender.getHealth());
                 int newHealth = defender.getHealth() + defender.getArmor() - attackPower;
                 defender.setHealth(newHealth);
-                System.out.println(" до " + defender.getHealth());
+                System.out.println(" до " + defender.getHealth() + ". ");
                 hurtToBleeding(attacker, defender);
                 armorDestruct(attacker, defender);
                 if (defender.getHealth() <= 0) {
