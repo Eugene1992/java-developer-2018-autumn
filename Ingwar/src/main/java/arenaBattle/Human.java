@@ -1,6 +1,7 @@
 package arenaBattle;
 
 import java.util.Scanner;
+import java.util.Random;
 
 class Human extends Hero{
 	private final String race = "Human";
@@ -34,15 +35,27 @@ class Human extends Hero{
 	private int gethealthPercent() {
 		return this.healthPercent;
 	}
-	
-	public Human (Scanner scan) {
-		System.out.println("Input name for your human");
-		String name = scan.next();
-		this.setname(name);
+
+    public Human(Scanner scan, boolean isPc) {
+        if (!isPc) {
+            System.out.println("Input name for your human");
+            String name = scan.next();
+            this.setname(name);
+        }
 		this.sethealth(100);
 		this.setattackh(20);
 		this.setarmor(15);
 		this.healingChance = 30;
 		this.healthPercent = 50;
 	}
+
+    public int calculateHealing(int attack) {
+        int heal = new Random().nextInt(100);
+        if (heal < this.healingChance) {
+            System.out.println(((this.getname() != null) ? this.getname() : "Enemy " + this.getrace()) + " heals himself!");
+            return attack * (this.healthPercent / 100);
+        } else {
+            return 0;
+        }
+    }
 }
