@@ -5,13 +5,13 @@ public class Ship {
     private int xAxis;
     private boolean isAlive;
 
-    public Ship() {
+	public Ship(int yAxis, int xAxis) {
+        this.yAxis = yAxis;
+        this.xAxis = xAxis;
         this.isAlive = true;
     }
 
-    public Ship(int yAxis, int xAxis) {
-        this.yAxis = yAxis;
-        this.xAxis = xAxis;
+    public Ship() {
         this.isAlive = true;
     }
 
@@ -31,11 +31,11 @@ public class Ship {
         this.yAxis = yAxis;
     }
 
-    public boolean isAlive() {
+    public boolean getisAlive() {
         return isAlive;
     }
 
-    public void setAlive(boolean alive) {
-        isAlive = alive;
-    }
+    public void setisAlive(boolean alive) {
+        this.isAlive = alive;
+    }    
 }
