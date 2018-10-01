@@ -1,4 +1,4 @@
-package homework00;
+package java_starter.homework00;
 
 public class HomeWork {
     public static void main(String[] args) {

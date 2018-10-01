@@ -1,15 +1,15 @@
-package homework03;
+package java_starter.homework03;
 
 import java.util.Arrays;
 
 public class ClassTest {
     public static void main(String[] args) {
 //        1. Sum element
-        int k = (int) (Math.random()*10);
-        int [] arr = new int[k];
+        int k = (int) (Math.random() * 10);
+        int[] arr = new int[k];
         int sum = 0;
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = (int) (Math.random()*10);
+            arr[i] = (int) (Math.random() * 10);
             System.out.println(arr[i]);
             sum = sum + arr[i];
         }

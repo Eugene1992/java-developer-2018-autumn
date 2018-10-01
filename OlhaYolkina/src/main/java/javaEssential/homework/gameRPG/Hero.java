@@ -6,7 +6,7 @@ public class Hero {
     protected final String name;
     protected int health;
     protected int attack;
-    protected int armor;
+    protected double armor;
 
     protected Random random;
 
@@ -22,7 +22,7 @@ public class Hero {
         this.health = health;
     }
 
-    public int getArmor(){
+    public double getArmor(){
         return this.armor;
     }
 

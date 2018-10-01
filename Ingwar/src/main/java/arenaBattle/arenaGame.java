@@ -24,15 +24,17 @@ class arenaGame {
 		Player looser = null;
 		while (looser == null) {
 			for (Player player : players) {
+                if (checkLooser(player)) {
+                    looser = player;
+                    break;
+                }
 				if(player.getisPc()) {
 					player.strike(player, players);
 				} else {
 					player.strike(player, players, scan);
 				}
-				if(checkLooser(player)) {
-					looser = player;
-					continue;
-				}
+                player.showHealth(player);
+                System.out.println();
 			}
 		}
 		return looser;

@@ -1,6 +1,4 @@
-package homework02;
-
-import java.util.Scanner;
+package java_starter.homework02;
 
 public class TaskFrom1To5 {
     public static void main(String[] args) {

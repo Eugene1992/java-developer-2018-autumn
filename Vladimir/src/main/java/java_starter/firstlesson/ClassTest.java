@@ -1,4 +1,4 @@
-package firstlesson;
+package java_starter.firstlesson;
 
 public class ClassTest {
     public static void main(String[] args) {
