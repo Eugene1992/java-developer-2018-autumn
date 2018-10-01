@@ -20,7 +20,7 @@ public class Human extends Hero {
         return healthPercent;
     }
 
-    public static String getSpecialAbility(){
+    public static String getSpecialAbility() {
         return specialAbility;
     }
 }

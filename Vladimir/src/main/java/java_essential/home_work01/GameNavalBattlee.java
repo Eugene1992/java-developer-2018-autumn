@@ -45,7 +45,7 @@ public class GameNavalBattlee {
         return AmountOfShip;
     }
 
-    static public byte seaSize() {
+    public static byte seaSize() {
         Scanner gameScan = new Scanner(System.in);
         System.out.println("Enter size of battlefield from 1 to 5:");
         byte seaSize = gameScan.nextByte();
