@@ -62,4 +62,16 @@ class Hero {
 	public String getrace() {
 		return "";
 	}
+
+    public int calculateAttack() {
+        return this.getattack();
+    }
+
+    public int calculateDefence(int attack) {
+        return attack - this.getarmor();
+    }
+
+    public int calculateHealing(int attack) {
+        return 0;
+    }
 }

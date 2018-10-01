@@ -1,6 +1,7 @@
 package arenaBattle;
 
 import java.util.Scanner;
+import java.util.Random;
 
 class Elf extends Hero{
 	private final String race = "Elf";
@@ -34,14 +35,27 @@ class Elf extends Hero{
 	private int getcriticalAttackMultiplier() {
 		return this.criticalAttackMultiplier;
 	}
-	
-	public Elf (Scanner scan) {
-		System.out.println("Input name for your elf");
-		String name = scan.next();
+
+    public Elf(Scanner scan, boolean isPc) {
+        if (!isPc) {
+            System.out.println("Input name for your elf");
+            String name = scan.next();
+            this.setname(name);
+        }
 		this.sethealth(80);
 		this.setattackh(25);
 		this.setarmor(10);
 		this.criticalAttackChance = 25;
 		this.criticalAttackMultiplier = 2;
 	}
+
+    public int calculateAttack() {
+        int criticalChance = new Random().nextInt(100);
+        if (criticalChance < this.criticalAttackChance) {
+            System.out.println(((this.getname() != null) ? this.getname() : "Enemy " + this.getrace()) + " delivers mighty blow!");
+            return this.getattack() * 2;
+        } else {
+            return this.getattack();
+        }
+    }
 }

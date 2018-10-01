@@ -1,6 +1,7 @@
 package arenaBattle;
 
 import java.util.Scanner;
+import java.util.Random;
 
 class Dwarf extends Hero{
 	private final String race = "Dwarf";
@@ -34,14 +35,27 @@ class Dwarf extends Hero{
 	private int getblockPercent() {
 		return this.blockPercent;
 	}
-	
-	public Dwarf (Scanner scan) {
-		System.out.println("Input name for your dwarf");
-		String name = scan.next();
-		this.sethealth(80);
-		this.setattackh(25);
+
+    public Dwarf(Scanner scan, boolean isPc) {
+        if (!isPc) {
+            System.out.println("Input name for your dwarf");
+            String name = scan.next();
+            this.setname(name);
+        }
+        this.sethealth(120);
+        this.setattackh(20);
 		this.setarmor(10);
 		this.blockChance = 35;
 		this.blockPercent = 50;
 	}
+
+    public int calculateDefence(int attack) {
+        int block = new Random().nextInt(100);
+        if (block < this.blockChance) {
+            System.out.println(((this.getname() != null) ? this.getname() : "Enemy " + this.getrace()) + " blocks the attack!");
+            return attack * (this.blockPercent / 100) - this.getarmor();
+        } else {
+            return attack - this.getarmor();
+        }
+    }
 }

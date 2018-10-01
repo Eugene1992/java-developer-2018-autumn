@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Help {
     public static void main(String[] args) {
-        Random rand = new Random();
+        /*Random rand = new Random();
         Human h = new Human("Qwe");
         System.out.println(h.toString());
         h = null;
@@ -16,6 +16,10 @@ public class Help {
             if (k > 0 && k < 16) {
                 System.out.println(k);
             }
-        }
+        }*/
+
+
+        Hero demon = new Demon("Qwe");
+        System.out.println(Constants.getTrueClassName(demon));
     }
 }

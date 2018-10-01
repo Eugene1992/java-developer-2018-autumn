@@ -2,16 +2,27 @@ package java_essential.homeworks.homework02;
 
 import java.util.Random;
 
+/**
+ * Клас Human позволяет создавать обьекты типа Human
+ * Уникальная особенность людей это возможность восстановить часть здоровья перед
+ * своим ударом. Вероятность восстановления определяет переменная healingChance, а
+ * количество восстанавлиемого здоровья по отношению к всему здоровью определяет
+ * переменная healthPercent
+ */
+
 public class Human extends Hero {
-    private double healingChance = 0.20;
-    private double healthPercent = 0.05;
+    private double healingChance = 0.2;
+    private double healthPercent = 0.1;
 
 
     public Human(String name) {
-        super(name, 300, 100, 30);
+        super(name, 300, 80, 30);
     }
 
 
+    /**
+     * Метод получения здоровья человека после исцеления
+     */
     public int healAfterAttack() {
         Random rand = new Random();
         int k = rand.nextInt(100) + 1;
@@ -25,22 +36,33 @@ public class Human extends Hero {
         return health;
     }
 
+
+    /**
+     * Переопределенный для человека метод получения атаки(сразу происходит и лечение)
+     */
     @Override
-    public int getAttackPower() {
+    public int getAttack() {
         healAfterAttack();
-        return super.getAttackPower();
+        return super.getAttack();
     }
 
 
+    /**
+     * Переопределенный для человека метод получения имени и расы персонажа
+     */
+    @Override
     public String toStringNameAndRace() {
         String result = "Человек " + name;
         return result;
     }
 
 
+    /**
+     * Переопределенный для человека метод получения информации про персонажа
+     */
     @Override
     public String toString() {
-        String result = "Человек " + name + "[health: " + health + "]";
-        return result;
+        String res = "Человек " + name + super.toString();
+        return res;
     }
 }
