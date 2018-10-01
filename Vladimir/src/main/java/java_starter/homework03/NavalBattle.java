@@ -1,4 +1,4 @@
-package homework03;
+package java_starter.homework03;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -35,9 +35,9 @@ public class NavalBattle {
         for (int j = 0; j < 4; j++) {
             boolean myFourShip1 = false;
             while (myFourShip1 == false) {
-                System.out.println("Enter number of line for your " + myNumberShip + " ship");
+                System.out.println("Enter number(from 0 to 3) of line for your " + myNumberShip + " ship");
                 myX = scanCord.nextInt();
-                System.out.println("Enter number of column for your " + myNumberShip + " ship");
+                System.out.println("Enter number of column(from 0 to 3) for your " + myNumberShip + " ship");
                 myY = scanCord.nextInt();
                 switch (my[myX][myY]) {
                     case 1:

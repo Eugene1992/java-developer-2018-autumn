@@ -1,4 +1,4 @@
-package homework03;
+package java_starter.homework03;
 
 import java.util.Arrays;
 import java.lang.String;
