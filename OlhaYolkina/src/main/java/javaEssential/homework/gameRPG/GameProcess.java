@@ -41,16 +41,17 @@ public class GameProcess {
         Hero[] team = new Hero[teamSize];
         for (Hero aHero : team) {
             if (player.getIsComputer()) {
-                aHero = chooseRaceByRandom(aHero);
+                aHero = chooseRaceByRandom();
             } else {
-                aHero = chooseRaceByScreen(aHero);
+                aHero = chooseRaceByScreen();
             }
         }
         return team;
     }
 
-    private Hero chooseRaceByScreen(Hero aHero) {
+    private Hero chooseRaceByScreen() {
         String race = "";
+        Hero aHero;
         while (!race.equals("O") && !race.equals("E") && !race.equals("H") && !race.equals("D")) {
             System.out.println("Please choose a race of Hero: O - Ork, E - Elf, H - Human and D - Dwarf");
             race = scan.next();
@@ -69,12 +70,12 @@ public class GameProcess {
                 aHero = new Dwarf("dwarf");
                 return aHero;
         }
-        return aHero;
+        return null;
     }
 
-    private Hero chooseRaceByRandom(Hero aHero) {
+    private Hero chooseRaceByRandom() {
         int num = random.nextInt(4);
-
+        Hero aHero;
         switch (num) {
             case 0:
                 aHero = new Ork("ork");
@@ -89,7 +90,6 @@ public class GameProcess {
                 aHero = new Dwarf("dwarf");
                 return aHero;
         }
-
-        return aHero;
+        return null;
     }
 }
