@@ -4,7 +4,7 @@ import java.util.Scanner;
 import java.util.Random;
 
 public class SeaBattle {
-    public static void main(String[] args) {
+    public static void gameStart() {
         Player winner = game();
         System.out.println("winner is " + (winner.getisPc() ? "PC!" : "Player!"));
         System.out.println("Game over");
