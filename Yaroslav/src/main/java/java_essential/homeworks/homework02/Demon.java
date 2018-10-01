@@ -41,8 +41,7 @@ public class Demon extends Hero {
      */
     @Override
     public String toStringNameAndRace() {
-        String result = "Демон " + name;
-        return result;
+        return "Демон " + name;
     }
 
 

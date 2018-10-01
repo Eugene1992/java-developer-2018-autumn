@@ -4,10 +4,12 @@ import java.util.Scanner;
 import java.util.Random;
 
 class Human extends Hero{
+
 	private final String race = "Human";
+	private static final int DEFAULT_HUMAN_HEALTH = 100;
 	private int healingChance;
 	private int healthPercent;
-	
+
 	public String getrace() {
 		return this.race;
 	}
@@ -42,7 +44,7 @@ class Human extends Hero{
             String name = scan.next();
             this.setname(name);
         }
-		this.sethealth(100);
+		this.sethealth(DEFAULT_HUMAN_HEALTH);
 		this.setattackh(20);
 		this.setarmor(15);
 		this.healingChance = 30;

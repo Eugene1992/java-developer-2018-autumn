@@ -76,10 +76,10 @@ public class Player {
         Hero hero = null;
         while (true) {
             System.out.println("Выберите расу воина: ");
-            for (int i = 0; i < Constants.races.length; i++) {
-                System.out.print((i + 1) + " - " + Constants.races[i] + ", ");
+            for (int i = 0; i < Constants.RACES.length; i++) {
+                System.out.print((i + 1) + " - " + Constants.RACES[i] + ", ");
             }
-            int raceNumber = Methods.inputParameter(0, Constants.races.length);
+            int raceNumber = Methods.inputParameter(0, Constants.RACES.length);
             System.out.println("Дайте воину имя: ");
             String name = sc.next();
             switch (raceNumber) {
