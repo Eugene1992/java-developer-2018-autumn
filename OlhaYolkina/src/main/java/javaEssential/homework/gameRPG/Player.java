@@ -58,16 +58,16 @@ public class Player {
         }
         switch (race) {
             case "O":
-                aHero = new Ork("ork");
+                aHero = new Ork("Ork");
                 return aHero;
             case "E":
-                aHero = new Elf("elf");
+                aHero = new Elf("Elf");
                 return aHero;
             case "H":
-                aHero = new Human("human");
+                aHero = new Human("Human");
                 return aHero;
             case "D":
-                aHero = new Dwarf("dwarf");
+                aHero = new Dwarf("Dwarf");
                 return aHero;
         }
         return null;
@@ -78,16 +78,16 @@ public class Player {
         Hero aHero;
         switch (num) {
             case 0:
-                aHero = new Ork("ork");
+                aHero = new Ork("Ork");
                 return aHero;
             case 1:
-                aHero = new Elf("elf");
+                aHero = new Elf("Elf");
                 return aHero;
             case 2:
-                aHero = new Human("human");
+                aHero = new Human("Human");
                 return aHero;
             case 3:
-                aHero = new Dwarf("dwarf");
+                aHero = new Dwarf("Dwarf");
                 return aHero;
         }
         return null;
