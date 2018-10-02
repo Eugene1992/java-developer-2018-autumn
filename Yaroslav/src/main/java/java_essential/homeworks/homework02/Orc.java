@@ -5,14 +5,18 @@ import java.util.Random;
 /**
  * Клас Orc позволяет создавать обьекты типа Orc/
  * Уникальная особенность орков это возможность уклониться от удара противника.
- * Вероятность уклонения определяет переменная dodgeAttackChance.
+ * Вероятность уклонения определяет константа DODGE_ATTACK_CHANCE.
  */
 
 public class Orc extends Hero {
-    private double dodgeAttackChance = 0.2;
+    private static final int DEFAULT_ORC_HEALTH = 280;
+    private static final int DEFAULT_ORC_ATTACK = 70;
+    private static final int DEFAULT_ORC_ARMOUR = 25;
+
+    private static final double DODGE_ATTACK_CHANCE = 0.25;
 
     public Orc(String name) {
-        super(name, 280, 80, 25);
+        super(name, DEFAULT_ORC_HEALTH, DEFAULT_ORC_ATTACK, DEFAULT_ORC_ARMOUR);
     }
 
 
@@ -24,8 +28,8 @@ public class Orc extends Hero {
     public boolean isDodge() {
         Random rand = new Random();
         int k = rand.nextInt(100) + 1;
-        if (k > 0 && k < dodgeAttackChance * 100) {
-            System.out.println(name + "уклонился от удара.");
+        if (k > 0 && k < DODGE_ATTACK_CHANCE * 100) {
+            System.out.print(name + " уклонился от удара. ");
             return true;
         }
         return false;
@@ -36,8 +40,7 @@ public class Orc extends Hero {
      */
     @Override
     public String toStringNameAndRace() {
-        String result = "Орк " + name;
-        return result;
+        return "Орк " + name;
     }
 
     /**
@@ -45,7 +48,6 @@ public class Orc extends Hero {
      */
     @Override
     public String toString() {
-        String res = "Орк " + name + super.toString();
-        return res;
+        return "Орк " + name + super.toString();
     }
 }

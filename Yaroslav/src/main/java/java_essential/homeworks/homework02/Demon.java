@@ -7,17 +7,21 @@ import java.util.Random;
 /**
  * Клас Demon позволяет создавать обьекты типа Demon
  * Уникальная особенность демонов это возможность силой пламени сломать броню
- * противника. Вероятность поломки брони определяет переменная armorDestroyChance,
- * а часть разрушеной брони по отношению к всей броне определяет переменная
- * percentOfArmorDestroy
+ * противника. Вероятность поломки брони определяет константа ARMOR_DESTROY_CHANCE,
+ * а часть разрушеной брони по отношению к всей броне определяет константа
+ * PERCENT_OF_ARMOR_DESTROY
  */
 
 public class Demon extends Hero {
-    private double armorDestroyChance = 0.2;
-    private double percentOfArmorDestroy = 0.4;
+    private static final int DEFAULT_DEMON_HEALTH = 320;
+    private static final int DEFAULT_DEMON_ATTACK = 70;
+    private static final int DEFAULT_DEMON_ARMOUR = 15;
+
+    private static final double ARMOR_DESTROY_CHANCE = 0.2;
+    private static final double PERCENT_OF_ARMOR_DESTROY = 0.4;
 
     public Demon(String name) {
-        super(name, 320, 80, 20);
+        super(name, DEFAULT_DEMON_HEALTH, DEFAULT_DEMON_ATTACK, DEFAULT_DEMON_ARMOUR);
     }
 
 
@@ -28,10 +32,10 @@ public class Demon extends Hero {
     public int getArmorAfterDestruction(int armor) {
         Random rand = new Random();
         int k = rand.nextInt(100) + 1;
-        if (k > 0 && k < armorDestroyChance * 100) {
+        if (k > 0 && k < ARMOR_DESTROY_CHANCE * 100) {
             System.out.print(name + " снижает броню с " + armor + " до ");
-            armor *= (1 - percentOfArmorDestroy);
-            System.out.println(armor + ".");
+            armor *= (1 - PERCENT_OF_ARMOR_DESTROY);
+            System.out.println(armor + ". ");
         }
         return armor;
     }
@@ -41,8 +45,7 @@ public class Demon extends Hero {
      */
     @Override
     public String toStringNameAndRace() {
-        String result = "Демон " + name;
-        return result;
+        return "Демон " + name;
     }
 
 

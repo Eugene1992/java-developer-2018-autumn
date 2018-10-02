@@ -5,18 +5,22 @@ import java.util.Random;
 /**
  * Клас Human позволяет создавать обьекты типа Human
  * Уникальная особенность людей это возможность восстановить часть здоровья перед
- * своим ударом. Вероятность восстановления определяет переменная healingChance, а
+ * своим ударом. Вероятность восстановления определяет константа HEALING_CHANCE, а
  * количество восстанавлиемого здоровья по отношению к всему здоровью определяет
- * переменная healthPercent
+ * константа HEALTH_PERCENT
  */
 
 public class Human extends Hero {
-    private double healingChance = 0.2;
-    private double healthPercent = 0.1;
+    private static final int DEFAULT_HUMAN_HEALTH = 300;
+    private static final int DEFAULT_HUMAN_ATTACK = 80;
+    private static final int DEFAULT_HUMAN_ARMOUR = 20;
+
+    private static final double HEALING_CHANCE = 0.2;
+    private static final double HEALTH_PERCENT = 0.1;
 
 
     public Human(String name) {
-        super(name, 300, 80, 30);
+        super(name, DEFAULT_HUMAN_HEALTH, DEFAULT_HUMAN_ATTACK, DEFAULT_HUMAN_ARMOUR);
     }
 
 
@@ -26,12 +30,12 @@ public class Human extends Hero {
     public int healAfterAttack() {
         Random rand = new Random();
         int k = rand.nextInt(100) + 1;
-        if (k > 0 && k < healingChance * 100) {
-            System.out.println(name + " исцеляет " + (300 * healthPercent) + "здоровья");
-            health += 300 * healthPercent;
+        if (k > 0 && k < HEALING_CHANCE * 100) {
+            System.out.print(name + " исцеляет " + (DEFAULT_HUMAN_HEALTH * HEALTH_PERCENT) + " здоровья. ");
+            health += DEFAULT_HUMAN_HEALTH * HEALTH_PERCENT;
         }
-        if (health > 300) {
-            health = 300;
+        if (health > DEFAULT_HUMAN_HEALTH) {
+            health = DEFAULT_HUMAN_HEALTH;
         }
         return health;
     }
@@ -52,8 +56,7 @@ public class Human extends Hero {
      */
     @Override
     public String toStringNameAndRace() {
-        String result = "Человек " + name;
-        return result;
+        return "Человек " + name;
     }
 
 
@@ -62,7 +65,6 @@ public class Human extends Hero {
      */
     @Override
     public String toString() {
-        String res = "Человек " + name + super.toString();
-        return res;
+        return "Человек " + name + super.toString();
     }
 }

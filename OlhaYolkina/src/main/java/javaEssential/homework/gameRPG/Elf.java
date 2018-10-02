@@ -12,7 +12,7 @@ public class Elf extends Hero {
         this.attack = 40 + random.nextInt(21);
     }
 
-    public double getCriticalAttackChance(){
+    public double getCriticalAttackChance() {
         return criticalAttackChance;
     }
 
@@ -20,7 +20,7 @@ public class Elf extends Hero {
         return criticalAttackMultiplier;
     }
 
-    public static String getSpecialAbility(){
+    public static String getSpecialAbility() {
         return specialAbility;
     }
 }

@@ -13,7 +13,7 @@ public class Game {
     public static void run() {
         Scanner sc = new Scanner(System.in);
         System.out.print("Введите размер отряда: ");
-        int squadSize = sc.nextInt();
+        int squadSize = Methods.inputParameter(0, 100);
         Player person = new Player(squadSize, false);
         person.addHeroes();
         person.outputSquadInformation();
