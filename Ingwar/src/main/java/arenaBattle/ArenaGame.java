@@ -3,10 +3,10 @@ package arenaBattle;
 import java.util.Scanner;
 import java.util.Random;
 
-class arenaGame {
+class ArenaGame {
 	public static void startGame() {
 		Scanner scan = new Scanner(System.in);
-		System.out.println("The great arena waiting for blood!");
+		System.out.println("The great Arena waiting for blood!");
 		System.out.println("Input the battle squad aize:");
 		int squadSize = scan.nextInt();
 		Player[] players = new Player[2];
@@ -16,7 +16,7 @@ class arenaGame {
 		players[1] = new Player(squadSize, scan);
 		System.out.println("Squads are ready. Let the battle begins!");
 		Player looser = battle(players, scan);
-		System.out.println(""+(looser.getisPc() ? "PC " : "Player ") + "lost this arena game!");
+		System.out.println(""+(looser.getisPc() ? "PC " : "Player ") + "lost this Arena game!");
 		System.out.println("The flock of ravens will devour the flash of the fallen.");
 	}
 	

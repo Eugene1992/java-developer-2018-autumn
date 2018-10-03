@@ -64,8 +64,17 @@ public class Player {
      * Метод, возвращающий true если атакующий вызвал кровотичение у защищаегося
      */
     public void hurtToBleeding(Hero attacker, Hero defender) {
-        if (Methods.getTrueClassName(attacker).equals("Werebeast")) {
+        if (attacker instanceof Werebeast) {
             attacker.hurtToBleeding(defender);
+        }
+    }
+
+    /**
+     * Метод, возвращающий true если атакующий отравил защищаегося
+     */
+    public void hurtToPoisoning(Hero attacker, Hero defender) {
+        if (attacker instanceof DarkElf) {
+            attacker.hurtToPoisoning(defender);
         }
     }
 
@@ -75,11 +84,11 @@ public class Player {
         Scanner sc = new Scanner(System.in);
         Hero hero = null;
         while (true) {
-            System.out.println("Выберите расу воина: ");
-            for (int i = 0; i < Constants.races.length; i++) {
-                System.out.print((i + 1) + " - " + Constants.races[i] + ", ");
+            System.out.println("Выберите клас воина: ");
+            for (int i = 0; i < Constants.RACES.length; i++) {
+                System.out.println((i + 1) + ") " + Constants.RACES[i]);
             }
-            int raceNumber = Methods.inputParameter(0, Constants.races.length);
+            int raceNumber = Methods.inputParameter(0, Constants.RACES.length);
             System.out.println("Дайте воину имя: ");
             String name = sc.next();
             switch (raceNumber) {
@@ -87,21 +96,24 @@ public class Player {
                     hero = new Human(name);
                     break;
                 case 2:
-                    hero = new Elf(name);
+                    hero = new ForestElf(name);
                     break;
                 case 3:
-                    hero = new Dwarf(name);
+                    hero = new DarkElf(name);
                     break;
                 case 4:
-                    hero = new Orc(name);
+                    hero = new Dwarf(name);
                     break;
                 case 5:
-                    hero = new Demon(name);
+                    hero = new Orc(name);
                     break;
                 case 6:
-                    hero = new UndeadKnight(name);
+                    hero = new Demon(name);
                     break;
                 case 7:
+                    hero = new UndeadKnight(name);
+                    break;
+                case 8:
                     hero = new Werebeast(name);
                     break;
             }
@@ -122,31 +134,35 @@ public class Player {
             int raceNumber = rand.nextInt(6) + 1;
             switch (raceNumber) {
                 case 1:
-                    String name = Methods.getRandomHeroNameFromArray(Constants.humanNames);
+                    String name = Methods.getRandomHeroNameFromArray(Constants.HUMAN_NAMES);
                     hero = new Human(name);
                     break;
                 case 2:
-                    name = Methods.getRandomHeroNameFromArray(Constants.elfNames);
-                    hero = new Elf(name);
+                    name = Methods.getRandomHeroNameFromArray(Constants.FOREST_ELF_NAMES);
+                    hero = new ForestElf(name);
                     break;
                 case 3:
-                    name = Methods.getRandomHeroNameFromArray(Constants.dwarfNames);
-                    hero = new Dwarf(name);
+                    name = Methods.getRandomHeroNameFromArray(Constants.DARK_ELF_NAMES);
+                    hero = new DarkElf(name);
                     break;
                 case 4:
-                    name = Methods.getRandomHeroNameFromArray(Constants.orcNames);
-                    hero = new Orc(name);
+                    name = Methods.getRandomHeroNameFromArray(Constants.DWARF_NAMES);
+                    hero = new Dwarf(name);
                     break;
                 case 5:
-                    name = Methods.getRandomHeroNameFromArray(Constants.demonNames);
-                    hero = new Demon(name);
+                    name = Methods.getRandomHeroNameFromArray(Constants.ORC_NAMES);
+                    hero = new Orc(name);
                     break;
                 case 6:
-                    name = Methods.getRandomHeroNameFromArray(Constants.undeadNames);
-                    hero = new UndeadKnight(name);
+                    name = Methods.getRandomHeroNameFromArray(Constants.DEMON_NAMES);
+                    hero = new Demon(name);
                     break;
                 case 7:
-                    name = Methods.getRandomHeroNameFromArray(Constants.werebeastNames);
+                    name = Methods.getRandomHeroNameFromArray(Constants.UNDEAD_NAMES);
+                    hero = new UndeadKnight(name);
+                    break;
+                case 8:
+                    name = Methods.getRandomHeroNameFromArray(Constants.WEREBEAST_NAMES);
                     hero = new Werebeast(name);
                     break;
             }
@@ -229,18 +245,20 @@ public class Player {
 
     /**Метод, реализующий атаку одним персонажем другого */
     public void heroAttackHero(Hero attacker, Hero defender) {
-        attacker.bleed();
+        attacker.takeDamageFromBleeding();
+        attacker.takeDamageFromPoisoning();
         if (attacker.getHealth() <= 0) {
             dieIfNoHealth(attacker);
         } else {
             int attackPower = getEnemyAttackAfterBlock(attacker, defender);
-            System.out.print(attacker.toStringNameAndRace() + " наносит урон " + attackPower + ".");
+            System.out.print(attacker.toStringNameAndRace() + " наносит урон " + attackPower + ". ");
             if (!dodgeFromAttack(defender)) {
                 System.out.print("Здоровье " + defender.toStringNameAndRace() + " падает с " + defender.getHealth());
                 int newHealth = defender.getHealth() + defender.getArmor() - attackPower;
                 defender.setHealth(newHealth);
-                System.out.println(" до " + defender.getHealth());
+                System.out.println(" до " + defender.getHealth() + ". ");
                 hurtToBleeding(attacker, defender);
+                hurtToPoisoning(attacker, defender);
                 armorDestruct(attacker, defender);
                 if (defender.getHealth() <= 0) {
                     dieIfNoHealth(defender);
@@ -296,22 +314,31 @@ public class Player {
     /**Метод, реализующий битву в течении раунда(раунд длиться пока не походят
      * все персонажи) */
     public void round(Player person, Player computer) {
-        int heroCounter = 0;
-        while (heroCounter < person.getSquadSize()) {
+        int heroPersonCounter = 0;
+        int heroComputerCounter = 0;
+        while (true) {
             if (computer.getSquadSize() == 0 || person.getSquadSize() == 0) {
-                System.out.println(computer.getSquadSize());
+                break;
+            }
+            if (heroPersonCounter >= person.getSquadSize() && heroComputerCounter >= computer.getSquadSize()) {
                 break;
             }
             System.out.println("\n-----------------------------------------------");
-            System.out.println("\n\t\tВАШ ХОД ");
-            computer.outputSquadInformation();
-            person.outputSquadInformation();
-            if (heroCounter < person.getSquadSize() && person.getHeroes()[heroCounter].getName() != null) {
-                Hero hero = person.getHeroes()[heroCounter];
+            if (heroPersonCounter < person.getSquadSize()) {
+                System.out.println("\n\t\tВАШ ХОД ");
+                computer.outputSquadInformation();
+                person.outputSquadInformation();
+                Hero hero = person.getHeroes()[heroPersonCounter];
                 playerHeroAttack(hero, computer);
                 if (hero.getName() == null) {
                     person.reformSquad();
+                } else {
+                    heroPersonCounter++;
                 }
+                if (computer.checkIfSquadHasFallenHero()) {
+                    computer.reformSquad();
+                }
+                //System.out.println("!@#$%^&&^$# -----" + heroPersonCounter);
             }
 
 
@@ -319,16 +346,24 @@ public class Player {
                 System.out.println(person.getSquadSize());
                 break;
             }
+            if (heroPersonCounter >= person.getSquadSize() && heroComputerCounter >= computer.getSquadSize()) {
+                break;
+            }
             System.out.println("\n-----------------------------------------------");
-            System.out.println("\n\t\tХОД ВРАГА");
-            if (heroCounter < computer.getSquadSize() && computer.getHeroes()[heroCounter].getName() != null) {
-                Hero hero = computer.getHeroes()[heroCounter];
+            if (heroComputerCounter < computer.getSquadSize()) {
+                System.out.println("\n\t\tХОД ВРАГА");
+                Hero hero = computer.getHeroes()[heroComputerCounter];
                 computerHeroAttack(hero, person);
                 if (hero.getName() == null) {
                     computer.reformSquad();
+                } else {
+                    heroComputerCounter++;
+                }
+                if (person.checkIfSquadHasFallenHero()) {
+                    person.reformSquad();
                 }
             }
-            heroCounter++;
+            //System.out.println("!@#$%^&&^$#----" + heroComputerCounter);
         }
     }
 

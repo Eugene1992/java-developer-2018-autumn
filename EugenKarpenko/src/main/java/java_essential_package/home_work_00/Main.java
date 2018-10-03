@@ -35,9 +35,9 @@ public class Main {
     }
     //Метод находит сотрудника с максимальной зарплатой
 
-    static Employee getMaxSalary(Employee[] listOfEmployees) {
-        Employee result = listOfEmployees[0];
-        for (Employee employee : listOfEmployees) {
+    static Employee getMaxSalary(Employee[] employeesArray) {
+        Employee result = employeesArray[0];
+        for (Employee employee : employeesArray) {
             if (employee.salary > result.salary) {
                 result = employee;
             }
@@ -47,11 +47,11 @@ public class Main {
 
     //- Метод находит всех сотрудников с заданным интервалом зарплаты
 
-    static Employee[] getSalaryInterval(Employee[] listOfEmployees, int startInterval, int endInterval) {
-        Employee[] salaryEmployees = new Employee[listOfEmployees.length];
+    static Employee[] getSalaryInterval(Employee[] employeesArray, int startInterval, int endInterval) {
+        Employee[] salaryEmployees = new Employee[employeesArray.length];
         int i = 0;
 
-        for (Employee e : listOfEmployees) {
+        for (Employee e : employeesArray) {
             if ((e.salary >= startInterval) && (e.salary <= endInterval)) {
                 salaryEmployees[i] = e;
                 i++;
@@ -60,22 +60,22 @@ public class Main {
         return salaryEmployees;
     }
 
-    //Метод подсчитывает зарплату всех сотрудников
+    ////Метод подсчитывает зарплату всех сотрудников
 
-    static int calcEmployeesSalarySum(Employee[] listOfEmployees) {
+    static int calcEmployeesSalarySum(Employee[] employeesArray) {
         int sum = 0;
-        for (Employee elem : listOfEmployees) {
+        for (Employee elem : employeesArray) {
             sum += elem.salary;
         }
         return sum;
     }
 
-    //Метод находит всех сотрудников по заданному имени
+    //- находят всех сотрудников по заданному имени
 
-    static Employee[] getEmployeesByFirstName(Employee[] listOfEmployees, String firstName) {
-        Employee[] employeesName = new Employee[listOfEmployees.length];
+    static Employee[] getEmployeesByFirstName(Employee[] employeesArray, String firstName) {
+        Employee[] employeesName = new Employee[employeesArray.length];
         int i = 0;
-        for (Employee elem : listOfEmployees) {
+        for (Employee elem : employeesArray) {
             if (elem.firstName == firstName) {
                 employeesName[i] = elem;
                 i++;
@@ -86,35 +86,32 @@ public class Main {
 
     // Метод печатает красиво информацию о сотруднике(ах), например Employee[name="Yevhenii", age=22, salary=20000000]
 
-    static void printEmployeesData(Employee listOfEmployees) {
-        System.out.println("[name = " + listOfEmployees.firstName + " " + listOfEmployees.lastName + ", age = "
-                + listOfEmployees.age + ", salary = " + listOfEmployees.salary + ", Married = "
-                + listOfEmployees.isMarried + ", id = " + listOfEmployees.id + "]");
+    static void printEmployeesData(Employee employeesArray) {
+        System.out.println("[name = " + employeesArray.firstName + " " + employeesArray.lastName + ", age = "
+                + employeesArray.age + ", salary = " + employeesArray.salary + ", Married = "
+                + employeesArray.isMarried + ", id = " + employeesArray.id + "]");
     }
 
-    static void printEmployeesData(Employee[] listOfEmployees) {
-        for (int i = 0; i < listOfEmployees.length; i++) {
-            if (listOfEmployees[i] != null) {
-                printEmployeesData(listOfEmployees[i]);
+    static void printEmployeesData(Employee[] employeesArray) {
+        for (int i = 0; i < employeesArray.length; i++) {
+            if (employeesArray[i] != null) {
+                printEmployeesData(employeesArray[i]);
             }
         }
     }
-
-    // Метод печатает рздел. линию
 
     static void printSeparatorLine() {
         System.out.println();
         System.out.println("__________________________________________________________________________________");
         System.out.println();
     }
-    // Метод создает экземпляры объекта Employee
 
     static Employee[] createListOfEmployees(int count) {
         Employee[] listOfEmployees = new Employee[count];
-        String[] firstNames = new String[]{"Petr", "Jane", "Alex", "Oleg", "Anna", "Jane", "Irina",
+        String[] firstNames = new String[]{"Patric", "Jane", "Alex", "Oleg", "Anna", "Jane", "Irina",
                 "Ken", "Vlodimir", "Oleg"};
-        String[] lastNames = new String[]{"Cooper", "Hunter", "Pot", "Overchuk", "Gese", "Fromm", "Misit",
-                "Polor", "Perar", "Light"};
+        String[] lastNames = new String[]{"Cooper", "Brand", "Gese", "Bernick", "Gese", "Tulwar", "Camper",
+                "Swann", "Kochinsky", "Longfort"};
         int[] ages = new int[]{35, 24, 19, 35, 42, 18, 28, 44, 25, 30};
         int[] salaries = new int[]{10000, 30000, 4500, 50000, 16000, 35000, 8000, 11000, 4300, 1000};
         boolean[] married = new boolean[]{false, true, false, true, true, false, false, true, true, true};
