@@ -11,8 +11,8 @@ import java.util.Random;
  */
 
 public class Human extends Hero {
-    private static final int DEFAULT_HUMAN_HEALTH = 300;
-    private static final int DEFAULT_HUMAN_ATTACK = 80;
+    private static final int DEFAULT_HUMAN_HEALTH = 280;
+    private static final int DEFAULT_HUMAN_ATTACK = 75;
     private static final int DEFAULT_HUMAN_ARMOUR = 20;
 
     private static final double HEALING_CHANCE = 0.2;

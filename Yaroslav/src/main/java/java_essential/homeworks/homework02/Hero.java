@@ -2,9 +2,10 @@ package java_essential.homeworks.homework02;
 
 
 /**
- * Клас Hero это родительский клас для класов всех рас. Обьекты этого класа имеют
- * поля имени, здоровья, брони и атаки. Также он имеет реализованые и не реализованые
- * методы, часть из которых потом наследуют некоторые его наследники.
+ * Абстрактный Клас Hero это родительский клас для класов всех рас. Обьекты
+ * этого класа имеютполя имени, здоровья, брони и атаки. Также он имеет
+ * реализованые и не реализованые методы, часть из которых потом наследуют
+ * некоторые его наследники.
  */
 
 public abstract class Hero {
@@ -14,6 +15,8 @@ public abstract class Hero {
     protected int attack;
     protected int armor;
     protected int bleedDamage = 0;
+    protected int poisoningDamage = 0;
+    protected int poisoningDamageDuration = 0;
 
 
     public Hero(String name, int health, int attack, int armor) {
@@ -41,7 +44,7 @@ public abstract class Hero {
     /**
      * Метод для снижения здоровья персонажа от кровотечения
      */
-    public void bleed() {
+    public void takeDamageFromBleeding() {
         if (bleedDamage > 0) {
             System.out.print("Изза кровотечения здоровье у " + toStringNameAndRace() + " падает с " + health + " до ");
             health -= bleedDamage;
@@ -50,6 +53,22 @@ public abstract class Hero {
             }
             System.out.println(health + ". ");
             bleedDamage -= 10;
+        }
+    }
+
+
+    /**
+     * Метод для снижения здоровья персонажа от отравления
+     */
+    public void takeDamageFromPoisoning() {
+        if (poisoningDamageDuration > 0) {
+            System.out.print("Изза яда здоровье у " + toStringNameAndRace() + " падает с " + health + " до ");
+            health -= poisoningDamage;
+            if (health < 0) {
+                health = 0;
+            }
+            System.out.println(health + ". ");
+            poisoningDamageDuration--;
         }
     }
 
@@ -113,8 +132,17 @@ public abstract class Hero {
     public void resurrect() {
     }
 
-
+    /**
+     * Метод проверяющий удалось ли вызвать кровточение(будет переопределен)
+     */
     public boolean hurtToBleeding(Hero hero) {
+        return false;
+    }
+
+    /**
+     * Метод проверяющий удалось ли отравить(будет переопределен)
+     */
+    public boolean hurtToPoisoning(Hero hero) {
         return false;
     }
 
