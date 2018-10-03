@@ -69,8 +69,9 @@ public class GameProcess {
         Player user = new Player();
         Player comp = new Player();
 
-        comp.setComputer();
         user.teamSize();
+        comp.setComputer();
+        comp.initializationTeamForNextUser(user);
         user.setTeam();
         comp.setTeam();
 

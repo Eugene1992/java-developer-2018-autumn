@@ -31,7 +31,7 @@ public class Player {
         }
     }
 
-    public Hero[] getTeam(){
+    public Hero[] getTeam() {
         return this.team;
     }
 
@@ -45,12 +45,16 @@ public class Player {
         this.team = new Hero[teamSize];
     }
 
+    public void initializationTeamForNextUser(Player firstUser) {
+        this.team = new Hero[firstUser.getTeam().length];
+    }
+
     public void setTeam() {
-        for (Hero aHero : team) {
-            if (this.getIsComputer()) {
-                aHero = chooseRaceByRandom();
+        for (int i = 0; i < this.team.length; i++) {
+            if (this.isComputer) {
+                this.team[i] = chooseRaceByRandom();
             } else {
-                aHero = chooseRaceByScreen();
+                this.team[i] = chooseRaceByScreen();
             }
         }
     }
@@ -100,9 +104,11 @@ public class Player {
     }
 
     public void outputTeam() {
-        System.out.println(this.getUser() + "team:");
-        for (Hero aHero: this.getTeam()) {
-            System.out.println(aHero.getName() + "[" + aHero.getHealth() + "hp]" );
+        System.out.println(this.user + " team:");
+        for (Hero aHero : this.team) {
+            if (aHero != null) {
+                System.out.println(aHero.getName() + "[" + aHero.getHealth() + "hp]");
+            }
         }
         System.out.println();
     }
