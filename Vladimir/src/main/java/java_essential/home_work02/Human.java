@@ -1,7 +1,7 @@
 package java_essential.home_work02;
 
 public class Human extends Hero {
-    private static final double HEALINGCHANCE = 0.35;
+    private static final double HEALING_CHANCE = 0.35;
     private static final double HEALINGPERCENT = 0.15;
     int firstHealth = health;
 
@@ -15,7 +15,7 @@ public class Human extends Hero {
     //    метод для использования лечения
     public int getHealthAbility(int firstHealth, int health) {
         if (health < firstHealth) {
-            if (Math.random() <= HEALINGCHANCE) {
+            if (Math.random() <= HEALING_CHANCE) {
                 health *= HEALINGPERCENT;
                 if (health > firstHealth) {
                     health = firstHealth;

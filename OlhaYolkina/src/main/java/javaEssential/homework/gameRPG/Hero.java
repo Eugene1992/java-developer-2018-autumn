@@ -44,7 +44,7 @@ public class Hero {
     }
 
     private boolean checkIfSpecialAbility(int chance) {
-        return random.nextInt(chance) == chance - 1 ? true : false;
+        return random.nextInt(chance) == chance - 1;
     }
 
     private Hero setIfSpecialAbility() {
