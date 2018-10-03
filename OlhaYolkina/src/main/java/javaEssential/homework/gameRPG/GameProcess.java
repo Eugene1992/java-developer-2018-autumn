@@ -34,14 +34,14 @@ public class GameProcess {
         System.out.println(playerAttack.getUser() + " " + playerAttack.getTeam()[indexHeroAttack].getName() +
                 "[" + playerAttack.getTeam()[indexHeroAttack].getHealth() + "hp] attacked " + playerArmor.getUser()
                 + " " + playerArmor.getTeam()[indexHeroArmor].getName() + "[" + playerArmor.getTeam()[indexHeroArmor].getHealth()
-                + "hp], damage caused is " + damage + "hp");
+                + "hp], damage caused is " + damage + "hp\n");
 
         playerArmor.getTeam()[indexHeroArmor].setIsSpecialAbility(false);
         playerAttack.getTeam()[indexHeroAttack].setIsSpecialAbility(false);
 
         if (playerArmor.getTeam()[indexHeroArmor].getHealth() <= 0) {
-            System.out.println(playerArmor.getUser() + " lost " + playerArmor.getTeam()[indexHeroArmor].getName());
-//            playerArmor.getTeam()[indexHeroArmor] = null;
+            System.out.println(playerArmor.getUser() + " lost " + playerArmor.getTeam()[indexHeroArmor].getName() + "\n");
+
             playerArmor.setTeamAfterLose(indexHeroArmor);
         }
     }
