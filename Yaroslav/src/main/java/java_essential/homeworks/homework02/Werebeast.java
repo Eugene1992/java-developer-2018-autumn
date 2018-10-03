@@ -19,6 +19,7 @@ public class Werebeast extends Hero {
     private static final int DEFAULT_WEREBEAST_ARMOR = 10;
 
     private static final double CAUSE_BLEEDING_CHANCE = 0.25;
+    private static final int BLEEDING_DAMAGE = 30;
 
     public Werebeast(String name) {
         super(name, DEFAULT_WEREBEAST_HEALTH, DEFAULT_WEREBEAST_ATTACK, DEFAULT_WEREBEAST_ARMOR);
@@ -34,7 +35,7 @@ public class Werebeast extends Hero {
         int k = rand.nextInt(100) + 1;
         if (k > 0 && k < CAUSE_BLEEDING_CHANCE * 100) {
             System.out.print(name + " вызывает кровотичение у " + hero.toStringNameAndRace() + ". ");
-            hero.bleedDamage = 30;
+            hero.bleedDamage = BLEEDING_DAMAGE;
             return true;
         }
         return false;

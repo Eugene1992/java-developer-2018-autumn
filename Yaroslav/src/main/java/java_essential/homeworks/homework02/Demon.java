@@ -13,7 +13,7 @@ import java.util.Random;
  */
 
 public class Demon extends Hero {
-    private static final int DEFAULT_DEMON_HEALTH = 320;
+    private static final int DEFAULT_DEMON_HEALTH = 300;
     private static final int DEFAULT_DEMON_ATTACK = 70;
     private static final int DEFAULT_DEMON_ARMOUR = 15;
 
@@ -33,7 +33,7 @@ public class Demon extends Hero {
         Random rand = new Random();
         int k = rand.nextInt(100) + 1;
         if (k > 0 && k < ARMOR_DESTROY_CHANCE * 100) {
-            System.out.print(name + " снижает броню с " + armor + " до ");
+            System.out.print(toStringNameAndRace() + " снижает броню с " + armor + " до ");
             armor *= (1 - PERCENT_OF_ARMOR_DESTROY);
             System.out.println(armor + ". ");
         }
