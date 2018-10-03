@@ -8,7 +8,7 @@ public class Dwarf extends Hero {
     public Dwarf(String name) {
         super(name);
         this.health = 200 + random.nextInt(51);
-        this.armor = 0.1 * random.nextInt(51);
+        this.armor = 0.1 * random.nextInt(6);
         this.attack = 20 + random.nextInt(21);
     }
 

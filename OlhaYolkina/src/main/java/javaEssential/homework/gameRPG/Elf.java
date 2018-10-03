@@ -8,7 +8,7 @@ public class Elf extends Hero {
     public Elf(String name) {
         super(name);
         this.health = 250 + random.nextInt(101);
-        this.armor = 0.1 * random.nextInt(21);
+        this.armor = 0.1 * random.nextInt(3);
         this.attack = 40 + random.nextInt(21);
     }
 

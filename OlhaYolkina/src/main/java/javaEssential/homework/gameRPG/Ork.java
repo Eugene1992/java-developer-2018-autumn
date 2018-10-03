@@ -6,6 +6,9 @@ public class Ork extends Hero {
 
     public Ork(String name) {
         super(name);
+        this.health = 200 + random.nextInt(51);
+        this.armor = 0.1 * random.nextInt(5);
+        this.attack = 50 + random.nextInt(21);
     }
 
     public double getDodgeAttackChance() {

@@ -8,7 +8,7 @@ public class Human extends Hero {
     public Human(String name) {
         super(name);
         this.health = 300 + random.nextInt(51);
-        this.armor = 0.1 * random.nextInt(41);
+        this.armor = 0.1 * random.nextInt(5);
         this.attack = 20 + random.nextInt(21);
     }
 
