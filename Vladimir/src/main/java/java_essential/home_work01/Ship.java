@@ -1,9 +1,10 @@
 package java_essential.home_work01;
 
 public class Ship {
-    private int coordX;
-    private int coordY;
-    private boolean isAlive = true;
+    int coordX;
+    int coordY;
+    boolean isAlive;
+
 
     public Ship(int coordX, int coordY) {
         this.coordX = coordX;
