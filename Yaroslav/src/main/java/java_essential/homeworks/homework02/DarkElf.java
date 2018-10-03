@@ -2,15 +2,24 @@ package java_essential.homeworks.homework02;
 
 import java.util.Random;
 
+/**
+ * Клас DarkElf позволяет создавать обьекты типа DarkElf
+ * Уникальная особенность темных эльфов это возможность отравить врага.
+ * Вероятность отравления определяет константа POISONING_CHANCE, урон от яда
+ * определяет константа POISON_DAMAGE, а количество ходов, которые действует яд
+ * определяет переменная POISON_DURATION
+ */
+
+
 public class DarkElf extends Elf {
 
-    private static final int DEFAULT_DARK_ELF_HEALTH = 50;
-    private static final int DEFAULT_DARK_ELF_ATTACK = 75;
+    private static final int DEFAULT_DARK_ELF_HEALTH = 250;
+    private static final int DEFAULT_DARK_ELF_ATTACK = 70;
     private static final int DEFAULT_DARK_ELF_ARMOR = 15;
 
-    private static final double POISONING_CHANCE = 0.99;
+    private static final double POISONING_CHANCE = 0.25;
     private static final int POISON_DAMAGE = 20;
-    private static final int POISON_DURATION = 3;
+    private static final int POISON_DURATION = 4;
 
     public DarkElf(String name) {
         super(name, DEFAULT_DARK_ELF_HEALTH, DEFAULT_DARK_ELF_ATTACK, DEFAULT_DARK_ELF_ARMOR);

@@ -18,7 +18,7 @@ public class Werebeast extends Hero {
     private static final int DEFAULT_WEREBEAST_ATTACK = 70;
     private static final int DEFAULT_WEREBEAST_ARMOR = 10;
 
-    private static final double CAUSE_BLEEDING_CHANCE = 0.99;
+    private static final double CAUSE_BLEEDING_CHANCE = 0.25;
     private static final int BLEEDING_DAMAGE = 30;
 
     public Werebeast(String name) {

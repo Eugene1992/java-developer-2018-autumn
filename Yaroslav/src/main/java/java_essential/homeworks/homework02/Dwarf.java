@@ -11,9 +11,9 @@ import java.util.Random;
 
 
 public class Dwarf extends Hero {
-    private static final int DEFAULT_DWARF_HEALTH = 290;
+    private static final int DEFAULT_DWARF_HEALTH = 280;
     private static final int DEFAULT_DWARF_ATTACK = 65;
-    private static final int DEFAULT_DWARF_ARMOUR = 35;
+    private static final int DEFAULT_DWARF_ARMOUR = 30;
 
     private static final double BLOCK_CHANCE = 0.2;
     private static final double BLOCK_PERCENT = 0.3;

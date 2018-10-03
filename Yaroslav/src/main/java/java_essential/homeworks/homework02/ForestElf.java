@@ -2,13 +2,21 @@ package java_essential.homeworks.homework02;
 
 import java.util.Random;
 
+/**
+ * Клас ForestElf позволяет создавать обьекты типа ForestElf
+ * Уникальная особенность лесных эльфов это возможность нанести критический удар.
+ * Вероятность критического удара определяет константа CRITICAL_ATTACK_CHANCE,
+ * а силу критического удара по отношению к обычному определяет константа
+ * CRITICAL_ATTACK_MULTIPLIER.
+ */
+
 public class ForestElf extends Elf {
-    private static final int DEFAULT_FOREST_ELF_HEALTH = 250;
+    private static final int DEFAULT_FOREST_ELF_HEALTH = 235;
     private static final int DEFAULT_FOREST_ELF_ATTACK = 75;
     private static final int DEFAULT_FOREST_ELF_ARMOR = 15;
 
     private static final double CRITICAL_ATTACK_MULTIPLIER = 2;
-    private static final double CRITICAL_ATTACK_CHANCE = 0.2;
+    private static final double CRITICAL_ATTACK_CHANCE = 0.25;
 
     public ForestElf(String name) {
         super(name, DEFAULT_FOREST_ELF_HEALTH, DEFAULT_FOREST_ELF_ATTACK, DEFAULT_FOREST_ELF_ARMOR);

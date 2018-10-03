@@ -335,6 +335,9 @@ public class Player {
                 } else {
                     heroPersonCounter++;
                 }
+                if (computer.checkIfSquadHasFallenHero()) {
+                    computer.reformSquad();
+                }
                 //System.out.println("!@#$%^&&^$# -----" + heroPersonCounter);
             }
 
@@ -355,6 +358,9 @@ public class Player {
                     computer.reformSquad();
                 } else {
                     heroComputerCounter++;
+                }
+                if (person.checkIfSquadHasFallenHero()) {
+                    person.reformSquad();
                 }
             }
             //System.out.println("!@#$%^&&^$#----" + heroComputerCounter);
