@@ -5,18 +5,22 @@ import java.util.Random;
 /**
  * Клас Dwarf позволяет создавать обьекты типа Dwarf
  * Уникальная особенность гномов это способность частично блокировать урон.
- * Вероятность блокировки урона определяет переменная blockChance, а часть
- * заблокировного урона от общего определяет переменная blockPercent
+ * Вероятность блокировки урона определяет константа BLOCK_CHANCE, а часть
+ * заблокировного урона от общего определяет константа BLOCK_PERCENT
  */
 
 
 public class Dwarf extends Hero {
-    private double blockChance = 0.30;
-    private double blockPercent = 0.35;
+    private static final int DEFAULT_DWARF_HEALTH = 290;
+    private static final int DEFAULT_DWARF_ATTACK = 65;
+    private static final int DEFAULT_DWARF_ARMOUR = 35;
+
+    private static final double BLOCK_CHANCE = 0.2;
+    private static final double BLOCK_PERCENT = 0.3;
 
 
     public Dwarf(String name) {
-        super(name, 300, 65, 40);
+        super(name, DEFAULT_DWARF_HEALTH, DEFAULT_DWARF_ATTACK, DEFAULT_DWARF_ARMOUR);
     }
 
 
@@ -28,9 +32,9 @@ public class Dwarf extends Hero {
     public int getAttackAfterBlock(int attack) {
         Random rand = new Random();
         int k = rand.nextInt(100) + 1;
-        if (k > 0 && k < blockChance * 100) {
-            System.out.println(name + " блокирует " + (attack * blockPercent) + " урона.");
-            attack *= (1 - blockPercent);
+        if (k > 0 && k < BLOCK_CHANCE * 100) {
+            System.out.print(toStringNameAndRace() + " блокирует " + (attack * BLOCK_PERCENT) + " урона. ");
+            attack *= (1 - BLOCK_PERCENT);
         }
         return attack;
     }
@@ -41,8 +45,7 @@ public class Dwarf extends Hero {
      */
     @Override
     public String toStringNameAndRace() {
-        String result = "Гном " + name;
-        return result;
+        return "Гном " + name;
     }
 
 
@@ -51,7 +54,6 @@ public class Dwarf extends Hero {
      */
     @Override
     public String toString() {
-        String res = "Гном " + name + super.toString();
-        return res;
+        return "Гном " + name + super.toString();
     }
 }

@@ -7,12 +7,13 @@ package java_essential.homeworks.homework02;
  * методы, часть из которых потом наследуют некоторые его наследники.
  */
 
-public class Hero {
+public abstract class Hero {
 
     protected String name;
     protected int health;
     protected int attack;
     protected int armor;
+    protected int bleedDamage = 0;
 
 
     public Hero(String name, int health, int attack, int armor) {
@@ -34,6 +35,22 @@ public class Hero {
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+
+    /**
+     * Метод для снижения здоровья персонажа от кровотечения
+     */
+    public void bleed() {
+        if (bleedDamage > 0) {
+            System.out.print("Изза кровотечения здоровье у " + toStringNameAndRace() + " падает с " + health + " до ");
+            health -= bleedDamage;
+            if (health < 0) {
+                health = 0;
+            }
+            System.out.println(health + ". ");
+            bleedDamage -= 10;
+        }
     }
 
     /** Метод для получения здоровья персонажа */
@@ -88,14 +105,17 @@ public class Hero {
     }
 
     /** Метод для вывода рассы и имени(будет пеореопределен) */
-    public String toStringNameAndRace() {
-        return "";
-    }
+    public abstract String toStringNameAndRace();
 
     /**
      * Метод для возрождения персонажа(будет пеореопределен)
      */
     public void resurrect() {
+    }
+
+
+    public boolean hurtToBleeding(Hero hero) {
+        return false;
     }
 
     /** Метод для вывода информации про персонажа(будет пеореопределен) */

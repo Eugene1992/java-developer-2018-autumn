@@ -4,20 +4,18 @@ public class Player {
     private String user = "user";
     private boolean isComputer;
 
-    public String getUser(){
+    public String getUser() {
         return this.user;
     }
 
-    public void checkIsComputer(){
-        if (this.isComputer){
-            this.user = "computer";
-        }
+    public boolean getIsComputer() {
+        return isComputer;
     }
 
-    public void setIsComputer(String answer){
-//        System.out.println("Is this user is Computer?");
-        if (answer.equals("Yes")){
+    public void setIsComputer(String answer) {
+        if (answer.equals("Yes")) {
             this.isComputer = true;
+            this.user = "computer";
         }
     }
 }
