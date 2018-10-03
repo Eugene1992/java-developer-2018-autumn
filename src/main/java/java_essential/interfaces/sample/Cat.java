@@ -1,4 +1,4 @@
-package java_essential.interfaces;
+package java_essential.interfaces.sample;
 
 import java.io.Serializable;
 

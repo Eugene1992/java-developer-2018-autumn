@@ -1,9 +1,9 @@
-package java_essential.interfaces;
+package java_essential.interfaces.sample;
 
-public class Wind implements Movable {
+public class Car implements Movable {
     private int speed;
 
-    public Wind(int speed) {
+    public Car(int speed) {
         this.speed = speed;
     }
 
