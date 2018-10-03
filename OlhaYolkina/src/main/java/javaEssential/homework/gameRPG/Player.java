@@ -49,6 +49,18 @@ public class Player {
         this.team = new Hero[firstUser.getTeam().length];
     }
 
+    public void setTeamAfterLose(int indexHeroLose) {
+        Hero[] newTeam = new Hero[this.team.length - 1];
+        for (int i = 0; i < this.team.length - 1; i++) {
+            if (i < indexHeroLose) {
+                newTeam[i] = this.team[i];
+            } else {
+                newTeam[i] = this.team[i + 1];
+            }
+        }
+        this.team = newTeam;
+    }
+
     public void setTeam() {
         for (int i = 0; i < this.team.length; i++) {
             if (this.isComputer) {

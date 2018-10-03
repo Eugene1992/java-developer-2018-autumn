@@ -41,7 +41,8 @@ public class GameProcess {
 
         if (playerArmor.getTeam()[indexHeroArmor].getHealth() <= 0) {
             System.out.println(playerArmor.getUser() + " lost " + playerArmor.getTeam()[indexHeroArmor].getName());
-            playerArmor.getTeam()[indexHeroArmor] = null;
+//            playerArmor.getTeam()[indexHeroArmor] = null;
+            playerArmor.setTeamAfterLose(indexHeroArmor);
         }
     }
 
@@ -59,7 +60,7 @@ public class GameProcess {
         if (isGameEnd(playerArmor)) {
             isGameEnd = true;
             System.out.println();
-            System.out.println(playerAttack.getUser() + "won!");
+            System.out.println(playerAttack.getUser() + " won!");
         }
         return isGameEnd;
     }
