@@ -23,4 +23,11 @@ public class Elf extends Hero {
     public String getSpecialAbility() {
         return specialAbility;
     }
+
+    @Override
+    protected Hero setIfSpecialAbility() {
+        int chance = (int) this.getCriticalAttackChance() * 100;
+        this.setIsSpecialAbility(checkIfSpecialAbility(chance));
+        return this;
+    }
 }

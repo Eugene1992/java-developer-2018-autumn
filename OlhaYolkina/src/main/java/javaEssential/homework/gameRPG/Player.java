@@ -21,11 +21,11 @@ public class Player {
 
     public void setComputer() {
         String answer = "";
-        while (!answer.equals("Yes") && !answer.equals("No")) {
-            System.out.println("Is this user is Computer? Please write Yes or No");
+        while (!answer.equals("C") && !answer.equals("U")) {
+            System.out.println("Choose opponent: C - Computer, U - User");
             answer = scan.next();
         }
-        if (answer.equals("Yes")) {
+        if (answer.equals("C")) {
             this.isComputer = true;
             this.user = "Computer";
         }
@@ -35,15 +35,17 @@ public class Player {
         return this.team;
     }
 
-    public void setTeam() {
+    public void teamSize() {
         int teamSize = 0;
 
         while (teamSize <= 0) {
             System.out.println("Please tap size of Team. Put number > 0");
             teamSize = scan.nextInt();
         }
-
         this.team = new Hero[teamSize];
+    }
+
+    public void setTeam() {
         for (Hero aHero : team) {
             if (this.getIsComputer()) {
                 aHero = chooseRaceByRandom();

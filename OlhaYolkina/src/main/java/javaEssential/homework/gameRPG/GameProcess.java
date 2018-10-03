@@ -54,31 +54,34 @@ public class GameProcess {
         return true;
     }
 
+    private boolean runRound(Player playerAttack, Player playerArmor, boolean isGameEnd) {
+        stepFight(playerAttack, playerArmor);
+        if (isGameEnd(playerArmor)) {
+            isGameEnd = true;
+            System.out.println();
+            System.out.println(playerAttack.getUser() + "won!");
+        }
+        return isGameEnd;
+    }
+
     public void run() {
+        startGame();
         Player user = new Player();
         Player comp = new Player();
 
         comp.setComputer();
+        user.teamSize();
         user.setTeam();
         comp.setTeam();
 
         boolean isGameEnd = false;
 
         while (!isGameEnd) {
-            stepFight(user, comp);
-            if (isGameEnd(comp)) {
-                isGameEnd = true;
-                System.out.println();
-                System.out.println(user.getUser() + "won!");
+            isGameEnd = runRound(user, comp, isGameEnd);
+            if (isGameEnd) {
                 continue;
             }
-            stepFight(comp, user);
-            if (isGameEnd(user)) {
-                isGameEnd = true;
-                System.out.println();
-                System.out.println(comp.getUser() + "won!");
-                continue;
-            }
+            isGameEnd = runRound(comp, user, isGameEnd);
         }
     }
 }

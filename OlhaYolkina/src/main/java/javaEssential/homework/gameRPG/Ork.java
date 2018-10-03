@@ -15,4 +15,11 @@ public class Ork extends Hero {
     public String getSpecialAbility() {
         return specialAbility;
     }
+
+    @Override
+    protected Hero setIfSpecialAbility() {
+        int chance = (int) this.getDodgeAttackChance() * 100;
+        this.setIsSpecialAbility(checkIfSpecialAbility(chance));
+        return this;
+    }
 }

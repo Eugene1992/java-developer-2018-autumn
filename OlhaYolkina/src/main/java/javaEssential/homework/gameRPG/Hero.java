@@ -9,7 +9,7 @@ public class Hero {
     protected double armor;
     protected boolean isSpecialAbility;
 
-    protected Random random;
+    protected Random random = new Random();
 
     public Hero(String name) {
         this.name = name;
@@ -43,29 +43,11 @@ public class Hero {
         this.isSpecialAbility = value;
     }
 
-    private boolean checkIfSpecialAbility(int chance) {
+    protected boolean checkIfSpecialAbility(int chance) {
         return random.nextInt(chance) == chance - 1;
     }
 
-    private Hero setIfSpecialAbility() {
-        int chance = 0;
-        if (this instanceof Ork) {
-            Ork ork = (Ork) this;
-            chance = (int) ork.getDodgeAttackChance() * 100;
-        }
-        if (this instanceof Elf) {
-            Elf elf = (Elf) this;
-            chance = (int) elf.getCriticalAttackChance() * 100;
-        }
-        if (this instanceof Human) {
-            Human human = (Human) this;
-            chance = (int) human.getHealthingChance() * 100;
-        }
-        if (this instanceof Dwarf) {
-            Dwarf dwarf = (Dwarf) this;
-            chance = (int) dwarf.getBlockChance() * 100;
-        }
-        this.setIsSpecialAbility(checkIfSpecialAbility(chance));
+    protected Hero setIfSpecialAbility() {
         return this;
     }
 

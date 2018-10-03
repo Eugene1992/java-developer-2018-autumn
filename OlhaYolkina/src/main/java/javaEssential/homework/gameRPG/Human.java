@@ -23,4 +23,11 @@ public class Human extends Hero {
     public String getSpecialAbility() {
         return specialAbility;
     }
+
+    @Override
+    protected Hero setIfSpecialAbility() {
+        int chance = (int) this.getHealthingChance() * 100;
+        this.setIsSpecialAbility(checkIfSpecialAbility(chance));
+        return this;
+    }
 }
