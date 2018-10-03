@@ -1,9 +1,9 @@
 package javaEssential.homework.gameRPG;
 
 public class Elf extends Hero {
-    private static final double criticalAttackChance = 0.25;
-    private static final double criticalAttackMultiplier = 0.25;
-    private static final String specialAbility = "Increased attack";
+    private final double criticalAttackChance = 0.25;
+    private final double criticalAttackMultiplier = 0.25;
+    private final String specialAbility = "Increased attack";
 
     public Elf(String name) {
         super(name);
@@ -16,11 +16,11 @@ public class Elf extends Hero {
         return criticalAttackChance;
     }
 
-    public static double getCriticalAttackMultiplier() {
+    public double getCriticalAttackMultiplier() {
         return criticalAttackMultiplier;
     }
 
-    public static String getSpecialAbility() {
+    public String getSpecialAbility() {
         return specialAbility;
     }
 }

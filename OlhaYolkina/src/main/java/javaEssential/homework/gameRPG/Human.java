@@ -1,9 +1,9 @@
 package javaEssential.homework.gameRPG;
 
 public class Human extends Hero {
-    private static final double healthingChance = 0.25;
-    private static final double healthPercent = 0.3;
-    private static final String specialAbility = "Health restore";
+    private final double healthingChance = 0.25;
+    private final double healthPercent = 0.3;
+    private final String specialAbility = "Health restore";
 
     public Human(String name) {
         super(name);
@@ -12,15 +12,15 @@ public class Human extends Hero {
         this.attack = 20 + random.nextInt(21);
     }
 
-    public static double getHealthingChance() {
+    public double getHealthingChance() {
         return healthingChance;
     }
 
-    public static double getHealthPercent() {
+    public double getHealthPercent() {
         return healthPercent;
     }
 
-    public static String getSpecialAbility() {
+    public String getSpecialAbility() {
         return specialAbility;
     }
 }

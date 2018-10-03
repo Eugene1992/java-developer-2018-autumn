@@ -31,6 +31,10 @@ public class Player {
         }
     }
 
+    public Hero[] getTeam(){
+        return this.team;
+    }
+
     public void setTeam() {
         int teamSize = 0;
 
@@ -91,5 +95,13 @@ public class Player {
                 return aHero;
         }
         return null;
+    }
+
+    public void outputTeam() {
+        System.out.println(this.getUser() + "team:");
+        for (Hero aHero: this.getTeam()) {
+            System.out.println(aHero.getName() + "[" + aHero.getHealth() + "hp]" );
+        }
+        System.out.println();
     }
 }

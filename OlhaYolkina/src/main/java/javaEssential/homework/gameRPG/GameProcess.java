@@ -4,6 +4,7 @@ import java.util.Random;
 
 public class GameProcess {
     private static final Random random = new Random();
+    private int numberOfStepFight = 0;
 
     public void startGame() {
         System.out.println("Hi! It is RPG game Fight.");
@@ -13,26 +14,71 @@ public class GameProcess {
         System.out.println("Go!!!");
     }
 
-    public Hero[] stepFight(Hero[] teamAttack, Hero[] teamArmor) {
+    public void stepFight(Player playerAttack, Player playerArmor) {
+        int indexHeroAttack = random.nextInt(playerAttack.getTeam().length);
+        int indexHeroArmor = random.nextInt(playerArmor.getTeam().length);
 
-        int indexHeroAttack = random.nextInt(teamAttack.length);
-        int indexHeroArmor = random.nextInt(teamArmor.length);
+        numberOfStepFight++;
+        System.out.println("Round #" + numberOfStepFight);
+        playerAttack.outputTeam();
+        playerArmor.outputTeam();
 
-        int heroArmorHealth = teamArmor[indexHeroArmor].getHealth();
-        double heroArmorArmor = teamArmor[indexHeroArmor].getArmor();
+        int heroArmorHealth = playerArmor.getTeam()[indexHeroArmor].getHealth();
+        double heroArmorArmor = playerArmor.getTeam()[indexHeroArmor].getArmor();
 
-        int heroAttackAttack = teamAttack[indexHeroAttack].getAttack();
+        int heroAttackAttack = playerAttack.getTeam()[indexHeroAttack].getAttack();
 
-        teamArmor[indexHeroArmor].setHealth((int) (heroArmorHealth - (1 - heroArmorArmor) * heroAttackAttack));
+        playerArmor.getTeam()[indexHeroArmor].setHealth((int) (heroArmorHealth - (1 - heroArmorArmor) * heroAttackAttack));
+        int damage = heroArmorHealth - playerArmor.getTeam()[indexHeroArmor].getHealth();
 
+        System.out.println(playerAttack.getUser() + " " + playerAttack.getTeam()[indexHeroAttack].getName() +
+                "[" + playerAttack.getTeam()[indexHeroAttack].getHealth() + "hp] attacked " + playerArmor.getUser()
+                + " " + playerArmor.getTeam()[indexHeroArmor].getName() + "[" + playerArmor.getTeam()[indexHeroArmor].getHealth()
+                + "hp], damage caused is " + damage + "hp");
 
+        playerArmor.getTeam()[indexHeroArmor].setIsSpecialAbility(false);
+        playerAttack.getTeam()[indexHeroAttack].setIsSpecialAbility(false);
 
-        logStepFight(teamAttack[indexHeroAttack], teamArmor[indexHeroArmor]);
-
-        return teamArmor;
+        if (playerArmor.getTeam()[indexHeroArmor].getHealth() <= 0) {
+            System.out.println(playerArmor.getUser() + " lost " + playerArmor.getTeam()[indexHeroArmor].getName());
+            playerArmor.getTeam()[indexHeroArmor] = null;
+        }
     }
 
-    private void logStepFight(Hero heroAttack, Hero heroArmor) {
-        System.out.println("Player Dwarf 'Astan'[340hp] attacked PC Elf 'Eliot'[321hp], damage caused is 121 hp");
+    public boolean isGameEnd(Player player) {
+        for (Hero aHero : player.getTeam()) {
+            if (aHero != null) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void run() {
+        Player user = new Player();
+        Player comp = new Player();
+
+        comp.setComputer();
+        user.setTeam();
+        comp.setTeam();
+
+        boolean isGameEnd = false;
+
+        while (!isGameEnd) {
+            stepFight(user, comp);
+            if (isGameEnd(comp)) {
+                isGameEnd = true;
+                System.out.println();
+                System.out.println(user.getUser() + "won!");
+                continue;
+            }
+            stepFight(comp, user);
+            if (isGameEnd(user)) {
+                isGameEnd = true;
+                System.out.println();
+                System.out.println(comp.getUser() + "won!");
+                continue;
+            }
+        }
     }
 }

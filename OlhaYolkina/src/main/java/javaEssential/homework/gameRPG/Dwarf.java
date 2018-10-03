@@ -1,9 +1,9 @@
 package javaEssential.homework.gameRPG;
 
 public class Dwarf extends Hero {
-    private static final double blockChance = 0.25;
-    private static final double blockPercent = 0.4;
-    private static final String specialAbility = "Attack blocking";
+    private final double blockChance = 0.25;
+    private final double blockPercent = 0.4;
+    private final String specialAbility = "Attack blocking";
 
     public Dwarf(String name) {
         super(name);
@@ -12,15 +12,15 @@ public class Dwarf extends Hero {
         this.attack = 20 + random.nextInt(21);
     }
 
-    public static double getBlockChance() {
+    public double getBlockChance() {
         return blockChance;
     }
 
-    public static double getBlockPercent() {
+    public double getBlockPercent() {
         return blockPercent;
     }
 
-    public static String getSpecialAbility() {
+    public String getSpecialAbility() {
         return specialAbility;
     }
 }
