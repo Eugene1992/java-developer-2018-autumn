@@ -1,7 +1,6 @@
 package java_essential.homeworks.homework02;
 
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class Help {
     public static void main(String[] args) {
@@ -19,7 +18,7 @@ public class Help {
             }
         }*/
 
-
+        List<String> al = new LinkedList<>();
         /*Hero demon = new Demon("Qwe");
         System.out.println(Constants.getTrueClassName(demon));*/
         Scanner sc = new Scanner(System.in);
