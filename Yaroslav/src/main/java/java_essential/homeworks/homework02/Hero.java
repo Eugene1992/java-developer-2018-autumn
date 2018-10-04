@@ -148,8 +148,8 @@ public abstract class Hero {
 
     /** Метод для вывода информации про персонажа(будет пеореопределен) */
     public String toString() {
-        String res = "[health: " + health + ", armor: " + armor + ", attack: " + attack + "]";
-        return res;
+//        return "[health: " + health + ", armor: " + armor + ", attack: " + attack + "]";
+        return String.format("[health: %s, armor: %s, attack: %s]", health, armor, attack);
     }
 
 }

@@ -20,7 +20,7 @@ public class Animal {
         String lessString = str1.length() > str2.length() ? str2 : str1;;
         String outputString = "";
         int subStringLength = 0;
-        for (int i = 0; i < lessString.length(); i++) {
+        /*for (int i = 0; i < lessString.length(); i++) {
             for (int j = i; j < lessString.length(); j++) {
                 String maxString = subStringFromTo(lessString, i, j);
                 subStringLength = maxString.length();
@@ -30,7 +30,7 @@ public class Animal {
                     continue;
                 }
             }
-        }
+        }*/
         return outputString;
     }
 }
