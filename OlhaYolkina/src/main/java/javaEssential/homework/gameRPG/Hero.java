@@ -8,6 +8,7 @@ public class Hero {
     protected int attack;
     protected double armor;
     protected boolean isSpecialAbility;
+    protected String specialAbility;
 
     protected Random random = new Random();
 
@@ -43,18 +44,27 @@ public class Hero {
         this.isSpecialAbility = value;
     }
 
+    public String getSpecialAbility() {
+        return this.specialAbility;
+    }
+
     protected boolean checkIfSpecialAbility(int chance) {
-        return random.nextInt(chance) == chance - 1;
+        int number = random.nextInt(chance);
+        if (number == (chance - 1)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
-    protected Hero setIfSpecialAbility() {
-        return this;
+    protected void setIfSpecialAbility() {
     }
 
-    protected Hero applySpecialAbility(Hero heroAttack, Hero heroArmor) {
-        boolean heroAttackSpecialAbility = heroAttack.setIfSpecialAbility().isSpecialAbility;
-        boolean heroArmorSpecialAbility = heroArmor.setIfSpecialAbility().isSpecialAbility;
+    protected double applySpecialAbilityHeroAttack() {
+        return 1;
+    }
 
-        return heroArmor;
+    protected double applySpecialAbilityHeroArmor() {
+        return 1;
     }
 }

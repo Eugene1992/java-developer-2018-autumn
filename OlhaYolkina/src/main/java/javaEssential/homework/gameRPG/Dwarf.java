@@ -3,13 +3,13 @@ package javaEssential.homework.gameRPG;
 public class Dwarf extends Hero {
     private final double blockChance = 0.25;
     private final double blockPercent = 0.4;
-    private final String specialAbility = "Attack blocking";
 
     public Dwarf(String name) {
         super(name);
         this.health = 200 + random.nextInt(51);
         this.armor = 0.1 * random.nextInt(6);
         this.attack = 20 + random.nextInt(21);
+        this.specialAbility = "Attack blocking";
     }
 
     public double getBlockChance() {
@@ -20,14 +20,20 @@ public class Dwarf extends Hero {
         return blockPercent;
     }
 
-    public String getSpecialAbility() {
-        return specialAbility;
+    @Override
+    protected void setIfSpecialAbility() {
+        int chance = (int) (this.getBlockChance() * 100);
+        this.setIsSpecialAbility(checkIfSpecialAbility(chance));
     }
 
     @Override
-    protected Hero setIfSpecialAbility() {
-        int chance = (int) this.getBlockChance() * 100;
-        this.setIsSpecialAbility(checkIfSpecialAbility(chance));
-        return this;
+    protected double applySpecialAbilityHeroAttack() {
+        return 1;
+    }
+
+    @Override
+    protected double applySpecialAbilityHeroArmor() {
+        System.out.println("Special ability " + specialAbility);
+        return blockPercent;
     }
 }

@@ -28,13 +28,65 @@ public class GameProcess {
 
         int heroAttackAttack = playerAttack.getTeam()[indexHeroAttack].getAttack();
 
-        playerArmor.getTeam()[indexHeroArmor].setHealth((int) (heroArmorHealth - (1 - heroArmorArmor) * heroAttackAttack));
+        playerAttack.getTeam()[indexHeroAttack].setIfSpecialAbility();
+        playerArmor.getTeam()[indexHeroArmor].setIfSpecialAbility();
+
+        boolean isSpecialAbilityHeroAttack = playerAttack.getTeam()[indexHeroAttack].getIsSpecialAbility();
+        boolean isSpecialAbilityHeroArmor = playerArmor.getTeam()[indexHeroArmor].getIsSpecialAbility();
+
+        if (!isSpecialAbilityHeroArmor && !isSpecialAbilityHeroAttack) {
+            playerArmor.getTeam()[indexHeroArmor].setHealth((int) (heroArmorHealth - (1 - heroArmorArmor) * heroAttackAttack));
+        }
+        if (isSpecialAbilityHeroArmor && isSpecialAbilityHeroAttack) {
+            if (playerArmor.getTeam()[indexHeroArmor].getSpecialAbility().equals("Dodge attack")) {
+                playerArmor.getTeam()[indexHeroArmor].applySpecialAbilityHeroArmor();
+            } else {
+                if (playerAttack.getTeam()[indexHeroAttack].getSpecialAbility().equals("Increased attack")) {
+                    heroAttackAttack = (int) (heroAttackAttack * (1 + playerAttack.getTeam()[indexHeroAttack].applySpecialAbilityHeroAttack()));
+                }
+                if (playerAttack.getTeam()[indexHeroAttack].getSpecialAbility().equals("Health restore")) {
+                    int newHealth = (int) (playerAttack.getTeam()[indexHeroAttack].getHealth() * (1 + playerAttack.getTeam()[indexHeroAttack].applySpecialAbilityHeroAttack()));
+                    playerAttack.getTeam()[indexHeroAttack].setHealth(newHealth);
+                }
+                if (playerArmor.getTeam()[indexHeroArmor].getSpecialAbility().equals("Attack blocking")) {
+                    heroAttackAttack = (int) (heroAttackAttack * playerArmor.getTeam()[indexHeroArmor].applySpecialAbilityHeroArmor());
+                }
+                playerArmor.getTeam()[indexHeroArmor].setHealth((int) (heroArmorHealth - (1 - heroArmorArmor) * heroAttackAttack));
+            }
+        }
+        if (isSpecialAbilityHeroArmor && !isSpecialAbilityHeroAttack) {
+            if (playerArmor.getTeam()[indexHeroArmor].getSpecialAbility().equals("Dodge attack")) {
+                playerArmor.getTeam()[indexHeroArmor].applySpecialAbilityHeroArmor();
+            } else {
+                if (playerArmor.getTeam()[indexHeroArmor].getSpecialAbility().equals("Attack blocking")) {
+                    heroAttackAttack *= playerArmor.getTeam()[indexHeroArmor].applySpecialAbilityHeroArmor();
+                }
+                playerArmor.getTeam()[indexHeroArmor].setHealth((int) (heroArmorHealth - (1 - heroArmorArmor) * heroAttackAttack));
+            }
+        }
+        if (!isSpecialAbilityHeroArmor && isSpecialAbilityHeroAttack) {
+            if (playerAttack.getTeam()[indexHeroAttack].getSpecialAbility().equals("Increased attack")) {
+                heroAttackAttack *= playerAttack.getTeam()[indexHeroAttack].applySpecialAbilityHeroAttack();
+            }
+            if (playerAttack.getTeam()[indexHeroAttack].getSpecialAbility().equals("Health restore")) {
+                int newHealth = (int) (playerAttack.getTeam()[indexHeroAttack].getHealth() * (1 + playerAttack.getTeam()[indexHeroAttack].applySpecialAbilityHeroAttack()));
+                playerAttack.getTeam()[indexHeroAttack].setHealth(newHealth);
+            }
+            playerArmor.getTeam()[indexHeroArmor].setHealth((int) (heroArmorHealth - (1 - heroArmorArmor) * heroAttackAttack));
+        }
+
         int damage = heroArmorHealth - playerArmor.getTeam()[indexHeroArmor].getHealth();
 
-        System.out.println(playerAttack.getUser() + " " + playerAttack.getTeam()[indexHeroAttack].getName() +
+
+        System.out.print(playerAttack.getUser() + " " + playerAttack.getTeam()[indexHeroAttack].getName() +
                 "[" + playerAttack.getTeam()[indexHeroAttack].getHealth() + "hp] attacked " + playerArmor.getUser()
                 + " " + playerArmor.getTeam()[indexHeroArmor].getName() + "[" + playerArmor.getTeam()[indexHeroArmor].getHealth()
-                + "hp], damage caused is " + damage + "hp\n");
+                + "hp], ");
+        if (damage != 0) {
+            System.out.print("damage caused is " + damage + "hp\n\n");
+        } else {
+            System.out.print(playerArmor.getTeam()[indexHeroArmor].getName() + " dodged the attack\n\n");
+        }
 
         playerArmor.getTeam()[indexHeroArmor].setIsSpecialAbility(false);
         playerAttack.getTeam()[indexHeroAttack].setIsSpecialAbility(false);

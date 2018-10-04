@@ -3,13 +3,13 @@ package javaEssential.homework.gameRPG;
 public class Elf extends Hero {
     private final double criticalAttackChance = 0.25;
     private final double criticalAttackMultiplier = 0.25;
-    private final String specialAbility = "Increased attack";
 
     public Elf(String name) {
         super(name);
         this.health = 250 + random.nextInt(101);
         this.armor = 0.1 * random.nextInt(3);
         this.attack = 40 + random.nextInt(21);
+        this.specialAbility = "Increased attack";
     }
 
     public double getCriticalAttackChance() {
@@ -20,14 +20,20 @@ public class Elf extends Hero {
         return criticalAttackMultiplier;
     }
 
-    public String getSpecialAbility() {
-        return specialAbility;
+    @Override
+    protected void setIfSpecialAbility() {
+        int chance = (int) (this.getCriticalAttackChance() * 100);
+        this.setIsSpecialAbility(checkIfSpecialAbility(chance));
     }
 
     @Override
-    protected Hero setIfSpecialAbility() {
-        int chance = (int) this.getCriticalAttackChance() * 100;
-        this.setIsSpecialAbility(checkIfSpecialAbility(chance));
-        return this;
+    protected double applySpecialAbilityHeroAttack() {
+        System.out.println("Special ability " + specialAbility);
+        return criticalAttackMultiplier;
+    }
+
+    @Override
+    protected double applySpecialAbilityHeroArmor() {
+        return 1;
     }
 }
