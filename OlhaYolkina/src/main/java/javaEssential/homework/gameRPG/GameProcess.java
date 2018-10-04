@@ -1,12 +1,10 @@
 package javaEssential.homework.gameRPG;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class GameProcess {
-    private static final Scanner scan = new Scanner(System.in);
     private static final Random random = new Random();
-    private static int teamSize = 0;
+    private int numberOfStepFight = 0;
 
     public void startGame() {
         System.out.println("Hi! It is RPG game Fight.");
@@ -16,80 +14,131 @@ public class GameProcess {
         System.out.println("Go!!!");
     }
 
-    public static int getTeamSize() {
-        return teamSize;
-    }
+    public void stepFight(Player playerAttack, Player playerArmor) {
+        int indexHeroAttack = random.nextInt(playerAttack.getTeam().length);
+        int indexHeroArmor = random.nextInt(playerArmor.getTeam().length);
 
-    public static void setTeamSize() {
-        while (teamSize <= 0) {
-            System.out.println("Please tap size of Team. Put number > 0");
-            teamSize = scan.nextInt();
+        numberOfStepFight++;
+        System.out.println("Round #" + numberOfStepFight);
+        playerAttack.outputTeam();
+        playerArmor.outputTeam();
+
+        int heroArmorHealth = playerArmor.getTeam()[indexHeroArmor].getHealth();
+        double heroArmorArmor = playerArmor.getTeam()[indexHeroArmor].getArmor();
+
+        int heroAttackAttack = playerAttack.getTeam()[indexHeroAttack].getAttack();
+
+        playerAttack.getTeam()[indexHeroAttack].setIfSpecialAbility();
+        playerArmor.getTeam()[indexHeroArmor].setIfSpecialAbility();
+
+        boolean isSpecialAbilityHeroAttack = playerAttack.getTeam()[indexHeroAttack].getIsSpecialAbility();
+        boolean isSpecialAbilityHeroArmor = playerArmor.getTeam()[indexHeroArmor].getIsSpecialAbility();
+
+
+        if (!isSpecialAbilityHeroArmor && !isSpecialAbilityHeroAttack) {
+            playerArmor.getTeam()[indexHeroArmor].setHealth((int) (heroArmorHealth - (1 - heroArmorArmor) * heroAttackAttack));
         }
-    }
-
-    public Player isItComputer(Player player) {
-        String answer = "";
-        while (!answer.equals("Yes") && !answer.equals("No")) {
-            System.out.println("Is this user is Computer? Please write Yes or No");
-            answer = scan.next();
-            player.setIsComputer(answer);
-        }
-        return player;
-    }
-
-    public Hero[] makeTeam(Player player) {
-        Hero[] team = new Hero[teamSize];
-        for (Hero aHero : team) {
-            if (player.getIsComputer()) {
-                aHero = chooseRaceByRandom(aHero);
+        if (isSpecialAbilityHeroArmor && isSpecialAbilityHeroAttack) {
+            if (playerArmor.getTeam()[indexHeroArmor].getSpecialAbility().equals("Dodge attack")) {
+                playerArmor.getTeam()[indexHeroArmor].applySpecialAbilityHeroArmor();
             } else {
-                aHero = chooseRaceByScreen(aHero);
+                if (playerAttack.getTeam()[indexHeroAttack].getSpecialAbility().equals("Increased attack")) {
+                    heroAttackAttack = heroAttackAttack + (int) (heroAttackAttack * playerAttack.getTeam()[indexHeroAttack].applySpecialAbilityHeroAttack());
+                }
+                if (playerAttack.getTeam()[indexHeroAttack].getSpecialAbility().equals("Health restore")) {
+                    int newHealth = (int) (playerAttack.getTeam()[indexHeroAttack].getHealth() * (1 + playerAttack.getTeam()[indexHeroAttack].applySpecialAbilityHeroAttack()));
+                    int deltaHealth = newHealth - playerAttack.getTeam()[indexHeroAttack].getHealth();
+                    playerAttack.getTeam()[indexHeroAttack].setHealth(newHealth);
+                    System.out.println(playerAttack.getTeam()[indexHeroAttack].getName() + " +" + deltaHealth + "hp");
+                }
+                if (playerArmor.getTeam()[indexHeroArmor].getSpecialAbility().equals("Attack blocking")) {
+                    heroAttackAttack = (int) (heroAttackAttack * playerArmor.getTeam()[indexHeroArmor].applySpecialAbilityHeroArmor());
+                }
+                playerArmor.getTeam()[indexHeroArmor].setHealth((int) (heroArmorHealth - (1 - heroArmorArmor) * heroAttackAttack));
             }
         }
-        return team;
+        if (isSpecialAbilityHeroArmor && !isSpecialAbilityHeroAttack) {
+            if (playerArmor.getTeam()[indexHeroArmor].getSpecialAbility().equals("Dodge attack")) {
+                playerArmor.getTeam()[indexHeroArmor].applySpecialAbilityHeroArmor();
+            } else {
+                if (playerArmor.getTeam()[indexHeroArmor].getSpecialAbility().equals("Attack blocking")) {
+                    heroAttackAttack *= playerArmor.getTeam()[indexHeroArmor].applySpecialAbilityHeroArmor();
+                }
+                playerArmor.getTeam()[indexHeroArmor].setHealth((int) (heroArmorHealth - (1 - heroArmorArmor) * heroAttackAttack));
+            }
+        }
+        if (!isSpecialAbilityHeroArmor && isSpecialAbilityHeroAttack) {
+            if (playerAttack.getTeam()[indexHeroAttack].getSpecialAbility().equals("Increased attack")) {
+                heroAttackAttack *= playerAttack.getTeam()[indexHeroAttack].applySpecialAbilityHeroAttack();
+            }
+            if (playerAttack.getTeam()[indexHeroAttack].getSpecialAbility().equals("Health restore")) {
+                int newHealth = (int) (playerAttack.getTeam()[indexHeroAttack].getHealth() * (1 + playerAttack.getTeam()[indexHeroAttack].applySpecialAbilityHeroAttack()));
+                playerAttack.getTeam()[indexHeroAttack].setHealth(newHealth);
+            }
+            playerArmor.getTeam()[indexHeroArmor].setHealth((int) (heroArmorHealth - (1 - heroArmorArmor) * heroAttackAttack));
+        }
+
+        int damage = heroArmorHealth - playerArmor.getTeam()[indexHeroArmor].getHealth();
+
+
+        System.out.print(playerAttack.getUser() + " " + playerAttack.getTeam()[indexHeroAttack].getName() +
+                "[" + playerAttack.getTeam()[indexHeroAttack].getHealth() + "hp] attacked " + playerArmor.getUser()
+                + " " + playerArmor.getTeam()[indexHeroArmor].getName() + "[" + playerArmor.getTeam()[indexHeroArmor].getHealth()
+                + "hp], ");
+        if (damage != 0) {
+            System.out.print("damage caused is " + damage + "hp\n\n");
+        } else {
+            System.out.print(playerArmor.getTeam()[indexHeroArmor].getName() + " dodged the attack\n\n");
+        }
+
+        playerArmor.getTeam()[indexHeroArmor].setIsSpecialAbility(false);
+        playerAttack.getTeam()[indexHeroAttack].setIsSpecialAbility(false);
+
+        if (playerArmor.getTeam()[indexHeroArmor].getHealth() <= 0) {
+            System.out.println(playerArmor.getUser() + " lost " + playerArmor.getTeam()[indexHeroArmor].getName() + "\n");
+
+            playerArmor.setTeamAfterLose(indexHeroArmor);
+        }
     }
 
-    private Hero chooseRaceByScreen(Hero aHero) {
-        String race = "";
-        while (!race.equals("O") && !race.equals("E") && !race.equals("H") && !race.equals("D")) {
-            System.out.println("Please choose a race of Hero: O - Ork, E - Elf, H - Human and D - Dwarf");
-            race = scan.next();
+    public boolean isGameEnd(Player player) {
+        for (Hero aHero : player.getTeam()) {
+            if (aHero != null) {
+                return false;
+            }
         }
-        switch (race) {
-            case "O":
-                aHero = new Ork("ork");
-                return aHero;
-            case "E":
-                aHero = new Elf("elf");
-                return aHero;
-            case "H":
-                aHero = new Human("human");
-                return aHero;
-            case "D":
-                aHero = new Dwarf("dwarf");
-                return aHero;
-        }
-        return aHero;
+        return true;
     }
 
-    private Hero chooseRaceByRandom(Hero aHero) {
-        int num = random.nextInt(4);
-
-        switch (num) {
-            case 0:
-                aHero = new Ork("ork");
-                return aHero;
-            case 1:
-                aHero = new Elf("elf");
-                return aHero;
-            case 2:
-                aHero = new Human("human");
-                return aHero;
-            case 3:
-                aHero = new Dwarf("dwarf");
-                return aHero;
+    private boolean runRound(Player playerAttack, Player playerArmor, boolean isGameEnd) {
+        stepFight(playerAttack, playerArmor);
+        if (isGameEnd(playerArmor)) {
+            isGameEnd = true;
+            System.out.println();
+            System.out.println(playerAttack.getUser() + " won!");
         }
+        return isGameEnd;
+    }
 
-        return aHero;
+    public void run() {
+        startGame();
+        Player user = new Player();
+        Player comp = new Player();
+
+        user.teamSize();
+        comp.setComputer();
+        comp.initializationTeamForNextUser(user);
+        user.setTeam();
+        comp.setTeam();
+
+        boolean isGameEnd = false;
+
+        while (!isGameEnd) {
+            isGameEnd = runRound(user, comp, isGameEnd);
+            if (isGameEnd) {
+                continue;
+            }
+            isGameEnd = runRound(comp, user, isGameEnd);
+        }
     }
 }

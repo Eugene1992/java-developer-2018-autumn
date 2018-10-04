@@ -1,26 +1,39 @@
 package javaEssential.homework.gameRPG;
 
 public class Dwarf extends Hero {
-    private static final double blockChance = 0.25;
-    private static final double blockPercent = 0.4;
-    private static final String specialAbility = "Attack blocking";
+    private final double blockChance = 0.25;
+    private final double blockPercent = 0.4;
 
     public Dwarf(String name) {
         super(name);
         this.health = 200 + random.nextInt(51);
-        this.armor = 0.1 * random.nextInt(51);
+        this.armor = 0.1 * random.nextInt(6);
         this.attack = 20 + random.nextInt(21);
+        this.specialAbility = "Attack blocking";
     }
 
-    public static double getBlockChance() {
+    public double getBlockChance() {
         return blockChance;
     }
 
-    public static double getBlockPercent() {
+    public double getBlockPercent() {
         return blockPercent;
     }
 
-    public static String getSpecialAbility() {
-        return specialAbility;
+    @Override
+    protected void setIfSpecialAbility() {
+        int chance = (int) (1 / this.getBlockChance());
+        this.setIsSpecialAbility(checkIfSpecialAbility(chance));
+    }
+
+    @Override
+    protected double applySpecialAbilityHeroAttack() {
+        return 1;
+    }
+
+    @Override
+    protected double applySpecialAbilityHeroArmor() {
+        System.out.println("Special ability " + specialAbility);
+        return blockPercent;
     }
 }

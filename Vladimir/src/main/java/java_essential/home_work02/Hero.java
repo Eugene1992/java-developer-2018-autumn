@@ -1,17 +1,44 @@
 package java_essential.home_work02;
 
 public class Hero {
-    String name;
-    int health;
-    int attack;
-    int armor;
+    protected String name;
+    protected int health;
+    protected int attack;
+    protected int armor;
 
-    public Hero(String name, int health, int attack, int armor) {
+    public Hero(String name) {
         this.name = name;
-        this.health = health = (int) (Math.random() * 400) + 100;
-        this.attack = attack = (int) (Math.random() * 100) + 50;
-        this.armor = armor = (int) (Math.random() * 50);
     }
 
+    public String getName() {
+        return name;
+    }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public int getAttack() {
+        return attack;
+    }
+
+    public void setAttack(int attack) {
+        this.attack = attack;
+    }
+
+    public int getArmor() {
+        return armor;
+    }
+
+    public void setArmor(int armor) {
+        this.armor = armor;
+    }
 }
