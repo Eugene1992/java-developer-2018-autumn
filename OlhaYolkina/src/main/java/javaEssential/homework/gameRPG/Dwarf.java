@@ -22,7 +22,7 @@ public class Dwarf extends Hero {
 
     @Override
     protected void setIfSpecialAbility() {
-        int chance = (int) (this.getBlockChance() * 100);
+        int chance = (int) (1 / this.getBlockChance());
         this.setIsSpecialAbility(checkIfSpecialAbility(chance));
     }
 

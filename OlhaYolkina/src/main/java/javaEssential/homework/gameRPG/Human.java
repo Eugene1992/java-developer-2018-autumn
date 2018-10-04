@@ -22,7 +22,7 @@ public class Human extends Hero {
 
     @Override
     protected void setIfSpecialAbility() {
-        int chance = (int) (this.getHealthingChance() * 100);
+        int chance = (int) (1 / this.getHealthingChance());
         this.setIsSpecialAbility(checkIfSpecialAbility(chance));
     }
 

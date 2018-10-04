@@ -22,7 +22,7 @@ public class Elf extends Hero {
 
     @Override
     protected void setIfSpecialAbility() {
-        int chance = (int) (this.getCriticalAttackChance() * 100);
+        int chance = (int) (1 / this.getCriticalAttackChance());
         this.setIsSpecialAbility(checkIfSpecialAbility(chance));
     }
 

@@ -17,7 +17,7 @@ public class Ork extends Hero {
 
     @Override
     protected void setIfSpecialAbility() {
-        int chance = (int) (this.getDodgeAttackChance() * 100);
+        int chance = (int) (1 / this.getDodgeAttackChance());
         this.setIsSpecialAbility(checkIfSpecialAbility(chance));
     }
 
