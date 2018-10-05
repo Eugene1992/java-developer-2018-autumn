@@ -8,6 +8,8 @@ public class Calculating {
     public static void main(String[] args) {
         List<Integer> arrayList = new ArrayList<>();
         List<Integer> linkedList = new LinkedList<>();
+        arrayList = inputList(arrayList);
+        linkedList = inputList(linkedList);
 
         int[][] arrayListResults = calculateValuesForOneList(arrayList);
         int[][] linkedListResults = calculateValuesForOneList(linkedList);
@@ -41,9 +43,16 @@ public class Calculating {
         return (int) (end - start);
     }
 
+    public static List<Integer> inputList(List<Integer> list) {
+        for (int i = 0; i < 100_000; i++) {
+            list.add(0, 333);
+        }
+        return list;
+    }
+
     public static int calculateAvarageValue(List<Integer> list, int position, String functionName) {
         long sumTime = 0;
-        for (int i = 0; i < 100_000; i++) {
+        for (int i = 0; i < 100; i++) {
             sumTime += oneChecking(list, position, functionName);
         }
         return (int) (sumTime / 100_000);
