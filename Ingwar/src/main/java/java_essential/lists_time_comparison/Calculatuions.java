@@ -62,9 +62,9 @@ class Calculatuions {
                 doOperationWithList(currentList, operationIndex, indexColumn);
             }
             long endTime = System.currentTimeMillis();
-            averageSum = averageSum + (endTime - startTime);
+            averageSum = endTime - startTime;
             //}
-            averageSum = averageSum / 10;
+            //averageSum = averageSum / 10;
             lineTimes[indexColumn] = averageSum;
             if (operationIndex == 0 && indexColumn < 2) {
                 currentList.clear();
