@@ -1,16 +1,26 @@
 package homeworks.javaEssential.homework02;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        ListOperation get = new GetOperation();
-        ListOperation set = new SetOperation();
-        ListOperation add = new AddOperation();
-        ListOperation remove = new RemoveOperation();
 
-        
+        List arrayList = new ArrayList();
+        List linkedList = new LinkedList();
 
-//        get.getExecutionTime(get.runOperationInTheMiddleOfList);
+
+        GetOperation get = new GetOperation();
+        SetOperation set = new SetOperation();
+        AddOperation add = new AddOperation();
+        RemoveOperation remove = new RemoveOperation();
+
+//        get.getExecutionTime();
+//        set.getExecutionTime();
+//        add.getExecutionTime();
+//        remove.getExecutionTime();
+
     }
 }
