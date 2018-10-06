@@ -5,7 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Tester {
-    public static final int LIST_SIZE = 500_000;
+
+    public static final int LIST_SIZE = 4_000_000;
     public static String str;
     public static final String STR_START = "     Start     |";
     public static final String STR_MIDDLE = "     Middle     |";
@@ -88,7 +89,7 @@ public class Tester {
             list.remove(elementIndex);
         }
         long end = System.nanoTime();
-        return String.valueOf((end - start) / (double) 1_000_000) + " ms";
+        return String.valueOf((end - start) / 1_000_000) + " ms";
     }
 
 
