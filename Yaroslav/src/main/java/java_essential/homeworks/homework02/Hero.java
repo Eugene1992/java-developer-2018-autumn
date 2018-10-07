@@ -11,6 +11,7 @@ package java_essential.homeworks.homework02;
 public abstract class Hero {
 
     protected String name;
+    protected boolean isAlive;
     protected int health;
     protected int attack;
     protected int armor;
@@ -24,6 +25,11 @@ public abstract class Hero {
         this.health = health;
         this.attack = attack;
         this.armor = armor;
+    }
+
+
+    public boolean isAlive() {
+        return isAlive;
     }
 
     /**
