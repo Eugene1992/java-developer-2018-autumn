@@ -10,7 +10,7 @@ public class StartComparison {
             AccessoryMethods.wirteMessage(value.name());
         }
         ElementValueTypes typeOfElements = AccessoryMethods.getTypeValuefromInput();
-        AccessoryMethods.wirteMessage("?");
+        AccessoryMethods.wirteMessage("Input value:");
         Object elementValue = new Object();
         switch (typeOfElements) {
             case INT:
