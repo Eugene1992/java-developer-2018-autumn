@@ -87,7 +87,7 @@ public class Player {
      * Метод, возвращающий true если атакующий отравил защищаегося
      */
     public void hurtToPoisoning(Hero attacker, Hero defender) {
-        if (attacker instanceof DarkElf) {
+        if (attacker.isPoisonous()) {
             attacker.hurtToPoisoning(defender);
         }
     }

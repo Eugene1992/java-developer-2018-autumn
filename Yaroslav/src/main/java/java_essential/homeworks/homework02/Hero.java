@@ -15,9 +15,10 @@ public abstract class Hero {
     protected int health;
     protected int attack;
     protected int armor;
-    protected int bleedDamage = 0;
-    protected int poisoningDamage = 0;
-    protected int poisoningDamageDuration = 0;
+    protected int bleedDamage;
+    protected int poisoningDamage;
+    protected int poisoningDamageDuration;
+    protected boolean isPoisonous = false;
 
 
     public Hero(String name, int health, int attack, int armor) {
@@ -30,6 +31,10 @@ public abstract class Hero {
 
     public boolean isAlive() {
         return isAlive;
+    }
+
+    public boolean isPoisonous() {
+        return isPoisonous;
     }
 
     /**

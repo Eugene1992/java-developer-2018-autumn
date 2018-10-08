@@ -23,9 +23,13 @@ public class DarkElf extends Elf {
 
     public DarkElf(String name) {
         super(name, DEFAULT_DARK_ELF_HEALTH, DEFAULT_DARK_ELF_ATTACK, DEFAULT_DARK_ELF_ARMOR);
+        this.isPoisonous = true;
     }
 
 
+    /**
+     * Метод проверяющий удалось ли отравить
+     */
     @Override
     public boolean hurtToPoisoning(Hero hero) {
         if (Methods.getTrueClassName(hero).equals("UndeadKnight")) {
