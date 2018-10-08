@@ -8,18 +8,32 @@ import java.util.Scanner;
  * Клас Player создает игроков.
  * Каждый игрок имеет масив персонажей и булевое поле, которое показывает являеться
  * ли игрок компьютером или человеком-игроком.
- * В этом класе также содержиться мнжество методов необходимых для игры(создание
- * персоажей компьютером и человком, атака персонажами друг друга и т.д)
+ * В этом класе также содержиться множество методов необходимых для игры(создание
+ * персонажей компьютером и человком, атака персонажами друг друга и т.д)
  * Ниже будут коментарии к каждому методу.
  */
 
 public class Player {
     private Hero[] heroes;
     private boolean isComputer;
+    private String playerName;
 
-    public Player(int squadSize, boolean isComputer) {
+    /**
+     * Конструктор для создания игрока-компьютера
+     */
+    public Player(int squadSize) {
         this.heroes = new Hero[squadSize];
-        this.isComputer = isComputer;
+        this.isComputer = true;
+        this.playerName = "КОМПЬЮТЕР";
+    }
+
+    /**
+     * Конструктор для создания игрока-человека
+     */
+    public Player(int squadSize, String playerName) {
+        this.heroes = new Hero[squadSize];
+        this.isComputer = false;
+        this.playerName = playerName;
     }
 
     public Hero[] getHeroes() {
@@ -34,7 +48,7 @@ public class Player {
      * Метод, снижающий броню защищаегося воина
      */
     public void armorDestruct(Hero attacker, Hero defender) {
-        if (Methods.getTrueClassName(attacker).equals("Demon")) {
+        if (attacker instanceof Demon) {
             defender.setArmor(attacker.getArmorAfterDestruction(defender.getArmor()));
         }
     }
@@ -43,7 +57,7 @@ public class Player {
      * Метод, возвращающий true если персонаж увернулся от удара
      */
     public boolean dodgeFromAttack(Hero defender) {
-        if (Methods.getTrueClassName(defender).equals("Orc")) {
+        if (defender instanceof Orc) {
             return defender.isDodge();
         }
         return false;
@@ -54,7 +68,7 @@ public class Player {
      */
     public int getEnemyAttackAfterBlock(Hero attacker, Hero defender) {
         int attackPower = attacker.getAttack();
-        if (Methods.getTrueClassName(defender).equals("Dwarf")) {
+        if (defender instanceof Dwarf) {
             attackPower = defender.getAttackAfterBlock(attackPower);
         }
         return attackPower;
@@ -194,10 +208,7 @@ public class Player {
 
     /**Метод, пересоздающий отряд если в нем есть погибший воин(уже без погибшего) */
     public void reformSquad() {
-        if (heroes.length == 1) {
-            Hero[] newHeroes = new Hero[0];
-            heroes = newHeroes;
-        } else {
+        if (checkIfSquadHasFallenHero()) {
             Hero[] newHeroes = new Hero[heroes.length - 1];
             int counter = 0;
             for (Hero hero : heroes) {
@@ -245,34 +256,34 @@ public class Player {
 
     /**Метод, реализующий атаку одним персонажем другого */
     public void heroAttackHero(Hero attacker, Hero defender) {
-        attacker.takeDamageFromBleeding();
-        attacker.takeDamageFromPoisoning();
-        if (attacker.getHealth() <= 0) {
-            dieIfNoHealth(attacker);
-        } else {
+        do {
+            attacker.takeDamageFromBleeding();
+            attacker.takeDamageFromPoisoning();
+            if (attacker.getHealth() <= 0) {
+                dieIfNoHealth(attacker);
+                break;
+            }
             int attackPower = getEnemyAttackAfterBlock(attacker, defender);
             System.out.print(attacker.toStringNameAndRace() + " наносит урон " + attackPower + ". ");
-            if (!dodgeFromAttack(defender)) {
-                System.out.print("Здоровье " + defender.toStringNameAndRace() + " падает с " + defender.getHealth());
-                int newHealth = defender.getHealth() + defender.getArmor() - attackPower;
-                defender.setHealth(newHealth);
-                System.out.println(" до " + defender.getHealth() + ". ");
-                hurtToBleeding(attacker, defender);
-                hurtToPoisoning(attacker, defender);
-                armorDestruct(attacker, defender);
-                if (defender.getHealth() <= 0) {
-                    dieIfNoHealth(defender);
-                }
+            if (dodgeFromAttack(defender)) {
+                break;
             }
-        }
+            System.out.print("Здоровье " + defender.toStringNameAndRace() + " падает с " + defender.getHealth());
+            int newHealth = defender.getHealth() + defender.getArmor() - attackPower;
+            defender.setHealth(newHealth);
+            System.out.println(" до " + defender.getHealth() + ". ");
+            hurtToBleeding(attacker, defender);
+            hurtToPoisoning(attacker, defender);
+            armorDestruct(attacker, defender);
+            if (defender.getHealth() <= 0) {
+                dieIfNoHealth(defender);
+            }
+        } while(false);
     }
 
     /**Метод, реализующий выбор кого будет атаковать персонаж человека и саму атаку */
-    public void playerHeroAttack(Hero personHero, Player computer) {
-        if (computer.checkIfSquadHasFallenHero()) {
-            computer.reformSquad();
-        }
-
+    public void personHeroAttack(Hero personHero, Player computer) {
+        computer.reformSquad();
         System.out.println("Ходит ваш герой " + personHero.toStringNameAndRace());
         int enemyNum;
         while (true) {
@@ -281,16 +292,12 @@ public class Player {
             enemyNum = Methods.inputParameter(0, computer.getSquadSize()) - 1;
             if (enemyNum < 0 || enemyNum > computer.getHeroes().length) {
                 System.out.println("Вы вибрали неверный номер. Повторите ввод.");
-            } else if (computer.getHeroes()[enemyNum] != null) {
-                break;
             } else {
-                System.out.println("Вы выбрали убитого врага. Повторите ввод");
+                break;
             }
         }
         heroAttackHero(personHero, computer.getHeroes()[enemyNum]);
-        if (computer.checkIfSquadHasFallenHero()) {
-            computer.reformSquad();
-        }
+        computer.reformSquad();
     }
 
     /**Метод, реализующий выбор кого будет атаковать персонаж компьютера и саму атаку */
@@ -305,87 +312,91 @@ public class Player {
             }
         }
         heroAttackHero(computerHero, person.getHeroes()[yourNum]);
-        if (person.checkIfSquadHasFallenHero()) {
-            person.reformSquad();
+        person.reformSquad();
+    }
+
+    /**
+     * Метод, вызывающий метод удара от имени человека или компьютера в
+     * зависимости от того кем являеться игрок(Компьютером или Человеком)
+     */
+    public void playerHeroAction(Player playerOne, MyInteger playerOneCounter, Player playerTwo) {
+        System.out.println("\n-----------------------------------------------");
+        if (playerOneCounter.getValue() < playerOne.getSquadSize()) {
+            System.out.println("\n\t\tХОД " + playerOne.playerName);
+            if (!playerOne.isComputer) {
+                playerTwo.outputSquadInformation();
+                playerOne.outputSquadInformation();
+            }
+            Hero hero = playerOne.getHeroes()[playerOneCounter.getValue()];
+            if (!playerOne.isComputer) {
+                personHeroAttack(hero, playerTwo);
+            } else {
+                computerHeroAttack(hero, playerTwo);
+            }
+
+            if (hero.getName() == null) {
+                playerOne.reformSquad();
+            } else {
+                playerOneCounter.incrementValue();
+            }
+            if (playerTwo.checkIfSquadHasFallenHero()) {
+                playerTwo.reformSquad();
+            }
         }
-        //outputSquadInformation();
+    }
+
+    /**
+     * Метод, проверяющий походили ли все персонажи и потому пора ли
+     * заканчивать раунд
+     */
+    public boolean checkIfEndOfRound(Player playerOne, MyInteger playerOneCounter, Player playerTwo, MyInteger playerTwoCounter) {
+        if (playerOne.getSquadSize() == 0 || playerTwo.getSquadSize() == 0) {
+            return true;
+        }
+        if (playerOneCounter.getValue() >= playerOne.getSquadSize()
+                && playerTwoCounter.getValue() >= playerTwo.getSquadSize()) {
+            return true;
+        }
+        return false;
     }
 
     /**Метод, реализующий битву в течении раунда(раунд длиться пока не походят
      * все персонажи) */
-    public void round(Player person, Player computer) {
-        int heroPersonCounter = 0;
-        int heroComputerCounter = 0;
+    public void round(Player playerOne, Player playerTwo) {
+        MyInteger playerOneCounter = new MyInteger(0);
+        MyInteger playerTwoCounter = new MyInteger(0);
         while (true) {
-            if (computer.getSquadSize() == 0 || person.getSquadSize() == 0) {
+            if (checkIfEndOfRound(playerOne, playerOneCounter, playerTwo, playerTwoCounter)) {
                 break;
             }
-            if (heroPersonCounter >= person.getSquadSize() && heroComputerCounter >= computer.getSquadSize()) {
-                break;
-            }
-            System.out.println("\n-----------------------------------------------");
-            if (heroPersonCounter < person.getSquadSize()) {
-                System.out.println("\n\t\tВАШ ХОД ");
-                computer.outputSquadInformation();
-                person.outputSquadInformation();
-                Hero hero = person.getHeroes()[heroPersonCounter];
-                playerHeroAttack(hero, computer);
-                if (hero.getName() == null) {
-                    person.reformSquad();
-                } else {
-                    heroPersonCounter++;
-                }
-                if (computer.checkIfSquadHasFallenHero()) {
-                    computer.reformSquad();
-                }
-                //System.out.println("!@#$%^&&^$# -----" + heroPersonCounter);
-            }
+            playerHeroAction(playerOne, playerOneCounter, playerTwo);
 
-
-            if (person.getSquadSize() == 0 || computer.getSquadSize() == 0) {
-                System.out.println(person.getSquadSize());
+            if (checkIfEndOfRound(playerOne, playerOneCounter, playerTwo, playerTwoCounter)) {
                 break;
             }
-            if (heroPersonCounter >= person.getSquadSize() && heroComputerCounter >= computer.getSquadSize()) {
-                break;
-            }
-            System.out.println("\n-----------------------------------------------");
-            if (heroComputerCounter < computer.getSquadSize()) {
-                System.out.println("\n\t\tХОД ВРАГА");
-                Hero hero = computer.getHeroes()[heroComputerCounter];
-                computerHeroAttack(hero, person);
-                if (hero.getName() == null) {
-                    computer.reformSquad();
-                } else {
-                    heroComputerCounter++;
-                }
-                if (person.checkIfSquadHasFallenHero()) {
-                    person.reformSquad();
-                }
-            }
-            //System.out.println("!@#$%^&&^$#----" + heroComputerCounter);
+            playerHeroAction(playerTwo, playerTwoCounter, playerOne);
         }
     }
 
     /**Метод, реализующий битву в течении всей игры(пока один из игроков не лишиться
      * всех бойцов) */
-    public void fight(Player person, Player computer) {
+    public void fight(Player playerOne, Player playerTwo) {
         System.out.println("\t\tНАЧАЛО БОЯ!!");
         int roundCounter = 1;
         while (true) {
-            if (person.getSquadSize() == 0) {
-                System.out.println("Ваш отряд убит.Вы проиграли!!!!!");
+            if (playerOne.getSquadSize() == 0) {
+                System.out.println("Отряд игрока " + playerOne.playerName + " уничтожен. Победил игрок " + playerTwo.playerName + "!!!!!!");
                 break;
             }
-            if (computer.getSquadSize() == 0) {
-                System.out.println("Отряд врага уничтожен.Вы победили!!!!!!");
+            if (playerTwo.getSquadSize() == 0) {
+                System.out.println("Отряд игрока " + playerTwo.playerName + " уничтожен. Победил игрок " + playerOne.playerName + "!!!!!!");
                 break;
             }
             System.out.println("\n-----------------------------------------------");
             System.out.println("-----------------------------------------------");
             System.out.println("-----------------------------------------------");
             System.out.println("\t\tРАУНД № " + roundCounter);
-            round(person, computer);
+            round(playerOne, playerTwo);
             roundCounter++;
         }
     }
@@ -396,7 +407,7 @@ public class Player {
             System.out.println("\tВражеский отряд");
         }
         if (!isComputer && heroes.length > 0) {
-            System.out.println("\tВаш отряд");
+            System.out.println("\tОтряд игрока " + playerName);
         }
         int counter = 1;
         for (Hero hero : heroes) {

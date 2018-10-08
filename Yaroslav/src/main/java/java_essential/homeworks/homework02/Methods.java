@@ -26,7 +26,7 @@ public class Methods {
     }
 
     /**
-     * Метод, проверяющий число на правильный ввод
+     * Метод, проверяющий число на правильный ввод с клавиатуры
      */
     public static int inputParameter(int from, int to) {
         Scanner sc = new Scanner(System.in);
@@ -44,6 +44,16 @@ public class Methods {
             }
         }
         return i;
+    }
+
+    /**
+     * Метод, возвращающий введенную строку с клавиатуры
+     */
+    public static String inputParameter(String message) {
+        Scanner sc = new Scanner(System.in);
+        System.out.println(message);
+        String s = sc.next();
+        return s;
     }
 
     /**
