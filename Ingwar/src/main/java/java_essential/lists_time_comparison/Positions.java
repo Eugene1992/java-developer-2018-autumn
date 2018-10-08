@@ -1,14 +1,13 @@
 package java_essential.lists_time_comparison;
 
-public enum Operations {
-    ADD("add"),
-    GET("get"),
-    SET("set"),
-    REMOVE("remove");
+public enum Positions {
+    START("Start"),
+    MIDDLE("Middle"),
+    END("End");
 
     private String name;
 
-    Operations(String name) {
+    Positions(String name) {
         this.name = name;
     }
 

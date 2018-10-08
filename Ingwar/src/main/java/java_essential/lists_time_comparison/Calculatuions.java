@@ -47,19 +47,22 @@ class Calculatuions {
 
     private long[] calculateGetTime(List currentList, Operations operationIndex) {
         long[] lineTimes = new long[3];
-        for (int indexColumn = 0; indexColumn < lineTimes.length; indexColumn++) {
+        //for (int indexColumn = 0; indexColumn < lineTimes.length; indexColumn++) {
+        int indexColumn = 0;
+        for (Positions position : Positions.values()) {
             long averageSum = 0;
             long startTime = System.currentTimeMillis();
             for (int index = 0; index < this.quantityOfCycles; index++) {
-                doOperationWithList(currentList, operationIndex, indexColumn);
+                doOperationWithList(currentList, operationIndex, position);
             }
             long endTime = System.currentTimeMillis();
             averageSum = endTime - startTime;
             lineTimes[indexColumn] = averageSum;
-            if (operationIndex.equals(Operations.ADD) && indexColumn < 2) {
+            indexColumn++;
+            if (operationIndex.equals(Operations.ADD) && !position.equals(Positions.END)) {
                 currentList.clear();
             }
-            if (operationIndex.equals(Operations.REMOVE) && indexColumn < 2) {
+            if (operationIndex.equals(Operations.REMOVE) && !position.equals(Positions.END)) {
                 fillListForRemove(currentList);
             }
         }
@@ -72,17 +75,17 @@ class Calculatuions {
         }
     }
 
-    private void doOperationWithList(List currentList, Operations operationIndex, int placeIndex) {
+    private void doOperationWithList(List currentList, Operations operationIndex, Positions placeIndex) {
         switch (operationIndex) {
             case ADD:
                 switch (placeIndex) {
-                    case 0:
+                    case START:
                         currentList.add(0, this.elementValue);
                         break;
-                    case 1:
+                    case MIDDLE:
                         currentList.add(currentList.size() / 2, this.elementValue);
                         break;
-                    case 2:
+                    case END:
                         currentList.add(this.elementValue);
                         break;
                     default:
@@ -90,13 +93,13 @@ class Calculatuions {
                 break;
             case GET:
                 switch (placeIndex) {
-                    case 0:
+                    case START:
                         currentList.get(0);
                         break;
-                    case 1:
+                    case MIDDLE:
                         currentList.get(currentList.size() / 2);
                         break;
-                    case 2:
+                    case END:
                         currentList.get(currentList.size() - 1);
                         break;
                     default:
@@ -104,13 +107,13 @@ class Calculatuions {
                 break;
             case SET:
                 switch (placeIndex) {
-                    case 0:
+                    case START:
                         currentList.set(0, this.elementValue);
                         break;
-                    case 1:
+                    case MIDDLE:
                         currentList.set(currentList.size() / 2, this.elementValue);
                         break;
-                    case 2:
+                    case END:
                         currentList.set(currentList.size() - 1, this.elementValue);
                         break;
                     default:
@@ -118,13 +121,13 @@ class Calculatuions {
                 break;
             case REMOVE:
                 switch (placeIndex) {
-                    case 0:
+                    case START:
                         currentList.remove(0);
                         break;
-                    case 1:
+                    case MIDDLE:
                         currentList.remove(currentList.size() / 2);
                         break;
-                    case 2:
+                    case END:
                         currentList.remove(currentList.size() - 1);
                         break;
                     default:

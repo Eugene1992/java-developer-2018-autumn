@@ -10,7 +10,7 @@ class AccessoryMethods {
 
     static ElementValueTypes getTypeValuefromInput() {
         Scanner scan = new Scanner(System.in);
-        return ElementValueTypes.valueOf(scan.next());
+        return ElementValueTypes.valueOf(scan.next().toUpperCase());
     }
 
     static long getLongValuefromInput() {
@@ -29,26 +29,27 @@ class AccessoryMethods {
     }
 
     static void drawTimeMatrix(long[][] timeMatrix) {
-        AccessoryMethods.wirteMessage("     start   middle  end");
+        AccessoryMethods.wirteMessage("     " + Positions.START.getName() + "   " + Positions.MIDDLE.getName() +
+                "   " + Positions.END.getName());
         for (int indexLine = 0; indexLine < timeMatrix.length; indexLine++) {
             String operation = "";
             switch (indexLine) {
                 case 0:
-                    operation = "add   ";
+                    operation = Operations.ADD.getName() + "   ";
                     break;
                 case 1:
-                    operation = "get   ";
+                    operation = Operations.GET.getName() + "   ";
                     break;
                 case 2:
-                    operation = "set   ";
+                    operation = Operations.SET.getName() + "   ";
                     break;
                 case 3:
-                    operation = "remove";
+                    operation = Operations.REMOVE.getName();
                     break;
                 default:
             }
-            AccessoryMethods.wirteMessage(" " + operation + " " + timeMatrix[indexLine][0] + "  " +
-                    timeMatrix[indexLine][1] + "  " + timeMatrix[indexLine][2]);
+            AccessoryMethods.wirteMessage(" " + operation + " " + timeMatrix[indexLine][0] + "      " +
+                    timeMatrix[indexLine][1] + "       " + timeMatrix[indexLine][2]);
         }
         AccessoryMethods.wirteMessage("");
     }
