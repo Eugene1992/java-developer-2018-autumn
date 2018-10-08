@@ -6,135 +6,128 @@ import java.util.List;
 
 class Calculatuions {
 
-    static void start() {
+    private long quantityOfCycles;
+    private Object elementValue;
+
+    public void setQuantityOfCycles(long quantityOfCycles) {
+        this.quantityOfCycles = quantityOfCycles;
+    }
+
+    public void setElementValue(Object elementValue) {
+        this.elementValue = elementValue;
+    }
+
+    public Calculatuions(long quantityOfCycles, Object elementValue) {
+        this.quantityOfCycles = quantityOfCycles;
+        this.elementValue = elementValue;
+        start();
+    }
+
+    private void start() {
         AccessoryMethods.wirteMessage("This comparison will be calculated for array and linked 100_000 " +
-                "elements lists");//, with average value of 10 tries");
+                "elements lists");
         List<Integer> arrayList = new ArrayList<>();
         List<Integer> linkedList = new LinkedList<>();
         AccessoryMethods.wirteMessage("Time matrix for ArrayList operations");
-        drawTimeMatrix(fillMatrix(arrayList));
+        AccessoryMethods.drawTimeMatrix(fillMatrix(arrayList));
         AccessoryMethods.wirteMessage("Time matrix for LinkedList operations");
-        drawTimeMatrix(fillMatrix(linkedList));
-
+        AccessoryMethods.drawTimeMatrix(fillMatrix(linkedList));
     }
 
-    private static void drawTimeMatrix(long[][] timeMatrix) {
-        AccessoryMethods.wirteMessage("     start   middle  end");
-        for (int indexLine = 0; indexLine < timeMatrix.length; indexLine++) {
-            String operation = "";
-            switch (indexLine) {
-                case 0:
-                    operation = "add   ";
-                    break;
-                case 1:
-                    operation = "get   ";
-                    break;
-                case 2:
-                    operation = "set   ";
-                    break;
-                case 3:
-                    operation = "remove";
-                    break;
-                default:
-            }
-            AccessoryMethods.wirteMessage(" " + operation + " " + timeMatrix[indexLine][0] + "  " +
-                    timeMatrix[indexLine][1] + "  " + timeMatrix[indexLine][2]);
-        }
-        AccessoryMethods.wirteMessage("");
-    }
-
-    static long[][] fillMatrix(List currentList) {
+    private long[][] fillMatrix(List currentList) {
         long[][] arrayMatrix = new long[4][3];
-        for (int indexLine = 0; indexLine < arrayMatrix.length; indexLine++) {
-            long[] lineTimes = calculateGetTime(currentList, indexLine);
+        int indexLine = 0;
+        for (Operations operation : Operations.values()) {
+            long[] lineTimes = calculateGetTime(currentList, operation);
             arrayMatrix[indexLine] = lineTimes;
+            indexLine++;
         }
         return arrayMatrix;
     }
 
-    private static long[] calculateGetTime(List currentList, int operationIndex) {
+    private long[] calculateGetTime(List currentList, Operations operationIndex) {
         long[] lineTimes = new long[3];
-        for (int indexColumn = 0; indexColumn < lineTimes.length; indexColumn++) {
+        //for (int indexColumn = 0; indexColumn < lineTimes.length; indexColumn++) {
+        int indexColumn = 0;
+        for (Positions position : Positions.values()) {
             long averageSum = 0;
-            //for (int indexTry = 0; indexTry < 10; indexTry++) {
             long startTime = System.currentTimeMillis();
-            for (int index = 0; index < 100_000; index++) {
-                doOperationWithList(currentList, operationIndex, indexColumn);
+            for (int index = 0; index < this.quantityOfCycles; index++) {
+                doOperationWithList(currentList, operationIndex, position);
             }
             long endTime = System.currentTimeMillis();
             averageSum = endTime - startTime;
-            //}
-            //averageSum = averageSum / 10;
             lineTimes[indexColumn] = averageSum;
-            if (operationIndex == 0 && indexColumn < 2) {
+            indexColumn++;
+            if (operationIndex.equals(Operations.ADD) && !position.equals(Positions.END)) {
                 currentList.clear();
             }
-            if (operationIndex == 3 && indexColumn < 2) {
+            if (operationIndex.equals(Operations.REMOVE) && !position.equals(Positions.END)) {
                 fillListForRemove(currentList);
             }
         }
         return lineTimes;
     }
 
-    private static void fillListForRemove(List currentList) {
-        for (int index = 0; index < 100_000; index++) {
-            currentList.add(777);
+    private void fillListForRemove(List currentList) {
+        for (int index = 0; index < this.quantityOfCycles; index++) {
+            currentList.add(this.elementValue);
         }
     }
 
-    private static void doOperationWithList(List currentList, int operationIndex, int placeIndex) {
+    private void doOperationWithList(List currentList, Operations operationIndex, Positions placeIndex) {
         switch (operationIndex) {
-            case 0:
+            case ADD:
                 switch (placeIndex) {
-                    case 0:
-                        currentList.add(0, 777);
+                    case START:
+                        currentList.add(0, this.elementValue);
                         break;
-                    case 1:
-                        currentList.add(currentList.size() / 2, 777);
+                    case MIDDLE:
+                        currentList.add(currentList.size() / 2, this.elementValue);
                         break;
-                    case 2:
-                        currentList.add(777);
+                    case END:
+                        currentList.add(this.elementValue);
                         break;
                     default:
                 }
                 break;
-            case 1:
+            case GET:
                 switch (placeIndex) {
-                    case 0:
+                    case START:
                         currentList.get(0);
                         break;
-                    case 1:
+                    case MIDDLE:
                         currentList.get(currentList.size() / 2);
                         break;
-                    case 2:
+                    case END:
                         currentList.get(currentList.size() - 1);
                         break;
                     default:
                 }
                 break;
-            case 2:
+            case SET:
                 switch (placeIndex) {
-                    case 0:
-                        currentList.set(0, 888);
+                    case START:
+                        currentList.set(0, this.elementValue);
                         break;
-                    case 1:
-                        currentList.set(currentList.size() / 2, 888);
+                    case MIDDLE:
+                        currentList.set(currentList.size() / 2, this.elementValue);
                         break;
-                    case 2:
-                        currentList.set(currentList.size() - 1, 888);
+                    case END:
+                        currentList.set(currentList.size() - 1, this.elementValue);
                         break;
                     default:
                 }
                 break;
-            case 3:
+            case REMOVE:
                 switch (placeIndex) {
-                    case 0:
+                    case START:
                         currentList.remove(0);
                         break;
-                    case 1:
+                    case MIDDLE:
                         currentList.remove(currentList.size() / 2);
                         break;
-                    case 2:
+                    case END:
                         currentList.remove(currentList.size() - 1);
                         break;
                     default:

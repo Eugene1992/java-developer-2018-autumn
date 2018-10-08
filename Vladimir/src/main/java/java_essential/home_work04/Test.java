@@ -4,8 +4,10 @@ import java.util.List;
 
 public class Test {
     public static void main(String[] args) {
-        Lists objectForOutPutList = new Lists();
-        objectForOutPutList.outPutNewLinkedList();
-        objectForOutPutList.outPutNewArrayList();
+//        Lists objectForOutPutList = new Lists();
+//        objectForOutPutList.outPutNewArrayList();
+//        System.out.println("");
+//        objectForOutPutList.outPutNewLinkedList();
+        Lists.getTwoTableWithArrayAndLinkedLists();
     }
 }
