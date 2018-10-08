@@ -24,5 +24,7 @@ public class StartComparison {
                 break;
         }
         new Calculatuions(quantityOfCycles, elementValue);
+        AccessoryMethods.wirteMessage("/n");
+        AccessoryMethods.wirteMessage("Comparison finished");
     }
 }
