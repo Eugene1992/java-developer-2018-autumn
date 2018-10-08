@@ -6,26 +6,25 @@ import java.util.List;
 
 class Calculatuions {
 
-    private long quantityOfCycles;
+    private long quantityOfElements;
     private Object elementValue;
 
-    public void setQuantityOfCycles(long quantityOfCycles) {
-        this.quantityOfCycles = quantityOfCycles;
+    public void setQuantityOfElements(long quantityOfElements) {
+        this.quantityOfElements = quantityOfElements;
     }
 
     public void setElementValue(Object elementValue) {
         this.elementValue = elementValue;
     }
 
-    public Calculatuions(long quantityOfCycles, Object elementValue) {
-        this.quantityOfCycles = quantityOfCycles;
+    public Calculatuions(long quantityOfElements, Object elementValue) {
+        this.quantityOfElements = quantityOfElements;
         this.elementValue = elementValue;
         start();
     }
 
     private void start() {
-        AccessoryMethods.wirteMessage("This comparison will be calculated for array and linked 100_000 " +
-                "elements lists");
+        AccessoryMethods.wirteMessage("This comparison will be calculated for array and linked lists");
         List<Integer> arrayList = new ArrayList<>();
         List<Integer> linkedList = new LinkedList<>();
         AccessoryMethods.wirteMessage("Time matrix for ArrayList operations");
@@ -52,7 +51,7 @@ class Calculatuions {
         for (Positions position : Positions.values()) {
             long averageSum = 0;
             long startTime = System.currentTimeMillis();
-            for (int index = 0; index < this.quantityOfCycles; index++) {
+            for (int index = 0; index < this.quantityOfElements; index++) {
                 doOperationWithList(currentList, operationIndex, position);
             }
             long endTime = System.currentTimeMillis();
@@ -70,7 +69,7 @@ class Calculatuions {
     }
 
     private void fillListForRemove(List currentList) {
-        for (int index = 0; index < this.quantityOfCycles; index++) {
+        for (int index = 0; index < this.quantityOfElements; index++) {
             currentList.add(this.elementValue);
         }
     }
