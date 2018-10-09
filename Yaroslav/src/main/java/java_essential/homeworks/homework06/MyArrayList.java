@@ -74,9 +74,7 @@ public class MyArrayList implements List {
         if (o == null) {
             return true;
         }
-        if (capacity == size + 1) {
-            makeCapacityBigger();
-        }
+        makeCapacityBigger();
         values[size] = o;
         size++;
         return true;
@@ -100,12 +98,14 @@ public class MyArrayList implements List {
                 for (int j = removedElementIndex; j < size - 1; j++) {
                     values[j] = values[j + 1];
                 }
+                break;
             }
         }
         if (isFound) {
             values[size - 1] = null;
             size--;
         }
+        makeCapacitySmaller();
         return true;
     }
 
@@ -151,9 +151,7 @@ public class MyArrayList implements List {
     @Override
     public void add(int index, Object element) {
         if (index <= size && index >= 0) {
-            if (capacity == size + 1) {
-                makeCapacityBigger();
-            }
+            makeCapacityBigger();
             for (int i = size; i > index; i--) {
                 values[i] = values[i - 1];
             }
@@ -177,6 +175,7 @@ public class MyArrayList implements List {
                 values[i] = values[i + 1];
             }
         }
+        makeCapacitySmaller();
         return null;
     }
 
@@ -209,21 +208,56 @@ public class MyArrayList implements List {
     }
 
 
+    /**
+     * Метод, который удаляет из списка все элементы, значения которых равны любому
+     * из элементов переданой колекции
+     */
     @Override
     public boolean removeAll(Collection c) {
-        return false;
+        if (c == null) {
+            return false;
+        }
+        for (Object object : c) {
+            while (contains(object)) {
+                remove(object);
+            }
+        }
+        return true;
     }
 
+
+    /**
+     * Метод, который проверяет входят ли все элементы передвной
+     * колекции в список
+     */
     @Override
     public boolean containsAll(Collection c) {
-        return false;
+        if (c == null) {
+            return false;
+        }
+        for (Object object : c) {
+            if (!contains(object)) {
+                return false;
+            }
+        }
+        return true;
     }
 
+
+    /**
+     * Метод, который добавляет в конец списка все элементы переданой
+     * колекции
+     */
     @Override
     public boolean addAll(Collection c) {
         return addAll(size, c);
     }
 
+
+    /**
+     * Метод, который вставляет в список все элементы переданой
+     * колекции. Вставляет начиная с номера єлемента index
+     */
     @Override
     public boolean addAll(int index, Collection c) {
         if (c == null) {
@@ -237,19 +271,35 @@ public class MyArrayList implements List {
     }
 
 
-    /** Дополнительный метод */
-    /**
+    /** Дополнительный метод
      * Метод для разширения списка
      */
     private void makeCapacityBigger() {
-        capacity = (int) (capacity * 1.5);
-        Object[] newValues = new Object[capacity];
-        copy(values, newValues, 0, size);
-        values = newValues;
+        if (capacity == size + 1) {
+            capacity = (int) (capacity * 1.5);
+            Object[] newValues = new Object[capacity];
+            copy(values, newValues, 0, size);
+            values = newValues;
+            //System.out.println("BIGGER");
+        }
     }
 
-    /** Дополнительный метод */
+
     /**
+     * Дополнительный метод
+     * Метод для сужения списка
+     */
+    private void makeCapacitySmaller() {
+        if (size < capacity / 3) {
+            capacity = (int) (capacity * 0.5);
+            Object[] newValues = new Object[capacity];
+            copy(values, newValues, 0, size);
+            values = newValues;
+            //System.out.println("SMALLER");
+        }
+    }
+
+    /** Дополнительный метод
      * Метод для копирования списка
      */
     private void copy(Object[] arrayWhichCopy, Object[] arrayWhereCopy, int from, int to) {
