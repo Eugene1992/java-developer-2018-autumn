@@ -7,6 +7,13 @@ import java.util.ListIterator;
 
 public class NewUserList implements List {
 
+    private static final int DEFAULT_CAPACITY = 10;
+    private int size;
+
+    public NewUserList() {
+
+    }
+
     @Override
     public int size() {
         int listSize = 0;
