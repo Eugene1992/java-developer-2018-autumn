@@ -23,7 +23,9 @@ public class StartComparison {
                 elementValue = AccessoryMethods.getStringValuefromInput();
                 break;
         }
-        new Calculatuions(quantityOfCycles, elementValue);
+        Calculatuions comparison = new Calculatuions(quantityOfCycles, elementValue);
+        comparison.start();
+
         AccessoryMethods.wirteMessage("Comparison finished");
     }
 }

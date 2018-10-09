@@ -20,10 +20,9 @@ class Calculatuions {
     public Calculatuions(long quantityOfElements, Object elementValue) {
         this.quantityOfElements = quantityOfElements;
         this.elementValue = elementValue;
-        start();
     }
 
-    private void start() {
+    public void start() {
         AccessoryMethods.wirteMessage("This comparison will be calculated for array and linked lists");
         List<Integer> arrayList = new ArrayList<>();
         List<Integer> linkedList = new LinkedList<>();
