@@ -1,6 +1,8 @@
 package java_essential.homeworks.homework06;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Tester {
@@ -36,18 +38,20 @@ public class Tester {
         /** Тест метода add(int index, Object element)*/
         int k = 100;
         int index = 2;
+        System.out.println("Список - " + Methods.output(myArrayList));
         System.out.println("Добавим элемент " + k + " по индексу " + index);
         myArrayList.add(index, k);
         System.out.println("Список - " + Methods.output(myArrayList));
-        System.out.println("Добавим элемент " + (k + 11) + "по индексу " + (index + 2));
-        myArrayList.add(index + 2, k + 11);
+        System.out.println("Добавим элемент " + (k + 11) + " по индексу " + myArrayList.size());
+        myArrayList.add(myArrayList.size(), k + 11);
         System.out.println("Список - " + Methods.output(myArrayList));
         System.out.println();
 
 
         /** Тест методов remove(Object o) и remove(int index)*/
         k = 6;
-        index = 7;
+        index = 6;
+        System.out.println("Список - " + Methods.output(myArrayList));
         System.out.println("Удалим элемент " + k);
         myArrayList.remove((Object) k);
         System.out.println("Список - " + Methods.output(myArrayList));
@@ -76,6 +80,30 @@ public class Tester {
         /** Тест метода indexOf() и lastIndexOf() */
         System.out.println("Индекс первого вхождения елемента " + k + " = " + myArrayList.indexOf(k));
         System.out.println("Индекс последнего вхождения елемента " + k + " = " + myArrayList.lastIndexOf(k));
+        System.out.println();
+
+
+        /** Тест метода addAll(int index, Collection c)*/
+        Collection linkedList = new LinkedList();
+        System.out.println("Список - " + Methods.output(myArrayList));
+        linkedList.add(200);
+        linkedList.add(300);
+        index = 2;
+        System.out.println("Добавляемый Список - " + linkedList + " по индексу " + index);
+        myArrayList.addAll(index, linkedList);
+        System.out.println("Список - " + Methods.output(myArrayList));
+        System.out.println();
+
+
+        /** Тест метода addAll(Collection c)*/
+        Collection arrayList = new ArrayList();
+        System.out.println("Список - " + Methods.output(myArrayList));
+        arrayList.add(444);
+        arrayList.add(555);
+        arrayList.add(666);
+        System.out.println("Добавляемый Список - " + arrayList);
+        myArrayList.addAll(arrayList);
+        System.out.println("Список - " + Methods.output(myArrayList));
         System.out.println();
 
 
