@@ -38,12 +38,19 @@ public class Methods {
 
 
     /**
-     * Метод инициализирующий список значениями
+     * Метод, получающий имя класа без пакетов
      */
-    public static List initializeList(List<Object> list, int size) {
-        for (int i = 0; i < size; i++) {
-            list.add(i);
+    public static String getClassName(Object o) {
+        char[] chars = o.getClass().getName().toCharArray();
+        String newStr = "";
+        for (int i = chars.length - 1; i > 0; i--) {
+            if (chars[i] == '.') {
+                break;
+            } else {
+                newStr = chars[i] + newStr;
+            }
         }
-        return list;
+        return newStr;
     }
+
 }

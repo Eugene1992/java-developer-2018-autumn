@@ -23,13 +23,23 @@ public class TimeCounter {
         this.size = size;
     }
 
+    /**
+     * Метод инициализирующий список значениями
+     */
+    public List initializeList() {
+        for (int i = 0; i < size; i++) {
+            list.add(i);
+        }
+        return list;
+    }
+
 
     /**
      * Метод, который заполняет матрицу результатами подсчетов времени
      * выполнения методов, а также названиями методов и позициями
      */
     public void run() {
-        Methods.initializeList(list, size);
+        initializeList();
         fillResultMatrix();
         changeResultMatrix();
         outputResultMatrix();
@@ -41,12 +51,7 @@ public class TimeCounter {
      * выполнения методов, а также названиями методов и позициями
      */
     private void fillResultMatrix() {
-        if (list instanceof ArrayList) {
-            resultMatrix[0][0] = "ArrayList[" + list.size() + "]";
-        }
-        if (list instanceof LinkedList) {
-            resultMatrix[0][0] = "LinkedList[" + list.size() + "]";
-        }
+        resultMatrix[0][0] = Methods.getClassName(list) + "[" + list.size() + "]";
         int i = 1;
         for (Position position : Position.values()) {
             resultMatrix[0][i] = position.toString();
