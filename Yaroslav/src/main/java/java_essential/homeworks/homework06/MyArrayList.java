@@ -109,15 +109,7 @@ public class MyArrayList implements List {
         return true;
     }
 
-    @Override
-    public boolean addAll(Collection c) {
-        return false;
-    }
 
-    @Override
-    public boolean addAll(int index, Collection c) {
-        return false;
-    }
 
     /**
      * Метод, который удаляет все элементы из списка
@@ -158,7 +150,7 @@ public class MyArrayList implements List {
      */
     @Override
     public void add(int index, Object element) {
-        if (index < size && index >= 0) {
+        if (index <= size && index >= 0) {
             if (capacity == size + 1) {
                 makeCapacityBigger();
             }
@@ -227,21 +219,21 @@ public class MyArrayList implements List {
         return false;
     }
 
+    @Override
+    public boolean addAll(Collection c) {
+        return addAll(size, c);
+    }
 
-    /** Дополнительный метод */
-    /**
-     * Метод для вывода списка
-     */
-    public String output() {
-        String res = "[";
-        for (int i = 0; i < size; i++) {
-            res += values[i].toString();
-            if (i < size - 1) {
-                res += ", ";
-            }
+    @Override
+    public boolean addAll(int index, Collection c) {
+        if (c == null) {
+            return false;
         }
-        res += "]";
-        return res;
+        for (Object element : c) {
+            add(index, element);
+            index++;
+        }
+        return true;
     }
 
 
