@@ -8,30 +8,33 @@ import java.util.ListIterator;
 public class NewUserList implements List {
 
     private static final int DEFAULT_CAPACITY = 10;
+    private int capacity;
     private int size;
+    private Object[] elementsArray;
 
     public NewUserList() {
-
+        this.capacity = DEFAULT_CAPACITY;
+        this.size = 0;
+        this.elementsArray = new Object[DEFAULT_CAPACITY];
     }
 
     @Override
     public int size() {
-        int listSize = 0;
-        for (Object element : this) {
-            if (element != null) {
-                listSize++;
-            }
-        }
-        return listSize;
+        return this.size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return this.size == 0;
     }
 
     @Override
-    public boolean contains(Object o) {
+    public boolean contains(Object newObject) {
+        for (int index = 0; index < this.size; index++) {
+            if (this.elementsArray[index].equals(newObject)) {
+                return true;
+            }
+        }
         return false;
     }
 
@@ -42,62 +45,102 @@ public class NewUserList implements List {
 
     @Override
     public Object[] toArray() {
-        return new Object[0];
+        Object[] objectArray = new Object[this.size];
+        for (int index = 0; index < this.size; index++) {
+            objectArray[index] = this.elementsArray[index];
+        }
+        return objectArray;
     }
 
     @Override
-    public boolean add(Object o) {
-        return false;
+    public boolean add(Object newObject) {
+        checkAndEnlargeCapacity(0);
+        this.size++;
+        this.elementsArray[this.size - 1] = newObject;
+        return true;
     }
 
     @Override
-    public boolean remove(Object o) {
-        return false;
+    public boolean remove(Object newObject) {
+        return removeElementFromList(newObject);
     }
 
     @Override
-    public boolean addAll(Collection c) {
-        return false;
+    public boolean addAll(Collection newCollection) {
+        checkAndEnlargeCapacity(newCollection.size());
+        for (Object newObject : newCollection) {
+            this.size++;
+            this.elementsArray[this.size - 1] = newObject;
+        }
+        return true;
     }
 
     @Override
-    public boolean addAll(int index, Collection c) {
-        return false;
+    public boolean addAll(int index, Collection newCollection) {
+        this.size += newCollection.size();
+        checkIndexForOut(index);
+        checkAndEnlargeCapacity(newCollection.size());
+        insertCollectionIntoList(index, newCollection);
+        return true;
     }
 
     @Override
     public void clear() {
-
+        Object[] newArray = new Object[DEFAULT_CAPACITY];
+        this.elementsArray = newArray;
+        this.size = 0;
+        this.capacity = DEFAULT_CAPACITY;
     }
 
     @Override
     public Object get(int index) {
-        return null;
+        checkIndexForOut(index);
+        return this.elementsArray[index];
     }
 
     @Override
     public Object set(int index, Object element) {
-        return null;
-    }
+        checkIndexForOut(index);
+        this.elementsArray[index] = element;
+        return this.elementsArray[index];
+    }//что тут возвращать? ArrayList возвращает старое значение
 
     @Override
     public void add(int index, Object element) {
-
+        this.size++;
+        checkIndexForOut(index);
+        checkAndEnlargeCapacity(0);
+        insertElementIntoList(index, element);
     }
 
     @Override
     public Object remove(int index) {
-        return null;
+        checkIndexForOut(index);
+        removeElementByIndex(index);
+        this.size--;
+        return this.elementsArray[index];
+    }//что тут возвращать? ArrayList возвращает старое значение
+
+    @Override
+    public int indexOf(Object newObject) {
+        for (int index = 0; index < this.size; index++) {
+            Object element = this.elementsArray[index];
+            if (element.equals(newObject)) {
+                return index;
+            }
+        }
+        return -1;
     }
 
     @Override
-    public int indexOf(Object o) {
-        return 0;
-    }
-
-    @Override
-    public int lastIndexOf(Object o) {
-        return 0;
+    public int lastIndexOf(Object newObject) {
+        for (int index = this.size - 1; index >= 0; index--) {
+            Object element = this.elementsArray[index];
+            if (element.equals(newObject)) {
+                return index;
+            }
+        }
+        return -1;
     }
 
     @Override
@@ -121,17 +164,104 @@ public class NewUserList implements List {
     }
 
     @Override
-    public boolean removeAll(Collection c) {
-        return false;
+    public boolean removeAll(Collection newCollection) {
+        boolean objectRemoved = false;
+        for (Object newObject : newCollection) {
+            objectRemoved = removeElementFromList(newObject);
+        }
+        return objectRemoved;
     }
 
     @Override
-    public boolean containsAll(Collection c) {
-        return false;
-    }
+    public boolean containsAll(Collection newCollection) {
+        int objectCount = 0;
+        for (Object newObject : newCollection) {
+            if (contains(newObject)) {
+                objectCount++;
+            }
+        }
+        return objectCount == newCollection.size();
+    }//true - только если все элементы коллекции есть в списке
 
     @Override
     public Object[] toArray(Object[] a) {
         return new Object[0];
+    }
+
+    private void checkAndEnlargeCapacity(int addCapacity) {
+        if (this.size + addCapacity + 1 >= this.capacity) {
+            this.capacity = (this.capacity + addCapacity) * 3 / 2 + 1;
+            Object[] newArray = new Object[this.capacity];
+            for (int index = 0; index < this.size; index++) {
+                newArray[index] = this.elementsArray[index];
+            }
+            this.elementsArray = newArray;
+        }
+    }
+
+    private boolean removeElementFromList(Object newObject) {
+        boolean objectRemoved = false;
+        for (int index = 0; index < this.size; index++) {
+            if (this.elementsArray[index].equals(newObject)) {
+                removeElementByIndex(index);
+                this.size--;
+                objectRemoved = true;
+                index--;
+            }//объект может присутствовать не один раз
+        }
+        return objectRemoved;
+    }
+
+    private void removeElementByIndex(int indexRemove) {
+        Object[] newArray = new Object[this.capacity];
+        for (int index = 0; index < indexRemove; index++) {
+            newArray[index] = this.elementsArray[index];
+        }
+        if (indexRemove + 1 < this.size) {
+            for (int index = indexRemove + 1; index < this.size; index++) {
+                newArray[index - 1] = this.elementsArray[index];
+            }
+        }
+        this.elementsArray = newArray;
+    }
+
+    private void checkIndexForOut(int index) {
+        if (index < 0 || index >= this.size) {
+            throw new IndexOutOfBoundsException("Index out of list borders!");
+        }
+    }
+
+    private void insertCollectionIntoList(int indexInsert, Collection newCollection) {
+        Object[] newArray = new Object[this.capacity];
+        int breakPoint = 0;
+        for (int index = 0; index < indexInsert; index++) {
+            newArray[index] = this.elementsArray[index];
+            breakPoint++;
+        }
+        for (Object newObject : newCollection) {
+            newArray[indexInsert] = newObject;
+            indexInsert++;
+        }
+        if (indexInsert < this.size) {
+            for (int index = indexInsert; index < this.size; index++) {
+                breakPoint++;
+                newArray[index] = this.elementsArray[breakPoint];
+            }
+        }
+        this.elementsArray = newArray;
+    }
+
+    private void insertElementIntoList(int indexInsert, Object element) {
+        Object[] newArray = new Object[this.capacity];
+        for (int index = 0; index < indexInsert; index++) {
+            newArray[index] = this.elementsArray[index];
+        }
+        newArray[indexInsert] = element;
+        if (indexInsert < this.size) {
+            for (int index = indexInsert + 1; index < this.size; index++) {
+                newArray[index] = this.elementsArray[index - 1];
+            }
+        }
+        this.elementsArray = newArray;
     }
 }

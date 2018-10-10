@@ -1,5 +1,7 @@
 package java_essential.lists_time_comparison;
 
+import java_essential.newListClass.NewUserList;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -26,10 +28,13 @@ class Calculatuions {
         AccessoryMethods.wirteMessage("This comparison will be calculated for array and linked lists");
         List<Integer> arrayList = new ArrayList<>();
         List<Integer> linkedList = new LinkedList<>();
+        List<Integer> userList = new NewUserList();
         AccessoryMethods.wirteMessage("Time matrix for ArrayList operations");
         AccessoryMethods.drawTimeMatrix(fillMatrix(arrayList));
         AccessoryMethods.wirteMessage("Time matrix for LinkedList operations");
         AccessoryMethods.drawTimeMatrix(fillMatrix(linkedList));
+        AccessoryMethods.wirteMessage("Time matrix for NewUserList operations");
+        AccessoryMethods.drawTimeMatrix(fillMatrix(userList));
     }
 
     private long[][] fillMatrix(List currentList) {
