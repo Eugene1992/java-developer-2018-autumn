@@ -2,7 +2,7 @@ package java_essential.lists_time_comparison;
 
 public class StartComparison {
     public static void main(String[] args) {
-        AccessoryMethods.wirteMessage("Input quantity of cycles to check " +
+        AccessoryMethods.wirteMessage("Input quantity of list elements to check " +
                 "operations time");
         long quantityOfCycles = AccessoryMethods.getLongValuefromInput();
         AccessoryMethods.wirteMessage("Input type of value to fill the list elements");

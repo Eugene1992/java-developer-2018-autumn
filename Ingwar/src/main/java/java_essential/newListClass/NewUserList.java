@@ -18,6 +18,18 @@ public class NewUserList implements List {
         this.elementsArray = new Object[DEFAULT_CAPACITY];
     }
 
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public Object[] getElementsArray() {
+        return elementsArray;
+    }
+
     @Override
     public int size() {
         return this.size;
@@ -54,8 +66,8 @@ public class NewUserList implements List {
 
     @Override
     public boolean add(Object newObject) {
-        checkAndEnlargeCapacity(0);
         this.size++;
+        checkAndEnlargeCapacity(0);
         this.elementsArray[this.size - 1] = newObject;
         return true;
     }
@@ -69,15 +81,13 @@ public class NewUserList implements List {
     public boolean addAll(Collection newCollection) {
         checkAndEnlargeCapacity(newCollection.size());
         for (Object newObject : newCollection) {
-            this.size++;
-            this.elementsArray[this.size - 1] = newObject;
+            this.add(newObject);
         }
         return true;
     }
 
     @Override
     public boolean addAll(int index, Collection newCollection) {
-        this.size += newCollection.size();
         checkIndexForOut(index);
         checkAndEnlargeCapacity(newCollection.size());
         insertCollectionIntoList(index, newCollection);
@@ -214,14 +224,19 @@ public class NewUserList implements List {
 
     private void removeElementByIndex(int indexRemove) {
         Object[] newArray = new Object[this.capacity];
-        for (int index = 0; index < indexRemove; index++) {
-            newArray[index] = this.elementsArray[index];
-        }
+//        for (int index = 0; index < indexRemove; index++) {
+//            newArray[index] = this.elementsArray[index];
+//        }
+//        if (indexRemove + 1 < this.size) {
+//            for (int index = indexRemove + 1; index < this.size; index++) {
+//                newArray[index - 1] = this.elementsArray[index];
+//            }
+//        }
+        System.arraycopy(this.elementsArray, 0, newArray, 0, indexRemove);
         if (indexRemove + 1 < this.size) {
-            for (int index = indexRemove + 1; index < this.size; index++) {
-                newArray[index - 1] = this.elementsArray[index];
+            System.arraycopy(this.elementsArray, indexRemove + 1, newArray, indexRemove,
+                    this.size - indexRemove - 1);
             }
-        }
         this.elementsArray = newArray;
     }
 
@@ -233,35 +248,50 @@ public class NewUserList implements List {
 
     private void insertCollectionIntoList(int indexInsert, Collection newCollection) {
         Object[] newArray = new Object[this.capacity];
-        int breakPoint = 0;
-        for (int index = 0; index < indexInsert; index++) {
-            newArray[index] = this.elementsArray[index];
-            breakPoint++;
-        }
+        this.size += newCollection.size();
+//        int breakPoint = 0;
+//        for (int index = 0; index < indexInsert; index++) {
+//            newArray[index] = this.elementsArray[index];
+//            breakPoint++;
+//        }
+//        for (Object newObject : newCollection) {
+//            newArray[indexInsert] = newObject;
+//            indexInsert++;
+//        }
+//        if (indexInsert < this.size) {
+//            for (int index = indexInsert; index < this.size; index++) {
+//                breakPoint++;
+//                newArray[index] = this.elementsArray[breakPoint];
+//            }
+//        }
+        System.arraycopy(this.elementsArray, 0, newArray, 0, indexInsert);
+        int index = indexInsert;
         for (Object newObject : newCollection) {
-            newArray[indexInsert] = newObject;
-            indexInsert++;
+            newArray[index] = newObject;
+            index++;
         }
-        if (indexInsert < this.size) {
-            for (int index = indexInsert; index < this.size; index++) {
-                breakPoint++;
-                newArray[index] = this.elementsArray[breakPoint];
-            }
+        if (index < this.size) {
+            System.arraycopy(this.elementsArray, indexInsert, newArray, index,
+                    this.size - indexInsert - 1);
         }
         this.elementsArray = newArray;
     }
 
     private void insertElementIntoList(int indexInsert, Object element) {
         Object[] newArray = new Object[this.capacity];
-        for (int index = 0; index < indexInsert; index++) {
-            newArray[index] = this.elementsArray[index];
-        }
+//        for (int index = 0; index < indexInsert; index++) {
+//            newArray[index] = this.elementsArray[index];
+//        }
+//        newArray[indexInsert] = element;
+//        if (indexInsert < this.size) {
+//            for (int index = indexInsert + 1; index < this.size; index++) {
+//                newArray[index] = this.elementsArray[index - 1];
+//            }
+//        }
+        System.arraycopy(this.elementsArray, 0, newArray, 0, indexInsert);
         newArray[indexInsert] = element;
-        if (indexInsert < this.size) {
-            for (int index = indexInsert + 1; index < this.size; index++) {
-                newArray[index] = this.elementsArray[index - 1];
-            }
-        }
+        System.arraycopy(this.elementsArray, indexInsert, newArray, indexInsert + 1,
+                this.size - indexInsert - 1);
         this.elementsArray = newArray;
     }
 }
