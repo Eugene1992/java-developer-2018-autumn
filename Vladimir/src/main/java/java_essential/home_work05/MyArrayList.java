@@ -1,8 +1,11 @@
 package java_essential.home_work05;
 
 import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
-public class MyArrayList {
+public class MyArrayList implements List {
     private Object[] arrayForList;
     private Object[] newArrayForChange;
     private int arraySize;
@@ -40,6 +43,11 @@ public class MyArrayList {
         return false;
     }
 
+    @Override
+    public Iterator iterator() {
+        return null;
+    }
+
     public Object[] toArray() {
         newArrayForChange = new Object[size()];
         int i = 0;
@@ -48,6 +56,11 @@ public class MyArrayList {
             i++;
         }
         return newArrayForChange;
+    }
+
+    @Override
+    public Object[] toArray(Object[] a) {
+        return new Object[0];
     }
 
     public boolean add(Object o) {
@@ -90,6 +103,11 @@ public class MyArrayList {
             System.out.println("Not found element with your index");
         }
         return true;
+    }
+
+    @Override
+    public boolean retainAll(Collection c) {
+        return false;
     }
 
     public void clear() {
@@ -164,6 +182,21 @@ public class MyArrayList {
             }
         }
         return -1;
+    }
+
+    @Override
+    public ListIterator listIterator() {
+        return null;
+    }
+
+    @Override
+    public ListIterator listIterator(int index) {
+        return null;
+    }
+
+    @Override
+    public List subList(int fromIndex, int toIndex) {
+        return null;
     }
 
     public boolean removeAll(Collection c) {

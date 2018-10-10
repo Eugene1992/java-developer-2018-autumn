@@ -11,5 +11,16 @@
 
     <artifactId>Yaroslav</artifactId>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.cbs.edu</groupId>
+            <version>1.0-SNAPSHOT</version>
+            <artifactId>Vladimir</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.cbs.edu</groupId>
+            <version>1.0-SNAPSHOT</version>
+            <artifactId>Ingwar</artifactId>
+        </dependency>
+    </dependencies>
 </project>
