@@ -28,6 +28,12 @@ public class NewUserStack {
         }
         return currentQuantity;
     }
+    
+    private void checkIndexForOut(int index) {
+        if (index < 0 || index >= this.elementsArray.length) {
+            throw new IndexOutOfBoundsException("Index out of list borders!");
+        }
+    }
 
     public void checkEnlargeSize(int additionalSize) {
         if (getCurrentQuantityOfElements() + additionalSize > this.elementsArray.length) {
@@ -43,10 +49,10 @@ public class NewUserStack {
 
     public void push(Collection newCollection) {
         checkEnlargeSize(newCollection.size());
-        int lastPosiotion = getCurrentQuantityOfElements();
+        //int lastPosiotion = getCurrentQuantityOfElements();
         for (Object newElement : newCollection) {
             this.elementsArray[getCurrentQuantityOfElements()] = newElement;
-            lastPosiotion++;
+            //lastPosiotion++;
         }
     }
 
@@ -74,6 +80,7 @@ public class NewUserStack {
     }
 
     public void removeElementByIndex(int removeIndex) {
+    	checkIndexForOut(removeIndex);
         Object[] newArray = new Object[this.elementsArray.length];
         System.arraycopy(this.elementsArray, 0, newArray, 0, removeIndex);
         System.arraycopy(this.elementsArray, removeIndex + 1, newArray, removeIndex,
@@ -82,6 +89,7 @@ public class NewUserStack {
     }
 
     public void insertElementByIndex(int insertIndex, Object newObject) {
+    	checkIndexForOut(insertIndex);
         checkEnlargeSize(1);
         Object[] newArray = new Object[this.elementsArray.length + 1];
         System.arraycopy(this.elementsArray, 0, newArray, 0, insertIndex);
