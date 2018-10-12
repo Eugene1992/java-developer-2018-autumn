@@ -31,9 +31,8 @@ public class Stack {
         return size;
     }
 
-
     /**
-     * Метод, который добавляет обьект в конец списка
+     * Метод, который удаляет обьект из стека
      */
     public boolean pull() {
         if (size == 0) {
@@ -46,7 +45,7 @@ public class Stack {
 
 
     /**
-     * Метод, который удаляет обьект из стека
+     * Метод, который добавляет обьект в конец списка
      */
     public boolean push(Object o) {
         if (o == null) {

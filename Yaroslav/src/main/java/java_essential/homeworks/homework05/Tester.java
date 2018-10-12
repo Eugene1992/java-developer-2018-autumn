@@ -2,6 +2,7 @@ package java_essential.homeworks.homework05;
 
 //import java_essential.homeworks.homework06.MyArrayList;
 
+import java_essential.home_work05.MyArrayList;
 import java_essential.newListClass.NewUserList;
 
 import java.util.ArrayList;
@@ -31,6 +32,10 @@ public class Tester {
 
         List<Object> myArrayList2 = new NewUserList();
         tc = new TimeCounter(myArrayList2, LIST_SIZE);
+        tc.run();
+
+        List<Object> myArrayList3 = new MyArrayList();
+        tc = new TimeCounter(myArrayList3, LIST_SIZE);
         tc.run();
     }
 }
