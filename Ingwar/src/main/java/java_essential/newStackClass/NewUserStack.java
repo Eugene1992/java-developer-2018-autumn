@@ -105,8 +105,11 @@ public class NewUserStack {
     }
 
     public void showStack() {
-        for (Object element : this.elementsArray) {
+        System.out.println("UP");
+        for (int i = this.elementsArray.length - 1; i >= 0; i--) {
+            Object element = elementsArray[i];
             System.out.println(element);
         }
+        System.out.println("BOTTOM");
     }
 }
