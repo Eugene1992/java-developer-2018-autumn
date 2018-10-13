@@ -1,5 +1,8 @@
 package java_essential.home_work04;
 
+
+import java_essential.home_work05.MyArrayList;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,10 +26,12 @@ public class Lists {
         objectForOutPutList.outputNewTablArrayList();
         System.out.println("");
         objectForOutPutList.outputNewTablLinkedList();
+        System.out.println("");
+        objectForOutPutList.outputMyTablArrayList();
     }
 
     //    метод для подсчета времени любого List
-    public void getTablWithSomeList(List<Integer> list) {
+    public void getTablWithSomeList(List<Object> list) {
         writeHeadOfNewTabl("List");
         initializationList(list, AMOUNT_LIST_ELEMENT);
         List<Long> arrayNewList = new ArrayList<>();
@@ -37,7 +42,7 @@ public class Lists {
     }
 
     public void outputNewTablArrayList() {
-        List<Integer> arrayList = new ArrayList<>();
+        List<Object> arrayList = new ArrayList<>();
         writeHeadOfNewTabl(StringForTable.ARRAYLIST.getName());
         initializationList(arrayList, AMOUNT_LIST_ELEMENT);
         List<Long> arrayNewList = new ArrayList<>();
@@ -47,8 +52,19 @@ public class Lists {
         writeLine();
     }
 
+    public void outputMyTablArrayList() {
+        List<Object> arrayList = new MyArrayList();
+        writeHeadOfNewTabl("MyArrayList");
+        initializationList(arrayList, AMOUNT_LIST_ELEMENT);
+        List<Long> arrayNewList = new ArrayList<>();
+        getNewList(arrayList, arrayNewList);
+        getList(arrayNewList);
+        System.out.println("");
+        writeLine();
+    }
+
     public void outputNewTablLinkedList() {
-        List<Integer> linkedList = new LinkedList<>();
+        List<Object> linkedList = new LinkedList<>();
         writeHeadOfNewTabl(StringForTable.LINKEDLIST.getName());
         initializationList(linkedList, AMOUNT_LIST_ELEMENT);
         List<Long> linkedNewList = new LinkedList<>();
@@ -59,14 +75,14 @@ public class Lists {
     }
 
     //    метод для инициализации списка
-    private void initializationList(List<Integer> list, int AMOUNT_LIST_ELEMENT) {
+    private void initializationList(List<Object> list, int AMOUNT_LIST_ELEMENT) {
         for (int i = 0; i < AMOUNT_LIST_ELEMENT; i++) {
             list.add(i);
         }
     }
 
     //    метод для выбора метода add, get, set, remove и запуска времени
-    private long chooseSomeMethod(List<Integer> list, int chooseIndex, int indexNumber, int element) {
+    private long chooseSomeMethod(List<Object> list, int chooseIndex, int indexNumber, int element) {
         long start;
         switch (chooseIndex) {
             case 1:
@@ -89,14 +105,14 @@ public class Lists {
     }
 
     //    метод для подсчета времени один раз
-    private long countTime(List<Integer> list, int chooseIndex, int indexNumber, int element) {
+    private long countTime(List<Object> list, int chooseIndex, int indexNumber, int element) {
         long begin = chooseSomeMethod(list, chooseIndex, indexNumber, element);
         long end = System.nanoTime();
         return ((end - begin) / 1_000);
     }
 
     //метод создания нового списка после подсчета времени при испольованию разных методов в списках
-    private List<Long> getNewList(List<Integer> list, List<Long> linkedNewList) {
+    private List<Long> getNewList(List<Object> list, List<Long> linkedNewList) {
         for (int i = 1; i <= 4; i++) {
             for (int j = 0; j < list.size(); j += (list.size() / 2 - 1)) {
                 linkedNewList.add(countTime(list, i, j, 555));

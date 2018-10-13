@@ -3,8 +3,8 @@ package java_essential.home_work05;
 public class Methods {
     //метод для увеличения размера массива
     public static Object[] getBiggerArray(Object[] arrayForList) {
-        int newArraySize = ((arrayForList.length * 3) / 2 + 1);
-        return new Object[newArraySize];
+        int newArrayCapacity = ((arrayForList.length * 3) / 2 + 1);
+        return new Object[newArrayCapacity];
     }
 
     //    метод для поиска последнего индекса в массиве

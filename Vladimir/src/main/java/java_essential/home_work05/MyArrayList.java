@@ -8,30 +8,35 @@ import java.util.ListIterator;
 public class MyArrayList implements List {
     private Object[] arrayForList;
     private Object[] newArrayForChange;
-    private int arraySize;
+    private int capasity;
+    private int size = 0;
+
 
     public MyArrayList() {
-        arrayForList = new Object[arraySize];
-        arraySize = 10;
+        capasity = 10;
+        arrayForList = new Object[capasity];
+
     }
 
     public int size() {
-        int counter = 0;
-        for (Object arrayElement : arrayForList) {
-            if (arrayElement != null) {
-                counter++;
-            }
-        }
-        return counter;
+        return size;
+//        int counter = 0;
+//        for (Object arrayElement : arrayForList) {
+//            if (arrayElement != null) {
+//                counter++;
+//            }
+//        }
+//        return counter;
     }
 
     public boolean isEmpty() {
-        for (Object arrayElement : arrayForList) {
-            if (arrayElement != null) {
-                return false;
-            }
-        }
-        return true;
+        return size == 0;
+//        for (Object arrayElement : arrayForList) {
+//            if (arrayElement != null) {
+//                return false;
+//            }
+//        }
+//        return true;
     }
 
     public boolean contains(Object o) {
@@ -64,11 +69,14 @@ public class MyArrayList implements List {
     }
 
     public boolean add(Object o) {
-        if (Methods.getLastIndexOfArray(arrayForList) == (arrayForList.length - 1)) {
-            Methods.getBiggerArray(arrayForList)[Methods.getLastIndexOfArray(arrayForList) + 1] = o;
+        if (size >= arrayForList.length) {
+            arrayForList = Methods.getBiggerArray(arrayForList);
+            arrayForList[size] = o;
+            size++;
             return true;
         } else {
-            arrayForList[Methods.getLastIndexOfArray(arrayForList) + 1] = o;
+            arrayForList[size] = o;
+            size++;
             return true;
         }
     }
@@ -78,6 +86,7 @@ public class MyArrayList implements List {
             if (arrayForList[i].equals(o)) {
                 System.arraycopy(arrayForList, (i + 1), arrayForList, i, arrayForList.length - i - 1);
                 arrayForList[Methods.getLastIndexOfArray(arrayForList)] = null;
+                size--;
                 return true;
             }
         }
@@ -131,23 +140,23 @@ public class MyArrayList implements List {
 
     public void add(int index, Object element) {
         try {
-            if (index >= (arrayForList.length - 1)) {
-                if (index == arrayForList.length) {
-                    newArrayForChange = Methods.getBiggerArray(arrayForList);
-                    newArrayForChange[index] = element;
+            if (index >= (size - 1)) {
+                if (index == size - 1) {
+                    arrayForList = Methods.getBiggerArray(arrayForList);
+                    arrayForList[index] = element;
                 }
-                if (index == arrayForList.length) {
-                    newArrayForChange = Methods.getBiggerArray(arrayForList);
-                    newArrayForChange[index + 1] = newArrayForChange[index];
-                    newArrayForChange[index] = element;
+                if (index == size) {
+                    arrayForList = Methods.getBiggerArray(arrayForList);
+                    arrayForList[index + 1] = arrayForList[index];
+                    arrayForList[index] = element;
                 }
             } else {
-                if (Methods.getLastIndexOfArray(arrayForList) == (arrayForList.length - 1)) {
-                    newArrayForChange = Methods.getBiggerArray(arrayForList);
-                    System.arraycopy(newArrayForChange, index, newArrayForChange, index + 1, newArrayForChange.length - index - 1);
-                    newArrayForChange[index] = element;
+                if (Methods.getLastIndexOfArray(arrayForList) == (size - 1)) {
+                    arrayForList = Methods.getBiggerArray(arrayForList);
+                    System.arraycopy(arrayForList, index, arrayForList, index + 1, size - index - 1);
+                    arrayForList[index] = element;
                 } else {
-                    System.arraycopy(arrayForList, index, arrayForList, index + 1, arrayForList.length - index - 1);
+                    System.arraycopy(arrayForList, index, arrayForList, index + 1, size - index - 1);
                     arrayForList[index] = element;
                 }
             }
