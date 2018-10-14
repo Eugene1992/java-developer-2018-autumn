@@ -26,24 +26,20 @@ public class Character {
      * Конструктор по умолчанию.
      */
     public Character() {
-        this(null, null);
+        this(null, null, null, null, null, 0);
     }
 
+
     /**
-     * Конструктор с некоторыми начальными данными.
-     *
-     * @param firstName
-     * @param lastName
+     * Конструктор для создание обьекта с заполненными полями
      */
-    public Character(String firstName, String lastName) {
+    public Character(String firstName, String lastName, String race, String specialization, String rank, int power) {
         this.firstName = new SimpleStringProperty(firstName);
         this.lastName = new SimpleStringProperty(lastName);
-
-        // Какие-то фиктивные начальные данные для удобства тестирования.
-        this.race = new SimpleStringProperty("какаято раса");
-        this.specialization = new SimpleStringProperty("какойто клас");
-        this.rank = new SimpleStringProperty("какойто ранг");
-        this.power = new SimpleIntegerProperty(0);
+        this.race = new SimpleStringProperty(race);
+        this.specialization = new SimpleStringProperty(specialization);
+        this.rank = new SimpleStringProperty(rank);
+        this.power = new SimpleIntegerProperty(power);
     }
 
     public String getFirstName() {

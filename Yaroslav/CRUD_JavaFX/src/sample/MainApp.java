@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
@@ -18,19 +19,19 @@ public class MainApp extends Application {
     /**
      * Данные, в виде наблюдаемого списка адресатов.
      */
-    private ObservableList<Character> personData = FXCollections.observableArrayList();
+    private ObservableList<Character> characterData = FXCollections.observableArrayList();
 
     /**
      * Конструктор
      */
     public MainApp() {
         // В качестве образца добавляем некоторые данные
-        personData.add(new Character("Эллайна", "Элрис"));
-        personData.add(new Character("Эрей", "Элрис"));
-        personData.add(new Character("Вулрик", "Бронзскин"));
-        personData.add(new Character("Кахат", "Валкхар"));
-        personData.add(new Character("Баал", "Страйгер"));
-        personData.add(new Character("Дариус", "Сколт"));
+        characterData.add(new Character("Эллайна", "Элрис", "эльф", "лучник", "A", 400));
+        characterData.add(new Character("Эрей", "Элрис", "эльф", "мастер меча", "A", 410));
+        characterData.add(new Character("Вулрик", "Бронзскин", "гном", "жрец", "B", 340));
+        characterData.add(new Character("Кахат", "Валкхар", "демон", "воитель", "A", 420));
+        characterData.add(new Character("Баал", "Страга", "демон", "маг", "S", 500));
+        characterData.add(new Character("Дариус", "Доран", "человек", "паладин", "S", 510));
     }
 
 
@@ -39,8 +40,8 @@ public class MainApp extends Application {
      *
      * @return
      */
-    public ObservableList<Character> getPersonData() {
-        return personData;
+    public ObservableList<Character> getCharacterData() {
+        return characterData;
     }
 
     @Override
@@ -94,6 +95,49 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+
+
+    /**
+     * Открывает диалоговое окно для изменения деталей указанного адресата.
+     * Если пользователь кликнул OK, то изменения сохраняются в предоставленном
+     * объекте адресата и возвращается значение true.
+     *
+     * @param character - объект адресата, который надо изменить
+     * @return true, если пользователь кликнул OK, в противном случае false.
+     */
+    public boolean showCharacterEditDialog(Character character) {
+        try {
+            // Загружаем fxml-файл и создаём новую сцену
+            // для всплывающего диалогового окна.
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(MainApp.class.getResource("CharacterEditDialog.fxml"));
+            AnchorPane page = (AnchorPane) loader.load();
+
+            // Создаём диалоговое окно Stage.
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Edit Character");
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.initOwner(primaryStage);
+            Scene scene = new Scene(page);
+            dialogStage.setScene(scene);
+
+            // Передаём адресата в контроллер.
+            CharacterEditDialogController controller = loader.getController();
+            controller.setDialogStage(dialogStage);
+            controller.setCharacter(character);
+
+            // Отображаем диалоговое окно и ждём, пока пользователь его не закроет
+            dialogStage.showAndWait();
+
+            return controller.isOkClicked();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
 
     /**
      * Возвращает главную сцену.

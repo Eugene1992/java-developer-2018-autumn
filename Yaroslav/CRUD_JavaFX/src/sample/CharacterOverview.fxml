@@ -71,12 +71,13 @@
                         <HBox layoutX="190.0" layoutY="255.0" spacing="10.0" AnchorPane.bottomAnchor="10.0"
                               AnchorPane.rightAnchor="10.0">
                             <children>
-                                <Button layoutX="170.0" layoutY="235.0" mnemonicParsing="false" prefHeight="31.0"
-                                        prefWidth="65.0" text="New"/>
-                                <Button layoutX="247.0" layoutY="235.0" mnemonicParsing="false" prefHeight="31.0"
-                                        prefWidth="65.0" text="Edit"/>
-                                <Button layoutX="323.0" layoutY="235.0" mnemonicParsing="false" prefHeight="31.0"
-                                        prefWidth="65.0" text="Delete"/>
+                                <Button layoutX="170.0" layoutY="235.0" mnemonicParsing="false"
+                                        onAction="#handleNewCharacter" prefHeight="31.0" prefWidth="65.0" text="New"/>
+                                <Button layoutX="247.0" layoutY="235.0" mnemonicParsing="false"
+                                        onAction="#handleEditCharacter" prefHeight="31.0" prefWidth="65.0" text="Edit"/>
+                                <Button layoutX="323.0" layoutY="235.0" mnemonicParsing="false"
+                                        onAction="#handleDeleteCharacter" prefHeight="31.0" prefWidth="65.0"
+                                        text="Delete"/>
                             </children>
                         </HBox>
                     </children>
