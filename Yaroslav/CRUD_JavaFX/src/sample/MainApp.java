@@ -11,6 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import sample.controllers.CharacterEditDialogController;
+import sample.controllers.CharacterOverviewController;
 
 public class MainApp extends Application {
 
@@ -47,7 +49,7 @@ public class MainApp extends Application {
     @Override
     public void start(Stage primaryStage) {
         this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("AddressApp");
+        this.primaryStage.setTitle("CRUDApp");
 
         initRootLayout();
 
@@ -61,7 +63,7 @@ public class MainApp extends Application {
         try {
             // Загружаем корневой макет из fxml файла.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("RootLayout.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/RootLayout.fxml"));
             rootLayout = (BorderPane) loader.load();
 
             // Отображаем сцену, содержащую корневой макет.
@@ -81,7 +83,7 @@ public class MainApp extends Application {
         try {
             // Загружаем сведения об адресатах.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("CharacterOverview.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/CharacterOverview.fxml"));
             AnchorPane characterOverview = (AnchorPane) loader.load();
 
             // Помещаем сведения об адресатах в центр корневого макета.
@@ -110,7 +112,7 @@ public class MainApp extends Application {
             // Загружаем fxml-файл и создаём новую сцену
             // для всплывающего диалогового окна.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(MainApp.class.getResource("CharacterEditDialog.fxml"));
+            loader.setLocation(MainApp.class.getResource("view/CharacterEditDialog.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
             // Создаём диалоговое окно Stage.
