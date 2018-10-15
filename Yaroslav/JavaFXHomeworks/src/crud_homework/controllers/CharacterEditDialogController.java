@@ -1,11 +1,11 @@
-package sample.controllers;
+package crud_homework.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import sample.Character;
+import crud_homework.Character;
 
 /**
  * Окно для изменения информации об адресате.

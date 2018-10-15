@@ -1,12 +1,12 @@
-package sample.controllers;
+package crud_homework.controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import sample.Character;
-import sample.MainApp;
+import crud_homework.Character;
+import crud_homework.MainApp;
 
 
 public class CharacterOverviewController {

@@ -1,4 +1,4 @@
-package sample;
+package crud_homework;
 
 import java.io.IOException;
 
@@ -11,8 +11,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import sample.controllers.CharacterEditDialogController;
-import sample.controllers.CharacterOverviewController;
+import crud_homework.controllers.CharacterEditDialogController;
+import crud_homework.controllers.CharacterOverviewController;
 
 public class MainApp extends Application {
 

@@ -11,9 +11,6 @@
 
     <artifactId>Yaroslav</artifactId>
     <packaging>pom</packaging>
-    <modules>
-        <module>CRUD_JavaFX</module>
-    </modules>
 
     <dependencies>
         <dependency>
