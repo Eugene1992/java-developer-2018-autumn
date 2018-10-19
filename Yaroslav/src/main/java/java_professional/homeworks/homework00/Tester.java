@@ -178,6 +178,22 @@ public class Tester {
 
 
 
+        /** Тест метод retainAll(Collection c)*/
+        System.out.println("\t\t\tTEST: retainAll(Collection c)");
+        System.out.println("Список - " + myLinkedList);
+        System.out.println("Размер списка = " + myLinkedList.size());
+        arrayList = new ArrayList();
+        arrayList.add(100);
+        arrayList.add(300);
+        arrayList.add(600);
+        System.out.println("Колекция(для не удаления) - " + arrayList);
+        myLinkedList.retainAll(arrayList);
+        System.out.println("Список - " + myLinkedList);
+        System.out.println("Размер списка = " + myLinkedList.size());
+        System.out.println("\n");
+
+
+
         /** Тест метода clear()*/
         System.out.println("\t\t\tTEST: clear()");
         System.out.println("Список - " + myLinkedList);

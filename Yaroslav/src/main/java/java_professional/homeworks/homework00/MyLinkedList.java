@@ -9,7 +9,7 @@ public class MyLinkedList<E> implements List<E> {
     private int size;
 
 
-    MyLinkedList(){
+    public MyLinkedList(){
         this.first = null;
         this.last = null;
         this.size = 0;
@@ -38,17 +38,19 @@ public class MyLinkedList<E> implements List<E> {
      */
     @Override
     public boolean contains(Object element) {
-        for(E elem : this) {
-            if(elem.equals(element)){
+        Node current = first;
+        while(current != null) {
+            if(current.elem.equals(element)){
                 return true;
             }
+            current = current.next;
         }
         return false;
     }
 
     @Override
     public Iterator<E> iterator(){
-        return new LinkedListIterator();
+        return null;
     }
 
     private class LinkedListIterator implements Iterator<E> {
@@ -181,9 +183,24 @@ public class MyLinkedList<E> implements List<E> {
         return true;
     }
 
+
+    /**
+     * Метод, который удаляет из списка все элементы,
+     * которые не равны не одному элементу колекции
+     */
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        if (c == null){
+            return false;
+        }
+        Node current = first;
+        while(current != null){
+            if(!c.contains(current.elem)){
+                remove(current.elem);
+            }
+            current = current.next;
+        }
+        return true;
     }
 
 
@@ -202,12 +219,27 @@ public class MyLinkedList<E> implements List<E> {
      */
     @Override
     public E get(int index) {
-        int counter = 0;
-        for(E elem : this){
-            if(counter == index){
-                return elem;
+        if(index < size / 2) {
+            int counter = 0;
+            Node<E> current = first;
+            while (current != null) {
+                if (counter == index) {
+                    return current.elem;
+                }
+                current = current.next;
+                counter++;
             }
-            counter++;
+        }
+        else{
+            int counter = size - 1;
+            Node<E> current = last;
+            while (current != null) {
+                if (counter == index) {
+                    return current.elem;
+                }
+                current = current.prev;
+                counter--;
+            }
         }
         return null;
     }
@@ -220,13 +252,25 @@ public class MyLinkedList<E> implements List<E> {
     public E set(int index, E element){
         Node current = first;
         int counter = 0;
-        while(current != null) {
-            if (counter == index){
-                current.elem = element;
-                return element;
+        if(index < size / 2) {
+            while (current != null) {
+                if (counter == index) {
+                    current.elem = element;
+                    return element;
+                }
+                current = current.next;
+                counter++;
             }
-            current = current.next;
-            counter++;
+        }
+        else{
+            while (current != null) {
+                if (counter == index) {
+                    current.elem = element;
+                    return element;
+                }
+                current = current.prev;
+                counter++;
+            }
         }
         return null;
     }
@@ -238,7 +282,7 @@ public class MyLinkedList<E> implements List<E> {
     @Override
     public void add(int index, E element) {
         if(isEmpty()){
-            last = new Node<>(null, element, null);
+            last = new Node(null, element, null);
             first = last;
             size++;
         }
