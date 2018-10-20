@@ -30,7 +30,19 @@ public class Tester {
         }
         System.out.println("Список пустой? - " + myLinkedList.isEmpty());
         System.out.println("Размер списка - " + myLinkedList.size());
-        System.out.println("Список" + myLinkedList);
+        System.out.println("Список - " + myLinkedList);
+        System.out.println("\n");
+
+
+
+        /** Тест метода subList(int fromIndex, int toIndex)*/
+        System.out.println("\t\t\tTEST: subList(int fromIndex, int toIndex)");
+        int fromIndex = 2;
+        int toIndex = 5;
+        System.out.println("Список - " + myLinkedList);
+        System.out.println("Подсписок будет от индекса " + fromIndex + " до " + toIndex);
+        List<Integer> sublist = myLinkedList.subList(fromIndex, toIndex);
+        System.out.println("Подсписок - " + sublist);
         System.out.println("\n");
 
 
@@ -39,7 +51,7 @@ public class Tester {
         System.out.println("\t\t\tTEST: contains(Object o)");
         int a = 100;
         int b = 3000;
-        System.out.println("Список" + myLinkedList);
+        System.out.println("Список - " + myLinkedList);
         System.out.println("Элемент " + a + " входит в список? - " + myLinkedList.contains(a));
         System.out.println("Элемент " + b + " входит в список? - " + myLinkedList.contains(b));
         System.out.println("\n");
@@ -63,7 +75,7 @@ public class Tester {
         /** Тест методов remove(Object o) и remove(int index)*/
         System.out.println("\t\t\tTEST: remove(Object o) и remove(int index)");
         k = 400;
-        index = 3;
+        index = 0;
         System.out.println("Список - " + myLinkedList);
         System.out.println("Размер списка = " + myLinkedList.size());
         System.out.println("Удалим элемент " + k);
@@ -71,7 +83,7 @@ public class Tester {
         System.out.println("Список - " + myLinkedList);
         System.out.println("Размер списка = " + myLinkedList.size());
         System.out.println("Удалим элемент по индексу " + index);
-        myLinkedList.remove(index);
+        System.out.println(myLinkedList.remove(index));
         System.out.println("Список - " + myLinkedList);
         System.out.println("Размер списка = " + myLinkedList.size());
         System.out.println("\n");
@@ -90,7 +102,7 @@ public class Tester {
         /** Тест метода set(int index)*/
         System.out.println("\t\t\tTEST: set(int index)");
         k = 1000;
-        index = 6;
+        index = 5;
         System.out.println("Список - " + myLinkedList);
         System.out.println("Меняем элемент по индексу " + index + " на " + k);
         myLinkedList.set(index, k);
