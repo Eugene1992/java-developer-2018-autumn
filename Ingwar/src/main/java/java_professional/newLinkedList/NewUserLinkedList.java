@@ -6,45 +6,45 @@ import java.util.function.Predicate;
 import java.util.function.UnaryOperator;
 import java.util.stream.Stream;
 
-public class NewUserLinkedList extends AbstractSequentialList implements List {
+public class NewUserLinkedList implements List {
 
     private int size;
-    private final listNode FIRSTNODE = new listNode(this);
-    private final listNode LASTNODE = new listNode(this);
+    private final ListNode FIRST_NODE = new ListNode(this);
+    private final ListNode LAST_NODE = new ListNode(this);
 
     public NewUserLinkedList() {
     }
 
-    private class listNode {
-        private listNode previousNode;
-        private listNode nextNode;
+    private class ListNode {
+        private ListNode previousNode;
+        private ListNode nextNode;
         private Object content;
         private NewUserLinkedList nodeList;
 
-        public listNode(listNode previousNode, listNode nextNode, Object content, NewUserLinkedList nodeList) {
+        public ListNode(ListNode previousNode, ListNode nextNode, Object content, NewUserLinkedList nodeList) {
             this.previousNode = previousNode;
             this.nextNode = nextNode;
             this.content = content;
             this.nodeList = nodeList;
         }
 
-        public listNode(NewUserLinkedList nodeList) {
+        public ListNode(NewUserLinkedList nodeList) {
             this.nodeList = nodeList;
         }
 
-        public listNode getPreviousNode() {
+        public ListNode getPreviousNode() {
             return previousNode;
         }
 
-        public void setPreviousNode(listNode previousNode) {
+        public void setPreviousNode(ListNode previousNode) {
             this.previousNode = previousNode;
         }
 
-        public listNode getNextNode() {
+        public ListNode getNextNode() {
             return nextNode;
         }
 
-        public void setNextNode(listNode nextNode) {
+        public void setNextNode(ListNode nextNode) {
             this.nextNode = nextNode;
         }
 
@@ -65,48 +65,143 @@ public class NewUserLinkedList extends AbstractSequentialList implements List {
         }
     }
 
-    @Override
-    public ListIterator listIterator(int index) {
-        return null;
-    }
+	@Override
+	public void add(int arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		
+	}
 
-    @Override
-    public int size() {
-        return 0;
-    }
+	@Override
+	public boolean add(Object arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    @Override
-    public void replaceAll(UnaryOperator operator) {
+	@Override
+	public boolean addAll(Collection arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    }
+	@Override
+	public boolean addAll(int arg0, Collection arg1) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    @Override
-    public void sort(Comparator c) {
+	@Override
+	public void clear() {
+		// TODO Auto-generated method stub
+		
+	}
 
-    }
+	@Override
+	public boolean contains(Object arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    @Override
-    public Spliterator spliterator() {
-        return null;
-    }
+	@Override
+	public boolean containsAll(Collection arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    @Override
-    public boolean removeIf(Predicate filter) {
-        return false;
-    }
+	@Override
+	public Object get(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    @Override
-    public Stream stream() {
-        return null;
-    }
+	@Override
+	public int indexOf(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 
-    @Override
-    public Stream parallelStream() {
-        return null;
-    }
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
-    @Override
-    public void forEach(Consumer action) {
+	@Override
+	public Iterator iterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
-    }
+	@Override
+	public int lastIndexOf(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public ListIterator listIterator() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ListIterator listIterator(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object remove(int arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean remove(Object arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean removeAll(Collection arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean retainAll(Collection arg0) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public Object set(int arg0, Object arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public int size() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public List subList(int arg0, int arg1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object[] toArray() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Object[] toArray(Object[] arg0) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+   
 }
