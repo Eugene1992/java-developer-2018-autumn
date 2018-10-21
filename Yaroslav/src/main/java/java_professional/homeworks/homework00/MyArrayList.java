@@ -1,4 +1,4 @@
-package java_essential.homeworks.homework06;
+package java_professional.homeworks.homework00;
 
 import java.util.*;
 
@@ -54,24 +54,33 @@ public class MyArrayList<E> implements List<E> {
     }
 
     /**
-     * Метод, который возвращает масив созданый из списка
+     * Метод, который возвращает масив типа Object[] созданый
+     * из списка
      */
     @Override
-    public E[] toArray() {
-        E[] array = (E[]) new Object[size];
-        copy(values, array, 0, size);
-        return array;
-    }
-
-    @Override
-    public E[] toArray(Object[] a) {
-        E[] array = (E[]) new Object[size];
+    public Object[] toArray() {
+        Object[] array = new Object[size];
         int counter = 0;
         for(E elem : this){
             array[counter] = elem;
             counter++;
         }
         return array;
+    }
+
+    /**
+     * Метод, который возвращает масив созданый из списка
+     */
+    @Override
+    public <E> E[] toArray(E[] a) {
+        int counter = 0;
+        ArrayListIterator iterator = new ArrayListIterator();
+        while(iterator.hasNext()){
+            iterator.next();
+            a[counter] = (E)iterator.get();
+            counter++;
+        }
+        return a;
     }
 
     /**
@@ -113,7 +122,7 @@ public class MyArrayList<E> implements List<E> {
             values[size - 1] = null;
             size--;
         }
-        makeCapacitySmaller();
+        //makeCapacitySmaller();
         return true;
     }
 
@@ -183,7 +192,7 @@ public class MyArrayList<E> implements List<E> {
                 values[i] = values[i + 1];
             }
         }
-        makeCapacitySmaller();
+        //makeCapacitySmaller();
         return null;
     }
 
@@ -297,7 +306,7 @@ public class MyArrayList<E> implements List<E> {
      * Дополнительный метод
      * Метод для сужения списка
      */
-    private void makeCapacitySmaller() {
+    /*private void makeCapacitySmaller() {
         if (size < capacity / 3) {
             capacity = (int) (capacity * 0.5);
             E[] newValues = (E[]) new Object[capacity];
@@ -305,7 +314,7 @@ public class MyArrayList<E> implements List<E> {
             values = newValues;
             //System.out.println("SMALLER");
         }
-    }
+    }*/
 
     /** Дополнительный метод
      * Метод для копирования списка
@@ -354,18 +363,49 @@ public class MyArrayList<E> implements List<E> {
             return null;
         }
         List<E> sublist = new MyArrayList<>();
-        for(int i = fromIndex; i < toIndex; i++){
+        for(int i = fromIndex; i <= toIndex; i++){
             sublist.add(values[i]);
         }
         return sublist;
     }
 
+
     //not used
     @Override
     public boolean retainAll(Collection c) {
-        return false;
+        if (c == null){
+            return false;
+        }
+        E elem = (E)new Object();
+        for (int i = 0; i < size; i++) {
+            if(!c.contains(get(i))){
+                set(i, elem);
+            }
+        }
+        while(contains(elem)){
+            remove(elem);
+        }
+        return true;
     }
 
+
+    /**Метод для вывода списка*/
+    @Override
+    public String toString() {
+        String res = "[";
+        int counter = 0;
+        for(E elem : this){
+            counter++;
+            if(counter == size){
+                res += elem;
+            }
+            else {
+                res += elem + ", ";
+            }
+        }
+        res += "]";
+        return res;
+    }
 
 
     /**

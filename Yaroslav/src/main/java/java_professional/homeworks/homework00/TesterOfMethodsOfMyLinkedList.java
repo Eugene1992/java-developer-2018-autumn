@@ -6,12 +6,12 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Tester {
+public class TesterOfMethodsOfMyLinkedList {
     public static void main(String[] args) {
         List<Integer> myLinkedList = new MyLinkedList<>();
 
 
-
+        System.out.println("\t\t\t\t\tТЕСТЫ МЕТОДОВ MyLinkedList\n");
         /** Тест методов isEmpty() и size()*/
         System.out.println("\t\t\tTEST: isEmpty(), size()");
         System.out.println("Список пустой? - " + myLinkedList.isEmpty());
@@ -32,6 +32,19 @@ public class Tester {
         System.out.println("Размер списка - " + myLinkedList.size());
         System.out.println("Список - " + myLinkedList);
         System.out.println("\n");
+
+
+
+        /** Тест метода toArray() и toArray(E[] a)*/
+        System.out.println("\t\t\tTEST: toArray()");
+        System.out.println("Список - " + myLinkedList);
+        Integer[] array = new Integer[myLinkedList.size()];
+        array = myLinkedList.toArray(array);
+        System.out.println("Масив - " + Methods.arrayOutput(array));
+        Object[] array2 = myLinkedList.toArray();
+        System.out.println("Масив - " + Methods.arrayOutput(array2));
+        System.out.println("\n");
+
 
 
 
@@ -75,7 +88,7 @@ public class Tester {
         /** Тест методов remove(Object o) и remove(int index)*/
         System.out.println("\t\t\tTEST: remove(Object o) и remove(int index)");
         k = 400;
-        index = 0;
+        index = 3;
         System.out.println("Список - " + myLinkedList);
         System.out.println("Размер списка = " + myLinkedList.size());
         System.out.println("Удалим элемент " + k);
@@ -130,7 +143,7 @@ public class Tester {
         linkedList.add(77);
         linkedList.add(88);
         linkedList.add(99);
-        index = 2;
+        index = 4;
         System.out.println("Добавляемая колекция - " + linkedList + " по индексу " + index);
         myLinkedList.addAll(index, linkedList);
         System.out.println("Список - " + myLinkedList);

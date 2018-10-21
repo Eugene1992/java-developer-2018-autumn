@@ -56,7 +56,7 @@ public class MyLinkedList<E> implements List<E> {
 
 
     /**
-     * Метод, который возвращает масив созданый из списка
+     * Метод, который возвращает масив типа Object[] созданый из списка
      */
     @Override
     public Object[] toArray() {
@@ -69,14 +69,16 @@ public class MyLinkedList<E> implements List<E> {
         return array;
     }
 
+    /**
+     * Метод, который возвращает масив типа Object[] созданый из списка
+     */
     @Override
-    public <T> T[] toArray(T[] a) {
+    public <E> E[] toArray(E[] a) {
         int counter = 0;
-        for(E elem : this){
-            if(counter == a.length - 1){
-                break;
-            }
-            a[counter] = (T)elem;
+        LinkedListIterator iterator = new LinkedListIterator();
+        while(iterator.hasNext()){
+            a[counter] = (E)iterator.get();
+            iterator.next();
             counter++;
         }
         return a;
@@ -157,6 +159,7 @@ public class MyLinkedList<E> implements List<E> {
         }
         for(E elem : c){
             add(index, elem);
+            index++;
         }
         return true;
     }
@@ -489,8 +492,8 @@ public class MyLinkedList<E> implements List<E> {
          * по порядку
          */
         @Override
-        public void set(E elem) {
-            current.elem = elem;
+        public void set(E element) {
+            current.elem = element;
         }
 
         @Override
@@ -551,7 +554,7 @@ public class MyLinkedList<E> implements List<E> {
         int counter = 0;
         Node current = first;
         Node prevCurrent;
-        if(index == size / 2) {
+        if(index < size / 2) {
             prevCurrent = first.prev;
             while (counter != index) {
                 current = current.next;
