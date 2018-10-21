@@ -1,5 +1,6 @@
 package java_professional.homeworks.homework00;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -31,5 +32,51 @@ public class Methods {
             }
         }
         return res;
+    }
+    
+
+    /** Метод, который возвращает отсортированый пузырьковым методом список
+     *  по переданому Comparator*/
+    public static <E> List<E> bubbleSort(List<E> list, Comparator<? super E> c){
+        E[] array = (E[])list.toArray();
+        for (int i = array.length - 1; i > 0; i--) {
+            for (int j = 0; j < i; j++) {
+                if (c.compare(array[j], array[j + 1]) > 0)
+                {
+                    E tmp = array[j];
+                    array[j] = array[j+1];
+                    array[j+1] = tmp;
+                }
+            }
+        }
+        list.clear();
+        for (int i = 0; i < array.length; i++) {
+            list.add(array[i]);
+        }
+        return list;
+    }
+
+
+
+    /** Метод, который возвращает отсортированый методом выбором список
+     *  по переданому Comparator*/
+    public static <E> List<E> selectionSort(List<E> list, Comparator<? super E> c){
+        E[] array = (E[])list.toArray();
+        for (int i = 0; i < array.length - 1; i++) {
+            int min_index = i;
+            for (int j = i + 1; j < array.length; j++) {
+                if (c.compare(array[j], array[min_index]) < 0) {
+                    min_index = j;
+                }
+            }
+            E temp = array[i];
+            array[i] = array[min_index];
+            array[min_index] = temp;
+        }
+        list.clear();
+        for (int k = 0; k < array.length; k++) {
+            list.add(array[k]);
+        }
+        return list;
     }
 }

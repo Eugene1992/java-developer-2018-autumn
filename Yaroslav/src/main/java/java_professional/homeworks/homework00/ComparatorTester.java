@@ -3,12 +3,16 @@ package java_professional.homeworks.homework00;
 import java.lang.reflect.Field;
 import java.util.*;
 
+
+/** Тестер для проверки роботы Comparator для списка имплементирующего
+ *  интерфейс List*/
+
 public class ComparatorTester {
     public static void main(String[] args) {
-        List<Character> list = new MyArrayList<>();
+        List<Character> list = new MyLinkedList<>();
         fillListWithSomeElements(list);
 
-        System.out.println("\t\t\tТЕСТ КОМПАРАТОРА для MyArrayList и MyLinkedList");
+        System.out.println("\t\t\tТЕСТ КОМПАРАТОРА для " + list.getClass().getSimpleName());
         System.out.println("Не отсортированый список.");
         System.out.println(Methods.toStringList(list));
         System.out.println("\nСписок отсортированый по убыванию силы.");
@@ -37,7 +41,8 @@ public class ComparatorTester {
     /** Метод для сортировки списка по переданому полю и вывода его на экран*/
     public static void outputSortedListByField(List<Character> list, String comparableField){
         Comparator<Character> comparator = ChooseComparator(new Character(), comparableField);
-        Collections.sort(list,comparator);
+        //Collections.sort(list,comparator);
+        list = Methods.selectionSort(list, comparator);
         System.out.println(Methods.toStringList(list));
     }
 

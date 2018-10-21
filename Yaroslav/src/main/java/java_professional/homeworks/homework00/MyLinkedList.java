@@ -70,7 +70,7 @@ public class MyLinkedList<E> implements List<E> {
     }
 
     /**
-     * Метод, который возвращает масив типа Object[] созданый из списка
+     * Метод, который возвращает масив типа Object созданый из списка
      */
     @Override
     public <E> E[] toArray(E[] a) {
