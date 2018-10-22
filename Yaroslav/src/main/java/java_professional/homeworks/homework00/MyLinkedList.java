@@ -290,14 +290,13 @@ public class MyLinkedList<E> implements List<E> {
             size++;
         }
         else if(index == 0){
-            Node newNode = new Node(null, element, first);
-            first = newNode;
+            first.prev = new Node(null, element, first);
+            first = first.prev;
             size++;
         }
         else if(index == size ){
-            Node newNode = new Node(last, element, null);
-            last.next = newNode;
-            last = newNode;
+            last.next = new Node(last, element, null);
+            last = last.next;
             size++;
         }
         else if(index < size && index > 0 && element != null) {
