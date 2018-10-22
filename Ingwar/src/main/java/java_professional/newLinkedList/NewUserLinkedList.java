@@ -9,8 +9,8 @@ import java.util.stream.Stream;
 public class NewUserLinkedList implements List {
 
     private int size;
-    private final ListNode FIRST_NODE = new ListNode(this);
-    private final ListNode LAST_NODE = new ListNode(this);
+    private final ListNode FIRST_NODE = new ListNode();
+    private final ListNode LAST_NODE = new ListNode();
 
     public NewUserLinkedList() {
     }
@@ -19,17 +19,14 @@ public class NewUserLinkedList implements List {
         private ListNode previousNode;
         private ListNode nextNode;
         private Object content;
-        private NewUserLinkedList nodeList;
 
-        public ListNode(ListNode previousNode, ListNode nextNode, Object content, NewUserLinkedList nodeList) {
+        public ListNode(ListNode previousNode, ListNode nextNode, Object content) {
             this.previousNode = previousNode;
             this.nextNode = nextNode;
             this.content = content;
-            this.nodeList = nodeList;
         }
 
-        public ListNode(NewUserLinkedList nodeList) {
-            this.nodeList = nodeList;
+        public ListNode() {
         }
 
         public ListNode getPreviousNode() {
@@ -54,14 +51,6 @@ public class NewUserLinkedList implements List {
 
         public void setContent(Object content) {
             this.content = content;
-        }
-
-        public NewUserLinkedList getNodeList() {
-            return nodeList;
-        }
-
-        public void setNodeList(NewUserLinkedList nodeList) {
-            this.nodeList = nodeList;
         }
     }
 
