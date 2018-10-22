@@ -13,14 +13,15 @@ public class NewUserLinkedList implements List {
     private final ListNode LAST_NODE = new ListNode();
 
     public NewUserLinkedList() {
+        this.size = 0;
     }
 
-    private class ListNode {
+    private class ListNode<E> {
         private ListNode previousNode;
         private ListNode nextNode;
-        private Object content;
+        private E content;
 
-        public ListNode(ListNode previousNode, ListNode nextNode, Object content) {
+        public ListNode(ListNode previousNode, ListNode nextNode, E content) {
             this.previousNode = previousNode;
             this.nextNode = nextNode;
             this.content = content;
@@ -49,7 +50,7 @@ public class NewUserLinkedList implements List {
             return content;
         }
 
-        public void setContent(Object content) {
+        public void setContent(E content) {
             this.content = content;
         }
     }
