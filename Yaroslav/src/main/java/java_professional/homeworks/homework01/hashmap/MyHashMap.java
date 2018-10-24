@@ -1,9 +1,7 @@
 package java_professional.homeworks.homework01.hashmap;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import javax.swing.text.html.HTMLDocument;
+import java.util.*;
 
 public class MyHashMap<K,V> implements Map<K,V> {
 
@@ -207,14 +205,336 @@ public class MyHashMap<K,V> implements Map<K,V> {
         size = 0;
     }
 
+
+
+    /**
+     * Метод для возвращения набора(Set), которая состоит из всех значений
+     * всех ключей HashMap.
+     * При удалении ключа из набора, элемент с таким ключем будет
+     * удален из HashMap
+     * Чтоб этот набор поддерживала эти возможности будет создан
+     * анонимный клас, который переопределит методы стандартного
+     * Set
+     */
     @Override
     public Set<K> keySet() {
-        return null;
+        Set<K> keys = new Set<K>() {
+            @Override
+            public int size() {
+                return MyHashMap.this.size();
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return MyHashMap.this.isEmpty();
+            }
+
+            @Override
+            public boolean contains(Object key) {
+                if(key == null){
+                    return false;
+                }
+                return MyHashMap.this.containsKey(key);
+            }
+
+            @Override
+            public Iterator<K> iterator() {
+                return new Iterator<K>() {
+                    private Iterator<Node<K,V>> iterator = new HashMapIterator();
+
+                    @Override
+                    public boolean hasNext() {
+                        return iterator.hasNext();
+                    }
+
+                    @Override
+                    public K next() {
+                        return iterator.next().getKey();
+                    }
+                };
+            }
+
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @Override
+            public <T> T[] toArray(T[] a) {
+                return null;
+            }
+
+
+            @Override
+            public boolean remove(Object key) {
+                if(key == null || !(contains(key))){
+                    return false;
+                }
+                MyHashMap.this.remove(key);
+                return true;
+            }
+
+
+            @Override
+            public boolean containsAll(Collection<?> c) {
+                if(c == null){
+                    return false;
+                }
+                for(Object k : c){
+                    if(!contains(k)){
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            @Override
+            public boolean retainAll(Collection<?> c) {
+                if(c == null){
+                    return false;
+                }
+                for (int i = 0; i < 16; i++) {
+                    for (K k : this) {
+                        if (!c.contains(k)) {
+                            remove(k);
+                        }
+                    }
+                }
+                return true;
+            }
+
+            @Override
+            public boolean removeAll(Collection<?> c) {
+                if(c == null){
+                    return false;
+                }
+                for(Object k : c){
+                    if(contains(k)){
+                        remove(k);
+                    }
+                }
+                return true;
+            }
+
+            @Override
+            public void clear() {
+                MyHashMap.this.clear();
+            }
+
+            @Override
+            public String toString(){
+                String res = "[";
+                int counter = size();
+                for(K k : this){
+                    res += k;
+                    counter--;
+                    if(counter != 0){
+                        res += ", ";
+                    }
+                }
+                res += "]";
+                return res;
+            }
+
+
+            @Override
+            public boolean add(K k) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(Collection<? extends K> c) {
+                return false;
+            }
+        };
+
+        if(isEmpty()) {
+            return null;
+        }
+        /**Заполненение переопределенного набора Set ключами
+        *  элементов HashMap*/
+        for (int i = 0; i < table.length; i++) {
+            Iterator iterator = new BucketIterator(i);
+            if(table[i] != null) {
+                while (((BucketIterator) iterator).current != null) {
+                    keys.add(((BucketIterator) iterator).current.key);
+                    iterator.next();
+                }
+            }
+        }
+
+        return keys;
     }
 
+
+    /**
+     * Метод для возвращения колекции, которая состоит из всех значений
+     * всех элементов HashMap.
+     * При удалении значения из колекции, элемент с этим значением
+     * должен быть удален и из HashMap
+     * Чтоб эта колекция поддерживала эти возможности будет создан
+     * анонимный клас, который переопределит методы стандартной
+     * Collection
+     */
     @Override
     public Collection<V> values() {
-        return null;
+        Collection<V> values = new Collection<V>() {
+            @Override
+            public int size() {
+                return MyHashMap.this.size();
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return MyHashMap.this.isEmpty();
+            }
+
+            @Override
+            public boolean contains(Object value) {
+                if(value == null){
+                    return false;
+                }
+                return MyHashMap.this.containsValue(value);
+            }
+
+            @Override
+            public Iterator<V> iterator() {
+                return new Iterator<V>() {
+                    private Iterator<Node<K,V>> iterator = new HashMapIterator();
+
+                    @Override
+                    public boolean hasNext() {
+                        return iterator.hasNext();
+                    }
+
+                    @Override
+                    public V next() {
+                        return iterator.next().getValue();
+                    }
+                };
+            }
+
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @Override
+            public <T> T[] toArray(T[] a) {
+                return null;
+            }
+
+
+            @Override
+            public boolean remove(Object value) {
+                if(value == null){
+                    return false;
+                }
+                K key;
+                Iterator<Node<K,V>> i = new HashMapIterator();
+                while(i.hasNext()){
+                    Node<K,V> node = i.next();
+                    if(node.getValue().equals(value)){
+                        key = node.getKey();
+                        MyHashMap.this.remove(key);
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+
+            @Override
+            public boolean containsAll(Collection<?> c) {
+                if(c == null){
+                    return false;
+                }
+                for(Object o : c){
+                    if(!contains(o)){
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            @Override
+            public boolean removeAll(Collection<?> c) {
+                if(c == null){
+                    return false;
+                }
+                for(Object v : c){
+                    while(contains(v)){
+                        remove(v);
+                    }
+                }
+                return true;
+            }
+
+            @Override
+            public boolean retainAll(Collection<?> c) {
+                if(c == null){
+                    return false;
+                }
+                for (int i = 0; i < 16; i++) {
+                    for (V v : this) {
+                        if (!(c.contains(v))) {
+                            remove(v);
+                        }
+                    }
+                }
+                return true;
+            }
+
+            @Override
+            public void clear() {
+                MyHashMap.this.clear();
+            }
+
+            @Override
+            public String toString(){
+                String res = "[";
+                int counter = size();
+                for(V v : this){
+                    res += v;
+                    counter--;
+                    if(counter != 0){
+                        res += ", ";
+                    }
+                }
+                res += "]";
+                return res;
+            }
+
+            /**
+             * Методы добавления не должны быть реализованы так
+             * как тогда можна было б добавить значение без ключа
+             */
+            @Override
+            public boolean add(V v) {
+                return true;
+            }
+            @Override
+            public boolean addAll(Collection<? extends V> c) {
+                return true;
+            }
+        };
+
+
+        if(isEmpty()) {
+            return null;
+        }
+        /**Заполненение переопределенной колекции value значениями
+         * элементов HashMap*/
+        for (int i = 0; i < table.length; i++) {
+            Iterator iterator = new BucketIterator(i);
+            if(table[i] != null) {
+                while (((BucketIterator) iterator).current != null) {
+                    values.add(((BucketIterator) iterator).current.value);
+                    iterator.next();
+                }
+            }
+        }
+        return values;
     }
 
     @Override
@@ -351,7 +671,7 @@ public class MyHashMap<K,V> implements Map<K,V> {
 
 
     /**
-     * Клас итератора для bucket в HashMap
+     * Клас итератора для корзины в HashMap
      */
     private class BucketIterator implements Iterator<K> {
         private Node<K,V> current;      //необходим для итерации по корзине
@@ -382,5 +702,80 @@ public class MyHashMap<K,V> implements Map<K,V> {
             current = current.next;
             return node.getKey();
         }
+    }
+
+
+
+    /**
+     * Клас итератора для всего HashMap(необходим для values и keySet)
+     */
+    private class HashMapIterator implements Iterator<Node<K,V>> {
+        private Node<K,V> preCurrent;
+        private Node<K,V> current;      //необходим для итерации по корзине
+        private int currentBucket;
+        private int currentElement;
+
+        /**
+         * Конструктор итератора для корзины.
+         * Индекс задает номер корзины, по списку элементов которой будем итерировать
+         */
+        HashMapIterator(){
+            //currentBucket = 0;
+            //currentElement = 0;
+            current = table[currentBucket];
+        }
+
+        /**
+         * Метод для проверки есть ли у после данного элемента еще элемент
+         */
+        @Override
+        public boolean hasNext() {
+            return currentBucket < table.length && currentElement < size();
+        }
+
+        /**
+         * Метод для перехода на следующий элемент HashMap
+         */
+        @Override
+        public Node next() {
+            while(current == null){
+                currentBucket++;
+                if(currentBucket == table.length){
+                    return null;
+                }
+                current = table[currentBucket];
+            }
+            Node<K,V> node = current;
+            currentElement++;
+            current = current.next;
+            preCurrent = node;
+            return node;
+        }
+
+        public Node<K,V> getCurrent(){
+            return current;
+        }
+/*
+        @Override
+        public void remove(){
+            while(current == null){
+                currentBucket++;
+                current = table[currentBucket];
+            }
+
+            if(current.next == null){
+                current = null;
+                preCurrent.next = null;
+                size--;
+            }
+            else {
+                current = current.next;
+                preCurrent.next = current;
+                size--;
+            }
+
+
+        }
+*/
     }
 }

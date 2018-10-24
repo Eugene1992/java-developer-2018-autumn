@@ -1,6 +1,8 @@
 package java_professional.homeworks.homework01.hashmap;
 
 
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class Tester2 {
@@ -37,6 +39,14 @@ public class Tester2 {
         System.out.println(map.toString());
         System.out.println("Размер - " + map.size());
         System.out.println("\n\n");
+
+
+        Collection<String> values = map.values();
+        System.out.println(values);
+        System.out.println(values.size());
+        for (int i = 0; i < map.size(); i++) {
+        //    System.out.println(((MyHashMap<Integer, String>) map).table[i]);
+        }
 
     }
 
