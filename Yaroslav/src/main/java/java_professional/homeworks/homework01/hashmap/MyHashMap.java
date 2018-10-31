@@ -1,6 +1,5 @@
 package java_professional.homeworks.homework01.hashmap;
 
-import javax.swing.text.html.HTMLDocument;
 import java.util.*;
 
 public class MyHashMap<K,V> implements Map<K,V> {
@@ -22,7 +21,7 @@ public class MyHashMap<K,V> implements Map<K,V> {
      *  DEFAULT_LOAD_FACTOR * DEFAULT_CAPACITY
      */
     MyHashMap(){
-        this.threshold = (int) (DEFAULT_CAPACITY * loadFactor);
+        this.threshold = DEFAULT_THRESHOLD;
         this.table = new Node[DEFAULT_CAPACITY];
     }
 
@@ -70,7 +69,7 @@ public class MyHashMap<K,V> implements Map<K,V> {
 
 
     /**
-     *  Метод, проверяющий есть ли значение ключ HashMap
+     *  Метод, проверяющий есть ли такое значение в HashMap
      */
     @Override
     public boolean containsValue(Object value) {
@@ -190,10 +189,15 @@ public class MyHashMap<K,V> implements Map<K,V> {
     }
 
 
-
+    /**
+     *  Метод, для добавления в HashMap всех элементов другой Колекции
+     *  имплиментирующей Map
+     */
     @Override
-    public void putAll(Map<? extends K, ? extends V> m) {
-
+    public void putAll(Map<? extends K, ? extends V> map) {
+        for(Map.Entry<? extends K,? extends V> node : map.entrySet()){
+            put(node.getKey(), node.getValue());
+        }
     }
 
     /**
@@ -201,7 +205,8 @@ public class MyHashMap<K,V> implements Map<K,V> {
      */
     @Override
     public void clear() {
-        table = null;
+        table = new Node[DEFAULT_CAPACITY];
+        threshold = DEFAULT_THRESHOLD;
         size = 0;
     }
 
@@ -539,7 +544,182 @@ public class MyHashMap<K,V> implements Map<K,V> {
 
     @Override
     public Set<Entry<K, V>> entrySet() {
-        return null;
+        Set<Entry<K,V>> nodes = new Set<Entry<K, V>>() {
+
+            @Override
+            public int size() {
+                return MyHashMap.this.size();
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return MyHashMap.this.isEmpty();
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                if(o == null){
+                    return false;
+                }
+                Entry<K,V> node = (Entry<K,V>) o;
+                if(!MyHashMap.this.containsKey(node.getKey())){
+                    return false;
+                }
+                if(!MyHashMap.this.containsValue(node.getValue())){
+                    return false;
+                }
+                return true;
+            }
+
+            @Override
+            public Iterator<Entry<K, V>> iterator() {
+                return new Iterator<Entry<K, V>>() {
+                    private Iterator<Node<K,V>> iterator = new HashMapIterator();
+
+                    @Override
+                    public boolean hasNext() {
+                        return iterator.hasNext();
+                    }
+
+                    @Override
+                    public Entry<K, V> next() {
+                        return iterator.next();
+                    }
+                };
+            }
+
+
+            @Override
+            public Object[] toArray() {
+                Object[] array = new Object[size()];
+                int i = 0;
+                for(Entry<K,V> node : this){
+                    array[i] = node;
+                }
+                return array;
+            }
+
+            @Override
+            public <T> T[] toArray(T[] a) {
+                return null;
+            }
+
+            @Override
+            public boolean add(Entry<K, V> node) {
+                if(node == null){
+                    return false;
+                }
+                MyHashMap.this.put(node.getKey(), node.getValue());
+                return true;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                if(o == null || !(contains(o))){
+                    return false;
+                }
+                Entry<K,V> node = (Entry<K,V>)o;
+                if(contains(node)) {
+                    MyHashMap.this.remove(node.getKey());
+                    return true;
+                }
+                return false;
+            }
+
+            @Override
+            public boolean addAll(Collection<? extends Entry<K,V>> c) {
+                if(c == null){
+                    return false;
+                }
+                for(Entry<K,V> node : c){
+                    add(node);
+                }
+                return true;
+            }
+
+            @Override
+            public boolean containsAll(Collection<?> c) {
+                if(c == null){
+                    return false;
+                }
+                for(Object node : c){
+                    if(!contains(node)){
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+
+            public boolean retainAll(Collection<?> c) {
+                if(c == null){
+                    return false;
+                }
+
+                for (int i = 0; i < 16; i++) {
+                    for (Entry<K, V> node : this) {
+                        boolean notDelete = false;
+                        for (Object o : c) {
+                            Entry<K, V> otherNode = (Entry<K, V>) o;
+                            if (node.getKey().equals(otherNode.getKey()) && node.getValue().equals(otherNode.getValue())) {
+                                notDelete = true;
+                            }
+                        }
+                        if (!notDelete) {
+                            remove(node);
+                        }
+                    }
+                }
+                return true;
+            }
+
+            @Override
+            public boolean removeAll(Collection<?> c) {
+                if(c == null){
+                    return false;
+                }
+                for(Object node : c){
+                    if(contains(node)){
+                        remove(node);
+                    }
+                }
+                return true;
+            }
+
+            @Override
+            public void clear() {
+                MyHashMap.this.clear();
+            }
+
+            @Override
+            public String toString(){
+                String res = "[";
+                int counter = size();
+                for(Entry<K, V> node : this){
+                    res += node.toString();
+                    counter--;
+                    if(counter != 0){
+                        res += ", ";
+                    }
+                }
+                res += "]";
+                return res;
+            }
+        };
+
+        /**Заполненение переопределенного набора Set нодами из
+         * элементов ключ-значение HashMap*/
+        for (int i = 0; i < table.length; i++) {
+            Iterator iterator = new BucketIterator(i);
+            if(table[i] != null) {
+                while (((BucketIterator) iterator).current != null) {
+                    nodes.add(((BucketIterator) iterator).current);
+                    iterator.next();
+                }
+            }
+        }
+
+        return nodes;
     }
 
     /**
@@ -562,7 +742,8 @@ public class MyHashMap<K,V> implements Map<K,V> {
         if(size == 0){
             return "[]";
         }
-        String res = "[\n";
+        String res = "[";
+        /**Todo res += "\n";*/
         int counter = size;
         for (int i = 0; i < table.length; i++) {
             if(table[i] != null) {
@@ -576,7 +757,7 @@ public class MyHashMap<K,V> implements Map<K,V> {
                     }
                     iterator.next();
                 }
-                res += "\n";
+                /**Todo res += "\n";*/
             }
         }
         res += "]";
@@ -612,7 +793,7 @@ public class MyHashMap<K,V> implements Map<K,V> {
      * Каждая Node содержит ключ, значение, хеш єлемента и ссылку
      * на следующий элемент в этой же корзине.
      */
-    public class Node<K,V> implements Map.Entry<K,V> {
+    public static class Node<K,V> implements Map.Entry<K,V> {
         final int hash;     //поле для хеша
         final K key;        //поле ключа ноды
         V value;            //поле значения ноды
@@ -628,6 +809,13 @@ public class MyHashMap<K,V> implements Map<K,V> {
             this.hash = hash;
             this.next = null;
         }
+
+        Node(K key, V value) {
+            this.key = key;
+            this.value = value;
+            this.hash = 0;
+        }
+
 
         /**
          * Метод для получения ключа элемента
@@ -665,6 +853,8 @@ public class MyHashMap<K,V> implements Map<K,V> {
         }
 
     }
+
+
 
 
 

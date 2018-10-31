@@ -9,7 +9,7 @@ import java.util.List;
  *  интерфейс List в методе run()*/
 
 
-public class TesterOfMethodsOfMyChosenList<E> {
+public class TesterOfMethodsOfMyChosenList {
 
     private List<Integer> list;
 
