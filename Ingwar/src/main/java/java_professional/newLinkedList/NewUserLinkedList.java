@@ -124,75 +124,210 @@ public class NewUserLinkedList<E> implements List<E> {
 	}
 
 	@Override
-	public boolean contains(Object arg0) {
-		// TODO Auto-generated method stub
+    public boolean contains(Object element) {
+        NewUserLinkedIterator iterator = this.listIterator();
+        while (iterator.hasNext()) {
+            ListNode currentNode = iterator.nextNode;
+            if (currentNode.content.equals(element)) {
+                return true;
+            }
+        }
 		return false;
 	}
 
 	@Override
-	public boolean containsAll(Collection arg0) {
-		// TODO Auto-generated method stub
-		return false;
+    public boolean containsAll(Collection elements) {
+        NewUserLinkedIterator iterator = this.listIterator();
+        Object[] collection = elements.toArray();
+        for (int index = 0; index < collection.length; index++) {
+            boolean contains = this.contains(collection[index]);
+            if (!contains) {
+                return false;
+            }
+        }
+        return true;
 	}
 
 	@Override
-	public E get(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
+    public E get(int indexReturn) {
+        checkIndex(indexReturn);
+        ListNode<E> node = this.findNextNode(indexReturn).getPreviousNode();
+        return node.content;
 	}
 
 	@Override
-	public int indexOf(Object arg0) {
-		// TODO Auto-generated method stub
+    public int indexOf(Object element) {
+        NewUserLinkedIterator iterator = this.listIterator();
+        while (iterator.hasNext()) {
+            ListNode currentNode = iterator.nextNode;
+            if (currentNode.content.equals(element)) {
+                return iterator.nextIndex;
+            }
+        }
 		return 0;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+        if (this.FIRST_NODE.nextNode == this.LAST_NODE) {
+            return true;
+        }
 		return false;
 	}
 
+    private class NewUserLinkedIterator implements ListIterator<E> {
+
+        private ListNode<E> previousNode;
+        private ListNode<E> nextNode;
+        private int nextIndex;
+
+        public NewUserLinkedIterator(int nextIndex) {
+            if (nextIndex >= size) {
+                this.nextIndex = size;
+            } else {
+                this.nextIndex = nextIndex;
+            }
+            this.nextNode = findNextNode(nextIndex);
+        }
+
+        @Override
+        public boolean hasNext() {
+            return this.nextIndex == size;
+        }
+
+        @Override
+        public E next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            } else {
+                this.previousNode = this.nextNode;
+                this.nextNode = this.nextNode.nextNode;
+                this.nextIndex++;
+                return this.nextNode.content;
+            }
+        }
+
+        @Override
+        public boolean hasPrevious() {
+            return this.nextIndex > 1;
+        }
+
+        @Override
+        public E previous() {
+            if (!hasPrevious()) {
+                throw new NoSuchElementException();
+            } else {
+                this.nextNode = this.previousNode;
+                this.previousNode = this.previousNode.previousNode;
+                this.nextIndex--;
+                return this.previousNode.content;
+            }
+        }
+
+        @Override
+        public int nextIndex() {
+            return this.nextIndex;
+        }
+
+        @Override
+        public int previousIndex() {
+            return this.nextIndex--;
+        }
+
+        @Override
+        public void remove() {
+            ListNode<E> lastNode = this.previousNode.nextNode;
+            this.previousNode.nextNode = this.nextNode;
+            lastNode.nextNode = null;
+            lastNode.previousNode = null;
+            lastNode.content = null;
+            this.previousNode.nextNode = this.nextNode;
+            nextIndex--;
+            size--;
+        }
+
+        @Override
+        public void set(E element) {
+            if (this.previousNode != null) {
+                this.previousNode.content = element;
+            } else {
+                throw new IllegalStateException();
+            }
+        }
+
+        @Override
+        public void add(E element) {
+            ListNode newNode = new ListNode(this.nextNode, null, element);
+            size++;
+            nextIndex++;
+        }
+    }
+
 	@Override
-	public Iterator iterator() {
-		// TODO Auto-generated method stub
-		return null;
+    public NewUserLinkedIterator iterator() {
+        return new NewUserLinkedIterator(1);
 	}
 
 	@Override
-	public int lastIndexOf(Object arg0) {
-		// TODO Auto-generated method stub
+    public int lastIndexOf(Object element) {
+        NewUserLinkedIterator iterator = this.listIterator(size);
+        while (iterator.hasPrevious()) {
+            ListNode currentNode = iterator.previousNode;
+            if (currentNode.content.equals(element)) {
+                return iterator.nextIndex;
+            }
+        }
 		return 0;
 	}
 
 	@Override
-	public ListIterator listIterator() {
-		// TODO Auto-generated method stub
+    public NewUserLinkedIterator listIterator() {
+        return new NewUserLinkedIterator(1);
+	}
+
+	@Override
+    public NewUserLinkedIterator listIterator(int arg0) {
+        return new NewUserLinkedIterator(arg0);
+	}
+
+	@Override
+    public E remove(int index) {
+        ListNode removeNode = this.findNextNode(index).previousNode;
+        removeNode.previousNode.nextNode = removeNode.nextNode;
+        removeNode.nextNode.previousNode = removeNode.previousNode;
+        this.size--;
+        removeNode.previousNode = null;
+        removeNode.nextNode = null;
+        removeNode.content = null;
 		return null;
 	}
 
 	@Override
-	public ListIterator listIterator(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
+    public boolean remove(Object element) {
+        NewUserLinkedIterator iterator = this.listIterator();
+        while (iterator.hasNext()) {
+            ListNode currentNode = iterator.nextNode;
+            if (currentNode.content.equals(element)) {
+                currentNode.previousNode.nextNode = currentNode.nextNode;
+                currentNode.nextNode.previousNode = currentNode.previousNode;
+                this.size--;
+                currentNode.previousNode = null;
+                currentNode.nextNode = null;
+                currentNode.content = null;
+                this.size--;
+            }
+        }
+        return true;
 	}
 
 	@Override
-	public E remove(int arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean remove(Object arg0) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean removeAll(Collection arg0) {
-		// TODO Auto-generated method stub
-		return false;
+    public boolean removeAll(Collection elements) {
+        NewUserLinkedIterator iterator = this.listIterator();
+        Object[] collection = elements.toArray();
+        for (int index = 0; index < collection.length; index++) {
+            this.remove(collection[index]);
+        }
+        return true;
 	}
 
 	@Override
@@ -202,34 +337,66 @@ public class NewUserLinkedList<E> implements List<E> {
 	}
 
 	@Override
-	public Object set(int arg0, Object arg1) {
-		// TODO Auto-generated method stub
+    public Object set(int index, Object element) {
+        NewUserLinkedIterator iterator = this.listIterator();
+        while (iterator.hasNext()) {
+            if (iterator.nextIndex() == index) {
+                iterator.set((E) element);
+            }
+            iterator.next();
+        }
 		return null;
 	}
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+        return this.size;
 	}
 
 	@Override
-	public List subList(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
+    public List subList(int indexBegin, int indexEnd) {
+        ListNode beginNode = null;
+        ListNode endNode = null;
+        checkIndex(indexBegin);
+        checkIndex(indexEnd);
+        if (indexBegin < indexEnd) {
+            beginNode = findNextNode(indexBegin).previousNode;
+            endNode = findNextNode(indexEnd);
+        } else {
+            beginNode = findNextNode(indexEnd).previousNode;
+            endNode = findNextNode(indexBegin);
+        }
+        NewUserLinkedList newList = new NewUserLinkedList();
+        while (!beginNode.nextNode.equals(endNode)) {
+            newList.add(beginNode.content);
+            beginNode = beginNode.nextNode;
+        }
+        return newList;
 	}
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+        Object[] newArray = new Object[this.size];
+        NewUserLinkedIterator iterator = this.listIterator();
+        int arrayIndex = 0;
+        while (iterator.hasNext()) {
+            newArray[arrayIndex] = iterator.next();
+        }
+        return newArray;
 	}
 
 	@Override
-	public Object[] toArray(Object[] arg0) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    public Object[] toArray(Object[] arrayElements) {
+        for (int index = 0; index < arrayElements.length; index++) {
+            arrayElements[index] = this.get(index + 1);
+        }
+        return arrayElements;
+    }
 
+    private void checkIndex(int index) {
+        if (index > this.size) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
    
 }
