@@ -15,16 +15,19 @@ public class Game {
         System.out.println("And now game begin!");
         boolean isGameEnd = false;
         while (isGameEnd == false) {
-            System.out.println(getSumHealth(squadPlayer));
-            System.out.println(getSumHealth(squadComp));
+//            System.out.println(getSumHealth(squadPlayer));
+//            System.out.println(getSumHealth(squadComp));
             getPlayerSquard(squadPlayer, true);
             getPlayerSquard(squadComp, false);
-            attacPlayerkMethod(squadPlayer, squadComp);
-            attacCompkMethod(squadPlayer, squadComp, numberAquad);
+            squadComp = attackPlayerMethod(squadPlayer, squadComp);
             isGameEnd = endGame(squadPlayer, squadComp);
-            System.out.println(isGameEnd);
+            if (isGameEnd == false) {
+                squadPlayer = attackCompMethod(squadPlayer, squadComp, squadPlayer.length);
+            }
+            isGameEnd = endGame(squadPlayer, squadComp);
         }
-        congratulation(squadPlayer);
+        System.out.println(squadComp.length);
+        congratulation(squadComp);
     }
 
     //метод для введения имени героя
@@ -41,11 +44,6 @@ public class Game {
             return name;
         }
     }
-
-//    public static String getCompRandomName(String[] name) {
-//        String compRandomName = name[MethodsForHelp.getRundomNumber(0, (name.length - 1))];
-//        return compRandomName;
-//    }
 
     //метод для создания команды играком
     public static Hero[] getSquadPlayer(Hero[] squadPlayer, int numberAquad, boolean isPlayer) {
@@ -114,36 +112,34 @@ public class Game {
     }
 
     //    метод для атаки игрока
-    public static void attacPlayerkMethod(Hero[] squadPlayer, Hero[] squadComp) {
+    public static Hero[] attackPlayerMethod(Hero[] squadPlayer, Hero[] squadComp) {
         Scanner scan = new Scanner(System.in);
-
         System.out.println("Enter number of hero for attack: ");
         int numberHeroForPlayerAttack = (scan.nextInt() - 1);
         System.out.println("Enter number of comp hero for attack: ");
         int numberCompHeroForPlayerAttack = (scan.nextInt() - 1);
-        int damage = squadPlayer[numberHeroForPlayerAttack].getAttack() - squadComp[numberCompHeroForPlayerAttack].getArmor();
-        System.out.println(squadPlayer[numberHeroForPlayerAttack].getName() + " damaged " + damage);
-        int newHealth = squadComp[numberCompHeroForPlayerAttack].health - damage;
-        squadComp[numberCompHeroForPlayerAttack].setHealth(newHealth);
+        int damage = squadPlayer[numberHeroForPlayerAttack].attackMethods(squadPlayer, squadComp, numberHeroForPlayerAttack, numberCompHeroForPlayerAttack);
+        squadComp[numberCompHeroForPlayerAttack].defenceMethods(squadPlayer, squadComp, numberHeroForPlayerAttack, numberCompHeroForPlayerAttack, damage);
         if (squadComp[numberCompHeroForPlayerAttack].getHealth() <= 0) {
             System.out.println(squadComp[numberCompHeroForPlayerAttack].getName() + " was kill");
-            squadComp[numberCompHeroForPlayerAttack].setName("Dead hero");
+            squadComp[numberCompHeroForPlayerAttack] = null;
+            return heroArrayWithoutDeadHero(squadComp);
         }
-
+        return squadComp;
     }
 
     //    метод для атаки комп
-    public static void attacCompkMethod(Hero[] squadPlayer, Hero[] squadComp, int numberAquad) {
-        int numberHeroForCompAttack = MethodsForHelp.getRundomNumber(0, numberAquad - 1);
-        int numberPlayerHeroForComAttack = MethodsForHelp.getRundomNumber(0, numberAquad - 1);
-        int damage = squadComp[numberHeroForCompAttack].getAttack() - squadPlayer[numberPlayerHeroForComAttack].getArmor();
-        System.out.println("Comp hero " + squadComp[numberHeroForCompAttack].getName() + " damaged " + damage);
-        int newHealth = squadPlayer[numberPlayerHeroForComAttack].health - damage;
-        squadPlayer[numberPlayerHeroForComAttack].setHealth(newHealth);
+    public static Hero[] attackCompMethod(Hero[] squadPlayer, Hero[] squadComp, int numberSquad) {
+        int numberHeroForCompAttack = MethodsForHelp.getRundomNumber(0, numberSquad - 1);
+        int numberPlayerHeroForComAttack = MethodsForHelp.getRundomNumber(0, numberSquad - 1);
+        int damage = squadComp[numberHeroForCompAttack].attackMethods(squadComp, squadPlayer, numberHeroForCompAttack, numberPlayerHeroForComAttack);
+        squadPlayer[numberHeroForCompAttack].defenceMethods(squadComp, squadPlayer, numberHeroForCompAttack, numberPlayerHeroForComAttack, damage);
         if (squadPlayer[numberPlayerHeroForComAttack].getHealth() <= 0) {
             System.out.println(squadPlayer[numberPlayerHeroForComAttack].getName() + " was kill");
-            squadPlayer[numberPlayerHeroForComAttack].setName("Dead hero");
+            squadPlayer[numberPlayerHeroForComAttack] = null;
+            return heroArrayWithoutDeadHero(squadPlayer);
         }
+        return squadPlayer;
     }
 
     //метод для подсчета общего кол-ва жизней
@@ -157,30 +153,34 @@ public class Game {
 
     //метод для окончания игры
     public static boolean endGame(Hero[] squadPlayer, Hero[] squadComp) {
-        boolean a = false;
-        getSumHealth(squadPlayer);
-        getSumHealth(squadComp);
-        if (getSumHealth(squadPlayer) == 0 || getSumHealth(squadComp) == 0) {
-            a = true;
-            System.out.println(a);
-            return a;
+        if (squadPlayer.length <= 0 || squadComp.length <= 0) {
+            return true;
         } else {
-            a = false;
-            System.out.println(a);
-            return a;
+            return false;
         }
     }
 
     //    метод для поздравления
-    public static void congratulation(Hero[] squadPlayer) {
-        if (getSumHealth(squadPlayer) == 0) {
+    public static void congratulation(Hero[] squadComp) {
+        if (squadComp.length == 0) {
             System.out.println("Congratulations!! You win!!!");
         } else {
             System.out.println("Unfortunately you lost");
         }
-
     }
 
+    //    метод для уменьшения матрицы героев
+    public static Hero[] heroArrayWithoutDeadHero(Hero[] squad) {
+        Hero[] newHeroSquad = new Hero[squad.length - 1];
+        for (int i = 0, j = 0; i < squad.length; i++) {
+            if (squad[i] != null) {
+                newHeroSquad[j] = squad[i];
+                j++;
+            }
+        }
+        return newHeroSquad;
+    }
 }
+
 
 

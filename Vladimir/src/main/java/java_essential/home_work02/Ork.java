@@ -18,4 +18,11 @@ public class Ork extends Hero {
         }
         return attack;
     }
+
+    @Override
+    public int defenceMethods(Hero[] squadForAttack, Hero[] squadToAttack, int numberHeroForAttack, int numberPlayerHeroToAttack, int damage) {
+        int newHealth = squadToAttack[numberPlayerHeroToAttack].health - getDodgeAttack(damage);
+        squadToAttack[numberPlayerHeroToAttack].setHealth(newHealth);
+        return newHealth;
+    }
 }

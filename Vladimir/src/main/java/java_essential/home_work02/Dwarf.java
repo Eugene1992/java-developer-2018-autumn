@@ -26,4 +26,10 @@ public class Dwarf extends Hero {
         return health;
     }
 
+    @Override
+    public int defenceMethods(Hero[] squadForAttack, Hero[] squadToAttack, int numberHeroForAttack, int numberPlayerHeroToAttack, int damage) {
+        int newHealth = squadToAttack[numberPlayerHeroToAttack].health - getBlock(damage);
+        squadToAttack[numberPlayerHeroToAttack].setHealth(newHealth);
+        return newHealth;
+    }
 }

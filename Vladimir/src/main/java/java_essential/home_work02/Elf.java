@@ -20,4 +20,12 @@ public class Elf extends Hero {
         }
         return attack;
     }
+
+    @Override
+    public int attackMethods(Hero[] squadForAttack, Hero[] squadToAttack, int numberHeroForAttack, int numberPlayerHeroToAttack) {
+        int damage = getCriticalAttack(squadForAttack[numberHeroForAttack].getAttack()) - squadToAttack[numberPlayerHeroToAttack].getArmor();
+        System.out.println(squadForAttack[numberHeroForAttack].getName() + " damaged " + damage);
+        return damage;
+    }
+
 }

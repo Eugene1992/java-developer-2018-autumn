@@ -41,4 +41,17 @@ public class Hero {
     public void setArmor(int armor) {
         this.armor = armor;
     }
+
+    public int attackMethods(Hero[] squadForAttack, Hero[] squadToAttack, int numberHeroForAttack, int numberPlayerHeroToAttack) {
+        int damage = squadForAttack[numberHeroForAttack].getAttack() - squadToAttack[numberPlayerHeroToAttack].getArmor();
+        System.out.println(squadForAttack[numberHeroForAttack].getName() + " damaged " + damage);
+        return damage;
+    }
+
+    public int defenceMethods(Hero[] squadForAttack, Hero[] squadToAttack, int numberHeroForAttack, int numberPlayerHeroToAttack, int damage) {
+        int newHealth = squadToAttack[numberPlayerHeroToAttack].health - damage;
+        squadToAttack[numberPlayerHeroToAttack].setHealth(newHealth);
+        return newHealth;
+    }
+
 }

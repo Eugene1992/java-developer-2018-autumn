@@ -1,7 +1,7 @@
 package java_essential.home_work04;
 
 
-import java_essential.home_work05.MyArrayList;
+import java_professional.linkedlist_package.MyLinkedList;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -21,25 +21,26 @@ public class Lists {
     }
 
     //    метод для сравнивания arrayList и linkedList
-    public static void getTwoTableWithArrayAndLinkedLists() {
+    public static void drawTablesWithLists() {
         Lists objectForOutPutList = new Lists();
         objectForOutPutList.outputNewTablArrayList();
         System.out.println("");
         objectForOutPutList.outputNewTablLinkedList();
         System.out.println("");
-        objectForOutPutList.outputMyTablArrayList();
+        objectForOutPutList.outputNewMyTablLinkedList();
+        System.out.println("");
     }
 
     //    метод для подсчета времени любого List
-    public void getTablWithSomeList(List<Object> list) {
-        writeHeadOfNewTabl("List");
-        initializationList(list, AMOUNT_LIST_ELEMENT);
-        List<Long> arrayNewList = new ArrayList<>();
-        getNewList(list, arrayNewList);
-        getList(arrayNewList);
-        System.out.println("");
-        writeLine();
-    }
+//    public void getTablWithSomeList(List<Object> list) {
+//        writeHeadOfNewTabl("List");
+//        initializationList(list, AMOUNT_LIST_ELEMENT);
+//        List<Long> arrayNewList = new ArrayList<>();
+//        getNewList(list, arrayNewList);
+//        getList(arrayNewList);
+//        System.out.println("");
+//        writeLine();
+//    }
 
     public void outputNewTablArrayList() {
         List<Object> arrayList = new ArrayList<>();
@@ -52,19 +53,30 @@ public class Lists {
         writeLine();
     }
 
-    public void outputMyTablArrayList() {
-        List<Object> arrayList = new MyArrayList();
-        writeHeadOfNewTabl("MyArrayList");
-        initializationList(arrayList, AMOUNT_LIST_ELEMENT);
-        List<Long> arrayNewList = new ArrayList<>();
-        getNewList(arrayList, arrayNewList);
-        getList(arrayNewList);
+//    public void outputMyTablArrayList() {
+//        List<Object> arrayList = new MyArrayList();
+//        writeHeadOfNewTabl("MyArrayList");
+//        initializationList(arrayList, AMOUNT_LIST_ELEMENT);
+//        List<Long> arrayNewList = new ArrayList<>();
+//        getNewList(arrayList, arrayNewList);
+//        getList(arrayNewList);
+//        System.out.println("");
+//        writeLine();
+//    }
+
+    public void outputNewTablLinkedList() {
+        List<Object> linkedList = new LinkedList<>();
+        writeHeadOfNewTabl(StringForTable.LINKEDLIST.getName());
+        initializationList(linkedList, AMOUNT_LIST_ELEMENT);
+        List<Long> linkedNewList = new LinkedList<>();
+        getNewList(linkedList, linkedNewList);
+        getList(linkedNewList);
         System.out.println("");
         writeLine();
     }
 
-    public void outputNewTablLinkedList() {
-        List<Object> linkedList = new LinkedList<>();
+    public void outputNewMyTablLinkedList() {
+        List<Object> linkedList = new MyLinkedList<>();
         writeHeadOfNewTabl(StringForTable.LINKEDLIST.getName());
         initializationList(linkedList, AMOUNT_LIST_ELEMENT);
         List<Long> linkedNewList = new LinkedList<>();

@@ -3,7 +3,7 @@ package java_essential.home_work02;
 public class Human extends Hero {
     private static final double HEALING_CHANCE = 0.35;
     private static final double HEALINGPERCENT = 0.15;
-    int firstHealth = health;
+    private int firstHealth = health;
 
     public Human(String name) {
         super(name);
@@ -13,7 +13,8 @@ public class Human extends Hero {
     }
 
     //    метод для использования лечения
-    public int getHealthAbility(int firstHealth, int health) {
+    public int getHealthAbility(int health) {
+        int firstHealth = getFirstHealth();
         if (health < firstHealth) {
             if (Math.random() <= HEALING_CHANCE) {
                 health *= HEALINGPERCENT;
@@ -31,5 +32,11 @@ public class Human extends Hero {
         return firstHealth;
     }
 
+    @Override
+    public int defenceMethods(Hero[] squadForAttack, Hero[] squadToAttack, int numberHeroForAttack, int numberPlayerHeroToAttack, int damage) {
+        int newHealth = getHealthAbility(squadToAttack[numberPlayerHeroToAttack].health) - damage;
+        squadToAttack[numberPlayerHeroToAttack].setHealth(newHealth);
+        return newHealth;
+    }
 }
 
