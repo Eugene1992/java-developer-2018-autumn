@@ -1,4 +1,4 @@
-package java_professional.map.treemap;
+package java_professional.collections.map.treemap;
 
 public class Employee /*implements Comparable<Employee>*/{
     private String name;

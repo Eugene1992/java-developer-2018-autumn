@@ -1,4 +1,4 @@
-package java_professional.abstract_list_test;
+package java_professional.collections.abstract_list_test;
 
 public abstract class MyAbstractList implements MyList {
     @Override

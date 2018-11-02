@@ -1,4 +1,4 @@
-package java_professional.map.treemap;
+package java_professional.collections.map.treemap;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-package java_professional.abstract_list_test;
+package java_professional.collections.abstract_list_test;
 
 public class MyArrayList extends MyAbstractList implements MyList {
 

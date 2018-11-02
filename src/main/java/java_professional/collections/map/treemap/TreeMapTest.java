@@ -1,7 +1,6 @@
-package java_professional.map.treemap;
+package java_professional.collections.map.treemap;
 
 import java.util.Comparator;
-import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 

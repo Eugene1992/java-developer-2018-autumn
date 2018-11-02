@@ -1,7 +1,6 @@
-package java_professional.iterator;
+package java_professional.collections.iterator;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
