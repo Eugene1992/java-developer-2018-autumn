@@ -1,11 +1,7 @@
 package java_professional.newLinkedList;
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.function.UnaryOperator;
-import java.util.stream.Stream;
 
 public class NewUserLinkedList<E> implements List<E> {
 
@@ -80,6 +76,7 @@ public class NewUserLinkedList<E> implements List<E> {
 
 	@Override
 	public void add(int index, E element) {
+        index++;
 		ListNode nextNode = findNextNode(index);
 		ListNode newNode = new ListNode<>(nextNode.previousNode, nextNode, element);
 		nextNode.previousNode.nextNode = newNode;
@@ -89,13 +86,13 @@ public class NewUserLinkedList<E> implements List<E> {
 
 	@Override
 	public boolean add(E element) {
-		this.add(size + 1, element);
+        this.add(size, element);
 		return true;
 	}
 
 	@Override
 	public boolean addAll(Collection elements) {
-		this.addAll(this.size + 1, elements);
+        this.addAll(this.size, elements);
 		return true;
 	}
 
@@ -103,7 +100,7 @@ public class NewUserLinkedList<E> implements List<E> {
 	public boolean addAll(int index, Collection elements) {
 		Object[] collection = elements.toArray();
 		for (int i = 0; i < collection.length; i++) {
-			this.add(index + i, (E) collection[i]);
+            this.add(index, (E) collection[i]);
 		}
 		return true;
 	}
@@ -131,13 +128,13 @@ public class NewUserLinkedList<E> implements List<E> {
             if (currentNode.content.equals(element)) {
                 return true;
             }
+            iterator.next();
         }
 		return false;
 	}
 
 	@Override
     public boolean containsAll(Collection elements) {
-        NewUserLinkedIterator iterator = this.listIterator();
         Object[] collection = elements.toArray();
         for (int index = 0; index < collection.length; index++) {
             boolean contains = this.contains(collection[index]);
@@ -151,7 +148,7 @@ public class NewUserLinkedList<E> implements List<E> {
 	@Override
     public E get(int indexReturn) {
         checkIndex(indexReturn);
-        ListNode<E> node = this.findNextNode(indexReturn).getPreviousNode();
+        ListNode<E> node = this.findNextNode(indexReturn);
         return node.content;
 	}
 
@@ -163,6 +160,7 @@ public class NewUserLinkedList<E> implements List<E> {
             if (currentNode.content.equals(element)) {
                 return iterator.nextIndex;
             }
+            iterator.next();
         }
 		return 0;
 	}
@@ -188,11 +186,13 @@ public class NewUserLinkedList<E> implements List<E> {
                 this.nextIndex = nextIndex;
             }
             this.nextNode = findNextNode(nextIndex);
+            this.previousNode = this.nextNode.previousNode;
         }
 
         @Override
         public boolean hasNext() {
-            return this.nextIndex == size;
+            //return this.nextIndex <= size;
+            return this.nextNode != LAST_NODE;
         }
 
         @Override
@@ -203,13 +203,13 @@ public class NewUserLinkedList<E> implements List<E> {
                 this.previousNode = this.nextNode;
                 this.nextNode = this.nextNode.nextNode;
                 this.nextIndex++;
-                return this.nextNode.content;
+                return this.previousNode.content;
             }
         }
 
         @Override
         public boolean hasPrevious() {
-            return this.nextIndex > 1;
+            return this.previousNode != FIRST_NODE;
         }
 
         @Override
@@ -220,7 +220,7 @@ public class NewUserLinkedList<E> implements List<E> {
                 this.nextNode = this.previousNode;
                 this.previousNode = this.previousNode.previousNode;
                 this.nextIndex--;
-                return this.previousNode.content;
+                return this.nextNode.content;
             }
         }
 
@@ -248,8 +248,8 @@ public class NewUserLinkedList<E> implements List<E> {
 
         @Override
         public void set(E element) {
-            if (this.previousNode != null) {
-                this.previousNode.content = element;
+            if (this.nextNode != null) {
+                this.nextNode.content = element;
             } else {
                 throw new IllegalStateException();
             }
@@ -261,6 +261,16 @@ public class NewUserLinkedList<E> implements List<E> {
             size++;
             nextIndex++;
         }
+
+        public void forEachRemaining(Consumer<? super E> action) {
+            Objects.requireNonNull(action);
+            while (nextIndex < size) {
+                action.accept(nextNode.content);
+                previousNode = nextNode;
+                nextNode = nextNode.nextNode;
+                nextIndex++;
+            }
+        }
     }
 
 	@Override
@@ -271,11 +281,14 @@ public class NewUserLinkedList<E> implements List<E> {
 	@Override
     public int lastIndexOf(Object element) {
         NewUserLinkedIterator iterator = this.listIterator(size);
+        int lastIndex = size;
         while (iterator.hasPrevious()) {
             ListNode currentNode = iterator.previousNode;
             if (currentNode.content.equals(element)) {
-                return iterator.nextIndex;
+                return lastIndex;
             }
+            lastIndex--;
+            iterator.previous();
         }
 		return 0;
 	}
@@ -286,13 +299,14 @@ public class NewUserLinkedList<E> implements List<E> {
 	}
 
 	@Override
-    public NewUserLinkedIterator listIterator(int arg0) {
-        return new NewUserLinkedIterator(arg0);
+    public NewUserLinkedIterator listIterator(int index) {
+        return new NewUserLinkedIterator(index);
 	}
 
 	@Override
     public E remove(int index) {
-        ListNode removeNode = this.findNextNode(index).previousNode;
+        index++;
+        ListNode removeNode = this.findNextNode(index);
         removeNode.previousNode.nextNode = removeNode.nextNode;
         removeNode.nextNode.previousNode = removeNode.previousNode;
         this.size--;
@@ -314,15 +328,15 @@ public class NewUserLinkedList<E> implements List<E> {
                 currentNode.previousNode = null;
                 currentNode.nextNode = null;
                 currentNode.content = null;
-                this.size--;
+                return true;
             }
+            iterator.next();
         }
         return true;
 	}
 
 	@Override
     public boolean removeAll(Collection elements) {
-        NewUserLinkedIterator iterator = this.listIterator();
         Object[] collection = elements.toArray();
         for (int index = 0; index < collection.length; index++) {
             this.remove(collection[index]);
@@ -338,14 +352,18 @@ public class NewUserLinkedList<E> implements List<E> {
 
 	@Override
     public Object set(int index, Object element) {
-        NewUserLinkedIterator iterator = this.listIterator();
-        while (iterator.hasNext()) {
-            if (iterator.nextIndex() == index) {
-                iterator.set((E) element);
-            }
-            iterator.next();
-        }
-		return null;
+        index++;
+//        NewUserLinkedIterator iterator = this.listIterator();
+//        while (iterator.hasNext()) {
+//            if (iterator.nextIndex() == index) {
+//                iterator.nextNode.content = (E) element;
+//                return iterator.nextNode.content;
+//            }
+//            iterator.next();
+//        }
+        ListNode setNode = findNextNode(index);
+        setNode.content = (E) element;
+        return setNode.content;
 	}
 
 	@Override
@@ -360,17 +378,18 @@ public class NewUserLinkedList<E> implements List<E> {
         checkIndex(indexBegin);
         checkIndex(indexEnd);
         if (indexBegin < indexEnd) {
-            beginNode = findNextNode(indexBegin).previousNode;
+            beginNode = findNextNode(indexBegin);
             endNode = findNextNode(indexEnd);
         } else {
-            beginNode = findNextNode(indexEnd).previousNode;
+            beginNode = findNextNode(indexEnd);
             endNode = findNextNode(indexBegin);
         }
         NewUserLinkedList newList = new NewUserLinkedList();
-        while (!beginNode.nextNode.equals(endNode)) {
+        while (!beginNode.equals(endNode)) {
             newList.add(beginNode.content);
             beginNode = beginNode.nextNode;
         }
+        newList.add(beginNode.content);
         return newList;
 	}
 
@@ -381,6 +400,7 @@ public class NewUserLinkedList<E> implements List<E> {
         int arrayIndex = 0;
         while (iterator.hasNext()) {
             newArray[arrayIndex] = iterator.next();
+            arrayIndex++;
         }
         return newArray;
 	}
@@ -398,5 +418,4 @@ public class NewUserLinkedList<E> implements List<E> {
             throw new IndexOutOfBoundsException();
         }
     }
-   
 }
