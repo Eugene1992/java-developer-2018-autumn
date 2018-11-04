@@ -109,24 +109,27 @@ public class CustomLinkedList<E> implements List<E> {
         return contains;
     }
 
-//    todo
     @Override
     public Iterator<E> iterator() {
-        return null;
-//        Iterator<E> iterator = new Iterator<E>() {
-//            private int currentIndex = 0;
-//
-//            @Override
-//            public boolean hasNext() {
-//                return currentIndex < size;
-//            }
-//
-//            @Override
-//            public E next() {
-//                return this.next();
-//            }
-//        };
-//        return iterator;
+        Iterator<E> iterator = new Iterator<E>() {
+            private Node currentNode = firstNode.nextNode;
+
+            @Override
+            public boolean hasNext() {
+                return currentNode.nextNode != lastNode;
+            }
+
+            @Override
+            public E next() {
+                return (E) currentNode.nextNode.value;
+            }
+
+            @Override
+            public void remove() {
+                currentNode = currentNode.nextNode;
+            }
+        };
+        return iterator;
     }
 
     @Override
@@ -169,13 +172,18 @@ public class CustomLinkedList<E> implements List<E> {
         return elementIsPresent;
     }
 
-    //    todo
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        boolean containsAllOfTheElements = true;
+        for (Object o : c) {
+            if(!this.contains(o)) {
+                containsAllOfTheElements = false;
+                break;
+            }
+        }
+        return containsAllOfTheElements;
     }
 
-    //    todo
     @Override
     public boolean addAll(Collection<? extends E> c) {
         for (E e : c) {
@@ -198,7 +206,18 @@ public class CustomLinkedList<E> implements List<E> {
     //    todo
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        boolean removedAny = false;
+
+        for (Object o : c) {
+            for (E e : this) {
+                if(e.equals(o)) {
+                    this.remove(e);
+                    removedAny = true;
+                }
+            }
+        }
+
+        return removedAny;
     }
 
     //    todo

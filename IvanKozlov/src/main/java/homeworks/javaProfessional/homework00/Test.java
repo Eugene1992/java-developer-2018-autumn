@@ -100,15 +100,24 @@ public class Test {
         secondList.add("five");
         secondList.add("six");
 
+        LinkedList<String> thirdList = new LinkedList<>();
+        thirdList.add("seven");
+        thirdList.add("eight");
+        thirdList.add("nine");
+
         newList.addAll(secondList);
         System.out.println("Done");
         newList.addAll(1, secondList);
 
         newList.printCustomLinkedListValues();
 
-//        todo containsAll test
+//        containsAll test, should return true and false
 
+        System.out.println(newList.containsAll(secondList));
+        System.out.println(newList.containsAll(thirdList));
 
+        System.out.println(newList.removeAll(secondList));
+        newList.printCustomLinkedListValues();
 
     }
 }
