@@ -1,4 +1,4 @@
-package Homeworks.JavaStarter.Homework4;
+package homeworks.javaStarter.homework4;
 
 public class Array {
 

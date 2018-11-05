@@ -1,6 +1,4 @@
-package Homeworks.JavaEssential.Homework00;
-
-import java.sql.SQLOutput;
+package homeworks.JavaEssential.Homework00;
 
 public class Employee {
     int id;
@@ -108,7 +106,7 @@ public class Employee {
 
         int[] employeesAgeArray = new int[]{22, 45, 18, 34, 38, 41, 16, 26, 54, 30};
 
-        int[] employeesSalarisArray = new int[]{1500, 1800, 3400, 7000, 4500, 1000, 5200, 1900, 2600, 3000};
+        int[] employeesSalariesArray = new int[]{1500, 1800, 3400, 7000, 4500, 1000, 5200, 1900, 2600, 3000};
 
         boolean[] employeesMarriagesArray = new boolean[]{true, false, true, true, false, true, false, false, true, true};
 
@@ -117,7 +115,7 @@ public class Employee {
             employees[i].firstName = employeesFirstNamesArray[i];
             employees[i].lastName = employeesLastNamesArray[i];
             employees[i].age = employeesAgeArray[i];
-            employees[i].salary = employeesSalarisArray[i];
+            employees[i].salary = employeesSalariesArray[i];
             employees[i].isMarried = employeesMarriagesArray[i];
         }
 
