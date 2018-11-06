@@ -25,7 +25,7 @@ public class StackTest {
         arrayList.add(333);
         arrayList.add(333);
         arrayList.add(333);
-        System.out.println("pull collection");
+        System.out.println("pull collections");
         firstStack.showStack();
         firstStack.push(arrayList);
         System.out.println("Result:");
