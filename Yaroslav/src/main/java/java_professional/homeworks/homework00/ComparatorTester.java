@@ -1,7 +1,8 @@
 package java_professional.homeworks.homework00;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Comparator;
+import java.util.List;
 
 
 /** Тестер для проверки роботы Comparator для списка имплементирующего

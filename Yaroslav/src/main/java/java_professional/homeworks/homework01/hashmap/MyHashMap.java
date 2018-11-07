@@ -1,6 +1,9 @@
 package java_professional.homeworks.homework01.hashmap;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
 
 public class MyHashMap<K,V> implements Map<K,V> {
 
@@ -195,7 +198,7 @@ public class MyHashMap<K,V> implements Map<K,V> {
      */
     @Override
     public void putAll(Map<? extends K, ? extends V> map) {
-        for(Map.Entry<? extends K,? extends V> node : map.entrySet()){
+        for(Entry<? extends K,? extends V> node : map.entrySet()){
             put(node.getKey(), node.getValue());
         }
     }
@@ -793,7 +796,7 @@ public class MyHashMap<K,V> implements Map<K,V> {
      * Каждая Node содержит ключ, значение, хеш єлемента и ссылку
      * на следующий элемент в этой же корзине.
      */
-    public static class Node<K,V> implements Map.Entry<K,V> {
+    public static class Node<K,V> implements Entry<K,V> {
         final int hash;     //поле для хеша
         final K key;        //поле ключа ноды
         V value;            //поле значения ноды
