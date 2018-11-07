@@ -1,0 +1,15 @@
+[
+  {
+    "id": 1,
+    "name": "John",
+    /*"house": {
+      "streetName": "Sverstuka",
+      "streetNumber": 13
+    },
+    "languages": ["English", "German"],*/
+    "isMarried": true
+  },
+  {
+
+  }
+]
