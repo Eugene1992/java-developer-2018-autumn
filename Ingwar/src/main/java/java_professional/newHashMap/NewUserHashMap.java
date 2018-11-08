@@ -1,4 +1,4 @@
-package java_professional.newLinkedList.newHashMap;
+package java_professional.newHashMap;
 
 import java.util.Collection;
 import java.util.Map;
