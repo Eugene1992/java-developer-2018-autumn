@@ -1,38 +1,35 @@
 package java_professional.homeworks.homework05;
 
-@JsonEntity
+@JsonEntity()
 public class Character {
+    @JsonField
     private String name;
+
+    @JsonField
     private String race;
+
+    @JsonField
     private int age;
 
-    public Character(String name, String race, int age) {
+    @JsonField
+    private boolean isAlive;
+
+    private String clanName;
+
+    @JsonField
+    private Weapon[] weapons;
+
+    @JsonField
+    private Jewel jewel;
+
+
+    public Character(String name, String race, int age, boolean isAlive, String clanName, Weapon[] weapons, Jewel jewel) {
         this.name = name;
         this.race = race;
         this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getRace() {
-        return race;
-    }
-
-    public void setRace(String race) {
-        this.race = race;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
+        this.isAlive = isAlive;
+        this.clanName = clanName;
+        this.weapons = weapons;
+        this.jewel = jewel;
     }
 }
