@@ -121,7 +121,9 @@ public class CustomLinkedList<E> implements List<E> {
 
             @Override
             public E next() {
-                return (E) currentNode.nextNode.value;
+//                перекинь ссилку
+                currentNode = currentNode.nextNode;
+                return (E) currentNode.value;
             }
 
             @Override
@@ -203,7 +205,6 @@ public class CustomLinkedList<E> implements List<E> {
         return true;
     }
 
-    //    todo
     @Override
     public boolean removeAll(Collection<?> c) {
         boolean removedAny = false;
