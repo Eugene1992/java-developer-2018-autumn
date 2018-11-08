@@ -5,10 +5,10 @@ package java_professional.homeworks.homework05;
 @JsonEntity
 public class Jewel {
 
-    @JsonField
+    @JsonField(name = "jewel_type")
     private String type;
 
-    @JsonField
+    @JsonField(name = "jewel_ability")
     private String ability;
 
     public Jewel(String type, String ability) {

@@ -1,6 +1,7 @@
 package java_professional.homeworks.homework05;
 
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
 
@@ -14,6 +15,8 @@ public class Main {
 
         Weapon[] allWeapons = {new Weapon("нож", 30), new Weapon("кинжал", 50), new Weapon("лук", 30)};
         System.out.println(toJson(allWeapons));
+
+
     }
 
 
@@ -107,7 +110,14 @@ public class Main {
     public static String getFieldName(Field field, int num){
         String result = "";
         field.setAccessible(true);
-        result += getSpaceNum(num) + " \"" + field.getName() + "\": ";
+        Annotation annotation = field.getAnnotation(JsonField.class);
+        if (!((JsonField) annotation).name().equals("")) {
+            String newFieldName = ((JsonField) annotation).name();
+            result += getSpaceNum(num) + " \"" + newFieldName + "\": ";
+        }
+        else {
+            result += getSpaceNum(num) + " \"" + field.getName() + "\": ";
+        }
         return result;
     }
 
