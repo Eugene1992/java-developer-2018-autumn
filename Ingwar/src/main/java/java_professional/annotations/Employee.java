@@ -4,7 +4,7 @@ package java_professional.annotations;
 public class Employee implements Comparable<Employee> {
     @JsonField
     private String Name;
-    @JsonField
+    @JsonField(name = "how old")
     private int age;
     private int salary;
     @JsonField

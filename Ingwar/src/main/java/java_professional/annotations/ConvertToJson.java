@@ -5,8 +5,6 @@ import java.lang.reflect.Field;
 public class ConvertToJson<E> {
 	private E workingClass;
 	private String jsonString;
-    final private Class[] PRIMITIVE_CLASSES = new Class[]{boolean.class, byte.class, char.class, short.class, int.class,
-			long.class, float.class, double.class, String.class};
 
 	public ConvertToJson(E workingClass) {
 		this.workingClass = workingClass;
@@ -35,18 +33,26 @@ public class ConvertToJson<E> {
 			String endOfFields = index == fields.length - 1 ? "\n" : ",\n";
 			field.setAccessible(true);
 			if (field.isAnnotationPresent(JsonField.class)) {
-				if (isPrimitive(field.getType())) {
+                String fieldName = field.getAnnotation(JsonField.class).name();
+                if (fieldName.equals("default")) {
+                    fieldName = field.getName();
+                }
+                if (field.getType().isPrimitive() || field.getType() == String.class) {
 					String value = "";
 					try {
 						value = field.get(fieldsOwnerClass).toString();
+                        if (field.get(fieldsOwnerClass).getClass() == String.class) {
+                            value = '"' + value + '"';
+                        }
+
 					} catch (IllegalAccessException e) {
 						e.printStackTrace();
 					}
-					returnString = returnString + offset + '"' + field.getName() + '"' + ":" + value + endOfFields;
+                    returnString = returnString + offset + '"' + fieldName + '"' + ":" + value + endOfFields;
 				} else {
 					try {
 
-						returnString = returnString + offset + '"' + field.getName() + '"' + ":\n" + offset + "{\n" +
+                        returnString = returnString + offset + '"' + fieldName + '"' + ":\n" + offset + "{\n" +
 								getJsonStringFromFields(field.getType().getDeclaredFields(), field.get(fieldsOwnerClass),
 										offset) + offset + "}" + endOfFields;
 					} catch (IllegalAccessException e) {
@@ -57,15 +63,4 @@ public class ConvertToJson<E> {
 		}
 		return returnString;
 	}
-
-	private boolean isPrimitive(Class aClass) {
-        for (Class primitiveClass : PRIMITIVE_CLASSES) {
-			if (primitiveClass.equals(aClass)) {
-				return true;
-			}
-		}
-		return false;
-	}
-
-
 }
