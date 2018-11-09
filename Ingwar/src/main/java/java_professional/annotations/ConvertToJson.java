@@ -5,7 +5,7 @@ import java.lang.reflect.Field;
 public class ConvertToJson<E> {
 	private E workingClass;
 	private String jsonString;
-	final private Class[] primitiveClasses = new Class[]{boolean.class, byte.class, char.class, short.class, int.class,
+    final private Class[] PRIMITIVE_CLASSES = new Class[]{boolean.class, byte.class, char.class, short.class, int.class,
 			long.class, float.class, double.class, String.class};
 
 	public ConvertToJson(E workingClass) {
@@ -59,7 +59,7 @@ public class ConvertToJson<E> {
 	}
 
 	private boolean isPrimitive(Class aClass) {
-		for (Class primitiveClass : primitiveClasses) {
+        for (Class primitiveClass : PRIMITIVE_CLASSES) {
 			if (primitiveClass.equals(aClass)) {
 				return true;
 			}
