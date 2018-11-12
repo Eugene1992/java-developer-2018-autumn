@@ -55,6 +55,9 @@ public class SimpleTest {
         private int salary;
         private List<String> friendNames;
 
+        public Employee() {
+        }
+
         public Employee(String firstName, String lastName, int age, int salary, List<String> friendNames) {
             this.firstName = firstName;
             this.lastName = lastName;
