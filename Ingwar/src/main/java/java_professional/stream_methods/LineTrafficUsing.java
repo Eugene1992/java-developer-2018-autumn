@@ -77,5 +77,18 @@ public class LineTrafficUsing {
     public void setInetOut(double inetOut) {
         this.inetOut = inetOut;
     }
+
+    @Override
+    public String toString() {
+        return "LineTrafficUsing{" +
+                "dateLine=" + dateLine +
+                ", innerIn=" + innerIn +
+                ", innerOut=" + innerOut +
+                ", uaixIn=" + uaixIn +
+                ", uaixOut=" + uaixOut +
+                ", inetIn=" + inetIn +
+                ", inetOut=" + inetOut +
+                '}';
+    }
 }
 
