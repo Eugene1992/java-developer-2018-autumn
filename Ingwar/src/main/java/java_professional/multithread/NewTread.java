@@ -13,7 +13,8 @@ public class NewTread extends Thread {
 		FILE_URL = fILE_URL;
 		FILE_TARGET = fILE_TARGET;
 	}
-	
+
+	@Override
 	public void run() {
 		try (BufferedInputStream in = new BufferedInputStream(new URL(FILE_URL).openStream());
 			FileOutputStream fileOutputStream =  new FileOutputStream(FILE_TARGET)) {
@@ -22,9 +23,9 @@ public class NewTread extends Thread {
 			while ((bytesRead = in.read(dataBuffer, 0, 1024)) != -1) {
 				fileOutputStream.write(dataBuffer, 0, bytesRead);
 			}
-			System.out.println("Download comleted!");
+			System.out.println("Download file " + FILE_TARGET + " comleted!");
 		} catch (IOException e) {
-				    // handle exception
+			e.printStackTrace();
 		}
 	}
 
