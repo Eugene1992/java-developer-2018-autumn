@@ -1,0 +1,25 @@
+CREATE TABLE employees (
+  id SERIAL,
+  firstName VARCHAR(50),
+  lastName VARCHAR(50),
+  age NUMERIC,
+  salary NUMERIC
+);
+
+  INSERT INTO employees(firstName, lastName, age, salary) VALUES ('Bill','Packston',36,16000);
+
+SELECT * FROM employees;
+
+ALTER TABLE employees
+ADD COLUMN isMarried BOOLEAN DEFAULT FALSE;
+
+ALTER TABLE employees
+    ALTER COLUMN isMarried
+    SET NOT NULL;
+
+UPDATE employees
+SET isMarried = FALSE;
+
+UPDATE employees
+SET isMarried = TRUE
+WHERE age > 27;
