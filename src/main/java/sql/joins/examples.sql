@@ -68,3 +68,34 @@ SELECT
   departments.name     AS dept_name
 FROM employees_pk_fk
   CROSS JOIN departments
+
+
+--  1. Создаем таблицу users
+--  - username
+--  - firstName
+--  - lastName
+--  - isEmailVerified
+--
+--  2. Создаем таблицу shopping_carts
+--  - cardNumber
+--
+--  3. Создаем таблицу products
+--  - name
+--  - price
+--  - discount
+--
+--  4. Связать таблицы
+--  5. Заполнить значениями
+--
+--  6. Вывести username пользователей у которых есть корзины
+--  7. Вывести пользователей у которых в корзине есть товары 'Milk','Beer','Bread','Vodka' (OR)
+--
+--
+--
+--
+--
+--
+--
+--
+--
+--
