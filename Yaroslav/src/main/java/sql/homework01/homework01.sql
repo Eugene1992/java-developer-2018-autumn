@@ -61,7 +61,11 @@ ALTER TABLE contacts
 
 
 /*8) Изменить таблицу contact, заполнив атрибут gender значениями male/female по условию - если first_name заканчивается на букву 'а' - female, все другие - male*/
-INSERT INTO contacts(gender) VALUE('female')
+UPDATE contacts
+SET gender = 'female' WHERE first_name LIKE '%а';
+
+UPDATE contacts
+SET gender = 'male' WHERE first_name NOT LIKE '%а';
 
 
 
