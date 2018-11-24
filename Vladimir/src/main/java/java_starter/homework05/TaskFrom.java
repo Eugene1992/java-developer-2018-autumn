@@ -1,17 +1,15 @@
 package java_starter.homework05;
 
-import java.util.Arrays;
-
 public class TaskFrom {
     public static void main(String[] args) {
         String str = "Method for subString    r   ";
         int[] arr = new int[]{1, 3, 4, 5};
-        String str1 = "hello world";
+        String str1 = "hello    world";
         String str2 = "worship hell";
-        System.out.println(maxString(str1, str2));
+//        System.out.println(maxString(str1, str2));
 //        System.out.println(replaceAll(str, "for", "tow"));
 //        System.out.print(str.length());
-//        System.out.println("Chek");
+        System.out.println(trimAll(str1));
     }
 
     //Method - subString (от и до(вклчительно))
@@ -64,6 +62,14 @@ public class TaskFrom {
             forReturnMethod += forMethod[i];
         }
         return forReturnMethod;
+        if (forMethod[i] == ' ') {
+            if (forMethod[i + 1] != ' ') {
+                forReturnMethod += forMethod[i];
+            }
+        } else {
+            forReturnMethod += forMethod[i];
+        }
+    }
     }
 
     //Method - trim (обрезать и внутринние) "   Hello   world   " -> "Hello world"
@@ -72,15 +78,8 @@ public class TaskFrom {
         String forReturnMethod = "";
         char[] forMethod = newStr.toCharArray();
         for (int i = 0; i < forMethod.length; i++) {
-            if (forMethod[i] == ' ') {
-                if (forMethod[i + 1] != ' ') {
-                    forReturnMethod += forMethod[i];
-                }
-            } else {
-                forReturnMethod += forMethod[i];
-            }
-        }
-        return forReturnMethod;
+
+            return forReturnMethod;
     }
 
     //Method - indexOf
