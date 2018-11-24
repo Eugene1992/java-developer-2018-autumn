@@ -12,7 +12,8 @@ WHERE salary < (SELECT AVG(salary)
                 WHERE c2.name = 'Google')ORDER BY salary DESC;
 
 
-
+INSERT INTO characters(firstName, race, specialization, power) VALUES ('Элрис','эльф','лучник',400);
+INSERT INTO characters(firstName, race, specialization, power) VALUES ('Кахат','демон','воитель',420);
 
 
 
