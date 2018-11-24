@@ -1,3 +1,5 @@
+
+/*Создание таблицы покупателей*/
 CREATE TABLE users(
   id SERIAL PRIMARY KEY ,
   userName VARCHAR(30),
@@ -6,7 +8,7 @@ CREATE TABLE users(
   isEmailVerified BOOLEAN);
 
 
-
+/*Создание таблицы продуктов*/
 CREATE TABLE products(
   id SERIAL PRIMARY KEY ,
   name VARCHAR(30),
@@ -15,6 +17,7 @@ CREATE TABLE products(
 );
 
 
+/*Создание таблицы корзин*/
 CREATE TABLE shoppingcarts(
   cartId INTEGER PRIMARY KEY ,
   userId INTEGER,
@@ -22,6 +25,8 @@ CREATE TABLE shoppingcarts(
 );
 
 
+/*Создание вспомогательной таблицы для выражения связи
+  много к много между корзинами и продуктами*/
 CREATE TABLE products_cart (
   recordId SERIAL,
   cartId     INTEGER,
@@ -32,6 +37,7 @@ CREATE TABLE products_cart (
 );
 
 
+/*Заполнение таблицы покупателей*/
 INSERT INTO users(userName, firstName, lastName, isEmailVerified) VALUES ('Анд', 'Андрей',	'Адреев', TRUE );
 INSERT INTO users(userName, firstName, lastName, isEmailVerified) VALUES ('Макпет', 'Максим',	'Петров', TRUE );
 INSERT INTO users(userName, firstName, lastName, isEmailVerified) VALUES ('ОксанК', 'Оксана',	'Ковальова', FALSE );
@@ -43,7 +49,7 @@ INSERT INTO users(userName, firstName, lastName, isEmailVerified) VALUES ('Ле�
 
 
 
-
+/*Заполнение таблицы продуктов*/
 INSERT INTO products(name, price, discount) VALUES ('Хлеб', 5.0,	20.0);
 INSERT INTO products(name, price, discount) VALUES ('Пиво', 15.0,	30.0);
 INSERT INTO products(name, price, discount) VALUES ('Водка', 25.0,	40.0);
@@ -54,6 +60,7 @@ INSERT INTO products(name, price, discount) VALUES ('Квас', 5.0,	14.3);
 INSERT INTO products(name, price, discount) VALUES ('Живчик', 5.0,	22.2);
 
 
+/*Заполнение таблицы корзин*/
 INSERT INTO shoppingcarts(cartId, userId) VALUES (121,1);
 INSERT INTO shoppingcarts(cartId, userId) VALUES (132,2);
 INSERT INTO shoppingcarts(cartId, userId) VALUES (233,3);
@@ -64,7 +71,7 @@ INSERT INTO shoppingcarts(cartId, userId) VALUES (227,7);
 INSERT INTO shoppingcarts(cartId, userId) VALUES (878,8);
 
 
-
+/*Заполнение вспомогательной таблицы между корзинами и продуктами*/
 INSERT INTO products_cart(cartId, product_id, amount) VALUES (121, 1, 10);
 INSERT INTO products_cart(cartId, product_id, amount) VALUES (121, 2, 12);
 INSERT INTO products_cart(cartId, product_id, amount) VALUES (132, 3, 10);
@@ -82,5 +89,18 @@ INSERT INTO products_cart(cartId, product_id, amount) VALUES (227, 2, 19);
 
 
 
+/*Запрос, который находит людей, которые купили товары водка,
+  хлеб, пиво и молоко и выводит их имя, номер корзины, количество
+  товара, имя товара и цену товара за 1 ед*/
+SELECT users.firstName AS Name,
+       s2.cartId AS CardID,
+       cart.amount AS Amount,
+       p.name AS productName,
+       p.price AS Price
+FROM users
+LEFT JOIN shoppingcarts s2 on users.id = s2.userId
+LEFT JOIN products_cart cart on s2.cartId = cart.cartId
+LEFT JOIN products p on cart.product_id = p.id
+WHERE p.name = 'Водка' OR p.name = 'Хлеб' OR p.name = 'Пиво' OR p.name = 'Молоко';
 
 
