@@ -98,5 +98,25 @@ LEFT JOIN shopping_carts sc on users.cart_id = sc.id
 LEFT JOIN products p on sc.product_id = p.id
 WHERE p.name = 'Milk' OR p.name = 'Beer' OR p.name = 'Bread' OR p.name = 'Vodka';
 
+-- add for trigger
+CREATE OR REPLACE FUNCTION check_salary()
+  RETURNS TRIGGER AS $$
+BEGIN
+  IF OLD.salary > NEW.salary
+  THEN
+    RAISE EXCEPTION 'Dont poore this one!';
+  END IF;
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql
+
+CREATE TRIGGER human_check_salary BEFORE UPDATE OR INSERT ON "human" FOR EACH ROW EXECUTE PROCEDURE check_salary();
+
+DROP TRIGGER human_check_salary ON human;
+
+UPDATE human SET salary = 1000 WHERE id = 2
+
+INSERT INTO human (id, age, salary, name) VALUES (102, 43, 12121, 'Sara');
+--
 
 
