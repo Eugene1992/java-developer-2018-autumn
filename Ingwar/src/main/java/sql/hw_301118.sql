@@ -35,7 +35,7 @@ WHILE @@FETCH_STATUS = 0 LOOP
   IF col.column_name <> 'id' THEN
   IF OLD[col.column_name] <> NEW[col.column_name] THEN
   INSERT INTO comment_history(comment_id,column_name,old_value,new_value,edit_by,edit_when)
-   VALUES(col.column_name,OLD[col.name],NEW[col.name],NEW.user_id,SELECT GETDATE());
+   VALUES(OLD.id,col.column_name,OLD[col.name],NEW[col.name],NEW.user_id,current_date);
   END IF;
   END IF;
   FETCH NEXT FROM curs INTO col;
